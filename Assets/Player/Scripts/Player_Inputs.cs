@@ -22,7 +22,7 @@ public class Player_Inputs
     {
         foreach (var pair in _commandDictionary)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(pair.Key))
             {
                 return pair.Value;
             }
@@ -35,5 +35,6 @@ public class Player_Inputs
     {
         direction.x = Input.GetAxis("Horizontal");
         direction.z = Input.GetAxis("Vertical");
+
     }
 }

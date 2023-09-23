@@ -11920,8 +11920,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3f40e7c154e914794fea598f91cf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLife: 50
+  life: 0
   _speed: 10
-  _jumpForce: 25
+  _jumpForce: 8
+  _dashForce: 15
+  _dashDuration: 0.01
+  _dashCooldown: 1
 --- !u!54 &1306396017
 Rigidbody:
   m_ObjectHideFlags: 0
