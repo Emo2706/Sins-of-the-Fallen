@@ -11926,7 +11926,7 @@ MonoBehaviour:
   _jumpForce: 8
   _dashForce: 15
   _dashDuration: 0.01
-  _dashCooldown: 1
+  _dashCooldown: 1.2
 --- !u!54 &1306396017
 Rigidbody:
   m_ObjectHideFlags: 0
