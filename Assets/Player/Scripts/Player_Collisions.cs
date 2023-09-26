@@ -17,8 +17,11 @@ public class Player_Collisions
     public void ArtificialOnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 6)
+        {
             _movement.jump = true;
-        _rb.drag = _initialDrag;
+            _rb.drag = _initialDrag;
+
+        }
         
     }
 

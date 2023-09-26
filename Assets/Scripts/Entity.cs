@@ -4,11 +4,18 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
-    public int maxLife;
-    public int life;
+    [SerializeField] protected int _maxLife;
+    [SerializeField] protected int _life;
 
     public virtual void TakeDmg(int dmg)
     {
-        life = dmg;
+        _life = dmg;
+        CheckLife();
+        
+    }
+
+    public virtual void CheckLife()
+    {
+        
     }
 }
