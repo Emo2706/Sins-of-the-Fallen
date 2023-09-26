@@ -5,11 +5,14 @@ using UnityEngine;
 public class Player_Inputs 
 {
     public Vector3 direction;
+    public Vector3 axis;
+    Transform _transform;
 
     Dictionary<KeyCode,CommandInputs> _commandDictionary;
 
-    public Player_Inputs()
+    public Player_Inputs(Transform transform)
     {
+        _transform = transform;
         _commandDictionary = new Dictionary<KeyCode, CommandInputs>();
     }
 
@@ -33,8 +36,13 @@ public class Player_Inputs
 
     public void ArtificialUpdate()
     {
-        direction.x = Input.GetAxis("Horizontal");
-        direction.z = Input.GetAxis("Vertical");
+        axis = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        if (axis.magnitude > 1) axis = _transform.TransformDirection(axis).normalized;
+        else axis = _transform.TransformDirection(axis);
+
+
+        /*direction.x = Input.GetAxis("Horizontal");
+        direction.z = Input.GetAxis("Vertical");*/
 
     }
 }

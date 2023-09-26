@@ -16,7 +16,12 @@ public class Player_Movement
     float _dashCooldown;
     bool _dashing;
     
-    public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown)
+    float _glideDrag;
+    float _initialDrag = 0.1f;
+    bool _gliding = false;
+    Transform _transform;
+    
+    public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag)
     {
         _rb = rb;
         _inputs = inputs;
@@ -25,6 +30,13 @@ public class Player_Movement
         _dashForce = dashForce;
         _dashDuration = dashDuration;
         _dashCooldown = dashCooldown;
+        _transform = transform;
+        _glideDrag = glideDrag;
+    }
+
+    public void ArtificialStart()
+    {
+        _rb.drag = _initialDrag;
     }
 
     public void ArtificialUpdate()
@@ -48,8 +60,8 @@ public class Player_Movement
         }
         else
         {
-         _rb.MovePosition(_rb.position+_inputs.direction * _speed * Time.deltaTime);
-
+            //_rb.MovePosition(_rb.position+_inputs.direction * _speed * Time.deltaTime);
+            _transform.position += _inputs.axis * _speed * Time.deltaTime;
         }
         
     }
@@ -68,9 +80,23 @@ public class Player_Movement
         if (_dashTimer2>=_dashCooldown)
         {
             _dashing = true;
-            _rb.AddForce(_inputs.direction.normalized * _dashForce, ForceMode.Impulse);
+            _rb.AddForce(_inputs.axis.normalized * _dashForce, ForceMode.Impulse);
             _dashTimer2 = 0;
 
         }
+    }
+    public void Glide()
+    {
+        if (jump==false && _gliding==false)
+        {
+            _rb.drag = _glideDrag;
+            //_gliding = true;
+        }
+
+       /* if (jump==false && _gliding==true)
+        {
+            _rb.drag = _initialDrag;
+            _gliding = false;
+        }*/
     }
 }

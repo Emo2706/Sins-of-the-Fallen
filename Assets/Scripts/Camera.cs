@@ -20,10 +20,13 @@ public class Camera : MonoBehaviour
         float y = Input.GetAxis("Mouse Y");
 
         player.Rotate(Vector3.up * x * speed);
+        
+        
 
         _rotX -= y * speed;
         _rotX = Mathf.Clamp(_rotX, minRotX, maxRotX);
         transform.localEulerAngles = Vector3.right * _rotX;
+        //player.transform.localRotation = Quaternion.Euler(_rotX, 0f, 0f);
     }
     
     

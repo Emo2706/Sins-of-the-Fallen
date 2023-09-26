@@ -13,6 +13,9 @@ public class Player : Entity
     [SerializeField] float _dashForce;
     [SerializeField] float _dashDuration;
     [SerializeField] float _dashCooldown;
+ 
+    [SerializeField] float _glideDrag;
+    
     Vector3 _initialPosition;
 
 
@@ -21,16 +24,18 @@ public class Player : Entity
     {
         life = maxLife;
         _rb = GetComponent<Rigidbody>();
-        _inputs = new Player_Inputs();
-        _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown);
-        _collisions = new Player_Collisions(_movement);
+        _inputs = new Player_Inputs(transform);
+        _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag);
+        _collisions = new Player_Collisions(_movement , _rb);
 
         _inputs.BlindKeys(KeyCode.Space, new JumpInputs(_movement));
         _inputs.BlindKeys(KeyCode.LeftShift, new DashInput(_movement));
+        _inputs.BlindKeys(KeyCode.E, new GlideInput(_movement));
     }
     // Start is called before the first frame update
     void Start()
     {
+        _movement.ArtificialStart();
         //transform.position = _initialPosition;
     }
 
@@ -56,5 +61,10 @@ public class Player : Entity
     private void OnCollisionEnter(Collision collision)
     {
         _collisions.ArtificialOnCollisionEnter(collision);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        _collisions.ArtificialOnCollisionExit(collision);
     }
 }
