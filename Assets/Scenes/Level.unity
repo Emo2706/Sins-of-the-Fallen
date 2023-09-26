@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.18801177, g: 0.4381874, b: 0.6132076, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -11920,8 +11920,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3f40e7c154e914794fea598f91cf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 50
-  life: 0
+  _maxLife: 0
+  _life: 0
   _speed: 10
   _jumpForce: 5
   _dashForce: 15

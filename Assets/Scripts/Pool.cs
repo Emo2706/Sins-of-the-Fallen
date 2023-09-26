@@ -30,15 +30,30 @@ public class Pool<T>
 
         }
     }
-    // Start is called before the first frame update
-    void Start()
+    
+    public T GetObj()
     {
-        
+        T obj;
+        if (_currentStock.Count==0)
+        {
+            obj = _factoryMethod();
+        }
+
+        else
+        {
+            obj = _currentStock[0];
+            _currentStock.RemoveAt(0);
+        }
+
+        _turnOnCallBack(obj);
+
+        return obj;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Return(T obj)
     {
-        
+        _turnOffCallBack(obj);
+
+        _currentStock.Add(obj);
     }
 }

@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class EnemyFactory : MonoBehaviour
 {
+    public static EnemyFactory instance { get; private set; }
     Pool<EnemyGlobalScript> _enemyPool;
     [SerializeField] EnemyGlobalScript _enemy;
     [SerializeField] int _initialAmount;
 
     private void Awake()
     {
-        _enemyPool = new Pool<EnemyGlobalScript>(CreatorMethod , TurnOnCallBack, TurnOnCallBack, _initialAmount);
+        if (instance)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        else
+        {
+            instance = this;
+
+        }
+
+        _enemyPool = new Pool<EnemyGlobalScript>(CreatorMethod , EnemyGlobalScript.TurnOnCallBack, EnemyGlobalScript.TurnOnCallBack, _initialAmount);
     }
     // Start is called before the first frame update
     void Start()
@@ -29,13 +42,15 @@ public class EnemyFactory : MonoBehaviour
         return Instantiate(_enemy);
     }
 
-    public void TurnOnCallBack(EnemyGlobalScript enemy)
+    public EnemyGlobalScript GetObjFromPool()
     {
-
+       return _enemyPool.GetObj();
     }
 
-    public void TurnOffCallBack(EnemyGlobalScript enemy)
+    public void ReturnToPool(EnemyGlobalScript enemy)
     {
-
+        _enemyPool.Return(enemy);
     }
+
+   
 }

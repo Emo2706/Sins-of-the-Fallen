@@ -22,7 +22,7 @@ public class Player : Entity
 
     private void Awake()
     {
-        life = maxLife;
+        _life = _maxLife;
         _rb = GetComponent<Rigidbody>();
         _inputs = new Player_Inputs(transform);
         _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag);
