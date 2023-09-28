@@ -7,6 +7,7 @@ public class Player : Entity
     Player_Movement _movement;
     Player_Inputs _inputs;
     Player_Collisions _collisions;
+    Player_Attacks _attacks;
     Rigidbody _rb;
     [SerializeField] int _speed;
     [SerializeField] float _jumpForce;
@@ -27,11 +28,13 @@ public class Player : Entity
         _rb = GetComponent<Rigidbody>();
         _inputs = new Player_Inputs(transform);
         _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag);
-        _collisions = new Player_Collisions(_movement , _rb, checkpoint, this);
+        _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform);
+        _attacks = new Player_Attacks(transform);
 
         _inputs.BlindKeys(KeyCode.Space, new JumpInputs(_movement));
         _inputs.BlindKeys(KeyCode.LeftShift, new DashInput(_movement));
         _inputs.BlindKeys(KeyCode.E, new GlideInput(_movement));
+        _inputs.BlindKeys(KeyCode.Mouse0, new ShootInput(_attacks));
     }
     // Start is called before the first frame update
     void Start()

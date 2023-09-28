@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyFactory : MonoBehaviour
 {
     public static EnemyFactory instance { get; private set; }
-    Pool<EnemyGlobalScript> _enemyPool;
-    [SerializeField] EnemyGlobalScript _enemy;
+    Pool<EnemyNormal> _enemyPool;
+    [SerializeField] EnemyNormal _enemy;
     [SerializeField] int _initialAmount;
 
     private void Awake()
@@ -23,31 +23,23 @@ public class EnemyFactory : MonoBehaviour
 
         }
 
-        _enemyPool = new Pool<EnemyGlobalScript>(CreatorMethod , EnemyGlobalScript.TurnOnCallBack, EnemyGlobalScript.TurnOnCallBack, _initialAmount);
+        _enemyPool = new Pool<EnemyNormal>(CreatorMethod , EnemyNormal.TurnOnCallBack, EnemyNormal.TurnOnCallBack, _initialAmount);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
-    EnemyGlobalScript CreatorMethod()
+    EnemyNormal CreatorMethod()
     {
         return Instantiate(_enemy);
     }
 
-    public EnemyGlobalScript GetObjFromPool()
+    public EnemyNormal GetObjFromPool()
     {
        return _enemyPool.GetObj();
     }
 
-    public void ReturnToPool(EnemyGlobalScript enemy)
+    public void ReturnToPool(EnemyNormal enemy)
     {
         _enemyPool.Return(enemy);
     }

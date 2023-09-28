@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGlobalScript : Entity
+public class EnemyShooter : EnemyGlobalScript
 {
-    Enemy_Stats _enemy_stats;
-
+    public static EnemyShooter instance;
     // Start is called before the first frame update
     void Start()
     {
-        _life = _maxLife;
+        
     }
 
     // Update is called once per frame
@@ -17,19 +16,12 @@ public class EnemyGlobalScript : Entity
     {
         
     }
-
-    public void Reset()
-    {
-        _life = _maxLife;
-    }
-
-    public static void TurnOnCallBack(EnemyGlobalScript enemy)
+    public static void TurnOnCallBack(EnemyShooter enemy)
     {
         enemy.Reset();
         enemy.gameObject.SetActive(true);
     }
-
-    public static void TurnOffCallBack(EnemyGlobalScript enemy)
+    public static void TurnOffCallBack(EnemyShooter enemy)
     {
         enemy.gameObject.SetActive(false);
     }
@@ -38,9 +30,9 @@ public class EnemyGlobalScript : Entity
     {
         base.CheckLife();
 
-        if (_life<=0)
+        if (_life <= 0)
         {
-            EnemyFactory.instance.ReturnToPool(this);
+            EnemyShooterFactory.instance.ReturnToPool(this);
         }
     }
 }

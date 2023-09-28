@@ -9,13 +9,15 @@ public class Player_Collisions
     float _initialDrag = 0.05f;
     Transform _checkpoint;
     Player _player;
+    Transform _transform;
 
-    public Player_Collisions(Player_Movement movement , Rigidbody rb, Transform spawnpoint, Player Player)
+    public Player_Collisions(Player_Movement movement , Rigidbody rb, Transform spawnpoint, Player Player , Transform transform)
     {
         _movement = movement;
         _rb = rb;
         _checkpoint = spawnpoint;
         _player = Player;
+        _transform = transform;
     }
 
     public void ArtificialOnCollisionEnter(Collision collision)
@@ -31,6 +33,12 @@ public class Player_Collisions
             _player.gameObject.transform.position = _checkpoint.position;
         }
 
+        if (collision.gameObject.layer==8)
+        {
+            _movement.jump = true;
+            _transform.parent = collision.transform;
+        }
+
 
         
     }
@@ -39,6 +47,9 @@ public class Player_Collisions
     {
         if (collision.gameObject.layer == 6)
             _movement.jump = false;
+
+        if (collision.gameObject.layer == 8)
+            _transform.parent = null;
 
 
     }

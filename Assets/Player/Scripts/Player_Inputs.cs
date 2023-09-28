@@ -29,10 +29,6 @@ public class Player_Inputs
             {
                 return pair.Value;
             }
-            if (Input.GetKeyUp(pair.Key))
-            {
-
-            }
         }
 
         return null;
