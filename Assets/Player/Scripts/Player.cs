@@ -15,6 +15,7 @@ public class Player : Entity
     [SerializeField] float _dashCooldown;
  
     [SerializeField] float _glideDrag;
+    [SerializeField] Transform checkpoint;
     
     Vector3 _initialPosition;
 
@@ -26,7 +27,7 @@ public class Player : Entity
         _rb = GetComponent<Rigidbody>();
         _inputs = new Player_Inputs(transform);
         _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag);
-        _collisions = new Player_Collisions(_movement , _rb);
+        _collisions = new Player_Collisions(_movement , _rb, checkpoint, this);
 
         _inputs.BlindKeys(KeyCode.Space, new JumpInputs(_movement));
         _inputs.BlindKeys(KeyCode.LeftShift, new DashInput(_movement));

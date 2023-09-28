@@ -15,6 +15,7 @@ public class JumpInputs : CommandInputs
     {
         _movement.Jump();
     }
+    
 
     
 }

@@ -17,7 +17,7 @@ public class Player_Movement
     bool _dashing;
     
     float _glideDrag;
-    float _initialDrag = 0.1f;
+    float _initialDrag = 0.05f;
     bool _gliding = false;
     Transform _transform;
     
