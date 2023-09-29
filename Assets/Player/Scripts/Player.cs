@@ -31,10 +31,16 @@ public class Player : Entity
         _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform);
         _attacks = new Player_Attacks(transform);
 
+
+        #region Inputs
+
         _inputs.BlindKeys(KeyCode.Space, new JumpInputs(_movement));
         _inputs.BlindKeys(KeyCode.LeftShift, new DashInput(_movement));
         _inputs.BlindKeys(KeyCode.E, new GlideInput(_movement));
         _inputs.BlindKeys(KeyCode.Mouse0, new ShootInput(_attacks));
+        _inputs.BlindKeysUp(KeyCode.E, new NotGlideInput(_movement));
+       
+        #endregion
     }
     // Start is called before the first frame update
     void Start()

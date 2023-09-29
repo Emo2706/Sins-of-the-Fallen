@@ -18,7 +18,6 @@ public class Player_Movement
     
     float _glideDrag;
     float _initialDrag = 0.05f;
-    bool _gliding = false;
     Transform _transform;
     
     public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag)
@@ -87,16 +86,18 @@ public class Player_Movement
     }
     public void Glide()
     {
-        if (jump==false && _gliding==false)
+        if (jump==false)
         {
             _rb.drag = _glideDrag;
-            //_gliding = true;
+            
         }
 
-       /* if (jump==false && _gliding==true)
+    }
+
+    public void NotGlide()
         {
-            _rb.drag = _initialDrag;
-            _gliding = false;
-        }*/
+            if (jump==false) _rb.drag = _initialDrag;
+
+
     }
 }

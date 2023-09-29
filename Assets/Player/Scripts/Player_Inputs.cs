@@ -10,10 +10,13 @@ public class Player_Inputs
 
     Dictionary<KeyCode,CommandInputs> _commandDictionary;
 
+    Dictionary<KeyCode, CommandInputs> _commandUpDictionary;
+
     public Player_Inputs(Transform transform)
     {
         _transform = transform;
         _commandDictionary = new Dictionary<KeyCode, CommandInputs>();
+        _commandUpDictionary = new Dictionary<KeyCode, CommandInputs>();
     }
 
     public void BlindKeys(KeyCode key, CommandInputs command)
@@ -21,11 +24,24 @@ public class Player_Inputs
         _commandDictionary[key] = command;
     }
 
+    public void BlindKeysUp(KeyCode key ,CommandInputs command)
+    {
+        _commandUpDictionary[key] = command;
+    }
+
     public CommandInputs Inputs()
     {
         foreach (var pair in _commandDictionary)
         {
             if (Input.GetKeyDown(pair.Key))
+            {
+                return pair.Value;
+            }
+        }
+
+        foreach(var pair in _commandUpDictionary)
+        {
+            if (Input.GetKeyUp(pair.Key))
             {
                 return pair.Value;
             }
