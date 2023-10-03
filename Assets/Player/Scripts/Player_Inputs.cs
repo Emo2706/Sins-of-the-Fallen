@@ -7,16 +7,24 @@ public class Player_Inputs
     public Vector3 direction;
     public Vector3 axis;
     Transform _transform;
+    LifeHandler _lifeHandler;
+    
 
     Dictionary<KeyCode,CommandInputs> _commandDictionary;
 
     Dictionary<KeyCode, CommandInputs> _commandUpDictionary;
 
-    public Player_Inputs(Transform transform)
+    public Player_Inputs(Transform transform , LifeHandler lifeHandler)
     {
         _transform = transform;
         _commandDictionary = new Dictionary<KeyCode, CommandInputs>();
         _commandUpDictionary = new Dictionary<KeyCode, CommandInputs>();
+        _lifeHandler = lifeHandler;
+    }
+
+    public void ArtificialStart()
+    {
+        _lifeHandler.onDeath += DisableOnDead;
     }
 
     public void BlindKeys(KeyCode key, CommandInputs command)
@@ -60,5 +68,10 @@ public class Player_Inputs
         /*direction.x = Input.GetAxis("Horizontal");
         direction.z = Input.GetAxis("Vertical");*/
 
+    }
+
+    void DisableOnDead()
+    {
+        
     }
 }

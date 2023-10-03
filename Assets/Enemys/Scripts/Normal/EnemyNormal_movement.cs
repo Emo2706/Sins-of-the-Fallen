@@ -8,16 +8,18 @@ public class EnemyNormal_movement
     int _speed;
     Player _player;
     Vector3 _dir;
+    float _minDistAttacks;
     float _minDist;
     EnemyNormal_Attacks _attacks;
 
-    public EnemyNormal_movement(Rigidbody rb , int speed , Player player , float minDist , EnemyNormal_Attacks attacks)
+    public EnemyNormal_movement(Rigidbody rb , int speed , Player player , float minDist , EnemyNormal_Attacks attacks , float minDistAttacks)
     {
         _rb = rb;
         _speed = speed;
         _player = player;
-        _minDist = minDist;
+        _minDistAttacks = minDistAttacks;
         _attacks = attacks;
+        _minDist = minDist;
     }
 
     public void ArtificialUpdate()
@@ -30,16 +32,20 @@ public class EnemyNormal_movement
     {
         _dir = _player.transform.position - _rb.position;
 
-        _rb.MovePosition(_rb.position+_dir * _speed * Time.deltaTime);
+        var dist = _dir.magnitude;
 
-        
+        if (dist<=_minDist)
+        {
+            _rb.MovePosition(_rb.position+_dir * _speed * Time.fixedDeltaTime);
+
+        }
     }
 
     void CheckAttack()
     {
-        var distance = _dir.sqrMagnitude;
+        var distance = _dir.magnitude;
 
-        if (distance <= _minDist)
+        if (distance <= _minDistAttacks)
         {
             _attacks.Attack();
         }

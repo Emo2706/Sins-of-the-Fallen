@@ -6,6 +6,7 @@ public class Player_Movement
 {
     Rigidbody _rb;
     Player_Inputs _inputs;
+    LifeHandler _lifeHandler;
     float _jumpForce;
     public bool jump = true;
     int _speed;
@@ -20,7 +21,7 @@ public class Player_Movement
     float _initialDrag = 0.05f;
     Transform _transform;
     
-    public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag)
+    public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag , LifeHandler lifeHandler)
     {
         _rb = rb;
         _inputs = inputs;
@@ -31,11 +32,13 @@ public class Player_Movement
         _dashCooldown = dashCooldown;
         _transform = transform;
         _glideDrag = glideDrag;
+        _lifeHandler = lifeHandler;
     }
 
     public void ArtificialStart()
     {
         _rb.drag = _initialDrag;
+        _lifeHandler.onDeath += DisableOnDead;
     }
 
     public void ArtificialUpdate()
@@ -60,7 +63,7 @@ public class Player_Movement
         else
         {
             //_rb.MovePosition(_rb.position+_inputs.direction * _speed * Time.deltaTime);
-            _transform.position += _inputs.axis * _speed * Time.deltaTime;
+            _transform.position += _inputs.axis * _speed * Time.fixedDeltaTime;
         }
         
     }
@@ -95,9 +98,16 @@ public class Player_Movement
     }
 
     public void NotGlide()
-        {
-            if (jump==false) _rb.drag = _initialDrag;
+    {
+        if (jump==false) _rb.drag = _initialDrag;
 
 
     }
+
+    void DisableOnDead()
+    {
+        
+    }
+
+
 }

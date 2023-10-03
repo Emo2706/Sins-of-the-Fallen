@@ -29,4 +29,17 @@ public class EnemyFlyers : EnemyGlobalScript
     {
         enemy.gameObject.SetActive(false);
     }
+
+    public override void TakeDmg(int dmg)
+    {
+        base.TakeDmg(dmg);
+
+        CheckLife();
+    }
+
+    void CheckLife()
+    {
+        if (_life <= 0)
+            EnemyFlyersFactory.instance.ReturnToPool(this);
+    }
 }

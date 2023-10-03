@@ -9,6 +9,7 @@ public class Player : Entity
     Player_Collisions _collisions;
     Player_Attacks _attacks;
     Rigidbody _rb;
+    LifeHandler _lifeHandler;
     [SerializeField] int _speed;
     [SerializeField] float _jumpForce;
     [SerializeField] float _dashForce;
@@ -26,8 +27,9 @@ public class Player : Entity
     {
         _life = _maxLife;
         _rb = GetComponent<Rigidbody>();
-        _inputs = new Player_Inputs(transform);
-        _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag);
+        _lifeHandler = new LifeHandler();
+        _inputs = new Player_Inputs(transform , _lifeHandler);
+        _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler);
         _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform);
         _attacks = new Player_Attacks(transform);
 
@@ -76,5 +78,20 @@ public class Player : Entity
     private void OnCollisionExit(Collision collision)
     {
         _collisions.ArtificialOnCollisionExit(collision);
+    }
+
+    public override void TakeDmg(int dmg)
+    {
+        base.TakeDmg(dmg);
+
+        CheckLife();
+    }
+
+    void CheckLife()
+    {
+        if (_life<=0)
+            _lifeHandler.OnDead();
+        
+
     }
 }

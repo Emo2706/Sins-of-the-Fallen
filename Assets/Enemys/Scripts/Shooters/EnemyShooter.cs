@@ -26,13 +26,18 @@ public class EnemyShooter : EnemyGlobalScript
         enemy.gameObject.SetActive(false);
     }
 
-    public override void CheckLife()
+    public override void TakeDmg(int dmg)
     {
-        base.CheckLife();
+        base.TakeDmg(dmg);
 
-        if (_life <= 0)
-        {
-            EnemyShooterFactory.instance.ReturnToPool(this);
-        }
+        CheckLife();
     }
+
+     void CheckLife()
+     {
+        if (_life <= 0)
+            EnemyShooterFactory.instance.ReturnToPool(this);
+        
+        
+     }
 }

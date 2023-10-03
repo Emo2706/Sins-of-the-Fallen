@@ -10,12 +10,8 @@ public abstract class Entity : MonoBehaviour
     public virtual void TakeDmg(int dmg)
     {
         _life = dmg;
-        CheckLife();
         
     }
 
-    public virtual void CheckLife()
-    {
-        
-    }
+   
 }
