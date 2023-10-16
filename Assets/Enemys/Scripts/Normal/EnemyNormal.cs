@@ -71,4 +71,6 @@ public class EnemyNormal : Entity
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _minDistAttack);
     }
+
+    
 }

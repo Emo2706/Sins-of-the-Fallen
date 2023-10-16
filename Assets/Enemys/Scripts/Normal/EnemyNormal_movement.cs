@@ -32,9 +32,9 @@ public class EnemyNormal_movement
     {
         _dir = _player.transform.position - _rb.position;
 
-        var dist = _dir.magnitude;
+        var dist = _dir.sqrMagnitude;
 
-        if (dist<=_minDist)
+        if (dist<=_minDist * _minDist)
         {
             _rb.MovePosition(_rb.position+_dir * _speed * Time.fixedDeltaTime);
 
@@ -43,9 +43,9 @@ public class EnemyNormal_movement
 
     void CheckAttack()
     {
-        var distance = _dir.magnitude;
+        var distance = _dir.sqrMagnitude;
 
-        if (distance <= _minDistAttacks)
+        if (distance <= _minDistAttacks * _minDistAttacks)
         {
             _attacks.Attack();
         }
