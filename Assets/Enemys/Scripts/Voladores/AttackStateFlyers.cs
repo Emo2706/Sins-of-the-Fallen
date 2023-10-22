@@ -2,58 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackState : State
+public class AttackStateFlyers : State
 {
+    EnemyFlyers _flyer;
     int _speedRotation;
     int _shootCooldown;
     float _minDistAttack;
     Transform _transform;
     float _shootTimer;
-    EnemyShooter _shooter;
 
-    public AttackState(EnemyShooter shooter)
+    public AttackStateFlyers(EnemyFlyers flyer)
     {
-        _shooter = shooter;
-        _speedRotation = shooter.speedRotation;
-        _shootCooldown = shooter.shootCooldown;
-        _minDistAttack = shooter.minDistAttack;
-        _transform = shooter.transform;
+        _flyer = flyer;
+        _transform = flyer.transform;
+        _minDistAttack = flyer.minDistAttack;
+        _shootCooldown = flyer.shootCooldown;
+        _speedRotation = flyer.speedRotation;
     }
 
     public override void OnEnter()
     {
-        Debug.Log("enter attack");
+        Debug.Log("Enter Attack");
     }
 
     public override void OnUpdate()
-        
     {
-        var dir = _shooter.player.transform.position - _transform.position;
+        var dir = _flyer.player.transform.position - _transform.position;
+
+        _transform.forward = dir;
 
         if (dir.sqrMagnitude >= _minDistAttack * _minDistAttack)
-            fsmSh.ChangeState(ShooterStates.Patrol);
+        {
+            fsmFly.ChangeState(FlyersStates.Patrol);
+        }
 
         _shootTimer += Time.deltaTime;
 
-
-        _transform.forward += dir;
-        
-
-        if (_shootTimer>= _shootCooldown)
+        if(_shootTimer >= _shootCooldown)
         {
             Shoot();
-            
-            _shootTimer = 0;
 
+            _shootTimer = 0;
         }
 
     }
-   
-    
+
     public override void OnExit()
     {
-        Debug.Log("exit attack");
-
+        Debug.Log("Exit Attack");
     }
 
     void Shoot()
@@ -63,8 +59,5 @@ public class AttackState : State
         bullet.transform.rotation = _transform.rotation;
         bullet.dir = _transform.forward;
     }
-
-  
-
 
 }

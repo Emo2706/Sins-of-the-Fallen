@@ -14,10 +14,10 @@ public class EnemyShooter : Entity
     public int shootCooldown;
     public Player player;
     public int speedRotation;
+    public LayerMask playerMask = 1<<9;
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<Player>();//preguntar como hacerlo sin FindObject
         _stateMachine = new FiniteStateMachineShooter();
         _patrol = new PatrolState(this);
         _attack = new AttackState(this);

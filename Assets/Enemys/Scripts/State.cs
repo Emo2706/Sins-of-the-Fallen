@@ -11,4 +11,8 @@ public abstract class State
     public abstract void OnExit();
 
     public FiniteStateMachineShooter fsmSh;
+
+    public FiniteStateMachineNormal fsmNm;
+
+    public FiniteStateMachineFlyers fsmFly;
 }

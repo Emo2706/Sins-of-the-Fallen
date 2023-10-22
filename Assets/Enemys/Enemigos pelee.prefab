@@ -113,10 +113,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLife: 20
   _life: 0
-  _speed: 3
-  _minDist: 5
-  _player: {fileID: 0}
-  _minDistAttack: 1.5
+  rb: {fileID: 0}
+  speed: 5
+  minDist: 15
+  player: {fileID: 0}
+  minDistAttack: 5
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!54 &7820256590821572806
 Rigidbody:
   m_ObjectHideFlags: 0

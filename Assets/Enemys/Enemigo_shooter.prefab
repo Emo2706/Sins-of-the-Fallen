@@ -111,5 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5526bd09fb32ea144a37c9cf569f64ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxLife: 0
+  _maxLife: 30
   _life: 0
+  speed: 5
+  minDistAttack: 25
+  player: {fileID: 0}
+  speedRotation: 5
+  shootCooldown: 10
+  _playerMask:
+    serializedVersion: 2
+    m_Bits: 512

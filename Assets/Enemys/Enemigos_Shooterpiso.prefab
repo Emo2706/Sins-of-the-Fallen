@@ -118,3 +118,6 @@ MonoBehaviour:
   shootCooldown: 7
   player: {fileID: 0}
   speedRotation: 5
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512

@@ -9,15 +9,17 @@ public class PatrolState : State
     int _indexWayPoint;
     float _minDistAttack;
     Transform _transform;
-    Player _player;
+    LayerMask _playerMask;
+    EnemyShooter _shooter;
 
     public PatrolState(EnemyShooter shooter)
     {
+        _shooter = shooter;
         _speed = shooter.speed;
         _wayPointsShooter = shooter.waypointsShooter;
         _minDistAttack = shooter.minDistAttack;
         _transform = shooter.transform;
-        _player = shooter.player;
+        _playerMask = shooter.playerMask;
     }
 
     public override void OnEnter()
@@ -29,10 +31,16 @@ public class PatrolState : State
 
     public override void OnUpdate()
     {
-        var dist = (_player.transform.position - _transform.position).sqrMagnitude;
+        var player = Physics.OverlapSphere(_transform.position, _minDistAttack,_playerMask);
 
-        if (dist <= _minDistAttack * _minDistAttack)
-            fsmSh.ChangeState(ShooterStates.Attack);
+        foreach (var item in player)
+        {
+            if (item.GetComponent<Player>() != null)
+            {
+                _shooter.player = item.GetComponent<Player>();
+                fsmSh.ChangeState(ShooterStates.Attack);
+            } 
+        }
     }
 
     public override void OnExit()

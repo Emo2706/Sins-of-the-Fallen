@@ -6,32 +6,39 @@ using System;
 public class EnemyNormal : Entity
 {
     public static EnemyNormal instance;
-    EnemyNormal_movement _movement;
-    EnemyNormal_Attacks _attacks;
-    Rigidbody _rb;
-    [SerializeField] int _speed;
-    [SerializeField] float _minDist;
-    [SerializeField] Player _player;
-    [SerializeField] float _minDistAttack;
+    PatrolStateNormal _patrol;
+    ChaseStateNormal _chase;
+    FiniteStateMachineNormal _stateMachine;
+    public Rigidbody rb;
+    public int speed;
+    public float minDist;
+    public Player player;
+    public float minDistAttack;
     public event Action<float> OnMovement = delegate { };
     public event Action<float> OnLifeChange = delegate { };
     public event Action OnJump = delegate { };
     public event Action OnDead = delegate { };
+    public LayerMask playerMask = 1 << 9;
     // Start is called before the first frame update
     void Start()
     {
-        _player = FindObjectOfType<Player>();
-        _rb = GetComponent<Rigidbody>();
-        _attacks = new EnemyNormal_Attacks();
-        _movement = new EnemyNormal_movement(_rb ,_speed , _player , _minDist , _attacks , _minDistAttack);
+        rb = GetComponent<Rigidbody>();
+        _stateMachine = new FiniteStateMachineNormal();
+        _patrol = new PatrolStateNormal(this);
+        _chase = new ChaseStateNormal(this);
+
+        _stateMachine.AddState(NormalStates.Patrol, _patrol);
+        _stateMachine.AddState(NormalStates.Chase, _chase);
+
+        _stateMachine.ChangeState(NormalStates.Patrol);
+      
     }
 
    
 
     private void FixedUpdate()
     {
-        _movement.ArtificialUpdate();
-        
+        _stateMachine.ArtificialUpdate();
     }
 
     private void Reset()
@@ -66,11 +73,17 @@ public class EnemyNormal : Entity
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, _minDist);
+        Gizmos.DrawWireSphere(transform.position, minDist);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _minDistAttack);
+        Gizmos.DrawWireSphere(transform.position, minDistAttack);
     }
 
     
+}
+
+public enum NormalStates
+{
+    Patrol, 
+    Chase
 }
