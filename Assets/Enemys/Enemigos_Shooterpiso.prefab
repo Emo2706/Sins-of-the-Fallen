@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2832235822951791067}
   - component: {fileID: 4031517789644582180}
   - component: {fileID: 3620963364685568446}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemigos_Shooterpiso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLife: 30
   _life: 0
+  _rb: {fileID: 0}
   waypointsShooter: []
   speed: 5
   minDistAttack: 10

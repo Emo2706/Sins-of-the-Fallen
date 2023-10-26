@@ -43,6 +43,11 @@ public class Bullet : MonoBehaviour
         {
             BulletFactory.instance.ReturnToPool(this);
         }
+
+        if (collision.gameObject.layer == 11)
+        {
+            BulletFactory.instance.ReturnToPool(this);
+        }
     }
 
     public void Reset()

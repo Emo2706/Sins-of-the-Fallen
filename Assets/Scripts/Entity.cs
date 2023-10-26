@@ -9,7 +9,7 @@ public abstract class Entity : MonoBehaviour
 
     public virtual void TakeDmg(int dmg)
     {
-        _life = dmg;
+        _life -= dmg;
         
     }
 

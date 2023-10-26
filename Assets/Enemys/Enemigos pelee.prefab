@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1937128782276907583}
   - component: {fileID: 2803194037475388495}
   - component: {fileID: 7820256590821572806}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemigos pelee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLife: 20
   _life: 0
-  rb: {fileID: 0}
+  _rb: {fileID: 0}
   speed: 5
   minDist: 15
   player: {fileID: 0}
