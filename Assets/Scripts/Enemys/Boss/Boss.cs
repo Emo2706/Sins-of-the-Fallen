@@ -8,6 +8,8 @@ public class Boss : EnemyGlobalScript
     ShootState _shoot;
     ZonesState _zones;
 
+    Dictionary<BossStates, StatesId> _statesDictionary;
+
     public float viewRadius;
     public int coolDownChangeAttacks;
     public int coolDownCircle;
@@ -16,10 +18,14 @@ public class Boss : EnemyGlobalScript
     public Transform pivotShoot;
     public int zoneAttackCooldown;
     public Transform[] spawnPointsZone;
-
+    
     protected override void Start()
     {
         base.Start();
+
+
+
+        _statesDictionary = new Dictionary<BossStates, StatesId>();
 
         _stateMachine = new FSM<BossStates>();
         _shoot = new ShootState(this);
@@ -64,4 +70,10 @@ public enum BossStates
 {
     Shoot,
     Zones,
+}
+
+public struct StatesId
+{
+    public const int shootState = 0;
+    public const int zonesState = 1;
 }

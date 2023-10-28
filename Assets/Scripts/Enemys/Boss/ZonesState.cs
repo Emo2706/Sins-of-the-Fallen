@@ -8,9 +8,10 @@ public class ZonesState : State
     Transform[] _spawnPointsZones;
     ZoneAttackWarning warning;
     int _changeStateCooldown;
-
+    Boss _boss;
     public ZonesState(Boss boss)
     {
+        _boss = boss;
         _zoneAttackCooldown = boss.zoneAttackCooldown;
         _spawnPointsZones = boss.spawnPointsZone;
         _changeStateCooldown = boss.coolDownChangeAttacks;
@@ -18,14 +19,17 @@ public class ZonesState : State
 
     public override void OnEnter()
     {
+        Debug.Log("Enter zones");
+
         warning = ZoneAttackWarningFactory.instance.GetObjFromPool();
-        warning.transform.position = _spawnPointsZones[Random.Range(1, 3)].position;
-            
+        warning.transform.position = _spawnPointsZones[Random.Range(0, _spawnPointsZones.Length)].position;
+        _boss.StartCoroutine(ZoneAttackCouroutine());
     }
 
     public override void OnExit()
     {
-        
+        Debug.Log("Exit zones");
+
     }
 
     public override void OnFixedUpdate()
@@ -50,6 +54,8 @@ public class ZonesState : State
         zoneAttack.transform.position = warning.transform.position;
 
         yield return _waitForChangeState;
+
+        _boss.ChangeState(BossStates.Shoot);
     }
    
 }

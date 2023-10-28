@@ -5,9 +5,11 @@ using UnityEngine;
 public class Player_Attacks
 {
     Transform _transform;
-    public Player_Attacks(Transform transform)
+    Player_Inputs _inputs;
+    public Player_Attacks(Transform transform , Player_Inputs inputs)
     {
         _transform = transform;
+        _inputs = inputs;
     }
     public void Shoot()
     {

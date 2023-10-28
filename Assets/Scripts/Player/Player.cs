@@ -19,9 +19,12 @@ public class Player : Entity
     [SerializeField] float _glideDrag;
     [SerializeField] Transform checkpoint;
     [SerializeField] int _slimeForce;
+    public int slimeDmg;
+    public int zonesDmg;
     
     Vector3 _initialPosition;
 
+    public Transform testBossPoint;
 
 
     private void Awake()
@@ -29,10 +32,10 @@ public class Player : Entity
         _life = _maxLife;
         _rb = GetComponent<Rigidbody>();
         _lifeHandler = new LifeHandler();
-        _inputs = new Player_Inputs(transform , _lifeHandler);
-        _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler , _slimeForce);
+        _inputs = new Player_Inputs(transform , _lifeHandler , this);
+        _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler , _slimeForce , this);
         _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform);
-        _attacks = new Player_Attacks(transform);
+        _attacks = new Player_Attacks(transform , _inputs);
 
 
         #region Inputs
@@ -50,6 +53,7 @@ public class Player : Entity
     {
         _movement.ArtificialStart();
         //transform.position = _initialPosition;
+        _inputs.ArtificialStart();
     }
 
     // Update is called once per frame
@@ -59,11 +63,18 @@ public class Player : Entity
 
 
         CommandInputs keypressed = _inputs.Inputs();
-        if (keypressed!= null)
+        if (keypressed != null)
         {
             keypressed.Execute();
         }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            transform.position = testBossPoint.position;
+        }
     }
+
+    
 
     private void FixedUpdate()
     {
@@ -73,13 +84,20 @@ public class Player : Entity
 
     private void OnCollisionEnter(Collision collision)
     {
-        _collisions.ArtificialOnCollisionEnter(collision);
+        _collisions.OnCollisionEnter(collision);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        _collisions.OnTriggerEnter(other);
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        _collisions.ArtificialOnCollisionExit(collision);
+        _collisions.OnCollisionExit(collision);
     }
+
+
 
     public override void TakeDmg(int dmg)
     {

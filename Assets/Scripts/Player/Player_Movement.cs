@@ -21,8 +21,9 @@ public class Player_Movement
     float _initialDrag = 0.05f;
     Transform _transform;
     int _slimeForce;
+    Player _player;
     
-    public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag , LifeHandler lifeHandler , int slimeForce)
+    public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag , LifeHandler lifeHandler , int slimeForce , Player player)
     {
         _rb = rb;
         _inputs = inputs;
@@ -35,6 +36,7 @@ public class Player_Movement
         _glideDrag = glideDrag;
         _lifeHandler = lifeHandler;
         _slimeForce = slimeForce;
+        _player = player;
     }
 
     public void ArtificialStart()
@@ -74,13 +76,14 @@ public class Player_Movement
         if (jump)
         {
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-           jump = false;
+            jump = false;
         }
     }
 
     public void JumpSlime()
     {
         _rb.AddForce(Vector3.up * _slimeForce, ForceMode.Impulse);
+        jump = false;
     }
 
     public void Dash()
@@ -112,7 +115,7 @@ public class Player_Movement
 
     void DisableOnDead()
     {
-        
+        _player.enabled = false;
     }
 
 

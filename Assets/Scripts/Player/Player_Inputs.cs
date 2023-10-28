@@ -8,18 +8,21 @@ public class Player_Inputs
     public Vector3 axis;
     Transform _transform;
     LifeHandler _lifeHandler;
-    
+    Player _player;
+    Vector3 _mousePosS;
+    public Vector3 finalMousePos;
 
     Dictionary<KeyCode,CommandInputs> _commandDictionary;
 
     Dictionary<KeyCode, CommandInputs> _commandUpDictionary;
 
-    public Player_Inputs(Transform transform , LifeHandler lifeHandler)
+    public Player_Inputs(Transform transform , LifeHandler lifeHandler , Player player)
     {
         _transform = transform;
         _commandDictionary = new Dictionary<KeyCode, CommandInputs>();
         _commandUpDictionary = new Dictionary<KeyCode, CommandInputs>();
         _lifeHandler = lifeHandler;
+        _player = player;
     }
 
     public void ArtificialStart()
@@ -64,6 +67,10 @@ public class Player_Inputs
         if (axis.magnitude > 1) axis = _transform.TransformDirection(axis).normalized;
         else axis = _transform.TransformDirection(axis);
 
+        Vector3 mousePosPx = Input.mousePosition;
+        _mousePosS = Camera.main.ScreenToWorldPoint(mousePosPx);
+        finalMousePos = _mousePosS - _transform.position;
+        
 
         /*direction.x = Input.GetAxis("Horizontal");
         direction.z = Input.GetAxis("Vertical");*/
@@ -72,6 +79,6 @@ public class Player_Inputs
 
     void DisableOnDead()
     {
-        
+        _player.enabled = false;
     }
 }

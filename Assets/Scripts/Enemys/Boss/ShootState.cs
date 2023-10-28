@@ -29,13 +29,14 @@ public class ShootState : State
 
     public override void OnEnter()
     {
+        Debug.Log("Enter shoot");
         _changeStateTimer = 0;
         _shootTimer = 0;
     }
 
     public override void OnExit()
     {
-       
+        Debug.Log("Exit shoot");
     }
 
     public override void OnFixedUpdate()
@@ -67,15 +68,15 @@ public class ShootState : State
 
         if(_changeStateTimer>= _changeStateCooldown)
         {
-            //_boss.ChangeState(Random)
+            _boss.ChangeState(BossStates.Zones);
         }
 
     }
 
     void Shoot()
     {
-        var bullet = BulletEnemyFactory.instance.GetObjFromPool();
+        var bullet = BulletBossFactory.instance.GetObjFromPool();
         bullet.transform.position = _pivotShoot.position;
-        bullet.transform.forward =  _pivotShoot.forward;
+        bullet.transform.forward =  _transform.forward;
     }
 }

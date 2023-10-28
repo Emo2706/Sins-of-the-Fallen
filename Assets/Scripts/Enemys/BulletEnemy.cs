@@ -34,7 +34,7 @@ public class BulletEnemy : MonoBehaviour
 
     void Move()
     {
-        _rb.velocity = dir.normalized * _bulletSpeed * Time.deltaTime;
+        transform.position += dir * _bulletSpeed * Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision collision)

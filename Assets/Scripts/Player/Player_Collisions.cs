@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Collisions 
+public class Player_Collisions
 {
     Player_Movement _movement;
     Rigidbody _rb;
@@ -10,8 +10,10 @@ public class Player_Collisions
     Transform _checkpoint;
     Player _player;
     Transform _transform;
- 
-    public Player_Collisions(Player_Movement movement , Rigidbody rb, Transform spawnpoint, Player Player , Transform transform)
+    int _slimeDmg;
+    int _zonesDmg;
+
+    public Player_Collisions(Player_Movement movement, Rigidbody rb, Transform spawnpoint, Player Player, Transform transform)
     {
 
         _movement = movement;
@@ -19,9 +21,11 @@ public class Player_Collisions
         _checkpoint = spawnpoint;
         _player = Player;
         _transform = transform;
+        _slimeDmg = Player.slimeDmg;
+        _zonesDmg = Player.zonesDmg;
     }
 
-    public void ArtificialOnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 6)
         {
@@ -34,26 +38,35 @@ public class Player_Collisions
             _player.gameObject.transform.position = _checkpoint.position;
         }
 
-        if (collision.gameObject.layer==8)
+        if (collision.gameObject.layer == 8)
         {
             _movement.jump = true;
             _transform.parent = collision.transform;
         }
 
-        if (collision.gameObject.layer==12)
+        if (collision.gameObject.layer == 12)
         {
             _player.TakeDmg(3);
         }
 
-        if(collision.gameObject.layer == 13)
+        if (collision.gameObject.layer == 13)
         {
             _movement.JumpSlime();
-            _player.TakeDmg(15);
+            _player.TakeDmg(_slimeDmg);
         }
-        
+
     }
 
-    public void ArtificialOnCollisionExit(Collision collision)
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 14)
+        {
+            _player.TakeDmg(_zonesDmg);
+        }
+    }
+
+
+    public void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.layer == 6)
             _movement.jump = false;
