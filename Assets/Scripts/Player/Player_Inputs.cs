@@ -67,9 +67,7 @@ public class Player_Inputs
         if (axis.magnitude > 1) axis = _transform.TransformDirection(axis).normalized;
         else axis = _transform.TransformDirection(axis);
 
-        Vector3 mousePosPx = Input.mousePosition;
-        _mousePosS = Camera.main.ScreenToWorldPoint(mousePosPx);
-        finalMousePos = _mousePosS - _transform.position;
+        
         
 
         /*direction.x = Input.GetAxis("Horizontal");

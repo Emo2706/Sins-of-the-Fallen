@@ -8,13 +8,9 @@ public class BulletEnemy : MonoBehaviour
     [SerializeField] int _lifeCooldown;
     [SerializeField] int _bulletSpeed;
     public Vector3 dir;
-    Rigidbody _rb;
+    
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        _rb = GetComponent<Rigidbody>();
-    }
+   
 
     // Update is called once per frame
     void Update()
@@ -39,10 +35,11 @@ public class BulletEnemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6 || collision.gameObject.layer==11 || collision.gameObject.layer==15)
         {
             BulletEnemyFactory.instance.ReturnToPool(this);
         }
+        
     }
 
     public void Reset()

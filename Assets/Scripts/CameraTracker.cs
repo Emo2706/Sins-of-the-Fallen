@@ -27,6 +27,7 @@ public class CameraTracker : MonoBehaviour
         _rotX = Mathf.Clamp(_rotX, minRotX, maxRotX);
         transform.localEulerAngles = Vector3.right * _rotX;
         //player.transform.localRotation = Quaternion.Euler(_rotX, 0f, 0f);
+        
     }
     
     

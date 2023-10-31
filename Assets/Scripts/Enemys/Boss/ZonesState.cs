@@ -55,7 +55,13 @@ public class ZonesState : State
 
         yield return _waitForChangeState;
 
-        _boss.ChangeState(BossStates.Shoot);
+        var changeInt = Random.Range(1, 3);
+
+        if (changeInt == 1)
+            _boss.ChangeState(BossStates.Shoot);
+
+        if (changeInt == 2)
+            _boss.ChangeState(BossStates.Zones);
     }
    
 }

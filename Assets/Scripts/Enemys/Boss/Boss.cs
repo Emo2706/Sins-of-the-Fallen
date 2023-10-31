@@ -17,7 +17,11 @@ public class Boss : EnemyGlobalScript
     public LayerMask playerMask = 1<<9;
     public Transform pivotShoot;
     public int zoneAttackCooldown;
+    public int twisterCooldown;
+    public int twistersAmount;
+    public int nextTwistersCooldown;
     public Transform[] spawnPointsZone;
+    public Transform[] spawnPointsTwister;
     
     protected override void Start()
     {
@@ -25,7 +29,7 @@ public class Boss : EnemyGlobalScript
 
 
 
-        _statesDictionary = new Dictionary<BossStates, StatesId>();
+        //_statesDictionary = new Dictionary<BossStates, StatesId>();
 
         _stateMachine = new FSM<BossStates>();
         _shoot = new ShootState(this);

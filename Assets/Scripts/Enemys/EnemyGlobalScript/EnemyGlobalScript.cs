@@ -7,6 +7,7 @@ public class EnemyGlobalScript : Entity
     //public Transform[] waypoints;
     public Rigidbody _rb;
     Enemy_Collisions _collisions;
+    public GameObject _parent;
 
     // Start is called before the first frame update
    protected virtual void Start()
