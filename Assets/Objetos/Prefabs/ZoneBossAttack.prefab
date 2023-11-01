@@ -111,4 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeTime: 4
-  _zoneCollider: {fileID: 9107366471660556983}
+  zoneCollider: {fileID: 9107366471660556983}

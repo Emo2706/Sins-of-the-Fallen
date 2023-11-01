@@ -6,9 +6,7 @@ public class TwisterAttack : MonoBehaviour
 {
     float _lifeTimer;
     [SerializeField] int _lifeTime;
-
-
-
+ 
     // Update is called once per frame
     void Update()
     {
@@ -18,10 +16,10 @@ public class TwisterAttack : MonoBehaviour
             TwisterAttackFactory.instance.ReturnToPool(this);
     }
 
+
     private void Reset()
     {
         _lifeTimer = 0;
-
     }
 
     public static void TurnOnCallBack(TwisterAttack attack)

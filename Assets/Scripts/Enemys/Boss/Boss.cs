@@ -39,6 +39,7 @@ public class Boss : EnemyGlobalScript
         _stateMachine.AddState(BossStates.Shoot ,_shoot);
         _stateMachine.AddState(BossStates.Zones ,_zones);
 
+
         ChangeState(BossStates.Shoot);
     }
 
@@ -54,10 +55,11 @@ public class Boss : EnemyGlobalScript
             if (item.GetComponent<Player>()!=null)
             {
                 _shoot.player = item.GetComponent<Player>();
-                _stateMachine.Update(); 
+                _stateMachine.Update();
 
             }
         }
+        
 
     }
 

@@ -21,6 +21,10 @@ public class Player : Entity
     [SerializeField] int _slimeForce;
     public int slimeDmg;
     public int zonesDmg;
+    public int twisterDmg;
+    public float twisterForce;
+    
+    
     
     Vector3 _initialPosition;
 

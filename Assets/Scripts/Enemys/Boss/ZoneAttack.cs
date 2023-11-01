@@ -6,7 +6,7 @@ public class ZoneAttack : MonoBehaviour
 {
     [SerializeField] int _lifeTime;
     float _lifeTimer;
-    public Collider _zoneCollider;
+    public Collider zoneCollider;
 
     // Update is called once per frame
     void Update()
@@ -23,7 +23,7 @@ public class ZoneAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
-            _zoneCollider.enabled=false;
+            zoneCollider.enabled=false;
     }
 
 
@@ -31,7 +31,7 @@ public class ZoneAttack : MonoBehaviour
     private void Reset()
     {
         _lifeTimer = 0;
-        _zoneCollider.enabled = true;
+        zoneCollider.enabled = true;
     }
 
     public static void TurnOnCallBack(ZoneAttack zone)

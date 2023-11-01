@@ -12,6 +12,7 @@ public class Player_Collisions
     Transform _transform;
     int _slimeDmg;
     int _zonesDmg;
+    int _twisterDmg;
 
     public Player_Collisions(Player_Movement movement, Rigidbody rb, Transform spawnpoint, Player Player, Transform transform)
     {
@@ -23,6 +24,7 @@ public class Player_Collisions
         _transform = transform;
         _slimeDmg = Player.slimeDmg;
         _zonesDmg = Player.zonesDmg;
+        _twisterDmg = Player.twisterDmg;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -62,6 +64,12 @@ public class Player_Collisions
         if (other.gameObject.layer == 14)
         {
             _player.TakeDmg(_zonesDmg);
+        }
+
+        if (other.gameObject.layer == 16)
+        {
+            _movement.Twister();
+            _player.TakeDmg(_twisterDmg);
         }
     }
 

@@ -34,6 +34,6 @@ public class TwisterWarningFactory : MonoBehaviour
 
     public void ReturnToPool(TwisterWarning twisterWarning)
     {
-        _twisterWarningPool.Return(_twisterWarning);
+        _twisterWarningPool.Return(twisterWarning);
     }
 }

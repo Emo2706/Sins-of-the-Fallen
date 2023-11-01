@@ -8,7 +8,6 @@ public class ShootState : State
     public Player player;
     Transform _transform;
     float _viewRadius;
-    LayerMask _playerMask;
     float _shootTimer;
     int _changeStateCooldown;
     float _changeStateTimer;
@@ -18,7 +17,7 @@ public class ShootState : State
     int _twisterCooldown;
     int _twistersAmount;
     Transform[] _twistersWarningPoints;
-    Vector3[] _warnings;
+    List<Vector3> _warnings = new List<Vector3>();
     int _nextTwistersCooldown;
     public ShootState(Boss boss)
     {
@@ -26,7 +25,6 @@ public class ShootState : State
         _shootCoolDown = boss.coolDownShoot;
         _transform = boss.transform;
         _viewRadius = boss.viewRadius;
-        _playerMask = boss.playerMask;
         _changeStateCooldown = boss.coolDownChangeAttacks;
         _circleCooldown = boss.coolDownCircle;
         _pivotShoot = boss.pivotShoot;
@@ -46,6 +44,8 @@ public class ShootState : State
 
     public override void OnExit()
     {
+        _boss.StopCoroutine(TwisterAttack());
+
         Debug.Log("Exit shoot");
     }
 
@@ -56,7 +56,7 @@ public class ShootState : State
 
     public override void OnUpdate()
     {
-
+       
 
         _shootTimer += Time.deltaTime;
 
@@ -112,22 +112,29 @@ public class ShootState : State
             {
                 var spawnPointTwister = _twistersWarningPoints[Random.Range(0, _twistersWarningPoints.Length)];
 
-               TwisterWarning warning = TwisterWarningFactory.instance.GetObjFromPool();
+                TwisterWarning warning = TwisterWarningFactory.instance.GetObjFromPool();
                 warning.transform.position = spawnPointTwister.position;
-               // _warnings[i] = spawnPointTwister.position;
+                _warnings.Add(spawnPointTwister.position);
 
    
             }
 
             yield return waitForSeconds;
 
-            /*foreach (var item in _warnings)
+            foreach (var item in _warnings)
             {
                 TwisterAttack attack = TwisterAttackFactory.instance.GetObjFromPool();
                 attack.transform.position = item;
-            }*/
+            }
+
+            for (int i = 0; i < _warnings.Count; i++)
+            {
+                 _warnings.RemoveAt(i);
+
+            }
 
             yield return nextAttack;
+
         }
 
 

@@ -21,6 +21,7 @@ public class Player_Movement
     float _initialDrag = 0.05f;
     Transform _transform;
     int _slimeForce;
+    float _twisterForce;
     Player _player;
     
     public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag , LifeHandler lifeHandler , int slimeForce , Player player)
@@ -37,6 +38,7 @@ public class Player_Movement
         _lifeHandler = lifeHandler;
         _slimeForce = slimeForce;
         _player = player;
+        _twisterForce = _player.twisterForce;
     }
 
     public void ArtificialStart()
@@ -83,6 +85,12 @@ public class Player_Movement
     public void JumpSlime()
     {
         _rb.AddForce(Vector3.up * _slimeForce, ForceMode.Impulse);
+        jump = false;
+    }
+
+    public void Twister()
+    {
+        _rb.AddForce(Vector3.up * _twisterForce, ForceMode.Impulse);
         jump = false;
     }
 

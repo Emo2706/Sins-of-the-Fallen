@@ -6,7 +6,6 @@ public class TwisterWarning : MonoBehaviour
 {
     float _lifeTimer;
     [SerializeField] int _lifeTime;
-
     
 
     // Update is called once per frame
@@ -21,7 +20,6 @@ public class TwisterWarning : MonoBehaviour
     private void Reset()
     {
         _lifeTimer = 0;
-
     }
 
     public static void TurnOnCallBack(TwisterWarning warning)
