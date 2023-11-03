@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Entity
 {
@@ -8,6 +9,7 @@ public class Player : Entity
     Player_Inputs _inputs;
     Player_Collisions _collisions;
     Player_Attacks _attacks;
+    Player_UI _ui;
     Rigidbody _rb;
     LifeHandler _lifeHandler;
     [SerializeField] int _speed;
@@ -19,13 +21,18 @@ public class Player : Entity
     [SerializeField] float _glideDrag;
     [SerializeField] Transform checkpoint;
     [SerializeField] int _slimeForce;
+    [SerializeField] int _amountPowerUpBullets;
+    [SerializeField] int _multiplierDmg;
     public int slimeDmg;
     public int zonesDmg;
     public int twisterDmg;
     public float twisterForce;
+    public int circleDmg;
+    public int bulletsDmg;
+    public float shootCooldown;
+    [SerializeField] Slider _healthSlider;
     
-    
-    
+
     Vector3 _initialPosition;
 
     public Transform testBossPoint;
@@ -33,13 +40,17 @@ public class Player : Entity
 
     private void Awake()
     {
-        _life = _maxLife;
+        life = _maxLife;
         _rb = GetComponent<Rigidbody>();
         _lifeHandler = new LifeHandler();
         _inputs = new Player_Inputs(transform , _lifeHandler , this);
         _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler , _slimeForce , this);
         _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform);
-        _attacks = new Player_Attacks(transform , _inputs);
+        _attacks = new Player_Attacks(transform , shootCooldown , _amountPowerUpBullets , _multiplierDmg);
+        _ui = new Player_UI(_healthSlider, this);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
 
         #region Inputs
@@ -63,8 +74,9 @@ public class Player : Entity
     // Update is called once per frame
     void Update()
     {
+        _attacks.Update();
         _inputs.ArtificialUpdate();
-
+        _ui.Update();
 
         CommandInputs keypressed = _inputs.Inputs();
         if (keypressed != null)
@@ -78,7 +90,10 @@ public class Player : Entity
         }
     }
 
-    
+    public void PowerUpBullet()
+    {
+        _attacks.PowerUpBullet();
+    }
 
     private void FixedUpdate()
     {
@@ -108,11 +123,12 @@ public class Player : Entity
         base.TakeDmg(dmg);
 
         CheckLife();
+
     }
 
     void CheckLife()
     {
-        if (_life<=0)
+        if (life<=0)
             _lifeHandler.OnDead();
         
 

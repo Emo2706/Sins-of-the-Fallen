@@ -13,10 +13,10 @@ public class Player_Collisions
     int _slimeDmg;
     int _zonesDmg;
     int _twisterDmg;
-
+    int _circleDmg;
+    int _bulletsDmg;
     public Player_Collisions(Player_Movement movement, Rigidbody rb, Transform spawnpoint, Player Player, Transform transform)
     {
-
         _movement = movement;
         _rb = rb;
         _checkpoint = spawnpoint;
@@ -25,6 +25,8 @@ public class Player_Collisions
         _slimeDmg = Player.slimeDmg;
         _zonesDmg = Player.zonesDmg;
         _twisterDmg = Player.twisterDmg;
+        _circleDmg = Player.circleDmg;
+        _bulletsDmg = Player.bulletsDmg;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -46,10 +48,6 @@ public class Player_Collisions
             _transform.parent = collision.transform;
         }
 
-        if (collision.gameObject.layer == 12)
-        {
-            _player.TakeDmg(3);
-        }
 
         if (collision.gameObject.layer == 13)
         {
@@ -71,6 +69,21 @@ public class Player_Collisions
             _movement.Twister();
             _player.TakeDmg(_twisterDmg);
         }
+
+        if(other.gameObject.layer == 17)
+        {
+            _player.TakeDmg(_circleDmg);
+        }
+
+        if (other.gameObject.layer == 12)
+        {
+            _player.TakeDmg(_bulletsDmg);
+        }
+
+        var powerUp = other.GetComponent<PowerUp>();
+
+        if (powerUp != null)
+            powerUp.Active();
     }
 
 

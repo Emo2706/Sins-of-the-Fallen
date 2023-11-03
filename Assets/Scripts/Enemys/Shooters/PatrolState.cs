@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PatrolState : State
 {
-    int _speed;
-    Transform[] _wayPointsShooter;
-    int _indexWayPoint;
     float _minDistAttack;
     Transform _transform;
     LayerMask _playerMask;
@@ -15,8 +12,6 @@ public class PatrolState : State
     public PatrolState(EnemyShooter shooter)
     {
         _shooter = shooter;
-        _speed = shooter.speed;
-        _wayPointsShooter = shooter.waypointsShooter;
         _minDistAttack = shooter.minDistAttack;
         _transform = shooter.transform;
         _playerMask = shooter.playerMask;
@@ -30,16 +25,21 @@ public class PatrolState : State
 
     public override void OnUpdate()
     {
-        var player = Physics.OverlapSphere(_transform.position, _minDistAttack,_playerMask);
-
-        foreach (var item in player)
+        if (_shooter.player == null)
         {
-            if (item.GetComponent<Player>() != null)
+            var player = Physics.OverlapSphere(_transform.position, _minDistAttack,_playerMask);
+
+            foreach (var item in player)
             {
-                _shooter.player = item.GetComponent<Player>();
-                _shooter.ChangeState(ShooterStates.Attack);
-            } 
+                if (item.GetComponent<Player>() != null)
+                {
+                    _shooter.player = item.GetComponent<Player>();
+                    _shooter.ChangeState(ShooterStates.Attack);
+                } 
+            }
+
         }
+
     }
 
     public override void OnExit()
@@ -49,7 +49,6 @@ public class PatrolState : State
 
     public override void OnFixedUpdate()
     {
-        //preguntar para que todos tengan distintos waypoints
         
     }
 }

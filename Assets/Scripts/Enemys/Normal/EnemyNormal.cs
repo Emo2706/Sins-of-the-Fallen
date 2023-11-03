@@ -48,7 +48,7 @@ public class EnemyNormal : EnemyGlobalScript
 
     public void Reset()
     {
-        _life = _maxLife;
+        life = _maxLife;
     }
 
     public static void TurnOnCallBack(EnemyNormal enemy)
@@ -71,7 +71,7 @@ public class EnemyNormal : EnemyGlobalScript
 
     void CheckLife()
     {
-        if (_life <= 0)
+        if (life <= 0)
             EnemyFactory.instance.ReturnToPool(this);
     }
 

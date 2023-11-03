@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] int _bulletSpeed;
     public Vector3 dir;
     Rigidbody _rb;
-
+    public int dmg ;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,17 +37,18 @@ public class Bullet : MonoBehaviour
         _rb.velocity= dir.normalized * _bulletSpeed * Time.deltaTime;
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.layer == 6)
+        if (other.gameObject.layer == 6 || other.gameObject.layer == 11 || other.gameObject.layer==15)
         {
             BulletFactory.instance.ReturnToPool(this);
         }
 
-        if (collision.gameObject.layer == 11)
-        {
-            BulletFactory.instance.ReturnToPool(this);
-        }
+        var enemy = other.GetComponent<EnemyGlobalScript>();
+
+        if (enemy != null)
+            enemy.TakeDmg(dmg);
     }
 
     public void Reset()

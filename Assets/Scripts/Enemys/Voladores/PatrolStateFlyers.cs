@@ -17,6 +17,7 @@ public class PatrolStateFlyers : State
         _speed = flyer.speed;
         _transform = flyer.transform;
         _minDistAttack = flyer.minDistAttack;
+        _playerMask = flyer.playerMask;
     }
 
     public override void OnEnter()
@@ -26,15 +27,17 @@ public class PatrolStateFlyers : State
 
     public override void OnUpdate()
     {
-       
 
-        var player = Physics.OverlapSphere(_transform.position, _minDistAttack, _playerMask);
-
-        foreach (var item in player)
+        if (_flyer.player == null)
         {
-            _flyer.player = item.GetComponent<Player>();
+            var player = Physics.OverlapSphere(_transform.position, _minDistAttack, _playerMask);
 
-            _flyer.ChangeState(FlyersStates.Attack);
+            foreach (var item in player)
+            {
+                _flyer.player = item.GetComponent<Player>();
+
+                _flyer.ChangeState(FlyersStates.Attack);
+            }
         }
     }
 

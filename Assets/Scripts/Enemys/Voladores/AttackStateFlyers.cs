@@ -10,7 +10,8 @@ public class AttackStateFlyers : State
     float _minDistAttack;
     Transform _transform;
     float _shootTimer;
-
+    Vector3 _playerPos;
+    Player _player;
     public AttackStateFlyers(EnemyFlyers flyer)
     {
         _flyer = flyer;
@@ -23,17 +24,19 @@ public class AttackStateFlyers : State
     public override void OnEnter()
     {
         Debug.Log("Enter Attack");
+        _player = _flyer.player;
     }
 
     public override void OnUpdate()
     {
-        var dir = _flyer.player.transform.position - _transform.position;
+        _playerPos = _player.transform.position - _transform.position;
 
-        _transform.forward = dir;
+        _transform.forward = _playerPos;
 
-        if (dir.sqrMagnitude >= _minDistAttack * _minDistAttack)
+        if (_playerPos.sqrMagnitude >= _minDistAttack * _minDistAttack)
         {
             _flyer.ChangeState(FlyersStates.Patrol);
+            _flyer.player = null;
         }
 
         _shootTimer += Time.deltaTime;

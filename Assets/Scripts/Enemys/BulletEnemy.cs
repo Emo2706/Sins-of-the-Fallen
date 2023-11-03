@@ -33,9 +33,11 @@ public class BulletEnemy : MonoBehaviour
         transform.position += dir * _bulletSpeed * Time.deltaTime;
     }
 
-    private void OnCollisionEnter(Collision collision)
+   
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.layer == 6 || collision.gameObject.layer==11 || collision.gameObject.layer==15)
+        if (other.gameObject.layer == 6 || other.gameObject.layer==11 || other.gameObject.layer== 15 || other.gameObject.layer == 9)
         {
             BulletEnemyFactory.instance.ReturnToPool(this);
         }

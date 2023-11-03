@@ -13,7 +13,7 @@ public class EnemyFlyers : EnemyGlobalScript
     public Player player;
     public int speedRotation;
     public int shootCooldown;
-    public LayerMask _playerMask = 1 << 9;
+    public LayerMask playerMask = 1 << 9;
     // Start is called before the first frame update
    protected override void Start()
     {
@@ -43,7 +43,7 @@ public class EnemyFlyers : EnemyGlobalScript
 
     public void Reset()
     {
-        _life = _maxLife;
+        life = _maxLife;
     }
 
     public static void TurnOnCallBack(EnemyFlyers enemy)
@@ -68,7 +68,7 @@ public class EnemyFlyers : EnemyGlobalScript
 
     void CheckLife()
     {
-        if (_life <= 0)
+        if (life <= 0)
             EnemyFlyersFactory.instance.ReturnToPool(this);
     }
 

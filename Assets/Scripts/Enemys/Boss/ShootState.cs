@@ -5,12 +5,9 @@ using UnityEngine;
 public class ShootState : State
 {
     int _shootCoolDown;
-    public Player player;
     Transform _transform;
     float _viewRadius;
     float _shootTimer;
-    int _changeStateCooldown;
-    float _changeStateTimer;
     Boss _boss;
     int _circleCooldown;
     Transform _pivotShoot;
@@ -19,32 +16,40 @@ public class ShootState : State
     Transform[] _twistersWarningPoints;
     List<Vector3> _warnings = new List<Vector3>();
     int _nextTwistersCooldown;
+    int _startCircleAttack;
+    Transform _spawnPointCircleAttack;
+    public Player player;
+    Vector3 _playerPos;
     public ShootState(Boss boss)
     {
         _boss = boss;
         _shootCoolDown = boss.coolDownShoot;
         _transform = boss.transform;
         _viewRadius = boss.viewRadius;
-        _changeStateCooldown = boss.coolDownChangeAttacks;
         _circleCooldown = boss.coolDownCircle;
         _pivotShoot = boss.pivotShoot;
         _twisterCooldown = boss.twisterCooldown;
         _twistersAmount = boss.twistersAmount;
         _twistersWarningPoints = boss.spawnPointsTwister;
         _nextTwistersCooldown = boss.nextTwistersCooldown;
+        _startCircleAttack = boss.startCircleAttack;
+        _spawnPointCircleAttack = boss.spawnPointCircle;
     }
    
     public override void OnEnter()
     {
         Debug.Log("Enter shoot");
-        _changeStateTimer = 0;
         _shootTimer = 0;
         _boss.StartCoroutine(TwisterAttack());
+        _boss.StartCoroutine(StartCircleAttack());
+
     }
 
     public override void OnExit()
     {
-        _boss.StopCoroutine(TwisterAttack());
+
+        _boss.StopAllCoroutines();
+
 
         Debug.Log("Exit shoot");
     }
@@ -57,13 +62,12 @@ public class ShootState : State
     public override void OnUpdate()
     {
        
-
         _shootTimer += Time.deltaTime;
 
-        var dir = player.transform.position - _transform.position;
+        _playerPos = player.transform.position - _transform.position;
 
-        _transform.forward += dir;
-        if (dir.sqrMagnitude <= _viewRadius * _viewRadius)
+        _transform.forward = _playerPos;
+        if (_playerPos.sqrMagnitude <= _viewRadius * _viewRadius)
         {
             if (_shootTimer >= _shootCoolDown)
             {
@@ -74,29 +78,14 @@ public class ShootState : State
 
         }
 
-        _changeStateTimer += Time.deltaTime;
-
-        if (_changeStateTimer >= _changeStateCooldown)
-        {
-            var changeInt = Random.Range(1, 3);
-
-            if (changeInt == 1)
-                _boss.ChangeState(BossStates.Shoot);
-
-            if (changeInt == 2)
-                _boss.ChangeState(BossStates.Zones);
-
-        }
-
-
-
+ 
     }
 
     void Shoot()
     {
         var bullet = BulletBossFactory.instance.GetObjFromPool();
         bullet.transform.position = _pivotShoot.position;
-        bullet.transform.forward = _transform.forward;
+        bullet.dir = _transform.forward;
     }
 
     IEnumerator TwisterAttack()
@@ -104,6 +93,8 @@ public class ShootState : State
         WaitForSeconds waitForSeconds = new WaitForSeconds(_twisterCooldown);
 
         WaitForSeconds nextAttack = new WaitForSeconds(_nextTwistersCooldown);
+
+
         
         while (true)
         {
@@ -126,12 +117,10 @@ public class ShootState : State
                 TwisterAttack attack = TwisterAttackFactory.instance.GetObjFromPool();
                 attack.transform.position = item;
             }
+           
+            _warnings.RemoveRange(0 , _warnings.Count);
 
-            for (int i = 0; i < _warnings.Count; i++)
-            {
-                 _warnings.RemoveAt(i);
-
-            }
+            
 
             yield return nextAttack;
 
@@ -140,5 +129,31 @@ public class ShootState : State
 
       
 
+    }
+
+    IEnumerator StartCircleAttack()
+    {
+        WaitForSeconds waitForSeconds = new WaitForSeconds(_startCircleAttack);
+
+        yield return waitForSeconds;
+
+        _boss.StartCoroutine(CircleAttack());
+    }
+
+
+    IEnumerator CircleAttack()
+    {
+
+        while (true)
+        {
+            WaitForSeconds waitForSeconds = new WaitForSeconds(_circleCooldown);
+
+            CircleAttack circleAttack = CircleAttackFactory.instance.GetObjFromPool();
+
+            circleAttack.transform.position = _spawnPointCircleAttack.position;
+
+            yield return waitForSeconds;
+
+        }
     }
 }

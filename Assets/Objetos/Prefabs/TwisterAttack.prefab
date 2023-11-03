@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9104789377107441546}
   - component: {fileID: 8490003714172931596}
   - component: {fileID: -9167223270680784852}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: TwisterAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,4 +112,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeTime: 5
-  twisterCollider: {fileID: 8490003714172931596}

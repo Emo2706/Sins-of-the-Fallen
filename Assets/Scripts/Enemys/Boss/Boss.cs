@@ -8,28 +8,37 @@ public class Boss : EnemyGlobalScript
     ShootState _shoot;
     ZonesState _zones;
 
-    Dictionary<BossStates, StatesId> _statesDictionary;
-
     public float viewRadius;
-    public int coolDownChangeAttacks;
-    public int coolDownCircle;
-    public int coolDownShoot;
     public LayerMask playerMask = 1<<9;
-    public Transform pivotShoot;
+    
+    [Header("Cooldowns")]
     public int zoneAttackCooldown;
     public int twisterCooldown;
     public int twistersAmount;
     public int nextTwistersCooldown;
+    public int startCircleAttack;
+    public int cooldownChangeAttackCircle;
+    public int coolDownChangeAttacks;
+    public int coolDownCircle;
+    public int coolDownShoot;
+
+    [Header("SpawnPoints")]
+    public Transform pivotShoot;
     public Transform[] spawnPointsZone;
     public Transform[] spawnPointsTwister;
-    
+    public Transform spawnPointCircle;
+
+    float _changeAttackTimer;
+    BossStates[] _bossStates = new BossStates[] { BossStates.Shoot, BossStates.Zones };
+
+
     protected override void Start()
     {
         base.Start();
 
 
-
-        //_statesDictionary = new Dictionary<BossStates, StatesId>();
+        
+       
 
         _stateMachine = new FSM<BossStates>();
         _shoot = new ShootState(this);
@@ -43,25 +52,70 @@ public class Boss : EnemyGlobalScript
         ChangeState(BossStates.Shoot);
     }
 
+    public void RandomChangeState()
+    {
+        _stateMachine.ChangeState(_bossStates[Random.Range(0, _bossStates.Length)]);
+        _changeAttackTimer = 0;
+    }
+
     public void ChangeState(BossStates state) => _stateMachine.ChangeState(state);
 
     
     void Update()
     {
-        var player = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
-
-        foreach (var item in player)
+        if (_shoot.player == null)
         {
-            if (item.GetComponent<Player>()!=null)
-            {
-                _shoot.player = item.GetComponent<Player>();
-                _stateMachine.Update();
+            var playerCollider = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
 
+            foreach (var item in playerCollider)
+            {
+                if (item.GetComponent<Player>()!=null)
+                {
+                    _shoot.player = item.GetComponent<Player>();
+
+                }
             }
+
         }
-        
+
+        else
+            _stateMachine.Update();
+
+        _changeAttackTimer += Time.deltaTime;
+
+        if (_changeAttackTimer >= coolDownChangeAttacks) RandomChangeState();
+
+
+
 
     }
+
+    public override void TakeDmg(int dmg)
+    {
+        base.TakeDmg(dmg);
+        
+        CheckLife();
+    }
+
+    void CheckLife()
+    {
+        if (life <= 0)
+        {
+            BossFactory.instance.ReturnToPool(this);
+        }
+    }
+
+
+    public static void TurnOnCallBack(Boss boss)
+    {
+        boss.gameObject.SetActive(true);
+    }
+
+    public static void TurnOffCallBack(Boss boss)
+    {
+        boss.gameObject.SetActive(false);
+    }
+
 
 
     private void OnDrawGizmos()
@@ -78,8 +132,4 @@ public enum BossStates
     Zones,
 }
 
-public struct StatesId
-{
-    public const int shootState = 0;
-    public const int zonesState = 1;
-}
+

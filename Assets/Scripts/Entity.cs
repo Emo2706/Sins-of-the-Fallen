@@ -5,13 +5,16 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour
 {
     [SerializeField] protected int _maxLife;
-    [SerializeField] protected int _life;
+    public int life;
+    //public int life { get { return _life; } set { _life = value; }}
 
     public virtual void TakeDmg(int dmg)
     {
-        _life -= dmg;
+        life -= dmg;
         
     }
+
+
 
    
 }

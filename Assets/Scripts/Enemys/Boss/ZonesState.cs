@@ -14,7 +14,7 @@ public class ZonesState : State
         _boss = boss;
         _zoneAttackCooldown = boss.zoneAttackCooldown;
         _spawnPointsZones = boss.spawnPointsZone;
-        _changeStateCooldown = boss.coolDownChangeAttacks;
+        _changeStateCooldown = boss.cooldownChangeAttackCircle;
     }
 
     public override void OnEnter()
@@ -55,13 +55,7 @@ public class ZonesState : State
 
         yield return _waitForChangeState;
 
-        var changeInt = Random.Range(1, 3);
-
-        if (changeInt == 1)
-            _boss.ChangeState(BossStates.Shoot);
-
-        if (changeInt == 2)
-            _boss.ChangeState(BossStates.Zones);
+        _boss.RandomChangeState();
     }
    
 }

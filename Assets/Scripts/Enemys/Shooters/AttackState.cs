@@ -10,6 +10,8 @@ public class AttackState : State
     Transform _transform;
     float _shootTimer;
     EnemyShooter _shooter;
+    Vector3 _playerPos;
+    Player _player;
 
     public AttackState(EnemyShooter shooter)
     {
@@ -23,20 +25,25 @@ public class AttackState : State
     public override void OnEnter()
     {
         Debug.Log("enter attack");
+        _player = _shooter.player;
     }
 
     public override void OnUpdate()
         
     {
-        var dir = _shooter.player.transform.position - _transform.position;
+        _playerPos = _player.transform.position - _transform.position;
 
-        if (dir.sqrMagnitude >= _minDistAttack * _minDistAttack)
+        if (_playerPos.sqrMagnitude >= _minDistAttack * _minDistAttack)
+        {
             _shooter.ChangeState(ShooterStates.Patrol);
+            _shooter.player = null;
+        }
+            
 
         _shootTimer += Time.deltaTime;
 
 
-        _transform.forward += dir;
+        _transform.forward = _playerPos;
         
 
         if (_shootTimer>= _shootCooldown)

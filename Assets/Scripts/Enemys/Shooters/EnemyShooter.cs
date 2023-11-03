@@ -8,8 +8,6 @@ public class EnemyShooter : EnemyGlobalScript
     FSM<ShooterStates> _stateMachine;
     PatrolState _patrol;
     AttackState _attack;
-    public Transform[] waypointsShooter;
-    public int speed;
     public float minDistAttack;
     public int shootCooldown;
     public Player player;
@@ -44,7 +42,7 @@ public class EnemyShooter : EnemyGlobalScript
 
     public void Reset()
     {
-        _life = _maxLife;
+        life = _maxLife;
     }
 
     public static void TurnOnCallBack(EnemyShooter enemy)
@@ -67,7 +65,7 @@ public class EnemyShooter : EnemyGlobalScript
 
      void CheckLife()
      {
-        if (_life <= 0)
+        if (life <= 0)
             EnemyShooterFactory.instance.ReturnToPool(this);
         
      }
