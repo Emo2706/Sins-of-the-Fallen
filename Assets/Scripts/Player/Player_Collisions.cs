@@ -15,6 +15,10 @@ public class Player_Collisions
     int _twisterDmg;
     int _circleDmg;
     int _bulletsDmg;
+    int _punchDmg;
+
+
+
     public Player_Collisions(Player_Movement movement, Rigidbody rb, Transform spawnpoint, Player Player, Transform transform)
     {
         _movement = movement;
@@ -27,6 +31,7 @@ public class Player_Collisions
         _twisterDmg = Player.twisterDmg;
         _circleDmg = Player.circleDmg;
         _bulletsDmg = Player.bulletsDmg;
+        _punchDmg = Player.enemyDmg;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -55,6 +60,8 @@ public class Player_Collisions
             _player.TakeDmg(_slimeDmg);
         }
 
+        if (collision.gameObject.layer == 18)
+            _player.TakeDmg(_punchDmg);
     }
 
     public void OnTriggerEnter(Collider other)

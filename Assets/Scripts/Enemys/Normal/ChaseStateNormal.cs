@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ChaseStateNormal : State
 {
@@ -11,6 +12,8 @@ public class ChaseStateNormal : State
     float _minDist;
     float _minDistAttack;
     Vector3 dir;
+    public event Action<float> OnMovement = delegate { };
+    public Action Attack;
 
     public ChaseStateNormal(EnemyNormal enemy)
     {
@@ -29,9 +32,11 @@ public class ChaseStateNormal : State
 
     public override void OnUpdate()
     {
-
         if (dir.sqrMagnitude >= _minDist * _minDist)
             _enemy.ChangeState(NormalStates.Patrol);
+
+        if (dir.sqrMagnitude <= _minDistAttack * _minDist)
+            Attack();
 
     }
 
@@ -43,11 +48,25 @@ public class ChaseStateNormal : State
 
     public override void OnFixedUpdate()
     {
+        Move();
+    }
+
+    void Move()
+    {
         dir = _enemy.player.transform.position - _transform.position;
 
         _transform.forward += dir;
 
         _rb.MovePosition(_transform.position + dir * _speed * Time.deltaTime);
-       
+
+        if (dir.x != 0)
+        {
+            OnMovement(dir.x);
+        }
+
+        if (dir.z != 0)
+        {
+            OnMovement(dir.z);
+        }
     }
 }

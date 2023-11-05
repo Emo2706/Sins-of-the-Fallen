@@ -7,6 +7,7 @@ public class EnemyFlyers : EnemyGlobalScript
     public static EnemyFlyers instance;
     PatrolStateFlyers _patrol;
     AttackStateFlyers _attack;
+    FlyerView _view;
     FSM<FlyersStates> _stateMachine;
     public int speed;
     public int minDistAttack;
@@ -22,6 +23,9 @@ public class EnemyFlyers : EnemyGlobalScript
         _stateMachine = new FSM<FlyersStates>();
         _patrol = new PatrolStateFlyers(this);
         _attack = new AttackStateFlyers(this);
+        _view = new FlyerView(this);
+
+        _attack.OnShoot += _view.Shoot;
 
         _stateMachine.AddState(FlyersStates.Patrol, _patrol);
         _stateMachine.AddState(FlyersStates.Attack, _attack);
@@ -69,12 +73,21 @@ public class EnemyFlyers : EnemyGlobalScript
     void CheckLife()
     {
         if (life <= 0)
-            EnemyFlyersFactory.instance.ReturnToPool(this);
+            StartCoroutine(DieCoroutine());
+    }
+
+    public IEnumerator DieCoroutine()
+    {
+        WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
+
+        yield return dieAnimation;
+
+        EnemyFlyersFactory.instance.ReturnToPool(this);
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.grey;
+        Gizmos.color = Color.black;
 
         Gizmos.DrawWireSphere(transform.position, minDistAttack);
     }

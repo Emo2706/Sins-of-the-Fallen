@@ -9,22 +9,31 @@ public class EnemyNormal : EnemyGlobalScript
     PatrolStateNormal _patrol;
     ChaseStateNormal _chase;
     FSM<NormalStates> _stateMachine;
+    NormalView _view;
     public int speed;
     public float minDist;
     public Player player;
     public float minDistAttack;
-    public event Action<float> OnMovement = delegate { };
     public event Action<float> OnLifeChange = delegate { };
-    public event Action OnJump = delegate { };
-    public event Action OnDead = delegate { };
     public LayerMask playerMask = 1 << 9;
+    [SerializeField] Collider _colliderPunch;
+    [SerializeField] float _punchDuration;
+
+ 
     // Start is called before the first frame update
-   protected override void Start()
+    protected override void Start()
     {
         base.Start();
         _stateMachine = new FSM<NormalStates>();
         _patrol = new PatrolStateNormal(this);
         _chase = new ChaseStateNormal(this);
+        _view = new NormalView(this);
+
+        _chase.OnMovement += _view.SetX;
+        _chase.OnMovement += _view.SetZ;
+        _chase.Attack += _view.Punch;
+        _chase.Attack += ActivateCollider;
+
 
         _stateMachine.AddState(NormalStates.Patrol, _patrol);
         _stateMachine.AddState(NormalStates.Chase, _chase);
@@ -72,7 +81,13 @@ public class EnemyNormal : EnemyGlobalScript
     void CheckLife()
     {
         if (life <= 0)
-            EnemyFactory.instance.ReturnToPool(this);
+        {
+            if (ManagerFirstZone.instance != null)
+                ManagerFirstZone.instance.Kill();
+            
+            StartCoroutine(DieCoroutine());
+
+        }
     }
 
     private void OnDrawGizmos()
@@ -84,7 +99,35 @@ public class EnemyNormal : EnemyGlobalScript
         Gizmos.DrawWireSphere(transform.position, minDistAttack);
     }
 
+    public void ActivateCollider()
+    {
+        StartCoroutine(ColliderCoroutine());
+    }
+
     
+
+    public IEnumerator DieCoroutine()
+    {
+        WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
+
+        yield return dieAnimation;
+
+        EnemyFactory.instance.ReturnToPool(this);
+    }
+
+    public IEnumerator ColliderCoroutine()
+    {
+        WaitForSeconds punchduration = new WaitForSeconds(_punchDuration);
+
+        _colliderPunch.gameObject.SetActive(true);
+
+        yield return punchduration;
+
+        _colliderPunch.gameObject.SetActive(false);
+        
+    }
+
+
 }
 
 public enum NormalStates

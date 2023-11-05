@@ -11,8 +11,7 @@ public class EnemyShooterSpawner : MonoBehaviour
     void Start()
     {
 
-
-        for (int i = 0; i < spawnPoints.Length; i++)
+        for (int i = 0; i < EnemyShooterFactory.instance.initialAmount; i++)
         {
             SpawnEnemys(spawnPoints[i].position);
         }

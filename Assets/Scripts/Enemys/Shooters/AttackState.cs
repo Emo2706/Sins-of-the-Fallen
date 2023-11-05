@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AttackState : State
 {
@@ -12,6 +13,7 @@ public class AttackState : State
     EnemyShooter _shooter;
     Vector3 _playerPos;
     Player _player;
+    public event Action OnShoot;
 
     public AttackState(EnemyShooter shooter)
     {
@@ -75,5 +77,6 @@ public class AttackState : State
         bullet.transform.position = _transform.position;
         bullet.transform.rotation = _transform.rotation;
         bullet.dir = _transform.forward;
+        OnShoot();
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AttackStateFlyers : State
 {
@@ -12,6 +13,8 @@ public class AttackStateFlyers : State
     float _shootTimer;
     Vector3 _playerPos;
     Player _player;
+    public event Action OnShoot;
+
     public AttackStateFlyers(EnemyFlyers flyer)
     {
         _flyer = flyer;
@@ -61,6 +64,8 @@ public class AttackStateFlyers : State
         bullet.transform.position = _transform.position;
         bullet.transform.rotation = _transform.rotation;
         bullet.dir = _transform.forward;
+
+        OnShoot();
     }
 
     public override void OnFixedUpdate()

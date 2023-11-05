@@ -12,7 +12,7 @@ public class EnemyFlyerSpawner : MonoBehaviour
     {
 
 
-        for (int i = 0; i < spawnPoints.Length; i++)
+        for (int i = 0; i < EnemyFlyersFactory.instance.initialAmount; i++)
         {
             SpawnEnemys(spawnPoints[i].position);
         }

@@ -7,7 +7,7 @@ public class EnemyFactory : MonoBehaviour
     public static EnemyFactory instance { get; private set; }
     Pool<EnemyNormal> _enemyPool;
     [SerializeField] EnemyNormal _enemy;
-    [SerializeField] int _initialAmount;
+    public int initialAmount;
 
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class EnemyFactory : MonoBehaviour
 
         }
 
-        _enemyPool = new Pool<EnemyNormal>(CreatorMethod , EnemyNormal.TurnOnCallBack, EnemyNormal.TurnOffCallBack, _initialAmount);
+        _enemyPool = new Pool<EnemyNormal>(CreatorMethod , EnemyNormal.TurnOnCallBack, EnemyNormal.TurnOffCallBack, initialAmount);
     }
     
 

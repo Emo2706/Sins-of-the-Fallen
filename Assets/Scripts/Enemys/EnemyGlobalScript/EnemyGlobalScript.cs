@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyGlobalScript : Entity
 {
@@ -8,10 +9,11 @@ public class EnemyGlobalScript : Entity
     Enemy_Collisions _collisions;
     public GameObject _parent;
     public int bulletsDmg;
+    public float dieAnimationDuration;
+
     // Start is called before the first frame update
    protected virtual void Start()
     {
-        _rb = GetComponent<Rigidbody>();
         life = _maxLife;
     }
 
@@ -21,5 +23,7 @@ public class EnemyGlobalScript : Entity
         enabled = false;
     }
 
+   
 
+    
 }

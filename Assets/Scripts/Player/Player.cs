@@ -10,16 +10,19 @@ public class Player : Entity
     Player_Collisions _collisions;
     Player_Attacks _attacks;
     Player_UI _ui;
-    Rigidbody _rb;
+    [SerializeField] Rigidbody _rb;
     LifeHandler _lifeHandler;
-    [SerializeField] int _speed;
-    [SerializeField] float _jumpForce;
-    [SerializeField] float _dashForce;
+    [SerializeField] Transform checkpoint;
+ 
+
+    [Header("Cooldowns")]
     [SerializeField] float _dashDuration;
     [SerializeField] float _dashCooldown;
- 
+    public float shootCooldown;
+
+
+    [Header("Vars")]
     [SerializeField] float _glideDrag;
-    [SerializeField] Transform checkpoint;
     [SerializeField] int _slimeForce;
     [SerializeField] int _amountPowerUpBullets;
     [SerializeField] int _multiplierDmg;
@@ -29,7 +32,12 @@ public class Player : Entity
     public float twisterForce;
     public int circleDmg;
     public int bulletsDmg;
-    public float shootCooldown;
+    public int enemyDmg;
+    [SerializeField] int _speed;
+    [SerializeField] float _jumpForce;
+    [SerializeField] float _dashForce;
+
+
     [SerializeField] Slider _healthSlider;
     
 
@@ -41,7 +49,7 @@ public class Player : Entity
     private void Awake()
     {
         life = _maxLife;
-        _rb = GetComponent<Rigidbody>();
+        
         _lifeHandler = new LifeHandler();
         _inputs = new Player_Inputs(transform , _lifeHandler , this);
         _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler , _slimeForce , this);

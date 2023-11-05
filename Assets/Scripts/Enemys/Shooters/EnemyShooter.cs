@@ -8,6 +8,7 @@ public class EnemyShooter : EnemyGlobalScript
     FSM<ShooterStates> _stateMachine;
     PatrolState _patrol;
     AttackState _attack;
+    ShooterView _view;
     public float minDistAttack;
     public int shootCooldown;
     public Player player;
@@ -20,6 +21,9 @@ public class EnemyShooter : EnemyGlobalScript
         _stateMachine = new FSM<ShooterStates>();
         _patrol = new PatrolState(this);
         _attack = new AttackState(this);
+        _view = new ShooterView(this);
+
+        _attack.OnShoot += _view.Shoot;
 
         _stateMachine.AddState(ShooterStates.Patrol, _patrol);
         _stateMachine.AddState(ShooterStates.Attack, _attack);
@@ -61,12 +65,13 @@ public class EnemyShooter : EnemyGlobalScript
         base.TakeDmg(dmg);
 
         CheckLife();
+        
     }
 
      void CheckLife()
      {
         if (life <= 0)
-            EnemyShooterFactory.instance.ReturnToPool(this);
+            StartCoroutine(DieCoroutine());
         
      }
 
@@ -74,6 +79,16 @@ public class EnemyShooter : EnemyGlobalScript
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, minDistAttack);
+    }
+
+    public virtual IEnumerator DieCoroutine()
+    {
+        WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
+
+
+        yield return dieAnimation;
+
+        EnemyShooterFactory.instance.ReturnToPool(this);
     }
 }
 

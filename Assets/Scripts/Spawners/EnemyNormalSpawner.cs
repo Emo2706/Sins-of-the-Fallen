@@ -12,7 +12,7 @@ public class EnemyNormalSpawner : MonoBehaviour
     {
        
 
-        for (int i = 0; i < spawnPoints.Length; i++)
+        for (int i = 0; i < EnemyFactory.instance.initialAmount; i++)
         {
             SpawnEnemys(spawnPoints[i].position);
         }

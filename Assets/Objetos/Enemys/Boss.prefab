@@ -1073,9 +1073,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLife: 45
   life: 0
-  _rb: {fileID: 0}
+  _rb: {fileID: 8239893994534446071}
   _parent: {fileID: 0}
   bulletsDmg: 5
+  dieAnimationDuration: 0
   viewRadius: 65.6
   playerMask:
     serializedVersion: 2
