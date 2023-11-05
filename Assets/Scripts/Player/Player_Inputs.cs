@@ -9,8 +9,10 @@ public class Player_Inputs
     Transform _transform;
     LifeHandler _lifeHandler;
     Player _player;
-    Vector3 _mousePosS;
+    Player_Movement _movement;
     public Vector3 finalMousePos;
+    float _mouseX;
+    float _mouseY;
 
     Dictionary<KeyCode,CommandInputs> _commandDictionary;
 
@@ -23,6 +25,11 @@ public class Player_Inputs
         _commandUpDictionary = new Dictionary<KeyCode, CommandInputs>();
         _lifeHandler = lifeHandler;
         _player = player;
+    }
+
+    public void CompleteData(Player_Movement movement)
+    {
+        _movement = movement;
     }
 
     public void ArtificialStart()
@@ -63,15 +70,17 @@ public class Player_Inputs
 
     public void ArtificialUpdate()
     {
-        axis = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        if (axis.magnitude > 1) axis = _transform.TransformDirection(axis).normalized;
-        else axis = _transform.TransformDirection(axis);
+        //axis = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        //if (axis.magnitude > 1) axis = _transform.TransformDirection(axis).normalized;
+        //else axis = _transform.TransformDirection(axis);
 
-        
-        
+        axis.x = Input.GetAxisRaw("Horizontal");
+        axis.z = Input.GetAxisRaw("Vertical");
 
-        /*direction.x = Input.GetAxis("Horizontal");
-        direction.z = Input.GetAxis("Vertical");*/
+        _mouseX = Input.GetAxis("Mouse X");
+        _mouseY = Input.GetAxis("Mouse Y");
+
+        _movement.Rotation(_mouseX, _mouseY);
 
     }
 

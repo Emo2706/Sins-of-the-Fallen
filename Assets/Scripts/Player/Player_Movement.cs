@@ -23,8 +23,15 @@ public class Player_Movement
     int _slimeForce;
     float _twisterForce;
     Player _player;
+    Ray _movRay;
+    float _movRange;
+    LayerMask _moveMask;
+    Vector3 _dir;
+    float _sensitivity;
+    float _mouseX;
+    FirstPersonCamera _cam;
     
-    public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag , LifeHandler lifeHandler , int slimeForce , Player player)
+    public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag , LifeHandler lifeHandler , int slimeForce , Player player , FirstPersonCamera cam)
     {
         _rb = rb;
         _inputs = inputs;
@@ -39,6 +46,10 @@ public class Player_Movement
         _slimeForce = slimeForce;
         _player = player;
         _twisterForce = _player.twisterForce;
+        _cam = cam;
+        _moveMask = player.movMask;
+        _sensitivity = player.sensitivity;
+        _movRange = player.movRange;
     }
 
     public void ArtificialStart()
@@ -47,10 +58,18 @@ public class Player_Movement
         _lifeHandler.onDeath += DisableOnDead;
     }
 
-    public void ArtificialUpdate()
+    public void Update()
     {
         _dashTimer2 += Time.deltaTime;
-        Move();
+        _dir = (_transform.right * _inputs.axis.x + _transform.forward*_inputs.axis.z).normalized;
+
+    }
+
+    public void FixedUpdate()
+    {
+
+        if (IsBlocked(_dir) == false)
+            Move();
     }
 
 
@@ -68,7 +87,7 @@ public class Player_Movement
         }
         else
         {
-            _transform.position += _inputs.axis * _speed * Time.fixedDeltaTime;
+            _transform.position += _dir* _speed * Time.fixedDeltaTime;
         }
         
     }
@@ -109,7 +128,6 @@ public class Player_Movement
         if (jump==false)
         {
             _rb.drag = _glideDrag;
-            
         }
 
     }
@@ -117,8 +135,6 @@ public class Player_Movement
     public void NotGlide()
     {
         if (jump==false) _rb.drag = _initialDrag;
-
-
     }
 
     void DisableOnDead()
@@ -126,5 +142,28 @@ public class Player_Movement
         _player.enabled = false;
     }
 
+
+    bool IsBlocked(Vector3 dir)
+    {
+        _movRay = new Ray(_transform.position, dir);
+
+        return Physics.Raycast(_movRay, _movRange, _moveMask);
+    }
+
+    public void Rotation(float x , float y)
+    {
+        _mouseX += x * _sensitivity * Time.deltaTime;
+
+        if(_mouseX>=360 || _mouseX <= -360)
+        {
+            _mouseX -= 360 * Mathf.Sign(_mouseX);
+        }
+
+        y *= _sensitivity * Time.deltaTime;
+
+        _transform.rotation = Quaternion.Euler(0f, _mouseX, 0f);
+
+        _cam?.Rotation(_mouseX, y);
+    }
 
 }

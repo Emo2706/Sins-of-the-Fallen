@@ -39,20 +39,31 @@ public class Player : Entity
 
 
     [SerializeField] Slider _healthSlider;
-    
+
+    FirstPersonCamera _cam;
+    [SerializeField] Transform _headTransform;
+
+    [Range(1f, 200f)] public float sensitivity = 200f;
+
+    public float movRange;
 
     Vector3 _initialPosition;
 
     public Transform testBossPoint;
 
+    public LayerMask movMask = 1 << 15;
+
 
     private void Awake()
     {
+        _cam = Camera.main.GetComponent<FirstPersonCamera>();
+        _cam.head = _headTransform;
+
         life = _maxLife;
         
         _lifeHandler = new LifeHandler();
         _inputs = new Player_Inputs(transform , _lifeHandler , this);
-        _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler , _slimeForce , this);
+        _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler , _slimeForce , this , _cam);
         _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform);
         _attacks = new Player_Attacks(transform , shootCooldown , _amountPowerUpBullets , _multiplierDmg);
         _ui = new Player_UI(_healthSlider, this);
@@ -77,6 +88,7 @@ public class Player : Entity
         _movement.ArtificialStart();
         //transform.position = _initialPosition;
         _inputs.ArtificialStart();
+        _inputs.CompleteData(_movement);
     }
 
     // Update is called once per frame
@@ -85,6 +97,7 @@ public class Player : Entity
         _attacks.Update();
         _inputs.ArtificialUpdate();
         _ui.Update();
+        _movement.Update();
 
         CommandInputs keypressed = _inputs.Inputs();
         if (keypressed != null)
@@ -105,7 +118,7 @@ public class Player : Entity
 
     private void FixedUpdate()
     {
-        _movement.ArtificialUpdate();
+        _movement.FixedUpdate();
         
     }
 
