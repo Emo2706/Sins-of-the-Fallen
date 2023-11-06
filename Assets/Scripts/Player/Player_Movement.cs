@@ -118,7 +118,7 @@ public class Player_Movement
         if (_dashTimer2>=_dashCooldown)
         {
             _dashing = true;
-            _rb.AddForce(_inputs.axis.normalized * _dashForce, ForceMode.Impulse);
+            _rb.AddForce(_dir* _dashForce, ForceMode.Impulse);
             _dashTimer2 = 0;
 
         }
