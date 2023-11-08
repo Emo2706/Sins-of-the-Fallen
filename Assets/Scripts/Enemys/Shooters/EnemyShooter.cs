@@ -81,12 +81,19 @@ public class EnemyShooter : EnemyGlobalScript
         Gizmos.DrawWireSphere(transform.position, minDistAttack);
     }
 
-    public virtual IEnumerator DieCoroutine()
+    public IEnumerator DieCoroutine()
     {
         WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
 
+        var lifePotion = Random.Range(1, 3);
 
         yield return dieAnimation;
+
+        if (lifePotion == 2)
+        {
+            var potion = LifePotionFactory.instance.GetObjFromPool();
+            potion.transform.position = transform.position;
+        }
 
         EnemyShooterFactory.instance.ReturnToPool(this);
     }

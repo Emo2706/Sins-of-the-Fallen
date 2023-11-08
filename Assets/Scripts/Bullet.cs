@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 6 || other.gameObject.layer == 11 || other.gameObject.layer==15)
+        if (other.gameObject.layer == 6 || other.gameObject.layer == 11 || other.gameObject.layer==15 || other.gameObject.layer==21 || other.gameObject.layer == 20)
         {
             BulletFactory.instance.ReturnToPool(this);
         }

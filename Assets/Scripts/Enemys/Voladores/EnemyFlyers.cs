@@ -80,7 +80,15 @@ public class EnemyFlyers : EnemyGlobalScript
     {
         WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
 
+        var lifePotion = Random.Range(1, 3);
+
         yield return dieAnimation;
+
+        if (lifePotion == 2)
+        {
+            var potion = LifePotionFactory.instance.GetObjFromPool();
+            potion.transform.position = transform.position;
+        }
 
         EnemyFlyersFactory.instance.ReturnToPool(this);
     }

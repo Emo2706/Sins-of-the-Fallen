@@ -52,7 +52,7 @@ MonoBehaviour:
   _rb: {fileID: 6603378321100257758}
   _parent: {fileID: 0}
   bulletsDmg: 5
-  dieAnimationDuration: 0
+  dieAnimationDuration: 4.333
   speed: 5
   minDistAttack: 20
   player: {fileID: 0}

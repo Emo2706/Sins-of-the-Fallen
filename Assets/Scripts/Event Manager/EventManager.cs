@@ -7,7 +7,8 @@ public class EventManager
     public enum EventsType
     {
         Event_PlayerDead,
-        Event_BossDefeated
+        Event_BossDefeated,
+        Event_BossHalfLife
     }
 
     public delegate void EventsReceiver(params object[] parameters);

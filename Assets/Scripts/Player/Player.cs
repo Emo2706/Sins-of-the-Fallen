@@ -42,6 +42,7 @@ public class Player : Entity
 
     FirstPersonCamera _cam;
     [SerializeField] Transform _headTransform;
+    [SerializeField] Transform _pivotShoot;
 
     [Range(1f, 200f)] public float sensitivity = 200f;
 
@@ -65,7 +66,7 @@ public class Player : Entity
         _inputs = new Player_Inputs(transform , _lifeHandler , this);
         _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler , _slimeForce , this , _cam);
         _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform);
-        _attacks = new Player_Attacks(transform , shootCooldown , _amountPowerUpBullets , _multiplierDmg);
+        _attacks = new Player_Attacks(shootCooldown , _amountPowerUpBullets , _multiplierDmg , _pivotShoot);
         _ui = new Player_UI(_healthSlider, this);
 
         Cursor.lockState = CursorLockMode.Locked;

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player_Attacks
 {
-    Transform _transform;
     float _shootTimer;
     float _shootCooldown;
     int _amountPowerUpBullets;
@@ -12,12 +11,13 @@ public class Player_Attacks
     Bullet _bullet;
     int _multiplierDmg;
     bool _powerUpActive = false;
-    public Player_Attacks(Transform transform , float shootCooldown , int amountPowerUpBullets , int multiplierDmg)
+    Transform _pivotShoot;
+    public Player_Attacks(float shootCooldown , int amountPowerUpBullets , int multiplierDmg , Transform pivotShoot)
     {
-        _transform = transform;
         _shootCooldown = shootCooldown;
         _amountPowerUpBullets = amountPowerUpBullets;
         _multiplierDmg = multiplierDmg;
+        _pivotShoot = pivotShoot;
     }
 
     public void Update()
@@ -31,7 +31,7 @@ public class Player_Attacks
         if (_shootTimer >= _shootCooldown)
         {
             _bullet = BulletFactory.instance.GetObjFromPool();
-            _bullet.transform.position = _transform.position;
+            _bullet.transform.position = _pivotShoot.transform.position;
             _bullet.dir = Camera.main.transform.forward;
 
             if (_powerUpActive == true)

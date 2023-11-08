@@ -18,7 +18,6 @@ public class EnemyNormal : EnemyGlobalScript
     public LayerMask playerMask = 1 << 9;
     [SerializeField] Collider _colliderPunch;
     [SerializeField] float _punchDuration;
-
  
     // Start is called before the first frame update
     protected override void Start()
@@ -110,7 +109,15 @@ public class EnemyNormal : EnemyGlobalScript
     {
         WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
 
+        var lifePotion = UnityEngine.Random.Range(1, 3);
+
         yield return dieAnimation;
+
+        if(lifePotion == 2)
+        {
+            var potion = LifePotionFactory.instance.GetObjFromPool();
+            potion.transform.position = transform.position;
+        }
 
         EnemyFactory.instance.ReturnToPool(this);
     }

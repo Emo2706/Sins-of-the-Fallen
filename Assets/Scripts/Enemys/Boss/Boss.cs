@@ -7,6 +7,7 @@ public class Boss : EnemyGlobalScript
     FSM<BossStates> _stateMachine;
     ShootState _shoot;
     ZonesState _zones;
+    LifeHandlerBoss _lifeHandler;
 
     public float viewRadius;
     public LayerMask playerMask = 1<<9;
@@ -21,35 +22,44 @@ public class Boss : EnemyGlobalScript
     public int coolDownChangeAttacks;
     public int coolDownCircle;
     public int coolDownShoot;
+    [SerializeField] int _coolDownPotion;
 
     [Header("SpawnPoints")]
     public Transform pivotShoot;
     public Transform[] spawnPointsZone;
     public Transform[] spawnPointsTwister;
     public Transform spawnPointCircle;
+    [SerializeField] Transform[] _spawnPointsPotions;
+    [SerializeField] Transform[] _spawnPointsTargetsShield;
 
     float _changeAttackTimer;
+    float _lifePotionTimer;
+
+    Shield _shield;
     BossStates[] _bossStates = new BossStates[] { BossStates.Shoot, BossStates.Zones };
 
+
+    private void Awake()
+    {
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_BossHalfLife , Shield); 
+    }
 
     protected override void Start()
     {
         base.Start();
 
 
-        
-       
-
         _stateMachine = new FSM<BossStates>();
         _shoot = new ShootState(this);
         _zones = new ZonesState(this);
-
+        _lifeHandler = new LifeHandlerBoss();
 
         _stateMachine.AddState(BossStates.Shoot ,_shoot);
         _stateMachine.AddState(BossStates.Zones ,_zones);
 
 
         ChangeState(BossStates.Shoot);
+
     }
 
     public void RandomChangeState()
@@ -79,7 +89,31 @@ public class Boss : EnemyGlobalScript
         }
 
         else
+        {
             _stateMachine.Update();
+
+            _lifePotionTimer += Time.deltaTime;
+
+            if (_lifePotionTimer >= _coolDownPotion)
+            {
+                _lifePotionTimer = 0;
+
+                var spawnPoint = Random.Range(0, _spawnPointsPotions.Length);
+
+                var potion = LifePotionFactory.instance.GetObjFromPool();
+                potion.transform.position = _spawnPointsPotions[spawnPoint].position;
+            }
+
+
+           // if (life == _maxLife / 2) _lifeHandler.HalfLife();
+            
+
+
+            if (TargetsShieldFactory.instance.initialAmount <= 0)
+            {
+                ShieldFactory.instance.ReturnToPool(_shield);
+            }
+        }
 
         _changeAttackTimer += Time.deltaTime;
 
@@ -103,6 +137,23 @@ public class Boss : EnemyGlobalScript
         {
             BossFactory.instance.ReturnToPool(this);
         }
+
+        if (life == _maxLife / 2) Shield();
+    }
+
+
+    void Shield(params object[] p)
+    {
+        _shield = ShieldFactory.instance.GetObjFromPool();
+        _shield.transform.position = transform.position;
+
+        foreach (var item in _spawnPointsTargetsShield)
+        {
+            var targetShield = TargetsShieldFactory.instance.GetObjFromPool();
+            targetShield.transform.position = item.position;
+        }
+
+        EventManager.UnSubscribeToEvent(EventManager.EventsType.Event_BossHalfLife , Shield);
     }
 
 
