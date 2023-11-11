@@ -112,10 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeCooldown: 3
-  _bulletSpeed: 250
+  _bulletSpeed: 750
   dir: {x: 0, y: 0, z: 0}
   dmg: 3
-  powerupActive: 0
 --- !u!54 &-5050140293076761848
 Rigidbody:
   m_ObjectHideFlags: 0

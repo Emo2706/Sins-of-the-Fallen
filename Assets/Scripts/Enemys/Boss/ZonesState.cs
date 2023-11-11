@@ -5,7 +5,6 @@ using UnityEngine;
 public class ZonesState : State
 {
     int _zoneAttackCooldown;
-    Transform[] _spawnPointsZones;
     ZoneAttackWarning warning;
     int _changeStateCooldown;
     Boss _boss;
@@ -13,7 +12,6 @@ public class ZonesState : State
     {
         _boss = boss;
         _zoneAttackCooldown = boss.zoneAttackCooldown;
-        _spawnPointsZones = boss.spawnPointsZone;
         _changeStateCooldown = boss.cooldownChangeAttackCircle;
     }
 
@@ -22,7 +20,7 @@ public class ZonesState : State
         Debug.Log("Enter zones");
 
         warning = ZoneAttackWarningFactory.instance.GetObjFromPool();
-        warning.transform.position = _spawnPointsZones[Random.Range(0, _spawnPointsZones.Length)].position;
+        warning.transform.position = _boss.spawnPointsZone[Random.Range(0, _boss.spawnPointsZone.Length)].position;
         _boss.StartCoroutine(ZoneAttackCouroutine());
     }
 
@@ -52,6 +50,7 @@ public class ZonesState : State
 
         ZoneAttack zoneAttack = ZoneAttackFactory.instance.GetObjFromPool();
         zoneAttack.transform.position = warning.transform.position;
+        AudioManager.instance.Play(AudioManager.Sounds.Zones);
 
         yield return _waitForChangeState;
 

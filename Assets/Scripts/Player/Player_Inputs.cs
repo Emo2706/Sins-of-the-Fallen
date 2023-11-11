@@ -17,12 +17,15 @@ public class Player_Inputs
     Dictionary<KeyCode,CommandInputs> _commandDictionary;
 
     Dictionary<KeyCode, CommandInputs> _commandUpDictionary;
+    
+    Dictionary<KeyCode, CommandInputs> _commandHoldDictionary;
 
     public Player_Inputs(Transform transform , LifeHandler lifeHandler , Player player)
     {
         _transform = transform;
         _commandDictionary = new Dictionary<KeyCode, CommandInputs>();
         _commandUpDictionary = new Dictionary<KeyCode, CommandInputs>();
+        _commandHoldDictionary = new Dictionary<KeyCode, CommandInputs>();
         _lifeHandler = lifeHandler;
         _player = player;
     }
@@ -47,6 +50,11 @@ public class Player_Inputs
         _commandUpDictionary[key] = command;
     }
 
+    public void BlindKeysHold(KeyCode key , CommandInputs command)
+    {
+        _commandHoldDictionary[key] = command;
+    }
+
     public CommandInputs Inputs()
     {
         foreach (var pair in _commandDictionary)
@@ -63,6 +71,12 @@ public class Player_Inputs
             {
                 return pair.Value;
             }
+        }
+
+        foreach (var pair in _commandHoldDictionary)
+        {
+            if (Input.GetKey(pair.Key))
+                return pair.Value;
         }
 
         return null;

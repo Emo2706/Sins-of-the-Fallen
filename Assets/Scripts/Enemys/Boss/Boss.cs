@@ -16,6 +16,7 @@ public class Boss : EnemyGlobalScript
     public int zoneAttackCooldown;
     public int twisterCooldown;
     public int twistersAmount;
+    public int twistersAmountPhase2;
     public int nextTwistersCooldown;
     public int startCircleAttack;
     public int cooldownChangeAttackCircle;
@@ -29,11 +30,14 @@ public class Boss : EnemyGlobalScript
     public Transform[] spawnPointsZone;
     public Transform[] spawnPointsTwister;
     public Transform spawnPointCircle;
-    [SerializeField] Transform[] _spawnPointsPotions;
-    [SerializeField] Transform[] _spawnPointsTargetsShield;
+    public Transform[] spawnPointsPotions;
+    public Transform[] spawnPointsTargetsShield;
 
     float _changeAttackTimer;
     float _lifePotionTimer;
+    bool _canActivateShield = true;
+
+    [SerializeField] int _lifePhase3Cooldown;
 
     Shield _shield;
     BossStates[] _bossStates = new BossStates[] { BossStates.Shoot, BossStates.Zones };
@@ -98,14 +102,12 @@ public class Boss : EnemyGlobalScript
             {
                 _lifePotionTimer = 0;
 
-                var spawnPoint = Random.Range(0, _spawnPointsPotions.Length);
+                var spawnPoint = Random.Range(0, spawnPointsPotions.Length);
 
                 var potion = LifePotionFactory.instance.GetObjFromPool();
-                potion.transform.position = _spawnPointsPotions[spawnPoint].position;
+                potion.transform.position = spawnPointsPotions[spawnPoint].position;
             }
 
-
-           // if (life == _maxLife / 2) _lifeHandler.HalfLife();
             
 
 
@@ -138,7 +140,19 @@ public class Boss : EnemyGlobalScript
             BossFactory.instance.ReturnToPool(this);
         }
 
-        if (life == _maxLife / 2) Shield();
+        if (life <= _maxLife / 2)
+        {
+            if (_canActivateShield == true)
+            {
+                Shield();
+                twistersAmount = twistersAmountPhase2;
+                _canActivateShield = false;
+            }
+
+        }
+
+        if (life <= _lifePhase3Cooldown)
+            twistersAmount = spawnPointsTwister.Length;
     }
 
 
@@ -147,11 +161,13 @@ public class Boss : EnemyGlobalScript
         _shield = ShieldFactory.instance.GetObjFromPool();
         _shield.transform.position = transform.position;
 
-        foreach (var item in _spawnPointsTargetsShield)
+        foreach (var item in spawnPointsTargetsShield)
         {
             var targetShield = TargetsShieldFactory.instance.GetObjFromPool();
             targetShield.transform.position = item.position;
         }
+
+        AudioManager.instance.Play(AudioManager.Sounds.Shield);
 
         EventManager.UnSubscribeToEvent(EventManager.EventsType.Event_BossHalfLife , Shield);
     }

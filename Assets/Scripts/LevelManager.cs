@@ -30,5 +30,10 @@ public class LevelManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
 

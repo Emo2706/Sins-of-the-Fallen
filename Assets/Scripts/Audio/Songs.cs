@@ -5,6 +5,7 @@ using UnityEngine;
 public class Songs : MonoBehaviour
 {
     [SerializeField] int _werewolfDuration = 240;
+    [SerializeField] int _eliteDuration = 241;
     [SerializeField] Collider _songsCollider;
 
 
@@ -22,14 +23,22 @@ public class Songs : MonoBehaviour
 
     IEnumerator SongsCoroutine()
     {
-       // WaitForSeconds werewolf = new WaitForSeconds(_werewolfDuration);
+        WaitForSeconds werewolf = new WaitForSeconds(_werewolfDuration);
+        
+        WaitForSeconds elite = new WaitForSeconds(_eliteDuration);
 
         AudioManager.instance.Play(AudioManager.Sounds.Werewolf);
 
-        yield return new WaitForSeconds(_werewolfDuration) ;
+        yield return werewolf ;
 
         AudioManager.instance.Stop(AudioManager.Sounds.Werewolf);
 
         AudioManager.instance.Play(AudioManager.Sounds.Elite);
+
+        yield return elite;
+
+        AudioManager.instance.Stop(AudioManager.Sounds.Elite);
+
+        AudioManager.instance.Play(AudioManager.Sounds.Lotion);
     }
 }

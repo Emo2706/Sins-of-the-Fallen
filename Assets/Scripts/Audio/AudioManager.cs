@@ -84,5 +84,16 @@ public class AudioManager : MonoBehaviour
     {
         public const int Werewolf = 0;
         public const int Elite = 1;
+        public const int Fire1 = 2;
+        public const int Fire2 = 3;
+        public const int Fire3 = 4;
+        public const int Fire4 = 5;
+        public const int Shield = 6;
+        public const int Twisters = 7;
+        public const int Zones = 8;
+        public const int LifePotion = 9;
+        public const int DieEnemies = 10;
+        public const int DmgSound = 11;
+        public const int Lotion = 12;
     }
 }

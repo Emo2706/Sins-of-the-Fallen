@@ -7,12 +7,13 @@ public class AttackStateFlyers : State
 {
     EnemyFlyers _flyer;
     int _speedRotation;
-    int _shootCooldown;
+    float _shootCooldown;
     float _minDistAttack;
     Transform _transform;
     float _shootTimer;
     Vector3 _playerPos;
     Player _player;
+    Transform _pivotShoot;
     public event Action OnShoot;
 
     public AttackStateFlyers(EnemyFlyers flyer)
@@ -22,6 +23,7 @@ public class AttackStateFlyers : State
         _minDistAttack = flyer.minDistAttack;
         _shootCooldown = flyer.shootCooldown;
         _speedRotation = flyer.speedRotation;
+        _pivotShoot = flyer.pivotShootFlyer;
     }
 
     public override void OnEnter()
@@ -60,12 +62,12 @@ public class AttackStateFlyers : State
 
     void Shoot()
     {
+        OnShoot();
         var bullet = BulletEnemyFactory.instance.GetObjFromPool();
-        bullet.transform.position = _transform.position;
+        bullet.transform.position = _pivotShoot.position;
         bullet.transform.rotation = _transform.rotation;
         bullet.dir = _transform.forward;
 
-        OnShoot();
     }
 
     public override void OnFixedUpdate()

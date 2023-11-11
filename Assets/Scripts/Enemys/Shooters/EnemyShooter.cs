@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyShooter : EnemyGlobalScript
 {
@@ -10,10 +11,12 @@ public class EnemyShooter : EnemyGlobalScript
     AttackState _attack;
     ShooterView _view;
     public float minDistAttack;
-    public int shootCooldown;
+    public float shootCooldown;
     public Player player;
     public int speedRotation;
     public LayerMask playerMask = 1<<9;
+    public Transform pivotShoot;
+    public event Action OnDie;
     // Start is called before the first frame update
    protected override void Start()
     {
@@ -24,6 +27,7 @@ public class EnemyShooter : EnemyGlobalScript
         _view = new ShooterView(this);
 
         _attack.OnShoot += _view.Shoot;
+        OnDie += _view.Die;
 
         _stateMachine.AddState(ShooterStates.Patrol, _patrol);
         _stateMachine.AddState(ShooterStates.Attack, _attack);
@@ -85,7 +89,9 @@ public class EnemyShooter : EnemyGlobalScript
     {
         WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
 
-        var lifePotion = Random.Range(1, 3);
+        var lifePotion = UnityEngine.Random.Range(1, 3);
+
+        OnDie();
 
         yield return dieAnimation;
 

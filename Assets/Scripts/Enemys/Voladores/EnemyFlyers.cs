@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyFlyers : EnemyGlobalScript
 {
@@ -13,8 +14,10 @@ public class EnemyFlyers : EnemyGlobalScript
     public int minDistAttack;
     public Player player;
     public int speedRotation;
-    public int shootCooldown;
+    public float shootCooldown;
     public LayerMask playerMask = 1 << 9;
+    public Transform pivotShootFlyer;
+    public event Action OnDie;
     // Start is called before the first frame update
    protected override void Start()
     {
@@ -26,6 +29,7 @@ public class EnemyFlyers : EnemyGlobalScript
         _view = new FlyerView(this);
 
         _attack.OnShoot += _view.Shoot;
+        OnDie += _view.Dead;
 
         _stateMachine.AddState(FlyersStates.Patrol, _patrol);
         _stateMachine.AddState(FlyersStates.Attack, _attack);
@@ -80,7 +84,9 @@ public class EnemyFlyers : EnemyGlobalScript
     {
         WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
 
-        var lifePotion = Random.Range(1, 3);
+        var lifePotion = UnityEngine.Random.Range(1, 3);
+
+        OnDie();
 
         yield return dieAnimation;
 

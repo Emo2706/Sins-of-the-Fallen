@@ -6,13 +6,14 @@ using System;
 public class AttackState : State
 {
     int _speedRotation;
-    int _shootCooldown;
+    float _shootCooldown;
     float _minDistAttack;
     Transform _transform;
     float _shootTimer;
     EnemyShooter _shooter;
     Vector3 _playerPos;
     Player _player;
+    Transform _pivotShoot;
     public event Action OnShoot;
 
     public AttackState(EnemyShooter shooter)
@@ -22,6 +23,7 @@ public class AttackState : State
         _shootCooldown = shooter.shootCooldown;
         _minDistAttack = shooter.minDistAttack;
         _transform = shooter.transform;
+        _pivotShoot = shooter.pivotShoot;
     }
 
     public override void OnEnter()
@@ -73,10 +75,10 @@ public class AttackState : State
 
     void Shoot()
     {
+        OnShoot();
         var bullet = BulletEnemyFactory.instance.GetObjFromPool();
-        bullet.transform.position = _transform.position;
+        bullet.transform.position = _pivotShoot.position;
         bullet.transform.rotation = _transform.rotation;
         bullet.dir = _transform.forward;
-        OnShoot();
     }
 }

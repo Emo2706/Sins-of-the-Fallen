@@ -12,8 +12,6 @@ public class ShootState : State
     int _circleCooldown;
     Transform _pivotShoot;
     int _twisterCooldown;
-    int _twistersAmount;
-    Transform[] _twistersWarningPoints;
     List<Vector3> _warnings = new List<Vector3>();
     int _nextTwistersCooldown;
     int _startCircleAttack;
@@ -29,8 +27,7 @@ public class ShootState : State
         _circleCooldown = boss.coolDownCircle;
         _pivotShoot = boss.pivotShoot;
         _twisterCooldown = boss.twisterCooldown;
-        _twistersAmount = boss.twistersAmount;
-        _twistersWarningPoints = boss.spawnPointsTwister;
+
         _nextTwistersCooldown = boss.nextTwistersCooldown;
         _startCircleAttack = boss.startCircleAttack;
         _spawnPointCircleAttack = boss.spawnPointCircle;
@@ -99,9 +96,9 @@ public class ShootState : State
         while (true)
         {
 
-            for (int i = 0; i < _twistersAmount; i++)
+            for (int i = 0; i < _boss.twistersAmount; i++)
             {
-                var spawnPointTwister = _twistersWarningPoints[Random.Range(0, _twistersWarningPoints.Length)];
+                var spawnPointTwister = _boss.spawnPointsTwister[Random.Range(0, _boss.spawnPointsTwister.Length)];
 
                 TwisterWarning warning = TwisterWarningFactory.instance.GetObjFromPool();
                 warning.transform.position = spawnPointTwister.position;
@@ -117,6 +114,8 @@ public class ShootState : State
                 TwisterAttack attack = TwisterAttackFactory.instance.GetObjFromPool();
                 attack.transform.position = item;
             }
+
+            AudioManager.instance.Play(AudioManager.Sounds.Twisters);
            
             _warnings.RemoveRange(0 , _warnings.Count);
 

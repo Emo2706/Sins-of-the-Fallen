@@ -5,7 +5,10 @@ using UnityEngine;
 public class LifePotion : PowerUp
 {
     [SerializeField] int _lifeTime;
+    [SerializeField] int _lifePotion;
     float _lifeTimer;
+
+    Player _player;
 
     // Update is called once per frame
     void Update()
@@ -35,10 +38,19 @@ public class LifePotion : PowerUp
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9) LifePotionFactory.instance.ReturnToPool(this);
+
+        _player = other.GetComponent<Player>();
     }
+
+
 
     public override void Active()
     {
-        //
+        if (_player != null)
+        {
+            _player.life += _lifePotion;
+            AudioManager.instance.Play(AudioManager.Sounds.LifePotion);
+
+        }
     }
 }

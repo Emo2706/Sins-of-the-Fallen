@@ -19,6 +19,7 @@ public class Player : Entity
     [SerializeField] float _dashDuration;
     [SerializeField] float _dashCooldown;
     public float shootCooldown;
+    public float[] phasesCooldowns;
 
 
     [Header("Vars")]
@@ -36,6 +37,8 @@ public class Player : Entity
     [SerializeField] int _speed;
     [SerializeField] float _jumpForce;
     [SerializeField] float _dashForce;
+    public int phase1Dmg;
+    public int phase2Dmg;
 
 
     [SerializeField] Slider _healthSlider;
@@ -43,6 +46,7 @@ public class Player : Entity
     FirstPersonCamera _cam;
     [SerializeField] Transform _headTransform;
     [SerializeField] Transform _pivotShoot;
+
 
     [Range(1f, 200f)] public float sensitivity = 200f;
 
@@ -66,7 +70,7 @@ public class Player : Entity
         _inputs = new Player_Inputs(transform , _lifeHandler , this);
         _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler , _slimeForce , this , _cam);
         _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform);
-        _attacks = new Player_Attacks(shootCooldown , _amountPowerUpBullets , _multiplierDmg , _pivotShoot);
+        _attacks = new Player_Attacks(shootCooldown , _amountPowerUpBullets , _multiplierDmg , _pivotShoot , this);
         _ui = new Player_UI(_healthSlider, this);
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -78,8 +82,10 @@ public class Player : Entity
         _inputs.BlindKeys(KeyCode.Space, new JumpInputs(_movement));
         _inputs.BlindKeys(KeyCode.LeftShift, new DashInput(_movement));
         _inputs.BlindKeys(KeyCode.E, new GlideInput(_movement));
-        _inputs.BlindKeys(KeyCode.Mouse0, new ShootInput(_attacks));
         _inputs.BlindKeysUp(KeyCode.E, new NotGlideInput(_movement));
+        _inputs.BlindKeysUp(KeyCode.Mouse0, new ChargeUpInput(_attacks));
+        _inputs.BlindKeys(KeyCode.Escape, new PauseInput(new PauseScreen()));
+        _inputs.BlindKeysHold(KeyCode.Mouse0, new ChargeInput(_attacks));
        
         #endregion
     }

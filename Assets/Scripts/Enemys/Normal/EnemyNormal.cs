@@ -18,6 +18,7 @@ public class EnemyNormal : EnemyGlobalScript
     public LayerMask playerMask = 1 << 9;
     [SerializeField] Collider _colliderPunch;
     [SerializeField] float _punchDuration;
+    public event Action OnDie;
  
     // Start is called before the first frame update
     protected override void Start()
@@ -33,6 +34,7 @@ public class EnemyNormal : EnemyGlobalScript
         _chase.Attack += _view.Punch;
         _chase.Attack += ActivateCollider;
 
+        OnDie += _view.Die;
 
         _stateMachine.AddState(NormalStates.Patrol, _patrol);
         _stateMachine.AddState(NormalStates.Chase, _chase);
@@ -110,6 +112,8 @@ public class EnemyNormal : EnemyGlobalScript
         WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
 
         var lifePotion = UnityEngine.Random.Range(1, 3);
+
+        OnDie();
 
         yield return dieAnimation;
 
