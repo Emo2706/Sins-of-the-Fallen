@@ -5153,7 +5153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405f34ce2cb0de040bffa9476ae5a633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetsShieldPrefab: {fileID: -1642981069627717479, guid: caaecef9894624e4eb87c17a3e0e8fa5, type: 3}
+  _targetsShieldPrefab: {fileID: 3677704390513176099, guid: caaecef9894624e4eb87c17a3e0e8fa5, type: 3}
   initialAmount: 5
 --- !u!1 &264799703
 GameObject:
@@ -12635,6 +12635,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+--- !u!1 &793642451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 793642453}
+  - component: {fileID: 793642452}
+  m_Layer: 0
+  m_Name: Bloom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &793642452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793642451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: fc7c0dc3f7e700e4ebe3407620759edb, type: 2}
+--- !u!4 &793642453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793642451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 86
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &793953589
 GameObject:
   m_ObjectHideFlags: 0
@@ -24034,7 +24083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bfaf633b72bd34cab1aeced0acd937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shieldPrefab: {fileID: -4298866148850314000, guid: 6c4970c46acfd0b45a1ab9eff9577a6b, type: 3}
+  _shieldPrefab: {fileID: -407732091125198050, guid: 6c4970c46acfd0b45a1ab9eff9577a6b, type: 3}
   _initialAmount: 1
 --- !u!1001 &1533576522
 PrefabInstance:

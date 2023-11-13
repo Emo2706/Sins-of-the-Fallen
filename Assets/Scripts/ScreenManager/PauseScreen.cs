@@ -20,11 +20,18 @@ public class PauseScreen : MonoBehaviour,IScreen
         {
             button.interactable = enable;
         }
+
+        Cursor.visible = enable;
+
+        if (enable == true) Cursor.lockState = CursorLockMode.Confined;
+
+        else Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     public void BTN_Options()
     {
-        //ScreenManager.instance.Push("Canvas Options");
+        ScreenManager.instance.Push("PauseScreen");
     }
 
     public void BTN_Back()
