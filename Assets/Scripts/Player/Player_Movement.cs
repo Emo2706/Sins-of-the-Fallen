@@ -54,6 +54,7 @@ public class Player_Movement
 
     public void ArtificialStart()
     {
+        _player.enabled = true;
         _rb.drag = _initialDrag;
         _lifeHandler.onDeath += DisableOnDead;
     }

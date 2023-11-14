@@ -84,7 +84,7 @@ public class Player : Entity
         _inputs.BlindKeys(KeyCode.E, new GlideInput(_movement));
         _inputs.BlindKeysUp(KeyCode.E, new NotGlideInput(_movement));
         _inputs.BlindKeysUp(KeyCode.Mouse0, new ChargeUpInput(_attacks));
-        _inputs.BlindKeys(KeyCode.Escape, new PauseInput(new PauseScreen()));
+       // _inputs.BlindKeys(KeyCode.Escape, new PauseInput(new PauseScreen()));
         _inputs.BlindKeysHold(KeyCode.Mouse0, new ChargeInput(_attacks));
        
         #endregion

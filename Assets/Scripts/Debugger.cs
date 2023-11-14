@@ -5,6 +5,7 @@ using UnityEngine;
 public class Debugger : MonoBehaviour
 {
     [SerializeField] Transform _mainGame;
+    [SerializeField] PauseScreen _pauseScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -12,12 +13,15 @@ public class Debugger : MonoBehaviour
         ScreenManager.instance.Push(new ScreenGameplay (_mainGame));
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-
+            if (_pauseScreen == null)
+            {
+                 _pauseScreen = Instantiate(Resources.Load<PauseScreen>("PauseScreen"));
+                 ScreenManager.instance.Push(_pauseScreen);
+            }
         }
     }
 }

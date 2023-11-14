@@ -12,6 +12,8 @@ public class LostScreen :MonoBehaviour ,IScreen
         _buttons = GetComponentsInChildren<Button>();
 
         ActivateButtons(false);
+        
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_PlayerDead, Activate);
     }
 
     void ActivateButtons(bool enable)
@@ -22,10 +24,16 @@ public class LostScreen :MonoBehaviour ,IScreen
         }
     }
 
+    public void Activate(params object[] parameters)
+    {
+        Activate();
+    }
+
 
     public void Activate()
     {
         ActivateButtons(true);
+
     }
 
     public void Deactivate()
