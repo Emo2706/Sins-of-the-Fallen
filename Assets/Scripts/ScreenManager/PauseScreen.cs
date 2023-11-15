@@ -25,7 +25,6 @@ public class PauseScreen : MonoBehaviour,IScreen
 
         if (enable == true) Cursor.lockState = CursorLockMode.Confined;
 
-        else Cursor.lockState = CursorLockMode.Locked;
 
     }
 
@@ -37,6 +36,8 @@ public class PauseScreen : MonoBehaviour,IScreen
     public void BTN_Back()
     {
         ScreenManager.instance.Pop();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Activate()
@@ -52,6 +53,16 @@ public class PauseScreen : MonoBehaviour,IScreen
     public void Free()
     {
         Destroy(gameObject);
+    }
+
+    public void Restart()
+    {
+        LevelManager.instance.RestartLevel();
+    }
+
+    public void ExitToMenu()
+    {
+        LevelManager.instance.StartLevel(0);
     }
 }
 

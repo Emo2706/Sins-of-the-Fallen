@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: bf19e2970d7f9aa42829cbd52f55260e
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _pentagramatextura: {fileID: 2800000, guid: b312062cf992e4e49b17f0c555d0cf8b, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

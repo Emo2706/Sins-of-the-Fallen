@@ -23,5 +23,10 @@ public class Debugger : MonoBehaviour
                  ScreenManager.instance.Push(_pauseScreen);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ScreenManager.instance.Push("LostScreen");
+        }
     }
 }

@@ -13,7 +13,7 @@ public class LostScreen :MonoBehaviour ,IScreen
 
         ActivateButtons(false);
         
-        EventManager.SubscribeToEvent(EventManager.EventsType.Event_PlayerDead, Activate);
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_PlayerDead, ActivateScreen);
     }
 
     void ActivateButtons(bool enable)
@@ -22,11 +22,17 @@ public class LostScreen :MonoBehaviour ,IScreen
         {
             button.interactable = enable;
         }
+
+        Cursor.visible = enable;
+
+        if (enable == true) Cursor.lockState = CursorLockMode.Confined;
     }
 
-    public void Activate(params object[] parameters)
+    public void ActivateScreen(params object[] parameters)
     {
-        Activate();
+        ScreenManager.instance.Push("LostScreen");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
 
@@ -46,5 +52,14 @@ public class LostScreen :MonoBehaviour ,IScreen
         Destroy(gameObject);
     }
 
-    
+    public void Restart()
+    {
+        LevelManager.instance.RestartLevel();
+    }
+
+    public void ExitToMenu()
+    {
+        LevelManager.instance.StartLevel(0);
+    } 
+
 }
