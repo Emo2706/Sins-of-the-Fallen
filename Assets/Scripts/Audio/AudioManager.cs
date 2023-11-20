@@ -95,5 +95,7 @@ public class AudioManager : MonoBehaviour
         public const int DieEnemies = 10;
         public const int DmgSound = 11;
         public const int Lotion = 12;
+        public const int TheOpenDoor = 13;
+        public const int InstancePowerUp = 14;
     }
 }

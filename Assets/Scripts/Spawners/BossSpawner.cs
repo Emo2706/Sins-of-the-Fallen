@@ -10,6 +10,7 @@ public class BossSpawner : MonoBehaviour
     [SerializeField] Transform[] _spawnPointsZones;
     [SerializeField] Transform[] _spawnPointsLifePotions;
     [SerializeField] Transform[] _spawnPointsTargetsShield;
+    [SerializeField] Transform _root;
 
     [SerializeField] Transform _spawnPointBoss;
 
@@ -21,5 +22,6 @@ public class BossSpawner : MonoBehaviour
         boss.spawnPointsTwister = _spawnPointsTwister;
         boss.spawnPointsZone = _spawnPointsZones;
         boss.spawnPointsTargetsShield = _spawnPointsTargetsShield;
+        boss.transform.parent = _root;
     }
 }

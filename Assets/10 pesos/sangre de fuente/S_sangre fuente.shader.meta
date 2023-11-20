@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 1684cdfbcd4ee9b47a38fe5d5a287e19
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _sangretextura: {fileID: 2800000, guid: e020727ade986f64c8bcd6b0cd7a18b0, type: 3}
+  - _flowmap: {fileID: 2800000, guid: 32fbc69da1abfca40a71a612f889ba33, type: 3}
+  - _flowmap1: {fileID: 2800000, guid: 32fbc69da1abfca40a71a612f889ba33, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

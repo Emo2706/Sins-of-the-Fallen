@@ -5,9 +5,11 @@ using UnityEngine;
 public class NormalView
 {
     Animator _anim;
+    EnemyNormal _enemy;
 
     public NormalView(EnemyNormal enemy)
     {
+        _enemy = enemy;
         _anim = enemy.GetComponentInChildren<Animator>();
     }
 
@@ -23,6 +25,7 @@ public class NormalView
 
     public void Punch()
     {
+        if(_enemy.life>0)
         _anim.SetTrigger("Punch");
     }
 

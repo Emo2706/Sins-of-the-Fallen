@@ -540,7 +540,7 @@ Shader "S_pentagrama"
 
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float4 color13 = IsGammaSpace() ? float4(2,0,0,0) : float4(4.594794,0,0,0);
+				float4 color13 = IsGammaSpace() ? float4(7.999999,0,0,1) : float4(97.00584,0,0,1);
 				float2 texCoord24 = IN.ase_texcoord8.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 texCoord21 = IN.ase_texcoord8.xy * float2( 1,1 ) + float2( 0,0 );
 				float cos18 = cos( ( _TimeParameters.x * _speedR ).x );
@@ -1651,7 +1651,7 @@ Shader "S_pentagrama"
 					#endif
 				#endif
 
-				float4 color13 = IsGammaSpace() ? float4(2,0,0,0) : float4(4.594794,0,0,0);
+				float4 color13 = IsGammaSpace() ? float4(7.999999,0,0,1) : float4(97.00584,0,0,1);
 				float2 texCoord24 = IN.ase_texcoord4.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 texCoord21 = IN.ase_texcoord4.xy * float2( 1,1 ) + float2( 0,0 );
 				float cos18 = cos( ( _TimeParameters.x * _speedR ).x );
@@ -1941,7 +1941,7 @@ Shader "S_pentagrama"
 					#endif
 				#endif
 
-				float4 color13 = IsGammaSpace() ? float4(2,0,0,0) : float4(4.594794,0,0,0);
+				float4 color13 = IsGammaSpace() ? float4(7.999999,0,0,1) : float4(97.00584,0,0,1);
 				float2 texCoord24 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 texCoord21 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
 				float cos18 = cos( ( _TimeParameters.x * _speedR ).x );
@@ -2660,7 +2660,7 @@ Shader "S_pentagrama"
 
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float4 color13 = IsGammaSpace() ? float4(2,0,0,0) : float4(4.594794,0,0,0);
+				float4 color13 = IsGammaSpace() ? float4(7.999999,0,0,1) : float4(97.00584,0,0,1);
 				float2 texCoord24 = IN.ase_texcoord8.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 texCoord21 = IN.ase_texcoord8.xy * float2( 1,1 ) + float2( 0,0 );
 				float cos18 = cos( ( _TimeParameters.x * _speedR ).x );
@@ -3334,7 +3334,7 @@ Node;AmplifyShaderEditor.LerpOp;11;-376.3429,98.83254;Inherit;True;3;0;COLOR;0,0
 Node;AmplifyShaderEditor.StepOpNode;14;-566.5782,321.1567;Inherit;True;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.OneMinusNode;16;-303.7761,338.1642;Inherit;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.RangedFloatNode;17;-319.5233,573.7625;Inherit;False;Property;_clip;clip;3;0;Create;True;0;0;0;False;0;False;0;0.5734552;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;13;-778.9081,-58.93141;Inherit;False;Constant;_Color1;Color 1;1;1;[HDR];Create;True;0;0;0;False;0;False;2,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;13;-778.9081,-58.93141;Inherit;False;Constant;_Color1;Color 1;1;1;[HDR];Create;True;0;0;0;False;0;False;7.999999,0,0,1;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.TextureCoordinatesNode;24;-1588.76,-56.82451;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.LerpOp;25;-1247.931,111.176;Inherit;True;3;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.RotatorNode;18;-1598.225,134.7455;Inherit;True;3;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;2;FLOAT;1;False;1;FLOAT2;0
@@ -3363,4 +3363,4 @@ WireConnection;18;2;19;0
 WireConnection;19;0;20;0
 WireConnection;19;1;23;0
 ASEEND*/
-//CHKSM=D0B045693072ABE7386DA0A6B1A4D82B78B9EBC4
+//CHKSM=2A0FDA166CF9D68B33863837A43133F45E82313A

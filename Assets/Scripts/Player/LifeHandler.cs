@@ -16,6 +16,7 @@ public class LifeHandler
     public void OnDead()
     {
         onDeath();
-        EventManager.TriggerEvent(EventManager.EventsType.Event_PlayerDead , 1);
+        EventManager.TriggerEvent(EventManager.EventsType.Event_PlayerDead);
+        Debug.Log("OnDead");
     }
 }

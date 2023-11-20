@@ -8,7 +8,9 @@ public class EventManager
     {
         Event_PlayerDead,
         Event_BossDefeated,
-        Event_BossHalfLife
+        Event_BossHalfLife,
+        Event_WinGame,
+        Event_EnemyDead
     }
 
     public delegate void EventsReceiver(params object[] parameters);
@@ -41,6 +43,7 @@ public class EventManager
         if (_events == null) return;
 
         if (!_events.ContainsKey(eventsType)) return;
+        Debug.Log("Trigger Event");
 
         _events[eventsType](parameters);
     }

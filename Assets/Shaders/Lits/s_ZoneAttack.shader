@@ -536,8 +536,8 @@ Shader "s_Lit4"
 
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float4 color14 = IsGammaSpace() ? float4(0,0.0383498,0.4528302,0) : float4(0,0.002968251,0.1729492,0);
-				float4 color13 = IsGammaSpace() ? float4(0.7921569,0,0.08930817,0) : float4(0.5906189,0,0.008442914,0);
+				float4 color14 = IsGammaSpace() ? float4(0.08627451,0.03921569,0.6666667,0) : float4(0.008023192,0.00303527,0.4019779,0);
+				float4 color13 = IsGammaSpace() ? float4(1.605559,0,0.0756546,0) : float4(2.833855,0,0.006651098,0);
 				float2 uv_ataquebosstextura = IN.ase_texcoord8.xy * _ataquebosstextura_ST.xy + _ataquebosstextura_ST.zw;
 				float4 tex2DNode11 = tex2D( _ataquebosstextura, uv_ataquebosstextura );
 				float4 lerpResult10 = lerp( color14 , color13 , tex2DNode11);
@@ -1614,8 +1614,8 @@ Shader "s_Lit4"
 					#endif
 				#endif
 
-				float4 color14 = IsGammaSpace() ? float4(0,0.0383498,0.4528302,0) : float4(0,0.002968251,0.1729492,0);
-				float4 color13 = IsGammaSpace() ? float4(0.7921569,0,0.08930817,0) : float4(0.5906189,0,0.008442914,0);
+				float4 color14 = IsGammaSpace() ? float4(0.08627451,0.03921569,0.6666667,0) : float4(0.008023192,0.00303527,0.4019779,0);
+				float4 color13 = IsGammaSpace() ? float4(1.605559,0,0.0756546,0) : float4(2.833855,0,0.006651098,0);
 				float2 uv_ataquebosstextura = IN.ase_texcoord4.xy * _ataquebosstextura_ST.xy + _ataquebosstextura_ST.zw;
 				float4 tex2DNode11 = tex2D( _ataquebosstextura, uv_ataquebosstextura );
 				float4 lerpResult10 = lerp( color14 , color13 , tex2DNode11);
@@ -1897,8 +1897,8 @@ Shader "s_Lit4"
 					#endif
 				#endif
 
-				float4 color14 = IsGammaSpace() ? float4(0,0.0383498,0.4528302,0) : float4(0,0.002968251,0.1729492,0);
-				float4 color13 = IsGammaSpace() ? float4(0.7921569,0,0.08930817,0) : float4(0.5906189,0,0.008442914,0);
+				float4 color14 = IsGammaSpace() ? float4(0.08627451,0.03921569,0.6666667,0) : float4(0.008023192,0.00303527,0.4019779,0);
+				float4 color13 = IsGammaSpace() ? float4(1.605559,0,0.0756546,0) : float4(2.833855,0,0.006651098,0);
 				float2 uv_ataquebosstextura = IN.ase_texcoord2.xy * _ataquebosstextura_ST.xy + _ataquebosstextura_ST.zw;
 				float4 tex2DNode11 = tex2D( _ataquebosstextura, uv_ataquebosstextura );
 				float4 lerpResult10 = lerp( color14 , color13 , tex2DNode11);
@@ -2596,8 +2596,8 @@ Shader "s_Lit4"
 
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float4 color14 = IsGammaSpace() ? float4(0,0.0383498,0.4528302,0) : float4(0,0.002968251,0.1729492,0);
-				float4 color13 = IsGammaSpace() ? float4(0.7921569,0,0.08930817,0) : float4(0.5906189,0,0.008442914,0);
+				float4 color14 = IsGammaSpace() ? float4(0.08627451,0.03921569,0.6666667,0) : float4(0.008023192,0.00303527,0.4019779,0);
+				float4 color13 = IsGammaSpace() ? float4(1.605559,0,0.0756546,0) : float4(2.833855,0,0.006651098,0);
 				float2 uv_ataquebosstextura = IN.ase_texcoord8.xy * _ataquebosstextura_ST.xy + _ataquebosstextura_ST.zw;
 				float4 tex2DNode11 = tex2D( _ataquebosstextura, uv_ataquebosstextura );
 				float4 lerpResult10 = lerp( color14 , color13 , tex2DNode11);
@@ -3235,7 +3235,6 @@ Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;8;0,0;Float;False;False;-1;
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;9;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphLitGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ScenePickingPass;0;9;ScenePickingPass;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Picking;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.LerpOp;10;-550.9427,-289.5309;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SamplerNode;11;-972.7813,-104.5773;Inherit;True;Property;_ataquebosstextura;ataque boss textura;0;0;Create;True;0;0;0;False;0;False;-1;None;f4d0840373542da49a6fb2981be0f8cd;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.ColorNode;14;-890.6988,-510.8466;Inherit;False;Constant;_Color0;Color 0;1;0;Create;True;0;0;0;False;0;False;0,0.0383498,0.4528302,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.RangedFloatNode;15;-1527.921,180.4392;Inherit;False;Property;_intensidad;intensidad;5;0;Create;True;0;0;0;False;0;False;0;0.2455836;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;16;-1239.201,-94.71255;Inherit;True;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleTimeNode;17;-2173.063,-497.6807;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
@@ -3252,7 +3251,8 @@ Node;AmplifyShaderEditor.SimpleTimeNode;27;-1355.378,342.921;Inherit;False;1;0;F
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;28;-1156.657,446.8669;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.Vector2Node;29;-1428.184,498.8399;Inherit;False;Property;_speed;speed;2;0;Create;True;0;0;0;False;0;False;0,-1;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;12;-394.2108,-6.008599;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.ColorNode;13;-902.8204,-312.1407;Inherit;False;Constant;_Color1;Color 1;1;0;Create;True;0;0;0;False;0;False;0.7921569,0,0.08930817,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;13;-902.8204,-312.1407;Inherit;False;Constant;_Color1;Color 1;1;1;[HDR];Create;True;0;0;0;False;0;False;1.605559,0,0.0756546,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;14;-890.6988,-510.8466;Inherit;False;Constant;_Color0;Color 0;1;1;[HDR];Create;True;0;0;0;False;0;False;0.08627451,0.03921569,0.6666667,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 WireConnection;1;0;10;0
 WireConnection;1;8;12;0
 WireConnection;10;0;14;0
@@ -3273,4 +3273,4 @@ WireConnection;28;1;29;0
 WireConnection;12;0;11;1
 WireConnection;12;1;23;0
 ASEEND*/
-//CHKSM=CFFE6ADEF10D252818E93CAD65AA03543F49CA42
+//CHKSM=61C5CA723334922FCCE805359C2A6B90E5C21DD6

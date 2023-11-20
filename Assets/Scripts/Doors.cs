@@ -16,6 +16,7 @@ public class Doors : MonoBehaviour
 
     public void TheOpenDoor()
     {
-        //Sweet Sacrifice
+        _anim.SetTrigger("TheOpenDoor");
+        AudioManager.instance.Play(AudioManager.Sounds.TheOpenDoor);
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5831058280285761653}
   - component: {fileID: 7853484595694590651}
   - component: {fileID: 7464835401040339809}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Dark effect 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2359434600031591872}
   - component: {fileID: 2740155516507645849}
   - component: {fileID: 5585630398553618733}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Emmisive effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 893257036945489355}
   - component: {fileID: 7132433731254772606}
   - component: {fileID: 5823928608647266626}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Dark effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 4603310113223572800}
   - component: {fileID: 4191963730731003156}
   - component: {fileID: 4014839715312743864}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Upper ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 1398883284162256682}
   - component: {fileID: 7362890133348151727}
   - component: {fileID: 4279139974321309483}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Emmisive upper ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,9 @@ GameObject:
   - component: {fileID: 9189615837607325266}
   - component: {fileID: 5199345842672919031}
   - component: {fileID: 8053348963723285821}
-  m_Layer: 0
+  - component: {fileID: 986839252610582834}
+  - component: {fileID: 5392325636934134883}
+  m_Layer: 16
   m_Name: Tornado 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,8 +443,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8413782138995029224}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 87.77, y: 3.5500002, z: 4.6667}
-  m_LocalScale: {x: 268, y: 258.7007, z: 268}
+  m_LocalPosition: {x: 87.77, y: 6.8548, z: 4.6634}
+  m_LocalScale: {x: 194.90135, y: 188.1385, z: 194.90135}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2538424308580303593}
@@ -505,6 +507,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &986839252610582834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413782138995029224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ec89732b07adc479dc1a1686e53fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeTime: 5
+--- !u!136 &5392325636934134883
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413782138995029224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.03
+  m_Height: 0.18
+  m_Direction: 1
+  m_Center: {x: -0.0000000037252903, y: 0.046839315, z: 0}
 --- !u!1 &8762062383442548437
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +545,7 @@ GameObject:
   - component: {fileID: 1451657356657484052}
   - component: {fileID: 451553180892987994}
   - component: {fileID: 9141630831284185152}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Emmisive lower ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +628,7 @@ GameObject:
   - component: {fileID: 2538424308580303593}
   - component: {fileID: 4238165814738455396}
   - component: {fileID: 9196376983986650931}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Lower ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}

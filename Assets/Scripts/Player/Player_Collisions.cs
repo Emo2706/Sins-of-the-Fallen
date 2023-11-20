@@ -62,6 +62,9 @@ public class Player_Collisions
 
         if (collision.gameObject.layer == 18)
             _player.TakeDmg(_punchDmg);
+
+        if (collision.gameObject.layer == 11)
+            _player.TakeDmg(_punchDmg);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -69,6 +72,7 @@ public class Player_Collisions
         if (other.gameObject.layer == 14)
         {
             _player.TakeDmg(_zonesDmg);
+            _player.ShakeCamera();
         }
 
         if (other.gameObject.layer == 16)
@@ -86,6 +90,7 @@ public class Player_Collisions
         {
             _player.TakeDmg(_bulletsDmg);
         }
+
 
         var powerUp = other.GetComponent<PowerUp>();
 

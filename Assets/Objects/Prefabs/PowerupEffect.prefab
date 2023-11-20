@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7030493016633688680}
   - component: {fileID: 7030493016633688687}
   - component: {fileID: 7030493016633688686}
-  - component: {fileID: 7030493016633688685}
   - component: {fileID: -5542717601404737741}
+  - component: {fileID: 7692486381680867179}
   m_Layer: 0
   m_Name: PowerupEffect
   m_TagString: Untagged
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ee97806edb5b27b47a104423be01dc8a, type: 2}
+  - {fileID: 2100000, guid: d39a2a943f7ff544bb7b816597b9139f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,19 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7030493016633688685
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7030493016633688684}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-5542717601404737741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,13 +93,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7030493016633688684}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 607a9d791ec07f447b8dd427987a85eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifeTime: 0
-  _lifePotion: 0
+  _lifeTime: 15
+  _lifePotion: 15
+--- !u!136 &7692486381680867179
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7030493016633688684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.90365916
+  m_Height: 1.8073183
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7030493017468888916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120,6 +121,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7030493016633688680}
     m_Modifications:
+    - target: {fileID: 863988821104600486, guid: 3368b17617ac384459974b1e92540947, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0ab3f21e7d7f88c4391da41129e5284a, type: 2}
+    - target: {fileID: 1436611996289116073, guid: 3368b17617ac384459974b1e92540947, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6832777087853707729, guid: 3368b17617ac384459974b1e92540947, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -175,6 +184,14 @@ PrefabInstance:
     - target: {fileID: 6832777087853707729, guid: 3368b17617ac384459974b1e92540947, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7407761400883441187, guid: 3368b17617ac384459974b1e92540947, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7407761400883441187, guid: 3368b17617ac384459974b1e92540947, type: 3}
+      propertyPath: _lifePotion
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8439839467608340337, guid: 3368b17617ac384459974b1e92540947, type: 3}
       propertyPath: m_Name

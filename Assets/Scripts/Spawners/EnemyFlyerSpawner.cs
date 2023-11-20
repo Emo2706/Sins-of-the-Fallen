@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyFlyerSpawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
-    // public Dictionary<EnemyGlobalScript, int> enemy_types;
+    [SerializeField] Transform _root;
 
     // Start is called before the first frame update
     void Start()
@@ -22,5 +22,6 @@ public class EnemyFlyerSpawner : MonoBehaviour
     {
         EnemyGlobalScript enemy = EnemyFlyersFactory.instance.GetObjFromPool();
         enemy.transform.position = pos;
+        enemy.transform.parent = _root;
     }
 }

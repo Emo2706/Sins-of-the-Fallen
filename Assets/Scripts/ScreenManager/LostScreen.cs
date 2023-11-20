@@ -12,8 +12,15 @@ public class LostScreen :MonoBehaviour ,IScreen
         _buttons = GetComponentsInChildren<Button>();
 
         ActivateButtons(false);
-        
+
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_PlayerDead, ActivateScreen);
+
+    }
+
+    private void Start()
+    {
+        gameObject.SetActive(false);
+
     }
 
     void ActivateButtons(bool enable)
@@ -30,15 +37,17 @@ public class LostScreen :MonoBehaviour ,IScreen
 
     public void ActivateScreen(params object[] parameters)
     {
+        gameObject.SetActive(true);
         ScreenManager.instance.Push("LostScreen");
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        Debug.Log("Activate");
+        ActivateButtons(true);
     }
 
 
     public void Activate()
     {
-        ActivateButtons(true);
 
     }
 

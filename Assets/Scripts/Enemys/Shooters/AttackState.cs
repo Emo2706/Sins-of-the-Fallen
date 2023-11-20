@@ -35,28 +35,33 @@ public class AttackState : State
     public override void OnUpdate()
         
     {
-        _playerPos = _player.transform.position - _transform.position;
-
-        if (_playerPos.sqrMagnitude >= _minDistAttack * _minDistAttack)
+        if (_shooter.life>0)
         {
-            _shooter.ChangeState(ShooterStates.Patrol);
-            _shooter.player = null;
-        }
+            _playerPos = _player.transform.position - _transform.position;
+
+            if (_playerPos.sqrMagnitude >= _minDistAttack * _minDistAttack)
+            {
+                _shooter.ChangeState(ShooterStates.Patrol);
+                _shooter.player = null;
+            }
             
 
-        _shootTimer += Time.deltaTime;
+            _shootTimer += Time.deltaTime;
 
 
-        _transform.forward = _playerPos;
+            _transform.forward = _playerPos;
         
 
-        if (_shootTimer>= _shootCooldown)
-        {
-            Shoot();
+            if (_shootTimer>= _shootCooldown)
+            {
+                Shoot();
             
-            _shootTimer = 0;
+                _shootTimer = 0;
+
+            }
 
         }
+
 
     }
    

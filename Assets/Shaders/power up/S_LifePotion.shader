@@ -1,28 +1,19 @@
 // Made with Amplify Shader Editor v1.9.1.3
 // Available at the Unity Asset Store - http://u3d.as/y3X 
-Shader "S_power up glow"
+Shader "S_LifePotion"
 {
 	Properties
 	{
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
-		[ASEBegin]_powerupglow("power up glow", 2D) = "white" {}
-		_speedN("speedN", Vector) = (0,0,0,0)
-		_speedT("speedT", Vector) = (0,0,0,0)
-		_speedF1("speedF", Vector) = (0,0,0,0)
-		_intensidad("intensidad", Range( 0 , 1)) = 0
-		_flowmap5("flow map4", 2D) = "white" {}
-		_blanco("blanco", Range( 0 , 1)) = 0
-		_clip("clip", Range( 0 , 1)) = 0
-		[ASEEnd]_negro("negro", Range( 0 , 1)) = 0
 
 
-		//_TessPhongStrength( "Tess Phong Strength", Range( 0, 1 ) ) = 0.5
+		_TessPhongStrength( "Phong Tess Strength", Range( 0, 1 ) ) = 0.5
 		_TessValue( "Max Tessellation", Range( 1, 32 ) ) = 16
-		//_TessMin( "Tess Min Distance", Float ) = 10
-		//_TessMax( "Tess Max Distance", Float ) = 25
-		//_TessEdgeLength ( "Tess Edge length", Range( 2, 50 ) ) = 16
-		//_TessMaxDisp( "Tess Max Displacement", Float ) = 25
+		_TessMin( "Tess Min Distance", Float ) = 10
+		_TessMax( "Tess Max Distance", Float ) = 25
+		_TessEdgeLength ( "Edge length", Range( 2, 50 ) ) = 16
+		_TessMaxDisp( "Max Displacement", Float ) = 25
 
 		[HideInInspector] _QueueOffset("_QueueOffset", Float) = 0
         [HideInInspector] _QueueControl("_QueueControl", Float) = -1
@@ -38,7 +29,7 @@ Shader "S_power up glow"
 
 		
 
-		Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Transparent" "Queue"="Transparent" }
+		Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Opaque" "Queue"="Geometry" }
 
 		Cull Back
 		AlphaToMask Off
@@ -163,8 +154,8 @@ Shader "S_power up glow"
 			Name "Forward"
 			Tags { "LightMode"="UniversalForwardOnly" }
 
-			Blend SrcAlpha OneMinusSrcAlpha, One OneMinusSrcAlpha
-			ZWrite Off
+			Blend One Zero, One Zero
+			ZWrite On
 			ZTest LEqual
 			Offset 0 , 0
 			ColorMask RGBA
@@ -173,14 +164,6 @@ Shader "S_power up glow"
 
 			HLSLPROGRAM
 
-			#pragma multi_compile_instancing
-			#define ASE_FIXED_TESSELLATION
-			#define ASE_TESSELLATION 1
-			#pragma require tessellation tessHW
-			#pragma hull HullFunction
-			#pragma domain DomainFunction
-			#define _SURFACE_TYPE_TRANSPARENT 1
-			#define _ALPHATEST_ON 1
 			#define ASE_SRP_VERSION 120107
 
 
@@ -209,8 +192,7 @@ Shader "S_power up glow"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceData.hlsl"
 
-			#define ASE_NEEDS_VERT_POSITION
-
+			
 
 			struct VertexInput
 			{
@@ -238,14 +220,7 @@ Shader "S_power up glow"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float2 _speedN;
-			float2 _speedT;
-			float2 _speedF1;
-			float _intensidad;
-			float _negro;
-			float _blanco;
-			float _clip;
-			#ifdef ASE_TESSELLATION
+						#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
 				float _TessMin;
@@ -255,9 +230,7 @@ Shader "S_power up glow"
 			#endif
 			CBUFFER_END
 
-			sampler2D _powerupglow;
-			sampler2D _flowmap5;
-
+			
 
 			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
 			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
@@ -295,12 +268,6 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				float2 texCoord19 = v.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner21 = ( 1.0 * _Time.y * _speedN + texCoord19);
-				float simplePerlin2D22 = snoise( panner21*5.0 );
-				simplePerlin2D22 = simplePerlin2D22*0.5 + 0.5;
-				float3 offset45 = ( v.vertex.xyz * simplePerlin2D22 );
-				
 				o.ase_texcoord3.xy = v.ase_texcoord.xy;
 				
 				//setting value to unused interpolator channels and avoid initialization warnings
@@ -312,7 +279,7 @@ Shader "S_power up glow"
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 
-				float3 vertexValue = offset45;
+				float3 vertexValue = defaultVertexValue;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
@@ -444,25 +411,33 @@ Shader "S_power up glow"
 					#endif
 				#endif
 
-				float4 color13 = IsGammaSpace() ? float4(0,0.7924528,0.02796887,0) : float4(0,0.5911142,0.002164773,0);
-				float4 color12 = IsGammaSpace() ? float4(1.497885,1.414669,0,0) : float4(2.432499,2.145066,0,0);
-				float2 texCoord30 = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner31 = ( 1.0 * _Time.y * _speedT + texCoord30);
-				float2 texCoord40 = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner38 = ( 1.0 * _Time.y * _speedF1 + texCoord40);
-				float4 lerpResult24 = lerp( float4( panner31, 0.0 , 0.0 ) , tex2D( _flowmap5, panner38 ) , _intensidad);
-				float4 tex2DNode10 = tex2D( _powerupglow, lerpResult24.rg );
-				float4 lerpResult11 = lerp( color13 , color12 , tex2DNode10);
-				float4 texturecolor49 = lerpResult11;
-				
-				float4 texture50 = tex2DNode10;
-				float lerpResult54 = lerp( _negro , _blanco , texture50.r);
+				float4 color27 = IsGammaSpace() ? float4(0.1921569,1,0,0) : float4(0.03071344,1,0,0);
+				float4 color11 = IsGammaSpace() ? float4(0.14008,0.4622642,0,0) : float4(0.01740624,0.1807607,0,0);
+				float2 temp_output_1_0_g2 = IN.ase_texcoord3.xy;
+				float2 temp_output_11_0_g2 = ( temp_output_1_0_g2 - float2( 0.5,0.5 ) );
+				float2 break18_g2 = temp_output_11_0_g2;
+				float2 appendResult19_g2 = (float2(break18_g2.y , -break18_g2.x));
+				float dotResult12_g2 = dot( temp_output_11_0_g2 , temp_output_11_0_g2 );
+				float simplePerlin2D20 = snoise( ( temp_output_1_0_g2 + ( appendResult19_g2 * ( dotResult12_g2 * float2( 2,2 ) ) ) + ( float2( 1,0 ) * _TimeParameters.x ) )*10.0 );
+				simplePerlin2D20 = simplePerlin2D20*0.5 + 0.5;
+				float2 texCoord47_g1 = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 center45_g1 = float2( 1,-1 );
+				float2 delta6_g1 = ( texCoord47_g1 - center45_g1 );
+				float angle10_g1 = ( length( delta6_g1 ) * 11.5 );
+				float x23_g1 = ( ( cos( angle10_g1 ) * delta6_g1.x ) - ( sin( angle10_g1 ) * delta6_g1.y ) );
+				float2 break40_g1 = center45_g1;
+				float2 break41_g1 = ( _TimeParameters.x * float2( 0.1,0.1 ) );
+				float y35_g1 = ( ( sin( angle10_g1 ) * delta6_g1.x ) + ( cos( angle10_g1 ) * delta6_g1.y ) );
+				float2 appendResult44_g1 = (float2(( x23_g1 + break40_g1.x + break41_g1.x ) , ( break40_g1.y + break41_g1.y + y35_g1 )));
+				float simplePerlin2D13 = snoise( appendResult44_g1*10.0 );
+				simplePerlin2D13 = simplePerlin2D13*0.5 + 0.5;
+				float4 lerpResult10 = lerp( color27 , color11 , ( simplePerlin2D20 * simplePerlin2D13 ));
 				
 				float3 BakedAlbedo = 0;
 				float3 BakedEmission = 0;
-				float3 Color = texturecolor49.rgb;
-				float Alpha = lerpResult54;
-				float AlphaClipThreshold = _clip;
+				float3 Color = lerpResult10.rgb;
+				float Alpha = 1;
+				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
 
 				#ifdef _ALPHATEST_ON
@@ -504,14 +479,6 @@ Shader "S_power up glow"
 
 			HLSLPROGRAM
 
-			#pragma multi_compile_instancing
-			#define ASE_FIXED_TESSELLATION
-			#define ASE_TESSELLATION 1
-			#pragma require tessellation tessHW
-			#pragma hull HullFunction
-			#pragma domain DomainFunction
-			#define _SURFACE_TYPE_TRANSPARENT 1
-			#define _ALPHATEST_ON 1
 			#define ASE_SRP_VERSION 120107
 
 
@@ -527,14 +494,13 @@ Shader "S_power up glow"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 
-			#define ASE_NEEDS_VERT_POSITION
-
+			
 
 			struct VertexInput
 			{
 				float4 vertex : POSITION;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -547,20 +513,13 @@ Shader "S_power up glow"
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					float4 shadowCoord : TEXCOORD1;
 				#endif
-				float4 ase_texcoord2 : TEXCOORD2;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float2 _speedN;
-			float2 _speedT;
-			float2 _speedF1;
-			float _intensidad;
-			float _negro;
-			float _blanco;
-			float _clip;
-			#ifdef ASE_TESSELLATION
+						#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
 				float _TessMin;
@@ -570,39 +529,9 @@ Shader "S_power up glow"
 			#endif
 			CBUFFER_END
 
-			sampler2D _powerupglow;
-			sampler2D _flowmap5;
-
-
-			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float3 permute( float3 x ) { return mod2D289( ( ( x * 34.0 ) + 1.0 ) * x ); }
-			float snoise( float2 v )
-			{
-				const float4 C = float4( 0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439 );
-				float2 i = floor( v + dot( v, C.yy ) );
-				float2 x0 = v - i + dot( i, C.xx );
-				float2 i1;
-				i1 = ( x0.x > x0.y ) ? float2( 1.0, 0.0 ) : float2( 0.0, 1.0 );
-				float4 x12 = x0.xyxy + C.xxzz;
-				x12.xy -= i1;
-				i = mod2D289( i );
-				float3 p = permute( permute( i.y + float3( 0.0, i1.y, 1.0 ) ) + i.x + float3( 0.0, i1.x, 1.0 ) );
-				float3 m = max( 0.5 - float3( dot( x0, x0 ), dot( x12.xy, x12.xy ), dot( x12.zw, x12.zw ) ), 0.0 );
-				m = m * m;
-				m = m * m;
-				float3 x = 2.0 * frac( p * C.www ) - 1.0;
-				float3 h = abs( x ) - 0.5;
-				float3 ox = floor( x + 0.5 );
-				float3 a0 = x - ox;
-				m *= 1.79284291400159 - 0.85373472095314 * ( a0 * a0 + h * h );
-				float3 g;
-				g.x = a0.x * x0.x + h.x * x0.y;
-				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-				return 130.0 * dot( m, g );
-			}
 			
 
+			
 			float3 _LightDirection;
 			float3 _LightPosition;
 
@@ -613,16 +542,7 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				float2 texCoord19 = v.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner21 = ( 1.0 * _Time.y * _speedN + texCoord19);
-				float simplePerlin2D22 = snoise( panner21*5.0 );
-				simplePerlin2D22 = simplePerlin2D22*0.5 + 0.5;
-				float3 offset45 = ( v.vertex.xyz * simplePerlin2D22 );
 				
-				o.ase_texcoord2.xy = v.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord2.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
@@ -630,7 +550,7 @@ Shader "S_power up glow"
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 
-				float3 vertexValue = offset45;
+				float3 vertexValue = defaultVertexValue;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
@@ -679,8 +599,7 @@ Shader "S_power up glow"
 			{
 				float4 vertex : INTERNALTESSPOS;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
-
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -697,7 +616,7 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.vertex = v.vertex;
 				o.ase_normal = v.ase_normal;
-				o.ase_texcoord = v.ase_texcoord;
+				
 				return o;
 			}
 
@@ -736,7 +655,7 @@ Shader "S_power up glow"
 				VertexInput o = (VertexInput) 0;
 				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
 				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -773,18 +692,10 @@ Shader "S_power up glow"
 					#endif
 				#endif
 
-				float2 texCoord30 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner31 = ( 1.0 * _Time.y * _speedT + texCoord30);
-				float2 texCoord40 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner38 = ( 1.0 * _Time.y * _speedF1 + texCoord40);
-				float4 lerpResult24 = lerp( float4( panner31, 0.0 , 0.0 ) , tex2D( _flowmap5, panner38 ) , _intensidad);
-				float4 tex2DNode10 = tex2D( _powerupglow, lerpResult24.rg );
-				float4 texture50 = tex2DNode10;
-				float lerpResult54 = lerp( _negro , _blanco , texture50.r);
 				
 
-				float Alpha = lerpResult54;
-				float AlphaClipThreshold = _clip;
+				float Alpha = 1;
+				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
 
 				#ifdef _ALPHATEST_ON
@@ -816,14 +727,6 @@ Shader "S_power up glow"
 
 			HLSLPROGRAM
 
-			#pragma multi_compile_instancing
-			#define ASE_FIXED_TESSELLATION
-			#define ASE_TESSELLATION 1
-			#pragma require tessellation tessHW
-			#pragma hull HullFunction
-			#pragma domain DomainFunction
-			#define _SURFACE_TYPE_TRANSPARENT 1
-			#define _ALPHATEST_ON 1
 			#define ASE_SRP_VERSION 120107
 
 
@@ -835,14 +738,13 @@ Shader "S_power up glow"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 
-			#define ASE_NEEDS_VERT_POSITION
-
+			
 
 			struct VertexInput
 			{
 				float4 vertex : POSITION;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -855,20 +757,13 @@ Shader "S_power up glow"
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 				float4 shadowCoord : TEXCOORD1;
 				#endif
-				float4 ase_texcoord2 : TEXCOORD2;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float2 _speedN;
-			float2 _speedT;
-			float2 _speedF1;
-			float _intensidad;
-			float _negro;
-			float _blanco;
-			float _clip;
-			#ifdef ASE_TESSELLATION
+						#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
 				float _TessMin;
@@ -878,39 +773,9 @@ Shader "S_power up glow"
 			#endif
 			CBUFFER_END
 
-			sampler2D _powerupglow;
-			sampler2D _flowmap5;
-
-
-			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float3 permute( float3 x ) { return mod2D289( ( ( x * 34.0 ) + 1.0 ) * x ); }
-			float snoise( float2 v )
-			{
-				const float4 C = float4( 0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439 );
-				float2 i = floor( v + dot( v, C.yy ) );
-				float2 x0 = v - i + dot( i, C.xx );
-				float2 i1;
-				i1 = ( x0.x > x0.y ) ? float2( 1.0, 0.0 ) : float2( 0.0, 1.0 );
-				float4 x12 = x0.xyxy + C.xxzz;
-				x12.xy -= i1;
-				i = mod2D289( i );
-				float3 p = permute( permute( i.y + float3( 0.0, i1.y, 1.0 ) ) + i.x + float3( 0.0, i1.x, 1.0 ) );
-				float3 m = max( 0.5 - float3( dot( x0, x0 ), dot( x12.xy, x12.xy ), dot( x12.zw, x12.zw ) ), 0.0 );
-				m = m * m;
-				m = m * m;
-				float3 x = 2.0 * frac( p * C.www ) - 1.0;
-				float3 h = abs( x ) - 0.5;
-				float3 ox = floor( x + 0.5 );
-				float3 a0 = x - ox;
-				m *= 1.79284291400159 - 0.85373472095314 * ( a0 * a0 + h * h );
-				float3 g;
-				g.x = a0.x * x0.x + h.x * x0.y;
-				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-				return 130.0 * dot( m, g );
-			}
 			
 
+			
 			VertexOutput VertexFunction( VertexInput v  )
 			{
 				VertexOutput o = (VertexOutput)0;
@@ -918,16 +783,7 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				float2 texCoord19 = v.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner21 = ( 1.0 * _Time.y * _speedN + texCoord19);
-				float simplePerlin2D22 = snoise( panner21*5.0 );
-				simplePerlin2D22 = simplePerlin2D22*0.5 + 0.5;
-				float3 offset45 = ( v.vertex.xyz * simplePerlin2D22 );
 				
-				o.ase_texcoord2.xy = v.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord2.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
@@ -935,7 +791,7 @@ Shader "S_power up glow"
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 
-				float3 vertexValue = offset45;
+				float3 vertexValue = defaultVertexValue;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
@@ -967,8 +823,7 @@ Shader "S_power up glow"
 			{
 				float4 vertex : INTERNALTESSPOS;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
-
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -985,7 +840,7 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.vertex = v.vertex;
 				o.ase_normal = v.ase_normal;
-				o.ase_texcoord = v.ase_texcoord;
+				
 				return o;
 			}
 
@@ -1024,7 +879,7 @@ Shader "S_power up glow"
 				VertexInput o = (VertexInput) 0;
 				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
 				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1061,18 +916,10 @@ Shader "S_power up glow"
 					#endif
 				#endif
 
-				float2 texCoord30 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner31 = ( 1.0 * _Time.y * _speedT + texCoord30);
-				float2 texCoord40 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner38 = ( 1.0 * _Time.y * _speedF1 + texCoord40);
-				float4 lerpResult24 = lerp( float4( panner31, 0.0 , 0.0 ) , tex2D( _flowmap5, panner38 ) , _intensidad);
-				float4 tex2DNode10 = tex2D( _powerupglow, lerpResult24.rg );
-				float4 texture50 = tex2DNode10;
-				float lerpResult54 = lerp( _negro , _blanco , texture50.r);
 				
 
-				float Alpha = lerpResult54;
-				float AlphaClipThreshold = _clip;
+				float Alpha = 1;
+				float AlphaClipThreshold = 0.5;
 
 				#ifdef _ALPHATEST_ON
 					clip(Alpha - AlphaClipThreshold);
@@ -1097,14 +944,6 @@ Shader "S_power up glow"
 
 			HLSLPROGRAM
 
-			#pragma multi_compile_instancing
-			#define ASE_FIXED_TESSELLATION
-			#define ASE_TESSELLATION 1
-			#pragma require tessellation tessHW
-			#pragma hull HullFunction
-			#pragma domain DomainFunction
-			#define _SURFACE_TYPE_TRANSPARENT 1
-			#define _ALPHATEST_ON 1
 			#define ASE_SRP_VERSION 120107
 
 
@@ -1123,34 +962,26 @@ Shader "S_power up glow"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
-			#define ASE_NEEDS_VERT_POSITION
-
+			
 
 			struct VertexInput
 			{
 				float4 vertex : POSITION;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
 				float4 clipPos : SV_POSITION;
-				float4 ase_texcoord : TEXCOORD0;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float2 _speedN;
-			float2 _speedT;
-			float2 _speedF1;
-			float _intensidad;
-			float _negro;
-			float _blanco;
-			float _clip;
-			#ifdef ASE_TESSELLATION
+						#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
 				float _TessMin;
@@ -1160,39 +991,9 @@ Shader "S_power up glow"
 			#endif
 			CBUFFER_END
 
-			sampler2D _powerupglow;
-			sampler2D _flowmap5;
-
-
-			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float3 permute( float3 x ) { return mod2D289( ( ( x * 34.0 ) + 1.0 ) * x ); }
-			float snoise( float2 v )
-			{
-				const float4 C = float4( 0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439 );
-				float2 i = floor( v + dot( v, C.yy ) );
-				float2 x0 = v - i + dot( i, C.xx );
-				float2 i1;
-				i1 = ( x0.x > x0.y ) ? float2( 1.0, 0.0 ) : float2( 0.0, 1.0 );
-				float4 x12 = x0.xyxy + C.xxzz;
-				x12.xy -= i1;
-				i = mod2D289( i );
-				float3 p = permute( permute( i.y + float3( 0.0, i1.y, 1.0 ) ) + i.x + float3( 0.0, i1.x, 1.0 ) );
-				float3 m = max( 0.5 - float3( dot( x0, x0 ), dot( x12.xy, x12.xy ), dot( x12.zw, x12.zw ) ), 0.0 );
-				m = m * m;
-				m = m * m;
-				float3 x = 2.0 * frac( p * C.www ) - 1.0;
-				float3 h = abs( x ) - 0.5;
-				float3 ox = floor( x + 0.5 );
-				float3 a0 = x - ox;
-				m *= 1.79284291400159 - 0.85373472095314 * ( a0 * a0 + h * h );
-				float3 g;
-				g.x = a0.x * x0.x + h.x * x0.y;
-				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-				return 130.0 * dot( m, g );
-			}
 			
 
+			
 			int _ObjectId;
 			int _PassValue;
 
@@ -1211,16 +1012,7 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				float2 texCoord19 = v.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner21 = ( 1.0 * _Time.y * _speedN + texCoord19);
-				float simplePerlin2D22 = snoise( panner21*5.0 );
-				simplePerlin2D22 = simplePerlin2D22*0.5 + 0.5;
-				float3 offset45 = ( v.vertex.xyz * simplePerlin2D22 );
 				
-				o.ase_texcoord.xy = v.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
@@ -1228,7 +1020,7 @@ Shader "S_power up glow"
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 
-				float3 vertexValue = offset45;
+				float3 vertexValue = defaultVertexValue;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
@@ -1249,8 +1041,7 @@ Shader "S_power up glow"
 			{
 				float4 vertex : INTERNALTESSPOS;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
-
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1267,7 +1058,7 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.vertex = v.vertex;
 				o.ase_normal = v.ase_normal;
-				o.ase_texcoord = v.ase_texcoord;
+				
 				return o;
 			}
 
@@ -1306,7 +1097,7 @@ Shader "S_power up glow"
 				VertexInput o = (VertexInput) 0;
 				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
 				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1328,18 +1119,10 @@ Shader "S_power up glow"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
-				float2 texCoord30 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner31 = ( 1.0 * _Time.y * _speedT + texCoord30);
-				float2 texCoord40 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner38 = ( 1.0 * _Time.y * _speedF1 + texCoord40);
-				float4 lerpResult24 = lerp( float4( panner31, 0.0 , 0.0 ) , tex2D( _flowmap5, panner38 ) , _intensidad);
-				float4 tex2DNode10 = tex2D( _powerupglow, lerpResult24.rg );
-				float4 texture50 = tex2DNode10;
-				float lerpResult54 = lerp( _negro , _blanco , texture50.r);
 				
 
-				surfaceDescription.Alpha = lerpResult54;
-				surfaceDescription.AlphaClipThreshold = _clip;
+				surfaceDescription.Alpha = 1;
+				surfaceDescription.AlphaClipThreshold = 0.5;
 
 				#if _ALPHATEST_ON
 					float alphaClipThreshold = 0.01f;
@@ -1364,14 +1147,6 @@ Shader "S_power up glow"
 
 			HLSLPROGRAM
 
-			#pragma multi_compile_instancing
-			#define ASE_FIXED_TESSELLATION
-			#define ASE_TESSELLATION 1
-			#pragma require tessellation tessHW
-			#pragma hull HullFunction
-			#pragma domain DomainFunction
-			#define _SURFACE_TYPE_TRANSPARENT 1
-			#define _ALPHATEST_ON 1
 			#define ASE_SRP_VERSION 120107
 
 
@@ -1390,34 +1165,26 @@ Shader "S_power up glow"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
-			#define ASE_NEEDS_VERT_POSITION
-
+			
 
 			struct VertexInput
 			{
 				float4 vertex : POSITION;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
 				float4 clipPos : SV_POSITION;
-				float4 ase_texcoord : TEXCOORD0;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float2 _speedN;
-			float2 _speedT;
-			float2 _speedF1;
-			float _intensidad;
-			float _negro;
-			float _blanco;
-			float _clip;
-			#ifdef ASE_TESSELLATION
+						#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
 				float _TessMin;
@@ -1427,39 +1194,9 @@ Shader "S_power up glow"
 			#endif
 			CBUFFER_END
 
-			sampler2D _powerupglow;
-			sampler2D _flowmap5;
-
-
-			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float3 permute( float3 x ) { return mod2D289( ( ( x * 34.0 ) + 1.0 ) * x ); }
-			float snoise( float2 v )
-			{
-				const float4 C = float4( 0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439 );
-				float2 i = floor( v + dot( v, C.yy ) );
-				float2 x0 = v - i + dot( i, C.xx );
-				float2 i1;
-				i1 = ( x0.x > x0.y ) ? float2( 1.0, 0.0 ) : float2( 0.0, 1.0 );
-				float4 x12 = x0.xyxy + C.xxzz;
-				x12.xy -= i1;
-				i = mod2D289( i );
-				float3 p = permute( permute( i.y + float3( 0.0, i1.y, 1.0 ) ) + i.x + float3( 0.0, i1.x, 1.0 ) );
-				float3 m = max( 0.5 - float3( dot( x0, x0 ), dot( x12.xy, x12.xy ), dot( x12.zw, x12.zw ) ), 0.0 );
-				m = m * m;
-				m = m * m;
-				float3 x = 2.0 * frac( p * C.www ) - 1.0;
-				float3 h = abs( x ) - 0.5;
-				float3 ox = floor( x + 0.5 );
-				float3 a0 = x - ox;
-				m *= 1.79284291400159 - 0.85373472095314 * ( a0 * a0 + h * h );
-				float3 g;
-				g.x = a0.x * x0.x + h.x * x0.y;
-				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-				return 130.0 * dot( m, g );
-			}
 			
 
+			
 			float4 _SelectionID;
 
 
@@ -1478,22 +1215,13 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				float2 texCoord19 = v.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner21 = ( 1.0 * _Time.y * _speedN + texCoord19);
-				float simplePerlin2D22 = snoise( panner21*5.0 );
-				simplePerlin2D22 = simplePerlin2D22*0.5 + 0.5;
-				float3 offset45 = ( v.vertex.xyz * simplePerlin2D22 );
 				
-				o.ase_texcoord.xy = v.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord.zw = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
-				float3 vertexValue = offset45;
+				float3 vertexValue = defaultVertexValue;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
 				#else
@@ -1511,8 +1239,7 @@ Shader "S_power up glow"
 			{
 				float4 vertex : INTERNALTESSPOS;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
-
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1529,7 +1256,7 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.vertex = v.vertex;
 				o.ase_normal = v.ase_normal;
-				o.ase_texcoord = v.ase_texcoord;
+				
 				return o;
 			}
 
@@ -1568,7 +1295,7 @@ Shader "S_power up glow"
 				VertexInput o = (VertexInput) 0;
 				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
 				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1590,18 +1317,10 @@ Shader "S_power up glow"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
-				float2 texCoord30 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner31 = ( 1.0 * _Time.y * _speedT + texCoord30);
-				float2 texCoord40 = IN.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner38 = ( 1.0 * _Time.y * _speedF1 + texCoord40);
-				float4 lerpResult24 = lerp( float4( panner31, 0.0 , 0.0 ) , tex2D( _flowmap5, panner38 ) , _intensidad);
-				float4 tex2DNode10 = tex2D( _powerupglow, lerpResult24.rg );
-				float4 texture50 = tex2DNode10;
-				float lerpResult54 = lerp( _negro , _blanco , texture50.r);
 				
 
-				surfaceDescription.Alpha = lerpResult54;
-				surfaceDescription.AlphaClipThreshold = _clip;
+				surfaceDescription.Alpha = 1;
+				surfaceDescription.AlphaClipThreshold = 0.5;
 
 				#if _ALPHATEST_ON
 					float alphaClipThreshold = 0.01f;
@@ -1633,14 +1352,6 @@ Shader "S_power up glow"
 
 			HLSLPROGRAM
 
-			#pragma multi_compile_instancing
-			#define ASE_FIXED_TESSELLATION
-			#define ASE_TESSELLATION 1
-			#pragma require tessellation tessHW
-			#pragma hull HullFunction
-			#pragma domain DomainFunction
-			#define _SURFACE_TYPE_TRANSPARENT 1
-			#define _ALPHATEST_ON 1
 			#define ASE_SRP_VERSION 120107
 
 
@@ -1661,14 +1372,13 @@ Shader "S_power up glow"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
-			#define ASE_NEEDS_VERT_POSITION
-
+			
 
 			struct VertexInput
 			{
 				float4 vertex : POSITION;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1676,20 +1386,13 @@ Shader "S_power up glow"
 			{
 				float4 clipPos : SV_POSITION;
 				float3 normalWS : TEXCOORD0;
-				float4 ase_texcoord1 : TEXCOORD1;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float2 _speedN;
-			float2 _speedT;
-			float2 _speedF1;
-			float _intensidad;
-			float _negro;
-			float _blanco;
-			float _clip;
-			#ifdef ASE_TESSELLATION
+						#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
 				float _TessMin;
@@ -1699,39 +1402,9 @@ Shader "S_power up glow"
 			#endif
 			CBUFFER_END
 
-			sampler2D _powerupglow;
-			sampler2D _flowmap5;
-
-
-			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float3 permute( float3 x ) { return mod2D289( ( ( x * 34.0 ) + 1.0 ) * x ); }
-			float snoise( float2 v )
-			{
-				const float4 C = float4( 0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439 );
-				float2 i = floor( v + dot( v, C.yy ) );
-				float2 x0 = v - i + dot( i, C.xx );
-				float2 i1;
-				i1 = ( x0.x > x0.y ) ? float2( 1.0, 0.0 ) : float2( 0.0, 1.0 );
-				float4 x12 = x0.xyxy + C.xxzz;
-				x12.xy -= i1;
-				i = mod2D289( i );
-				float3 p = permute( permute( i.y + float3( 0.0, i1.y, 1.0 ) ) + i.x + float3( 0.0, i1.x, 1.0 ) );
-				float3 m = max( 0.5 - float3( dot( x0, x0 ), dot( x12.xy, x12.xy ), dot( x12.zw, x12.zw ) ), 0.0 );
-				m = m * m;
-				m = m * m;
-				float3 x = 2.0 * frac( p * C.www ) - 1.0;
-				float3 h = abs( x ) - 0.5;
-				float3 ox = floor( x + 0.5 );
-				float3 a0 = x - ox;
-				m *= 1.79284291400159 - 0.85373472095314 * ( a0 * a0 + h * h );
-				float3 g;
-				g.x = a0.x * x0.x + h.x * x0.y;
-				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-				return 130.0 * dot( m, g );
-			}
 			
 
+			
 			struct SurfaceDescription
 			{
 				float Alpha;
@@ -1747,23 +1420,14 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				float2 texCoord19 = v.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner21 = ( 1.0 * _Time.y * _speedN + texCoord19);
-				float simplePerlin2D22 = snoise( panner21*5.0 );
-				simplePerlin2D22 = simplePerlin2D22*0.5 + 0.5;
-				float3 offset45 = ( v.vertex.xyz * simplePerlin2D22 );
 				
-				o.ase_texcoord1.xy = v.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord1.zw = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 
-				float3 vertexValue = offset45;
+				float3 vertexValue = defaultVertexValue;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
@@ -1787,8 +1451,7 @@ Shader "S_power up glow"
 			{
 				float4 vertex : INTERNALTESSPOS;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
-
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1805,7 +1468,7 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.vertex = v.vertex;
 				o.ase_normal = v.ase_normal;
-				o.ase_texcoord = v.ase_texcoord;
+				
 				return o;
 			}
 
@@ -1844,7 +1507,7 @@ Shader "S_power up glow"
 				VertexInput o = (VertexInput) 0;
 				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
 				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1866,18 +1529,10 @@ Shader "S_power up glow"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
-				float2 texCoord30 = IN.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner31 = ( 1.0 * _Time.y * _speedT + texCoord30);
-				float2 texCoord40 = IN.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner38 = ( 1.0 * _Time.y * _speedF1 + texCoord40);
-				float4 lerpResult24 = lerp( float4( panner31, 0.0 , 0.0 ) , tex2D( _flowmap5, panner38 ) , _intensidad);
-				float4 tex2DNode10 = tex2D( _powerupglow, lerpResult24.rg );
-				float4 texture50 = tex2DNode10;
-				float lerpResult54 = lerp( _negro , _blanco , texture50.r);
 				
 
-				surfaceDescription.Alpha = lerpResult54;
-				surfaceDescription.AlphaClipThreshold = _clip;
+				surfaceDescription.Alpha = 1;
+				surfaceDescription.AlphaClipThreshold = 0.5;
 
 				#if _ALPHATEST_ON
 					clip(surfaceDescription.Alpha - surfaceDescription.AlphaClipThreshold);
@@ -1907,14 +1562,6 @@ Shader "S_power up glow"
 
 			HLSLPROGRAM
 
-			#pragma multi_compile_instancing
-			#define ASE_FIXED_TESSELLATION
-			#define ASE_TESSELLATION 1
-			#pragma require tessellation tessHW
-			#pragma hull HullFunction
-			#pragma domain DomainFunction
-			#define _SURFACE_TYPE_TRANSPARENT 1
-			#define _ALPHATEST_ON 1
 			#define ASE_SRP_VERSION 120107
 
 
@@ -1938,14 +1585,13 @@ Shader "S_power up glow"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
-			#define ASE_NEEDS_VERT_POSITION
-
+			
 
 			struct VertexInput
 			{
 				float4 vertex : POSITION;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1953,20 +1599,13 @@ Shader "S_power up glow"
 			{
 				float4 clipPos : SV_POSITION;
 				float3 normalWS : TEXCOORD0;
-				float4 ase_texcoord1 : TEXCOORD1;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float2 _speedN;
-			float2 _speedT;
-			float2 _speedF1;
-			float _intensidad;
-			float _negro;
-			float _blanco;
-			float _clip;
-			#ifdef ASE_TESSELLATION
+						#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
 				float _TessMin;
@@ -1975,39 +1614,9 @@ Shader "S_power up glow"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _powerupglow;
-			sampler2D _flowmap5;
-
-
-			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float3 permute( float3 x ) { return mod2D289( ( ( x * 34.0 ) + 1.0 ) * x ); }
-			float snoise( float2 v )
-			{
-				const float4 C = float4( 0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439 );
-				float2 i = floor( v + dot( v, C.yy ) );
-				float2 x0 = v - i + dot( i, C.xx );
-				float2 i1;
-				i1 = ( x0.x > x0.y ) ? float2( 1.0, 0.0 ) : float2( 0.0, 1.0 );
-				float4 x12 = x0.xyxy + C.xxzz;
-				x12.xy -= i1;
-				i = mod2D289( i );
-				float3 p = permute( permute( i.y + float3( 0.0, i1.y, 1.0 ) ) + i.x + float3( 0.0, i1.x, 1.0 ) );
-				float3 m = max( 0.5 - float3( dot( x0, x0 ), dot( x12.xy, x12.xy ), dot( x12.zw, x12.zw ) ), 0.0 );
-				m = m * m;
-				m = m * m;
-				float3 x = 2.0 * frac( p * C.www ) - 1.0;
-				float3 h = abs( x ) - 0.5;
-				float3 ox = floor( x + 0.5 );
-				float3 a0 = x - ox;
-				m *= 1.79284291400159 - 0.85373472095314 * ( a0 * a0 + h * h );
-				float3 g;
-				g.x = a0.x * x0.x + h.x * x0.y;
-				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-				return 130.0 * dot( m, g );
-			}
 			
 
+			
 			struct SurfaceDescription
 			{
 				float Alpha;
@@ -2023,23 +1632,14 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				float2 texCoord19 = v.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner21 = ( 1.0 * _Time.y * _speedN + texCoord19);
-				float simplePerlin2D22 = snoise( panner21*5.0 );
-				simplePerlin2D22 = simplePerlin2D22*0.5 + 0.5;
-				float3 offset45 = ( v.vertex.xyz * simplePerlin2D22 );
 				
-				o.ase_texcoord1.xy = v.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord1.zw = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
 
-				float3 vertexValue = offset45;
+				float3 vertexValue = defaultVertexValue;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
@@ -2063,8 +1663,7 @@ Shader "S_power up glow"
 			{
 				float4 vertex : INTERNALTESSPOS;
 				float3 ase_normal : NORMAL;
-				float4 ase_texcoord : TEXCOORD0;
-
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -2081,7 +1680,7 @@ Shader "S_power up glow"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.vertex = v.vertex;
 				o.ase_normal = v.ase_normal;
-				o.ase_texcoord = v.ase_texcoord;
+				
 				return o;
 			}
 
@@ -2120,7 +1719,7 @@ Shader "S_power up glow"
 				VertexInput o = (VertexInput) 0;
 				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
 				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -2142,18 +1741,10 @@ Shader "S_power up glow"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
-				float2 texCoord30 = IN.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner31 = ( 1.0 * _Time.y * _speedT + texCoord30);
-				float2 texCoord40 = IN.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner38 = ( 1.0 * _Time.y * _speedF1 + texCoord40);
-				float4 lerpResult24 = lerp( float4( panner31, 0.0 , 0.0 ) , tex2D( _flowmap5, panner38 ) , _intensidad);
-				float4 tex2DNode10 = tex2D( _powerupglow, lerpResult24.rg );
-				float4 texture50 = tex2DNode10;
-				float lerpResult54 = lerp( _negro , _blanco , texture50.r);
 				
 
-				surfaceDescription.Alpha = lerpResult54;
-				surfaceDescription.AlphaClipThreshold = _clip;
+				surfaceDescription.Alpha = 1;
+				surfaceDescription.AlphaClipThreshold = 0.5;
 
 				#if _ALPHATEST_ON
 					clip(surfaceDescription.Alpha - surfaceDescription.AlphaClipThreshold);
@@ -2181,6 +1772,7 @@ Shader "S_power up glow"
 /*ASEBEGIN
 Version=19103
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;0;False;False;0;;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;True;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;13;S_LifePotion;2992e84f91cbeb14eab234972e07ea9d;True;Forward;0;1;Forward;8;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;True;1;1;False;;0;False;;1;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForwardOnly;False;False;0;;0;0;Standard;23;Surface;0;0;  Blend;0;0;Two Sided;1;0;Forward Only;0;0;Cast Shadows;1;0;  Use Shadow Threshold;0;0;Receive Shadows;1;0;GPU Instancing;1;0;LOD CrossFade;0;0;Built-in Fog;0;0;DOTS Instancing;0;0;Meta Pass;0;0;Extra Pre Pass;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;2.7,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Vertex Position,InvertActionOnDeselection;1;0;0;10;False;True;True;True;False;False;True;True;True;True;False;;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=ShadowCaster;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;False;False;True;1;LightMode=DepthOnly;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;Meta;0;4;Meta;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;False;0;;0;0;Standard;0;False;0
@@ -2189,64 +1781,42 @@ Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;6;0,0;Float;False;False;-1;
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;7;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ScenePickingPass;0;7;ScenePickingPass;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Picking;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;8;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;DepthNormals;0;8;DepthNormals;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=DepthNormalsOnly;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;9;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;DepthNormalsOnly;0;9;DepthNormalsOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=DepthNormalsOnly;False;True;9;d3d11;metal;vulkan;xboxone;xboxseries;playstation;ps4;ps5;switch;0;;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;True;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;13;S_power up glow;2992e84f91cbeb14eab234972e07ea9d;True;Forward;0;1;Forward;8;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;3;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForwardOnly;False;False;0;;0;0;Standard;23;Surface;1;638355738340967656;  Blend;0;0;Two Sided;1;0;Forward Only;0;0;Cast Shadows;1;0;  Use Shadow Threshold;0;0;Receive Shadows;1;0;GPU Instancing;1;0;LOD CrossFade;0;0;Built-in Fog;0;0;DOTS Instancing;0;0;Meta Pass;0;0;Extra Pre Pass;0;0;Tessellation;1;638355726519196322;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;2.7,False,;638355726749450146;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Vertex Position,InvertActionOnDeselection;1;0;0;10;False;True;True;True;False;False;True;True;True;True;False;;False;0
-Node;AmplifyShaderEditor.GetLocalVarNode;46;-134.8363,286.1942;Inherit;False;45;offset;1;0;OBJECT;;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.GetLocalVarNode;47;-230.1559,-106.4899;Inherit;False;49;texturecolor;1;0;OBJECT;;False;1;COLOR;0
-Node;AmplifyShaderEditor.RangedFloatNode;52;-379.7708,213.6965;Inherit;False;Property;_clip;clip;7;0;Create;True;0;0;0;False;0;False;0;0.3420722;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.LerpOp;54;-358.7312,-11.54589;Inherit;True;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;56;-689.4285,-81.98071;Inherit;False;Property;_blanco;blanco;6;0;Create;True;0;0;0;False;0;False;0;0.3434312;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;55;-704.705,-227.4919;Inherit;False;Property;_negro;negro;8;0;Create;True;0;0;0;False;0;False;0;0.3729537;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.GetLocalVarNode;51;-698.4063,57.2282;Inherit;True;50;texture;1;0;OBJECT;;False;1;COLOR;0
-Node;AmplifyShaderEditor.ColorNode;13;-1946.459,-582.277;Inherit;False;Constant;_Color1;Color 1;1;0;Create;True;0;0;0;False;0;False;0,0.7924528,0.02796887,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.ColorNode;12;-1944.204,-367.1452;Inherit;False;Constant;_Color0;Color 0;1;1;[HDR];Create;True;0;0;0;False;0;False;1.497885,1.414669,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.LerpOp;11;-1604.504,-313.9128;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.LerpOp;24;-2349.832,-144.6739;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RangedFloatNode;25;-2639.126,127.9427;Inherit;False;Property;_intensidad;intensidad;4;0;Create;True;0;0;0;False;0;False;0;0.1499214;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode;30;-3015.241,-323.0569;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.PannerNode;31;-2622.763,-291.4117;Inherit;False;3;0;FLOAT2;0,0;False;2;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.Vector2Node;32;-3010.79,-168.9414;Inherit;False;Property;_speedT;speedT;2;0;Create;True;0;0;0;False;0;False;0,0;0.2,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
-Node;AmplifyShaderEditor.PannerNode;38;-3245.57,31.39512;Inherit;False;3;0;FLOAT2;0,0;False;2;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.SamplerNode;39;-2971.467,-5.411248;Inherit;True;Property;_flowmap5;flow map4;5;0;Create;True;0;0;0;False;0;False;-1;a81570146b0fd574680f11706c89e74b;a81570146b0fd574680f11706c89e74b;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.TextureCoordinatesNode;40;-3638.049,-0.2501192;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.Vector2Node;41;-3633.597,153.8661;Inherit;False;Property;_speedF1;speedF;3;0;Create;True;0;0;0;False;0;False;0,0;-0.4,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
-Node;AmplifyShaderEditor.RegisterLocalVarNode;50;-1734.82,-54.0706;Inherit;False;texture;-1;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RegisterLocalVarNode;49;-1319.88,-316.3894;Inherit;False;texturecolor;-1;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SamplerNode;10;-2154.237,-150.7715;Inherit;True;Property;_powerupglow;power up glow;0;0;Create;True;0;0;0;False;0;False;-1;87bbee273241fbb4ca5c9e60e316b7b8;87bbee273241fbb4ca5c9e60e316b7b8;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;23;-1547.763,740.8149;Inherit;False;Constant;_scale;scale;2;0;Create;True;0;0;0;False;0;False;5;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.NoiseGeneratorNode;22;-1266.774,558.5202;Inherit;True;Simplex2D;True;False;2;0;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode;19;-1986.731,524.0861;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.PannerNode;21;-1594.251,555.7314;Inherit;False;3;0;FLOAT2;0,0;False;2;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.Vector2Node;20;-2033.996,689.5154;Inherit;False;Property;_speedN;speedN;1;0;Create;True;0;0;0;False;0;False;0,0;0.1,0.1;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
-Node;AmplifyShaderEditor.PosVertexDataNode;44;-1258.216,314.3696;Inherit;False;0;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;26;-929.4727,402.1393;Inherit;True;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.RegisterLocalVarNode;45;-635.4997,442.0362;Inherit;False;offset;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
-WireConnection;1;2;47;0
-WireConnection;1;3;54;0
-WireConnection;1;4;52;0
-WireConnection;1;5;46;0
-WireConnection;54;0;55;0
-WireConnection;54;1;56;0
-WireConnection;54;2;51;0
-WireConnection;11;0;13;0
-WireConnection;11;1;12;0
-WireConnection;11;2;10;0
-WireConnection;24;0;31;0
-WireConnection;24;1;39;0
-WireConnection;24;2;25;0
-WireConnection;31;0;30;0
-WireConnection;31;2;32;0
-WireConnection;38;0;40;0
-WireConnection;38;2;41;0
-WireConnection;39;1;38;0
-WireConnection;50;0;10;0
-WireConnection;49;0;11;0
-WireConnection;10;1;24;0
-WireConnection;22;0;21;0
-WireConnection;22;1;23;0
-WireConnection;21;0;19;0
-WireConnection;21;2;20;0
-WireConnection;26;0;44;0
-WireConnection;26;1;22;0
-WireConnection;45;0;26;0
+Node;AmplifyShaderEditor.FunctionNode;12;-1549.207,202.721;Inherit;True;Twirl;-1;;1;90936742ac32db8449cd21ab6dd337c8;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT;0;False;4;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.NoiseGeneratorNode;13;-1184.858,156.4976;Inherit;True;Simplex2D;True;False;2;0;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;14;-1716.885,338.2131;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.SimpleTimeNode;15;-2055.326,205.9842;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;16;-1774.26,-50.9657;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.Vector2Node;17;-1954.343,412.0857;Inherit;False;Constant;_twirlspeed;twirl speed;2;0;Create;True;0;0;0;False;0;False;0.1,0.1;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
+Node;AmplifyShaderEditor.Vector2Node;18;-1782.011,114.1653;Inherit;False;Constant;_twirlcenter;twirl center;2;0;Create;True;0;0;0;False;0;False;1,-1;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
+Node;AmplifyShaderEditor.Vector2Node;19;-1728.361,-234.5243;Inherit;False;Constant;_Shearamount;Shear amount;2;0;Create;True;0;0;0;False;0;False;2,2;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
+Node;AmplifyShaderEditor.NoiseGeneratorNode;20;-1185.768,-148.6078;Inherit;True;Simplex2D;True;False;2;0;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;21;-1393.967,13.70606;Inherit;False;Constant;_scalenoise1;scale noise;2;0;Create;True;0;0;0;False;0;False;10;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;22;-1487.963,-232.1551;Inherit;True;Radial Shear;-1;;2;c6dc9fc7fa9b08c4d95138f2ae88b526;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.Vector2Node;23;-1995.782,-183.8786;Inherit;False;Constant;_shearspeed;shear speed;2;0;Create;True;0;0;0;False;0;False;1,0;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
+Node;AmplifyShaderEditor.RangedFloatNode;24;-1781.424,252.3057;Inherit;False;Constant;_strengthtwirl;strength twirl;2;0;Create;True;0;0;0;False;0;False;11.5;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;25;-1353.766,457.7108;Inherit;False;Constant;_scalenoise;scale noise;2;0;Create;True;0;0;0;False;0;False;10;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;26;-833.688,48.44716;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.LerpOp;10;-354.205,-24.28181;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.ColorNode;11;-706.8603,-188.5478;Inherit;False;Constant;_Color0;Color 0;0;0;Create;True;0;0;0;False;0;False;0.14008,0.4622642,0,0;0.1167449,0.3869076,0.00182504,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;27;-708.0265,-395.8629;Inherit;False;Constant;_Color1;Color 1;0;0;Create;True;0;0;0;False;0;False;0.1921569,1,0,0;0.1687547,0.9811321,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+WireConnection;1;2;10;0
+WireConnection;12;2;18;0
+WireConnection;12;3;24;0
+WireConnection;12;4;14;0
+WireConnection;13;0;12;0
+WireConnection;13;1;25;0
+WireConnection;14;0;15;0
+WireConnection;14;1;17;0
+WireConnection;16;0;23;0
+WireConnection;16;1;15;0
+WireConnection;20;0;22;0
+WireConnection;20;1;21;0
+WireConnection;22;3;19;0
+WireConnection;22;4;16;0
+WireConnection;26;0;20;0
+WireConnection;26;1;13;0
+WireConnection;10;0;27;0
+WireConnection;10;1;11;0
+WireConnection;10;2;26;0
 ASEEND*/
-//CHKSM=CEA4E0E6EA847A91CFADB7AE25F3C8E21DF1B53C
+//CHKSM=1031D38438F71600849D659F3734E229AB144A1E

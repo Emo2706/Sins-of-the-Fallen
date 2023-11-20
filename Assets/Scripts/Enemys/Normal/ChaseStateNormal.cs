@@ -9,8 +9,6 @@ public class ChaseStateNormal : State
     Transform _transform;
     int _speed;
     Rigidbody _rb;
-    float _minDist;
-    float _minDistAttack;
     Vector3 dir;
     public event Action<float> OnMovement = delegate { };
     public Action Attack;
@@ -21,8 +19,6 @@ public class ChaseStateNormal : State
         _transform = enemy.transform;
         _speed = enemy.speed;
         _rb = enemy._rb;
-        _minDist = enemy.minDist;
-        _minDistAttack = enemy.minDistAttack;
     }
 
     public override void OnEnter()
@@ -32,11 +28,16 @@ public class ChaseStateNormal : State
 
     public override void OnUpdate()
     {
-        if (dir.sqrMagnitude >= _minDist * _minDist)
-            _enemy.ChangeState(NormalStates.Patrol);
+        if (_enemy.life>0)
+        {
+            if (dir.sqrMagnitude >= _enemy.minDist * _enemy.minDist)
+                _enemy.ChangeState(NormalStates.Patrol);
 
-        if (dir.sqrMagnitude <= _minDistAttack * _minDist)
-            Attack();
+            if (dir.sqrMagnitude <= _enemy.minDistAttack * _enemy.minDistAttack)
+                Attack();
+
+        }
+
 
     }
 
@@ -48,7 +49,9 @@ public class ChaseStateNormal : State
 
     public override void OnFixedUpdate()
     {
-        Move();
+        if(_enemy.life>0)
+            Move();
+
     }
 
     void Move()
@@ -69,4 +72,8 @@ public class ChaseStateNormal : State
             OnMovement(dir.z);
         }
     }
+
+
+
+
 }

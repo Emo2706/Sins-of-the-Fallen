@@ -306,11 +306,10 @@ MonoBehaviour:
   _maxLife: 20
   life: 0
   _rb: {fileID: 6797898066165889937}
-  _parent: {fileID: 0}
   bulletsDmg: 5
   dieAnimationDuration: 4.333
   speed: 1
-  minDist: 16.44
+  minDist: 16
   player: {fileID: 0}
   minDistAttack: 3
   playerMask:
@@ -397,7 +396,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222575460104208170}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -519,6 +518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1692733997434001401}
   - component: {fileID: 4728181812327222659}
+  - component: {fileID: 2375497399862235014}
   m_Layer: 11
   m_Name: View
   m_TagString: Untagged
@@ -569,6 +569,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2375497399862235014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032843303060737347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a785210cf82dc064bb6d7a1f0fdfc40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colliderPunch: {fileID: 1222575460104208180}
 --- !u!1 &2204823312473954663
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,11 +42,16 @@ public class ZonesState : State
 
     IEnumerator ZoneAttackCouroutine()
     {
+        yield return new WaitUntil (()=>_boss.enabled);
+
         WaitForSeconds _waitForSeconds = new WaitForSeconds(_zoneAttackCooldown);
 
         WaitForSeconds _waitForChangeState = new WaitForSeconds(_changeStateCooldown);
 
         yield return _waitForSeconds;
+
+        yield return new WaitUntil(() => _boss.enabled);
+
 
         ZoneAttack zoneAttack = ZoneAttackFactory.instance.GetObjFromPool();
         zoneAttack.transform.position = warning.transform.position;

@@ -6,7 +6,6 @@ public class PatrolStateNormal : State
 {
     EnemyNormal _enemy;
     Transform _transform;
-    float _minDist;
     LayerMask _playerMask;
     int _speed;
 
@@ -14,7 +13,6 @@ public class PatrolStateNormal : State
     {
         _enemy = enemy;
         _transform = enemy.transform;
-        _minDist = enemy.minDist;
         _playerMask = enemy.playerMask;
         _speed = enemy.speed;
     }
@@ -27,7 +25,7 @@ public class PatrolStateNormal : State
     public override void OnUpdate()
     {
 
-        var player = Physics.OverlapSphere(_transform.position, _minDist, _playerMask);
+        var player = Physics.OverlapSphere(_transform.position, _enemy.minDist, _playerMask);
 
 
         foreach (var item in player)
@@ -52,4 +50,6 @@ public class PatrolStateNormal : State
         // preguntar por distintos waypoints para los enemigos
         
     }
+
+    
 }

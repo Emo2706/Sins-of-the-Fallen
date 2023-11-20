@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyShooterSpawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
-    // public Dictionary<EnemyGlobalScript, int> enemy_types;
+    [SerializeField] Transform _root;
 
     // Start is called before the first frame update
     void Start()
@@ -21,5 +21,6 @@ public class EnemyShooterSpawner : MonoBehaviour
     {
         EnemyGlobalScript enemy = EnemyShooterFactory.instance.GetObjFromPool();
         enemy.transform.position = pos;
+        enemy.transform.parent = _root;
     }
 }

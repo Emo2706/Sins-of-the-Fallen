@@ -34,24 +34,29 @@ public class AttackStateFlyers : State
 
     public override void OnUpdate()
     {
-        _playerPos = _player.transform.position - _transform.position;
-
-        _transform.forward = _playerPos;
-
-        if (_playerPos.sqrMagnitude >= _minDistAttack * _minDistAttack)
+        if (_flyer.life > 0)
         {
-            _flyer.ChangeState(FlyersStates.Patrol);
-            _flyer.player = null;
+            _playerPos = _player.transform.position - _transform.position;
+
+            _transform.forward = _playerPos;
+
+            if (_playerPos.sqrMagnitude >= _minDistAttack * _minDistAttack)
+            {
+                _flyer.ChangeState(FlyersStates.Patrol);
+                _flyer.player = null;
+            }
+
+            _shootTimer += Time.deltaTime;
+
+            if (_shootTimer >= _shootCooldown)
+            {
+                Shoot();
+
+                _shootTimer = 0;
+            }
         }
 
-        _shootTimer += Time.deltaTime;
-
-        if(_shootTimer >= _shootCooldown)
-        {
-            Shoot();
-
-            _shootTimer = 0;
-        }
+        
 
     }
 

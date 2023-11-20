@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyNormalSpawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
-    // public Dictionary<EnemyGlobalScript, int> enemy_types;
+    [SerializeField] Transform _root;
+
 
     // Start is called before the first frame update
-     void Start()
+    void Start()
     {
        
 
@@ -22,5 +23,6 @@ public class EnemyNormalSpawner : MonoBehaviour
     {
         EnemyGlobalScript enemy = EnemyFactory.instance.GetObjFromPool();
         enemy.transform.position = pos;
+        enemy.transform.parent = _root;
     }
 }

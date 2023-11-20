@@ -32,7 +32,7 @@ public class EnemyNormal : EnemyGlobalScript
         _chase.OnMovement += _view.SetX;
         _chase.OnMovement += _view.SetZ;
         _chase.Attack += _view.Punch;
-        _chase.Attack += ActivateCollider;
+
 
         OnDie += _view.Die;
 
@@ -100,12 +100,13 @@ public class EnemyNormal : EnemyGlobalScript
         Gizmos.DrawWireSphere(transform.position, minDistAttack);
     }
 
-    public void ActivateCollider()
+
+    private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(ColliderCoroutine());
+        if (other.gameObject.layer == 10)
+            minDist = 300;
     }
 
-    
 
     public IEnumerator DieCoroutine()
     {
@@ -121,23 +122,15 @@ public class EnemyNormal : EnemyGlobalScript
         {
             var potion = LifePotionFactory.instance.GetObjFromPool();
             potion.transform.position = transform.position;
+            AudioManager.instance.Play(AudioManager.Sounds.InstancePowerUp);
         }
 
         EnemyFactory.instance.ReturnToPool(this);
     }
 
-    public IEnumerator ColliderCoroutine()
-    {
-        WaitForSeconds punchduration = new WaitForSeconds(_punchDuration);
 
-        _colliderPunch.gameObject.SetActive(true);
 
-        yield return punchduration;
-
-        _colliderPunch.gameObject.SetActive(false);
-        
-    }
-
+   
 
 }
 

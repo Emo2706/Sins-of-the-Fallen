@@ -17,16 +17,13 @@ public class Debugger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (_pauseScreen == null)
+            if (_pauseScreen == null && ScreenManager.instance._screenStack.Count<2)
             {
-                 _pauseScreen = Instantiate(Resources.Load<PauseScreen>("PauseScreen"));
-                 ScreenManager.instance.Push(_pauseScreen);
+                 ScreenManager.instance.Push("PauseScreen");
+                 GameManager.instance.pause = true;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ScreenManager.instance.Push("LostScreen");
-        }
+    
     }
 }

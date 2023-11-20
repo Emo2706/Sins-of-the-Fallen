@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 0f72277b83d36da46b6532d8032c06dc
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _shockwavebosstextura: {fileID: 2800000, guid: 20928122dc6dd9e439604545fdc2a1d5, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

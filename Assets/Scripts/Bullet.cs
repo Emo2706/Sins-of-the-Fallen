@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] int _bulletSpeed;
     public Vector3 dir;
     Rigidbody _rb;
+    [SerializeField] ParticleSystem _explosion;
     public int dmg ;
     // Start is called before the first frame update
     void Start()
@@ -42,13 +43,17 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.layer == 6 || other.gameObject.layer == 11 || other.gameObject.layer==15 || other.gameObject.layer==21 || other.gameObject.layer == 20)
         {
+            var particles =   ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ShootHit);
+            particles.transform.position = transform.position;
             BulletFactory.instance.ReturnToPool(this);
         }
 
         var enemy = other.GetComponent<EnemyGlobalScript>();
 
         if (enemy != null)
+        {
             enemy.TakeDmg(dmg);
+        }
     }
 
     public void Reset()

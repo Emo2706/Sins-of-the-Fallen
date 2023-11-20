@@ -6,7 +6,7 @@ public class ScreenManager : MonoBehaviour
 {
     public static ScreenManager instance { get; private set; }
 
-    Stack<IScreen> _screenStack;
+    public Stack<IScreen> _screenStack;
 
     private void Awake()
     {

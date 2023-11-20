@@ -38,6 +38,7 @@ public class PauseScreen : MonoBehaviour,IScreen
         ScreenManager.instance.Pop();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        GameManager.instance.pause = false;
     }
 
     public void Activate()

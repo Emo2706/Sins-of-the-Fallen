@@ -27,6 +27,8 @@ public class Player : Entity
     [SerializeField] int _slimeForce;
     [SerializeField] int _amountPowerUpBullets;
     [SerializeField] int _multiplierDmg;
+    [SerializeField] float _shakeDuration;
+    [SerializeField] float _shakeMagnitude;
     public int slimeDmg;
     public int zonesDmg;
     public int twisterDmg;
@@ -43,7 +45,7 @@ public class Player : Entity
 
     [SerializeField] Slider _healthSlider;
 
-    FirstPersonCamera _cam;
+    [SerializeField] FirstPersonCamera _cam;
     [SerializeField] Transform _headTransform;
     [SerializeField] Transform _pivotShoot;
 
@@ -115,6 +117,7 @@ public class Player : Entity
         if (Input.GetKeyDown(KeyCode.B))
         {
             transform.position = testBossPoint.position;
+            //TakeDmg(10);
         }
     }
 
@@ -160,5 +163,10 @@ public class Player : Entity
             _lifeHandler.OnDead();
         
 
+    }
+
+    public void ShakeCamera()
+    {
+        StartCoroutine(_cam.ShakeCourotine(_shakeDuration, _shakeMagnitude));
     }
 }

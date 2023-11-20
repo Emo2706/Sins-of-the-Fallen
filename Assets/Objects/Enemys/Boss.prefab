@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 8239893994534446075}
   - component: {fileID: 8239893994534446074}
   - component: {fileID: 8239893994534446071}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,6 @@ MonoBehaviour:
   _maxLife: 150
   life: 0
   _rb: {fileID: 8239893994534446071}
-  _parent: {fileID: 0}
   bulletsDmg: 5
   dieAnimationDuration: 0
   viewRadius: 65.6
@@ -194,6 +193,8 @@ MonoBehaviour:
   cooldownChangeAttackCircle: 4
   coolDownChangeAttacks: 30
   coolDownCircle: 4
+  _coolDownCirclePhase2: 3
+  _coolDownCirclePhase3: 2
   coolDownShoot: 1
   _coolDownPotion: 30
   pivotShoot: {fileID: 8239893992962078731}
