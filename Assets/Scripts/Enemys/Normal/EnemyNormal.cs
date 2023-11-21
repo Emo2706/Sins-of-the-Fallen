@@ -19,7 +19,13 @@ public class EnemyNormal : EnemyGlobalScript
     [SerializeField] Collider _colliderPunch;
     [SerializeField] float _punchDuration;
     public event Action OnDie;
- 
+    public Vector3 dir;
+    public float separationRadius;
+    public int maxForce;
+    [Range(0f, 2f)] public float cohesionWeight = 1;
+    [Range(0f, 2f)] public float separationWeight = 1;
+    [Range(0f, 2f)] public float alignmentWeight = 1;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -40,6 +46,8 @@ public class EnemyNormal : EnemyGlobalScript
         _stateMachine.AddState(NormalStates.Chase, _chase);
 
         ChangeState(NormalStates.Patrol);
+
+        GameManager.instance.enemyNormals.Add(this);
     }
 
     private void Update()
@@ -98,6 +106,9 @@ public class EnemyNormal : EnemyGlobalScript
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, minDistAttack);
+
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, separationRadius);
     }
 
 

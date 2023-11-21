@@ -317,6 +317,12 @@ MonoBehaviour:
     m_Bits: 512
   _colliderPunch: {fileID: 1222575460104208180}
   _punchDuration: 1.5
+  dir: {x: 0, y: 0, z: 0}
+  separationRadius: 14
+  maxForce: 5
+  cohesionWeight: 1.39
+  separationWeight: 2
+  alignmentWeight: 1.7
 --- !u!54 &6797898066165889937
 Rigidbody:
   m_ObjectHideFlags: 0

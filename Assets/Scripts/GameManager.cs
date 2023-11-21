@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     public bool pause;
 
+    public List<EnemyNormal> enemyNormals;
+
     private void Awake()
     {
         if (instance == null)
