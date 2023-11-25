@@ -81,7 +81,6 @@ MonoBehaviour:
   _maxLife: 20
   life: 0
   _rb: {fileID: 6603378321100257758}
-  _parent: {fileID: 0}
   bulletsDmg: 5
   dieAnimationDuration: 4.333
   speed: 5
@@ -119,10 +118,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.47
+  m_Radius: 0.5
   m_Height: 2.48
   m_Direction: 1
-  m_Center: {x: 0, y: 1.04, z: 0.15}
+  m_Center: {x: 0, y: 1.04, z: 0.06}
 --- !u!1001 &8825194921969766948
 PrefabInstance:
   m_ObjectHideFlags: 0

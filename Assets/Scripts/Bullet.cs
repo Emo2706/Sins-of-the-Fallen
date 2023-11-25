@@ -46,6 +46,7 @@ public class Bullet : MonoBehaviour
             var particles =   ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ShootHit);
             particles.transform.position = transform.position;
             BulletFactory.instance.ReturnToPool(this);
+            
         }
 
         var enemy = other.GetComponent<EnemyGlobalScript>();
@@ -53,6 +54,7 @@ public class Bullet : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDmg(dmg);
+            AudioManager.instance.Play(AudioManager.Sounds.DmgEnemies);
         }
     }
 

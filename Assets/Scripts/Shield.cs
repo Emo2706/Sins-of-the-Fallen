@@ -13,4 +13,11 @@ public class Shield : MonoBehaviour
     {
         shield.gameObject.SetActive(true);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer==10)
+            AudioManager.instance.Play(AudioManager.Sounds.HitShield);
+
+    }
 }

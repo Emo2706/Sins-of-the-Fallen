@@ -6,10 +6,10 @@ Shader "s_Unlit7"
 	{
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
-		[ASEBegin]_power("power", Float) = 2.02
-		_scaleF("scaleF", Float) = 0
-		_scale("scale", Range( 0 , 1)) = 0.1706263
-		[ASEEnd]_clip("clip", Range( 0 , 1)) = 0
+		[ASEBegin]_power1("power", Float) = 2.02
+		_scaleF1("scaleF", Float) = 0
+		_scale1("scale", Range( 0 , 1)) = 0.1706263
+		[ASEEnd]_clip1("clip", Range( 0 , 1)) = 0
 
 
 		//_TessPhongStrength( "Tess Phong Strength", Range( 0, 1 ) ) = 0.5
@@ -229,10 +229,10 @@ Shader "s_Unlit7"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float _scaleF;
-			float _power;
-			float _scale;
-			float _clip;
+			float _scaleF1;
+			float _power1;
+			float _scale1;
+			float _clip1;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -428,34 +428,35 @@ Shader "s_Unlit7"
 					#endif
 				#endif
 
-				float4 color30 = IsGammaSpace() ? float4(4,0,3.685863,0) : float4(21.11213,0,17.63544,0);
+				float4 color64 = IsGammaSpace() ? float4(2.939247,0,1.988953,0) : float4(10.71814,0,4.539146,0);
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - WorldPosition );
 				ase_worldViewDir = normalize(ase_worldViewDir);
 				float3 ase_worldNormal = IN.ase_texcoord3.xyz;
-				float fresnelNdotV24 = dot( ase_worldNormal, ase_worldViewDir );
-				float fresnelNode24 = ( 0.0 + _scaleF * pow( 1.0 - fresnelNdotV24, _power ) );
-				float4 lerpResult27 = lerp( float4( 0,0,0,0 ) , color30 , fresnelNode24);
-				float2 texCoord47_g1 = IN.ase_texcoord4.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 center45_g1 = float2( 7.3,5.46 );
-				float2 delta6_g1 = ( texCoord47_g1 - center45_g1 );
-				float angle10_g1 = ( length( delta6_g1 ) * 0.4 );
-				float x23_g1 = ( ( cos( angle10_g1 ) * delta6_g1.x ) - ( sin( angle10_g1 ) * delta6_g1.y ) );
-				float2 break40_g1 = center45_g1;
-				float2 break41_g1 = ( _TimeParameters.x * float2( 3,3 ) );
-				float y35_g1 = ( ( sin( angle10_g1 ) * delta6_g1.x ) + ( cos( angle10_g1 ) * delta6_g1.y ) );
-				float2 appendResult44_g1 = (float2(( x23_g1 + break40_g1.x + break41_g1.x ) , ( break40_g1.y + break41_g1.y + y35_g1 )));
-				float simplePerlin2D11 = snoise( appendResult44_g1*10.0 );
-				simplePerlin2D11 = simplePerlin2D11*0.5 + 0.5;
-				float4 lerpResult23 = lerp( float4( 0,0,0,0 ) , lerpResult27 , simplePerlin2D11);
-				float4 TwirlNoise29 = lerpResult23;
+				float fresnelNdotV58 = dot( ase_worldNormal, ase_worldViewDir );
+				float fresnelNode58 = ( 0.0 + _scaleF1 * pow( 1.0 - fresnelNdotV58, _power1 ) );
+				float4 lerpResult61 = lerp( float4( 0,0,0,0 ) , color64 , fresnelNode58);
+				float2 texCoord47_g3 = IN.ase_texcoord4.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 center45_g3 = float2( 7.3,5.46 );
+				float2 delta6_g3 = ( texCoord47_g3 - center45_g3 );
+				float angle10_g3 = ( length( delta6_g3 ) * 0.4 );
+				float x23_g3 = ( ( cos( angle10_g3 ) * delta6_g3.x ) - ( sin( angle10_g3 ) * delta6_g3.y ) );
+				float2 break40_g3 = center45_g3;
+				float2 break41_g3 = ( _TimeParameters.x * float2( 3,3 ) );
+				float y35_g3 = ( ( sin( angle10_g3 ) * delta6_g3.x ) + ( cos( angle10_g3 ) * delta6_g3.y ) );
+				float2 appendResult44_g3 = (float2(( x23_g3 + break40_g3.x + break41_g3.x ) , ( break40_g3.y + break41_g3.y + y35_g3 )));
+				float simplePerlin2D45 = snoise( appendResult44_g3*10.0 );
+				simplePerlin2D45 = simplePerlin2D45*0.5 + 0.5;
+				float4 lerpResult57 = lerp( float4( 0,0,0,0 ) , lerpResult61 , simplePerlin2D45);
+				float4 TwirlNoise63 = lerpResult57;
 				
-				float4 temp_cast_1 = (_scale).xxxx;
+				float4 temp_cast_1 = (_scale1).xxxx;
+				float4 TwirlNoiseSinColor78 = ( 1.0 - step( TwirlNoise63 , temp_cast_1 ) );
 				
 				float3 BakedAlbedo = 0;
 				float3 BakedEmission = 0;
-				float3 Color = TwirlNoise29.rgb;
-				float Alpha = ( 1.0 - step( TwirlNoise29 , temp_cast_1 ) ).r;
-				float AlphaClipThreshold = _clip;
+				float3 Color = TwirlNoise63.rgb;
+				float Alpha = TwirlNoiseSinColor78.r;
+				float AlphaClipThreshold = _clip1;
 				float AlphaClipThresholdShadow = 0.5;
 
 				#ifdef _ALPHATEST_ON
@@ -542,10 +543,10 @@ Shader "s_Unlit7"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float _scaleF;
-			float _power;
-			float _scale;
-			float _clip;
+			float _scaleF1;
+			float _power1;
+			float _scale1;
+			float _clip1;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -755,31 +756,32 @@ Shader "s_Unlit7"
 					#endif
 				#endif
 
-				float4 color30 = IsGammaSpace() ? float4(4,0,3.685863,0) : float4(21.11213,0,17.63544,0);
+				float4 color64 = IsGammaSpace() ? float4(2.939247,0,1.988953,0) : float4(10.71814,0,4.539146,0);
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - WorldPosition );
 				ase_worldViewDir = normalize(ase_worldViewDir);
 				float3 ase_worldNormal = IN.ase_texcoord2.xyz;
-				float fresnelNdotV24 = dot( ase_worldNormal, ase_worldViewDir );
-				float fresnelNode24 = ( 0.0 + _scaleF * pow( 1.0 - fresnelNdotV24, _power ) );
-				float4 lerpResult27 = lerp( float4( 0,0,0,0 ) , color30 , fresnelNode24);
-				float2 texCoord47_g1 = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 center45_g1 = float2( 7.3,5.46 );
-				float2 delta6_g1 = ( texCoord47_g1 - center45_g1 );
-				float angle10_g1 = ( length( delta6_g1 ) * 0.4 );
-				float x23_g1 = ( ( cos( angle10_g1 ) * delta6_g1.x ) - ( sin( angle10_g1 ) * delta6_g1.y ) );
-				float2 break40_g1 = center45_g1;
-				float2 break41_g1 = ( _TimeParameters.x * float2( 3,3 ) );
-				float y35_g1 = ( ( sin( angle10_g1 ) * delta6_g1.x ) + ( cos( angle10_g1 ) * delta6_g1.y ) );
-				float2 appendResult44_g1 = (float2(( x23_g1 + break40_g1.x + break41_g1.x ) , ( break40_g1.y + break41_g1.y + y35_g1 )));
-				float simplePerlin2D11 = snoise( appendResult44_g1*10.0 );
-				simplePerlin2D11 = simplePerlin2D11*0.5 + 0.5;
-				float4 lerpResult23 = lerp( float4( 0,0,0,0 ) , lerpResult27 , simplePerlin2D11);
-				float4 TwirlNoise29 = lerpResult23;
-				float4 temp_cast_0 = (_scale).xxxx;
+				float fresnelNdotV58 = dot( ase_worldNormal, ase_worldViewDir );
+				float fresnelNode58 = ( 0.0 + _scaleF1 * pow( 1.0 - fresnelNdotV58, _power1 ) );
+				float4 lerpResult61 = lerp( float4( 0,0,0,0 ) , color64 , fresnelNode58);
+				float2 texCoord47_g3 = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 center45_g3 = float2( 7.3,5.46 );
+				float2 delta6_g3 = ( texCoord47_g3 - center45_g3 );
+				float angle10_g3 = ( length( delta6_g3 ) * 0.4 );
+				float x23_g3 = ( ( cos( angle10_g3 ) * delta6_g3.x ) - ( sin( angle10_g3 ) * delta6_g3.y ) );
+				float2 break40_g3 = center45_g3;
+				float2 break41_g3 = ( _TimeParameters.x * float2( 3,3 ) );
+				float y35_g3 = ( ( sin( angle10_g3 ) * delta6_g3.x ) + ( cos( angle10_g3 ) * delta6_g3.y ) );
+				float2 appendResult44_g3 = (float2(( x23_g3 + break40_g3.x + break41_g3.x ) , ( break40_g3.y + break41_g3.y + y35_g3 )));
+				float simplePerlin2D45 = snoise( appendResult44_g3*10.0 );
+				simplePerlin2D45 = simplePerlin2D45*0.5 + 0.5;
+				float4 lerpResult57 = lerp( float4( 0,0,0,0 ) , lerpResult61 , simplePerlin2D45);
+				float4 TwirlNoise63 = lerpResult57;
+				float4 temp_cast_0 = (_scale1).xxxx;
+				float4 TwirlNoiseSinColor78 = ( 1.0 - step( TwirlNoise63 , temp_cast_0 ) );
 				
 
-				float Alpha = ( 1.0 - step( TwirlNoise29 , temp_cast_0 ) ).r;
-				float AlphaClipThreshold = _clip;
+				float Alpha = TwirlNoiseSinColor78.r;
+				float AlphaClipThreshold = _clip1;
 				float AlphaClipThresholdShadow = 0.5;
 
 				#ifdef _ALPHATEST_ON
@@ -852,10 +854,10 @@ Shader "s_Unlit7"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float _scaleF;
-			float _power;
-			float _scale;
-			float _clip;
+			float _scaleF1;
+			float _power1;
+			float _scale1;
+			float _clip1;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -1045,31 +1047,32 @@ Shader "s_Unlit7"
 					#endif
 				#endif
 
-				float4 color30 = IsGammaSpace() ? float4(4,0,3.685863,0) : float4(21.11213,0,17.63544,0);
+				float4 color64 = IsGammaSpace() ? float4(2.939247,0,1.988953,0) : float4(10.71814,0,4.539146,0);
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - WorldPosition );
 				ase_worldViewDir = normalize(ase_worldViewDir);
 				float3 ase_worldNormal = IN.ase_texcoord2.xyz;
-				float fresnelNdotV24 = dot( ase_worldNormal, ase_worldViewDir );
-				float fresnelNode24 = ( 0.0 + _scaleF * pow( 1.0 - fresnelNdotV24, _power ) );
-				float4 lerpResult27 = lerp( float4( 0,0,0,0 ) , color30 , fresnelNode24);
-				float2 texCoord47_g1 = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 center45_g1 = float2( 7.3,5.46 );
-				float2 delta6_g1 = ( texCoord47_g1 - center45_g1 );
-				float angle10_g1 = ( length( delta6_g1 ) * 0.4 );
-				float x23_g1 = ( ( cos( angle10_g1 ) * delta6_g1.x ) - ( sin( angle10_g1 ) * delta6_g1.y ) );
-				float2 break40_g1 = center45_g1;
-				float2 break41_g1 = ( _TimeParameters.x * float2( 3,3 ) );
-				float y35_g1 = ( ( sin( angle10_g1 ) * delta6_g1.x ) + ( cos( angle10_g1 ) * delta6_g1.y ) );
-				float2 appendResult44_g1 = (float2(( x23_g1 + break40_g1.x + break41_g1.x ) , ( break40_g1.y + break41_g1.y + y35_g1 )));
-				float simplePerlin2D11 = snoise( appendResult44_g1*10.0 );
-				simplePerlin2D11 = simplePerlin2D11*0.5 + 0.5;
-				float4 lerpResult23 = lerp( float4( 0,0,0,0 ) , lerpResult27 , simplePerlin2D11);
-				float4 TwirlNoise29 = lerpResult23;
-				float4 temp_cast_0 = (_scale).xxxx;
+				float fresnelNdotV58 = dot( ase_worldNormal, ase_worldViewDir );
+				float fresnelNode58 = ( 0.0 + _scaleF1 * pow( 1.0 - fresnelNdotV58, _power1 ) );
+				float4 lerpResult61 = lerp( float4( 0,0,0,0 ) , color64 , fresnelNode58);
+				float2 texCoord47_g3 = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 center45_g3 = float2( 7.3,5.46 );
+				float2 delta6_g3 = ( texCoord47_g3 - center45_g3 );
+				float angle10_g3 = ( length( delta6_g3 ) * 0.4 );
+				float x23_g3 = ( ( cos( angle10_g3 ) * delta6_g3.x ) - ( sin( angle10_g3 ) * delta6_g3.y ) );
+				float2 break40_g3 = center45_g3;
+				float2 break41_g3 = ( _TimeParameters.x * float2( 3,3 ) );
+				float y35_g3 = ( ( sin( angle10_g3 ) * delta6_g3.x ) + ( cos( angle10_g3 ) * delta6_g3.y ) );
+				float2 appendResult44_g3 = (float2(( x23_g3 + break40_g3.x + break41_g3.x ) , ( break40_g3.y + break41_g3.y + y35_g3 )));
+				float simplePerlin2D45 = snoise( appendResult44_g3*10.0 );
+				simplePerlin2D45 = simplePerlin2D45*0.5 + 0.5;
+				float4 lerpResult57 = lerp( float4( 0,0,0,0 ) , lerpResult61 , simplePerlin2D45);
+				float4 TwirlNoise63 = lerpResult57;
+				float4 temp_cast_0 = (_scale1).xxxx;
+				float4 TwirlNoiseSinColor78 = ( 1.0 - step( TwirlNoise63 , temp_cast_0 ) );
 				
 
-				float Alpha = ( 1.0 - step( TwirlNoise29 , temp_cast_0 ) ).r;
-				float AlphaClipThreshold = _clip;
+				float Alpha = TwirlNoiseSinColor78.r;
+				float AlphaClipThreshold = _clip1;
 
 				#ifdef _ALPHATEST_ON
 					clip(Alpha - AlphaClipThreshold);
@@ -1136,10 +1139,10 @@ Shader "s_Unlit7"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float _scaleF;
-			float _power;
-			float _scale;
-			float _clip;
+			float _scaleF1;
+			float _power1;
+			float _scale1;
+			float _clip1;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -1317,32 +1320,33 @@ Shader "s_Unlit7"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
-				float4 color30 = IsGammaSpace() ? float4(4,0,3.685863,0) : float4(21.11213,0,17.63544,0);
+				float4 color64 = IsGammaSpace() ? float4(2.939247,0,1.988953,0) : float4(10.71814,0,4.539146,0);
 				float3 ase_worldPos = IN.ase_texcoord.xyz;
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - ase_worldPos );
 				ase_worldViewDir = normalize(ase_worldViewDir);
 				float3 ase_worldNormal = IN.ase_texcoord1.xyz;
-				float fresnelNdotV24 = dot( ase_worldNormal, ase_worldViewDir );
-				float fresnelNode24 = ( 0.0 + _scaleF * pow( 1.0 - fresnelNdotV24, _power ) );
-				float4 lerpResult27 = lerp( float4( 0,0,0,0 ) , color30 , fresnelNode24);
-				float2 texCoord47_g1 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 center45_g1 = float2( 7.3,5.46 );
-				float2 delta6_g1 = ( texCoord47_g1 - center45_g1 );
-				float angle10_g1 = ( length( delta6_g1 ) * 0.4 );
-				float x23_g1 = ( ( cos( angle10_g1 ) * delta6_g1.x ) - ( sin( angle10_g1 ) * delta6_g1.y ) );
-				float2 break40_g1 = center45_g1;
-				float2 break41_g1 = ( _TimeParameters.x * float2( 3,3 ) );
-				float y35_g1 = ( ( sin( angle10_g1 ) * delta6_g1.x ) + ( cos( angle10_g1 ) * delta6_g1.y ) );
-				float2 appendResult44_g1 = (float2(( x23_g1 + break40_g1.x + break41_g1.x ) , ( break40_g1.y + break41_g1.y + y35_g1 )));
-				float simplePerlin2D11 = snoise( appendResult44_g1*10.0 );
-				simplePerlin2D11 = simplePerlin2D11*0.5 + 0.5;
-				float4 lerpResult23 = lerp( float4( 0,0,0,0 ) , lerpResult27 , simplePerlin2D11);
-				float4 TwirlNoise29 = lerpResult23;
-				float4 temp_cast_0 = (_scale).xxxx;
+				float fresnelNdotV58 = dot( ase_worldNormal, ase_worldViewDir );
+				float fresnelNode58 = ( 0.0 + _scaleF1 * pow( 1.0 - fresnelNdotV58, _power1 ) );
+				float4 lerpResult61 = lerp( float4( 0,0,0,0 ) , color64 , fresnelNode58);
+				float2 texCoord47_g3 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 center45_g3 = float2( 7.3,5.46 );
+				float2 delta6_g3 = ( texCoord47_g3 - center45_g3 );
+				float angle10_g3 = ( length( delta6_g3 ) * 0.4 );
+				float x23_g3 = ( ( cos( angle10_g3 ) * delta6_g3.x ) - ( sin( angle10_g3 ) * delta6_g3.y ) );
+				float2 break40_g3 = center45_g3;
+				float2 break41_g3 = ( _TimeParameters.x * float2( 3,3 ) );
+				float y35_g3 = ( ( sin( angle10_g3 ) * delta6_g3.x ) + ( cos( angle10_g3 ) * delta6_g3.y ) );
+				float2 appendResult44_g3 = (float2(( x23_g3 + break40_g3.x + break41_g3.x ) , ( break40_g3.y + break41_g3.y + y35_g3 )));
+				float simplePerlin2D45 = snoise( appendResult44_g3*10.0 );
+				simplePerlin2D45 = simplePerlin2D45*0.5 + 0.5;
+				float4 lerpResult57 = lerp( float4( 0,0,0,0 ) , lerpResult61 , simplePerlin2D45);
+				float4 TwirlNoise63 = lerpResult57;
+				float4 temp_cast_0 = (_scale1).xxxx;
+				float4 TwirlNoiseSinColor78 = ( 1.0 - step( TwirlNoise63 , temp_cast_0 ) );
 				
 
-				surfaceDescription.Alpha = ( 1.0 - step( TwirlNoise29 , temp_cast_0 ) ).r;
-				surfaceDescription.AlphaClipThreshold = _clip;
+				surfaceDescription.Alpha = TwirlNoiseSinColor78.r;
+				surfaceDescription.AlphaClipThreshold = _clip1;
 
 				#if _ALPHATEST_ON
 					float alphaClipThreshold = 0.01f;
@@ -1409,10 +1413,10 @@ Shader "s_Unlit7"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float _scaleF;
-			float _power;
-			float _scale;
-			float _clip;
+			float _scaleF1;
+			float _power1;
+			float _scale1;
+			float _clip1;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -1585,32 +1589,33 @@ Shader "s_Unlit7"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
-				float4 color30 = IsGammaSpace() ? float4(4,0,3.685863,0) : float4(21.11213,0,17.63544,0);
+				float4 color64 = IsGammaSpace() ? float4(2.939247,0,1.988953,0) : float4(10.71814,0,4.539146,0);
 				float3 ase_worldPos = IN.ase_texcoord.xyz;
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - ase_worldPos );
 				ase_worldViewDir = normalize(ase_worldViewDir);
 				float3 ase_worldNormal = IN.ase_texcoord1.xyz;
-				float fresnelNdotV24 = dot( ase_worldNormal, ase_worldViewDir );
-				float fresnelNode24 = ( 0.0 + _scaleF * pow( 1.0 - fresnelNdotV24, _power ) );
-				float4 lerpResult27 = lerp( float4( 0,0,0,0 ) , color30 , fresnelNode24);
-				float2 texCoord47_g1 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 center45_g1 = float2( 7.3,5.46 );
-				float2 delta6_g1 = ( texCoord47_g1 - center45_g1 );
-				float angle10_g1 = ( length( delta6_g1 ) * 0.4 );
-				float x23_g1 = ( ( cos( angle10_g1 ) * delta6_g1.x ) - ( sin( angle10_g1 ) * delta6_g1.y ) );
-				float2 break40_g1 = center45_g1;
-				float2 break41_g1 = ( _TimeParameters.x * float2( 3,3 ) );
-				float y35_g1 = ( ( sin( angle10_g1 ) * delta6_g1.x ) + ( cos( angle10_g1 ) * delta6_g1.y ) );
-				float2 appendResult44_g1 = (float2(( x23_g1 + break40_g1.x + break41_g1.x ) , ( break40_g1.y + break41_g1.y + y35_g1 )));
-				float simplePerlin2D11 = snoise( appendResult44_g1*10.0 );
-				simplePerlin2D11 = simplePerlin2D11*0.5 + 0.5;
-				float4 lerpResult23 = lerp( float4( 0,0,0,0 ) , lerpResult27 , simplePerlin2D11);
-				float4 TwirlNoise29 = lerpResult23;
-				float4 temp_cast_0 = (_scale).xxxx;
+				float fresnelNdotV58 = dot( ase_worldNormal, ase_worldViewDir );
+				float fresnelNode58 = ( 0.0 + _scaleF1 * pow( 1.0 - fresnelNdotV58, _power1 ) );
+				float4 lerpResult61 = lerp( float4( 0,0,0,0 ) , color64 , fresnelNode58);
+				float2 texCoord47_g3 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 center45_g3 = float2( 7.3,5.46 );
+				float2 delta6_g3 = ( texCoord47_g3 - center45_g3 );
+				float angle10_g3 = ( length( delta6_g3 ) * 0.4 );
+				float x23_g3 = ( ( cos( angle10_g3 ) * delta6_g3.x ) - ( sin( angle10_g3 ) * delta6_g3.y ) );
+				float2 break40_g3 = center45_g3;
+				float2 break41_g3 = ( _TimeParameters.x * float2( 3,3 ) );
+				float y35_g3 = ( ( sin( angle10_g3 ) * delta6_g3.x ) + ( cos( angle10_g3 ) * delta6_g3.y ) );
+				float2 appendResult44_g3 = (float2(( x23_g3 + break40_g3.x + break41_g3.x ) , ( break40_g3.y + break41_g3.y + y35_g3 )));
+				float simplePerlin2D45 = snoise( appendResult44_g3*10.0 );
+				simplePerlin2D45 = simplePerlin2D45*0.5 + 0.5;
+				float4 lerpResult57 = lerp( float4( 0,0,0,0 ) , lerpResult61 , simplePerlin2D45);
+				float4 TwirlNoise63 = lerpResult57;
+				float4 temp_cast_0 = (_scale1).xxxx;
+				float4 TwirlNoiseSinColor78 = ( 1.0 - step( TwirlNoise63 , temp_cast_0 ) );
 				
 
-				surfaceDescription.Alpha = ( 1.0 - step( TwirlNoise29 , temp_cast_0 ) ).r;
-				surfaceDescription.AlphaClipThreshold = _clip;
+				surfaceDescription.Alpha = TwirlNoiseSinColor78.r;
+				surfaceDescription.AlphaClipThreshold = _clip1;
 
 				#if _ALPHATEST_ON
 					float alphaClipThreshold = 0.01f;
@@ -1685,10 +1690,10 @@ Shader "s_Unlit7"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float _scaleF;
-			float _power;
-			float _scale;
-			float _clip;
+			float _scaleF1;
+			float _power1;
+			float _scale1;
+			float _clip1;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -1862,31 +1867,32 @@ Shader "s_Unlit7"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
-				float4 color30 = IsGammaSpace() ? float4(4,0,3.685863,0) : float4(21.11213,0,17.63544,0);
+				float4 color64 = IsGammaSpace() ? float4(2.939247,0,1.988953,0) : float4(10.71814,0,4.539146,0);
 				float3 ase_worldPos = IN.ase_texcoord1.xyz;
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - ase_worldPos );
 				ase_worldViewDir = normalize(ase_worldViewDir);
-				float fresnelNdotV24 = dot( IN.normalWS, ase_worldViewDir );
-				float fresnelNode24 = ( 0.0 + _scaleF * pow( 1.0 - fresnelNdotV24, _power ) );
-				float4 lerpResult27 = lerp( float4( 0,0,0,0 ) , color30 , fresnelNode24);
-				float2 texCoord47_g1 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 center45_g1 = float2( 7.3,5.46 );
-				float2 delta6_g1 = ( texCoord47_g1 - center45_g1 );
-				float angle10_g1 = ( length( delta6_g1 ) * 0.4 );
-				float x23_g1 = ( ( cos( angle10_g1 ) * delta6_g1.x ) - ( sin( angle10_g1 ) * delta6_g1.y ) );
-				float2 break40_g1 = center45_g1;
-				float2 break41_g1 = ( _TimeParameters.x * float2( 3,3 ) );
-				float y35_g1 = ( ( sin( angle10_g1 ) * delta6_g1.x ) + ( cos( angle10_g1 ) * delta6_g1.y ) );
-				float2 appendResult44_g1 = (float2(( x23_g1 + break40_g1.x + break41_g1.x ) , ( break40_g1.y + break41_g1.y + y35_g1 )));
-				float simplePerlin2D11 = snoise( appendResult44_g1*10.0 );
-				simplePerlin2D11 = simplePerlin2D11*0.5 + 0.5;
-				float4 lerpResult23 = lerp( float4( 0,0,0,0 ) , lerpResult27 , simplePerlin2D11);
-				float4 TwirlNoise29 = lerpResult23;
-				float4 temp_cast_0 = (_scale).xxxx;
+				float fresnelNdotV58 = dot( IN.normalWS, ase_worldViewDir );
+				float fresnelNode58 = ( 0.0 + _scaleF1 * pow( 1.0 - fresnelNdotV58, _power1 ) );
+				float4 lerpResult61 = lerp( float4( 0,0,0,0 ) , color64 , fresnelNode58);
+				float2 texCoord47_g3 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 center45_g3 = float2( 7.3,5.46 );
+				float2 delta6_g3 = ( texCoord47_g3 - center45_g3 );
+				float angle10_g3 = ( length( delta6_g3 ) * 0.4 );
+				float x23_g3 = ( ( cos( angle10_g3 ) * delta6_g3.x ) - ( sin( angle10_g3 ) * delta6_g3.y ) );
+				float2 break40_g3 = center45_g3;
+				float2 break41_g3 = ( _TimeParameters.x * float2( 3,3 ) );
+				float y35_g3 = ( ( sin( angle10_g3 ) * delta6_g3.x ) + ( cos( angle10_g3 ) * delta6_g3.y ) );
+				float2 appendResult44_g3 = (float2(( x23_g3 + break40_g3.x + break41_g3.x ) , ( break40_g3.y + break41_g3.y + y35_g3 )));
+				float simplePerlin2D45 = snoise( appendResult44_g3*10.0 );
+				simplePerlin2D45 = simplePerlin2D45*0.5 + 0.5;
+				float4 lerpResult57 = lerp( float4( 0,0,0,0 ) , lerpResult61 , simplePerlin2D45);
+				float4 TwirlNoise63 = lerpResult57;
+				float4 temp_cast_0 = (_scale1).xxxx;
+				float4 TwirlNoiseSinColor78 = ( 1.0 - step( TwirlNoise63 , temp_cast_0 ) );
 				
 
-				surfaceDescription.Alpha = ( 1.0 - step( TwirlNoise29 , temp_cast_0 ) ).r;
-				surfaceDescription.AlphaClipThreshold = _clip;
+				surfaceDescription.Alpha = TwirlNoiseSinColor78.r;
+				surfaceDescription.AlphaClipThreshold = _clip1;
 
 				#if _ALPHATEST_ON
 					clip(surfaceDescription.Alpha - surfaceDescription.AlphaClipThreshold);
@@ -1962,10 +1968,10 @@ Shader "s_Unlit7"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float _scaleF;
-			float _power;
-			float _scale;
-			float _clip;
+			float _scaleF1;
+			float _power1;
+			float _scale1;
+			float _clip1;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -2138,31 +2144,32 @@ Shader "s_Unlit7"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
-				float4 color30 = IsGammaSpace() ? float4(4,0,3.685863,0) : float4(21.11213,0,17.63544,0);
+				float4 color64 = IsGammaSpace() ? float4(2.939247,0,1.988953,0) : float4(10.71814,0,4.539146,0);
 				float3 ase_worldPos = IN.ase_texcoord1.xyz;
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - ase_worldPos );
 				ase_worldViewDir = normalize(ase_worldViewDir);
-				float fresnelNdotV24 = dot( IN.normalWS, ase_worldViewDir );
-				float fresnelNode24 = ( 0.0 + _scaleF * pow( 1.0 - fresnelNdotV24, _power ) );
-				float4 lerpResult27 = lerp( float4( 0,0,0,0 ) , color30 , fresnelNode24);
-				float2 texCoord47_g1 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 center45_g1 = float2( 7.3,5.46 );
-				float2 delta6_g1 = ( texCoord47_g1 - center45_g1 );
-				float angle10_g1 = ( length( delta6_g1 ) * 0.4 );
-				float x23_g1 = ( ( cos( angle10_g1 ) * delta6_g1.x ) - ( sin( angle10_g1 ) * delta6_g1.y ) );
-				float2 break40_g1 = center45_g1;
-				float2 break41_g1 = ( _TimeParameters.x * float2( 3,3 ) );
-				float y35_g1 = ( ( sin( angle10_g1 ) * delta6_g1.x ) + ( cos( angle10_g1 ) * delta6_g1.y ) );
-				float2 appendResult44_g1 = (float2(( x23_g1 + break40_g1.x + break41_g1.x ) , ( break40_g1.y + break41_g1.y + y35_g1 )));
-				float simplePerlin2D11 = snoise( appendResult44_g1*10.0 );
-				simplePerlin2D11 = simplePerlin2D11*0.5 + 0.5;
-				float4 lerpResult23 = lerp( float4( 0,0,0,0 ) , lerpResult27 , simplePerlin2D11);
-				float4 TwirlNoise29 = lerpResult23;
-				float4 temp_cast_0 = (_scale).xxxx;
+				float fresnelNdotV58 = dot( IN.normalWS, ase_worldViewDir );
+				float fresnelNode58 = ( 0.0 + _scaleF1 * pow( 1.0 - fresnelNdotV58, _power1 ) );
+				float4 lerpResult61 = lerp( float4( 0,0,0,0 ) , color64 , fresnelNode58);
+				float2 texCoord47_g3 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 center45_g3 = float2( 7.3,5.46 );
+				float2 delta6_g3 = ( texCoord47_g3 - center45_g3 );
+				float angle10_g3 = ( length( delta6_g3 ) * 0.4 );
+				float x23_g3 = ( ( cos( angle10_g3 ) * delta6_g3.x ) - ( sin( angle10_g3 ) * delta6_g3.y ) );
+				float2 break40_g3 = center45_g3;
+				float2 break41_g3 = ( _TimeParameters.x * float2( 3,3 ) );
+				float y35_g3 = ( ( sin( angle10_g3 ) * delta6_g3.x ) + ( cos( angle10_g3 ) * delta6_g3.y ) );
+				float2 appendResult44_g3 = (float2(( x23_g3 + break40_g3.x + break41_g3.x ) , ( break40_g3.y + break41_g3.y + y35_g3 )));
+				float simplePerlin2D45 = snoise( appendResult44_g3*10.0 );
+				simplePerlin2D45 = simplePerlin2D45*0.5 + 0.5;
+				float4 lerpResult57 = lerp( float4( 0,0,0,0 ) , lerpResult61 , simplePerlin2D45);
+				float4 TwirlNoise63 = lerpResult57;
+				float4 temp_cast_0 = (_scale1).xxxx;
+				float4 TwirlNoiseSinColor78 = ( 1.0 - step( TwirlNoise63 , temp_cast_0 ) );
 				
 
-				surfaceDescription.Alpha = ( 1.0 - step( TwirlNoise29 , temp_cast_0 ) ).r;
-				surfaceDescription.AlphaClipThreshold = _clip;
+				surfaceDescription.Alpha = TwirlNoiseSinColor78.r;
+				surfaceDescription.AlphaClipThreshold = _clip1;
 
 				#if _ALPHATEST_ON
 					clip(surfaceDescription.Alpha - surfaceDescription.AlphaClipThreshold);
@@ -2199,69 +2206,58 @@ Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;6;0,0;Float;False;False;-1;
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;7;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ScenePickingPass;0;7;ScenePickingPass;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Picking;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;8;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;DepthNormals;0;8;DepthNormals;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=DepthNormalsOnly;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;9;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;DepthNormalsOnly;0;9;DepthNormalsOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=DepthNormalsOnly;False;True;9;d3d11;metal;vulkan;xboxone;xboxseries;playstation;ps4;ps5;switch;0;;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.FunctionNode;10;-2698.262,-697.3343;Inherit;True;Twirl;-1;;1;90936742ac32db8449cd21ab6dd337c8;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT;0;False;4;FLOAT2;0,0;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.NoiseGeneratorNode;11;-2333.913,-743.5576;Inherit;True;Simplex2D;True;False;2;0;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;12;-2865.939,-561.8423;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.SimpleTimeNode;13;-3204.38,-694.0711;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;14;-2923.314,-951.0205;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.Vector2Node;15;-2931.064,-785.8897;Inherit;False;Constant;_twirlcenter;twirl center;2;0;Create;True;0;0;0;False;0;False;7.3,5.46;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
-Node;AmplifyShaderEditor.Vector2Node;16;-2877.415,-1134.58;Inherit;False;Constant;_Shearamount;Shear amount;2;0;Create;True;0;0;0;False;0;False;4,4;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
-Node;AmplifyShaderEditor.NoiseGeneratorNode;17;-2334.823,-1048.663;Inherit;True;Simplex2D;True;False;2;0;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;18;-2543.021,-886.3488;Inherit;False;Constant;_scalenoise1;scale noise;2;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.FunctionNode;19;-2637.018,-1132.211;Inherit;True;Radial Shear;-1;;2;c6dc9fc7fa9b08c4d95138f2ae88b526;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.Vector2Node;20;-3144.836,-1083.934;Inherit;False;Constant;_shearspeed;shear speed;2;0;Create;True;0;0;0;False;0;False;9,0;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
-Node;AmplifyShaderEditor.RangedFloatNode;21;-2930.478,-647.7496;Inherit;False;Constant;_strengthtwirl;strength twirl;2;0;Create;True;0;0;0;False;0;False;0.4;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;22;-2502.82,-442.3446;Inherit;False;Constant;_scalenoise;scale noise;2;0;Create;True;0;0;0;False;0;False;10;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.LerpOp;23;-1710.469,-909.1328;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.FresnelNode;24;-2475.958,-1389.197;Inherit;True;Standard;WorldNormal;ViewDir;False;False;5;0;FLOAT3;0,0,1;False;4;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;1;False;3;FLOAT;5;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;25;-2697.728,-1264.632;Inherit;False;Property;_power;power;2;0;Create;True;0;0;0;False;0;False;2.02;1.54;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;26;-2725.33,-1382.001;Inherit;False;Property;_scaleF;scaleF;3;0;Create;True;0;0;0;False;0;False;0;0.31;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.LerpOp;27;-2109.042,-1376.026;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RegisterLocalVarNode;29;-1341.619,-873.6765;Inherit;False;TwirlNoise;-1;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.ColorNode;30;-2384.417,-1625.645;Inherit;False;Constant;_Color1;Color 0;6;1;[HDR];Create;True;0;0;0;False;0;False;4,0,3.685863,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SamplerNode;31;-1573.534,339.1754;Inherit;True;Property;_efectox2;efecto x2;0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.PannerNode;32;-1800.447,402.8711;Inherit;False;3;0;FLOAT2;0,0;False;2;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode;33;-2088.449,338.871;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.Vector2Node;34;-2056.449,482.8708;Inherit;False;Property;_speed;speed;1;0;Create;True;0;0;0;False;0;False;2,1;5,5;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
-Node;AmplifyShaderEditor.StepOpNode;35;-1201.819,470.4723;Inherit;True;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.ColorNode;36;-1983.424,-1055.814;Inherit;False;Constant;_Color0;Color 0;2;0;Create;True;0;0;0;False;0;False;0,0.0510832,0.4056604,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;37;-1367.581,177.7655;Inherit;False;Property;_clip;clip;5;0;Create;True;0;0;0;False;0;False;0;0.03948747;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.GetLocalVarNode;38;-1877.773,-163.3695;Inherit;False;29;TwirlNoise;1;0;OBJECT;;False;1;COLOR;0
-Node;AmplifyShaderEditor.StepOpNode;39;-1561.725,-126.5016;Inherit;True;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RangedFloatNode;40;-1898.167,-31.58481;Inherit;False;Property;_scale;scale;4;0;Create;True;0;0;0;False;0;False;0.1706263;1;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.OneMinusNode;41;-1277.346,-94.66342;Inherit;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;42;-2070.532,-873.5547;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.Vector2Node;43;-3092.046,-546.337;Inherit;False;Constant;_twirlspeed;twirl speed;2;0;Create;True;0;0;0;False;0;False;3,3;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
-Node;AmplifyShaderEditor.GetLocalVarNode;28;-654.1809,-74.83884;Inherit;False;29;TwirlNoise;1;0;OBJECT;;False;1;COLOR;0
-WireConnection;1;2;28;0
-WireConnection;1;3;41;0
-WireConnection;1;4;37;0
-WireConnection;10;2;15;0
-WireConnection;10;3;21;0
-WireConnection;10;4;12;0
-WireConnection;11;0;10;0
-WireConnection;11;1;22;0
-WireConnection;12;0;13;0
-WireConnection;12;1;43;0
-WireConnection;14;0;20;0
-WireConnection;14;1;13;0
-WireConnection;17;0;19;0
-WireConnection;17;1;18;0
-WireConnection;19;3;16;0
-WireConnection;19;4;14;0
-WireConnection;23;1;27;0
-WireConnection;23;2;11;0
-WireConnection;24;2;26;0
-WireConnection;24;3;25;0
-WireConnection;27;1;30;0
-WireConnection;27;2;24;0
-WireConnection;29;0;23;0
-WireConnection;31;1;32;0
-WireConnection;32;0;33;0
-WireConnection;32;2;34;0
-WireConnection;35;0;31;0
-WireConnection;39;0;38;0
-WireConnection;39;1;40;0
-WireConnection;41;0;39;0
+Node;AmplifyShaderEditor.FunctionNode;44;-2515.543,-467.6606;Inherit;True;Twirl;-1;;3;90936742ac32db8449cd21ab6dd337c8;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT;0;False;4;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.NoiseGeneratorNode;45;-2151.194,-513.884;Inherit;True;Simplex2D;True;False;2;0;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;46;-2683.22,-332.1685;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.SimpleTimeNode;47;-3021.662,-464.3975;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.Vector2Node;49;-2748.347,-556.2161;Inherit;False;Constant;_twirlcenter1;twirl center;2;0;Create;True;0;0;0;False;0;False;7.3,5.46;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
+Node;AmplifyShaderEditor.RangedFloatNode;55;-2747.76,-418.076;Inherit;False;Constant;_strengthtwirl1;strength twirl;2;0;Create;True;0;0;0;False;0;False;0.4;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;56;-2320.102,-212.6707;Inherit;False;Constant;_scalenoise3;scale noise;2;0;Create;True;0;0;0;False;0;False;10;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.LerpOp;57;-1527.751,-679.4592;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.FresnelNode;58;-2293.24,-1159.523;Inherit;True;Standard;WorldNormal;ViewDir;False;False;5;0;FLOAT3;0,0,1;False;4;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;1;False;3;FLOAT;5;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;59;-2515.009,-1034.958;Inherit;False;Property;_power1;power;2;0;Create;True;0;0;0;False;0;False;2.02;1.54;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;60;-2542.611,-1152.327;Inherit;False;Property;_scaleF1;scaleF;3;0;Create;True;0;0;0;False;0;False;0;0.31;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.LerpOp;61;-1926.324,-1146.352;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.RegisterLocalVarNode;63;-1158.9,-644.0029;Inherit;False;TwirlNoise;-1;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.Vector2Node;77;-2909.329,-316.6631;Inherit;False;Constant;_twirlspeed1;twirl speed;2;0;Create;True;0;0;0;False;0;False;3,3;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
+Node;AmplifyShaderEditor.GetLocalVarNode;62;-658.0341,-79.81739;Inherit;False;63;TwirlNoise;1;0;OBJECT;;False;1;COLOR;0
+Node;AmplifyShaderEditor.SamplerNode;65;-1421.676,568.8491;Inherit;True;Property;_efectox3;efecto x2;0;0;Create;True;0;0;0;False;0;False;-1;d77e279a95248cd4f90527f3ca9f57e4;d77e279a95248cd4f90527f3ca9f57e4;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.PannerNode;66;-1648.59,632.5447;Inherit;False;3;0;FLOAT2;0,0;False;2;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.TextureCoordinatesNode;67;-1936.591,568.5447;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.Vector2Node;68;-1904.591,712.5445;Inherit;False;Property;_speed1;speed;1;0;Create;True;0;0;0;False;0;False;2,1;5,5;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
+Node;AmplifyShaderEditor.StepOpNode;69;-1049.961,700.1458;Inherit;True;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.StepOpNode;73;-2328.8,103.1723;Inherit;True;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.RangedFloatNode;74;-2665.242,198.089;Inherit;False;Property;_scale1;scale;4;0;Create;True;0;0;0;False;0;False;0.1706263;1;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.OneMinusNode;75;-2044.42,135.0104;Inherit;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.GetLocalVarNode;72;-2691.14,14.86963;Inherit;False;63;TwirlNoise;1;0;OBJECT;;False;1;COLOR;0
+Node;AmplifyShaderEditor.RegisterLocalVarNode;78;-1777.872,115.8555;Inherit;False;TwirlNoiseSinColor;-1;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.RangedFloatNode;71;-715.3884,285.3741;Inherit;False;Property;_clip1;clip;5;0;Create;True;0;0;0;False;0;False;0;0.039;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.GetLocalVarNode;79;-627.2358,109.8524;Inherit;False;78;TwirlNoiseSinColor;1;0;OBJECT;;False;1;COLOR;0
+Node;AmplifyShaderEditor.ColorNode;64;-2166.354,-1539.041;Inherit;False;Constant;_Color2;Color 0;6;1;[HDR];Create;True;0;0;0;False;0;False;2.939247,0,1.988953,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+WireConnection;1;2;62;0
+WireConnection;1;3;79;0
+WireConnection;1;4;71;0
+WireConnection;44;2;49;0
+WireConnection;44;3;55;0
+WireConnection;44;4;46;0
+WireConnection;45;0;44;0
+WireConnection;45;1;56;0
+WireConnection;46;0;47;0
+WireConnection;46;1;77;0
+WireConnection;57;1;61;0
+WireConnection;57;2;45;0
+WireConnection;58;2;60;0
+WireConnection;58;3;59;0
+WireConnection;61;1;64;0
+WireConnection;61;2;58;0
+WireConnection;63;0;57;0
+WireConnection;65;1;66;0
+WireConnection;66;0;67;0
+WireConnection;66;2;68;0
+WireConnection;69;0;65;0
+WireConnection;73;0;72;0
+WireConnection;73;1;74;0
+WireConnection;75;0;73;0
+WireConnection;78;0;75;0
 ASEEND*/
-//CHKSM=F4A54415CB215934C3487338CBBE3A1C1FC22508
+//CHKSM=10C1A3106FAE7568735EF1C02859FA7FB28A52A1

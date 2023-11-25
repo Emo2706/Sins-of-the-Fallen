@@ -44,9 +44,13 @@ Material:
     - _TessPhongStrength: 0.5
     - _TessValue: 16
     - _clip: 0.03948747
+    - _clip1: 0.039
     - _power: 2.02
+    - _power1: 1.54
     - _scale: 1
+    - _scale1: 1
     - _scaleF: 0.31
+    - _scaleF1: 0.31
     m_Colors:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

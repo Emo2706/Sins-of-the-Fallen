@@ -5,17 +5,17 @@ using System;
 
 public class LifeHandlerBoss
 {
-    public event Action OnHalfLife = delegate {};
+    public event Action OnBossDefeated= delegate {};
 
     public LifeHandlerBoss()
     {
 
     }
 
-    public void HalfLife()
+    public void Defeated()
     {
         //OnHalfLife();
-        EventManager.TriggerEvent(EventManager.EventsType.Event_BossHalfLife);
+        EventManager.TriggerEvent(EventManager.EventsType.Event_BossDefeated);
     }
     
 }

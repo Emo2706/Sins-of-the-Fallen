@@ -153,6 +153,8 @@ public class Player : Entity
     {
         base.TakeDmg(dmg);
 
+        AudioManager.instance.Play(AudioManager.Sounds.DmgSound);
+
         CheckLife();
 
     }

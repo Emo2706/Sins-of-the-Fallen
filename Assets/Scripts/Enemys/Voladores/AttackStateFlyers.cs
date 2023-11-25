@@ -8,7 +8,6 @@ public class AttackStateFlyers : State
     EnemyFlyers _flyer;
     int _speedRotation;
     float _shootCooldown;
-    float _minDistAttack;
     Transform _transform;
     float _shootTimer;
     Vector3 _playerPos;
@@ -20,7 +19,6 @@ public class AttackStateFlyers : State
     {
         _flyer = flyer;
         _transform = flyer.transform;
-        _minDistAttack = flyer.minDistAttack;
         _shootCooldown = flyer.shootCooldown;
         _speedRotation = flyer.speedRotation;
         _pivotShoot = flyer.pivotShootFlyer;
@@ -40,7 +38,7 @@ public class AttackStateFlyers : State
 
             _transform.forward = _playerPos;
 
-            if (_playerPos.sqrMagnitude >= _minDistAttack * _minDistAttack)
+            if (_playerPos.sqrMagnitude >= _flyer.minDistAttack * _flyer.minDistAttack)
             {
                 _flyer.ChangeState(FlyersStates.Patrol);
                 _flyer.player = null;
@@ -72,7 +70,7 @@ public class AttackStateFlyers : State
         bullet.transform.position = _pivotShoot.position;
         bullet.transform.rotation = _transform.rotation;
         bullet.dir = _transform.forward;
-
+        AudioManager.instance.Play(AudioManager.Sounds.EnemyShoot);
     }
 
     public override void OnFixedUpdate()

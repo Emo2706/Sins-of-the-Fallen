@@ -15,8 +15,8 @@ MonoBehaviour:
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
-  - {fileID: 9058099855736546515}
-  m_RendererFeatureMap: d3a431b1d3d5b47d
+  - {fileID: 6180532111972474504}
+  m_RendererFeatureMap: 889e03c135a9c555
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_ClusteredRendering: 0
   m_TileSize: 32
   m_IntermediateTextureMode: 1
---- !u!114 &9058099855736546515
+--- !u!114 &6180532111972474504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,18 +63,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e691fb65fa733624ca961dbcaac2bd93, type: 3}
-  m_Name: Inferno
+  m_Script: {fileID: 11500000, guid: 2474fe6491b65c84480e7fde5b631eb3, type: 3}
+  m_Name: URPCustomFeature
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
+  renderPassEvent: 400
   settings:
-    renderPassEvent: 400
-    blitMaterial: {fileID: 2100000, guid: e448168f3244203498d9de5975adccef, type: 2}
-    blitMaterialPassIndex: -1
-    sourceType: 0
-    destinationType: 0
-    sourceTextureId: _SourceTexture
-    destinationTextureId: _DestinationTexture
-    mask:
-      serializedVersion: 2
-      m_Bits: 0
+    IsEnabled: 1
+    WhenToInsert: 1000
+    MaterialToBlit: {fileID: 2100000, guid: e448168f3244203498d9de5975adccef, type: 2}

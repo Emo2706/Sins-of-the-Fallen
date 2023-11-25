@@ -7,7 +7,6 @@ public class PatrolStateFlyers : State
     EnemyFlyers _flyer;
     int _speed;
     Transform _transform;
-    float _minDistAttack;
     LayerMask _playerMask;
 
 
@@ -16,7 +15,6 @@ public class PatrolStateFlyers : State
         _flyer = flyer;
         _speed = flyer.speed;
         _transform = flyer.transform;
-        _minDistAttack = flyer.minDistAttack;
         _playerMask = flyer.playerMask;
     }
 
@@ -30,7 +28,7 @@ public class PatrolStateFlyers : State
 
         if (_flyer.player == null)
         {
-            var player = Physics.OverlapSphere(_transform.position, _minDistAttack, _playerMask);
+            var player = Physics.OverlapSphere(_transform.position, _flyer.minDistAttack, _playerMask);
 
             foreach (var item in player)
             {

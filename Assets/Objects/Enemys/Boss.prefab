@@ -188,6 +188,7 @@ MonoBehaviour:
   twisterCooldown: 4
   twistersAmount: 10
   twistersAmountPhase2: 18
+  twistersAmountPhase3: 22
   nextTwistersCooldown: 7
   startCircleAttack: 3
   cooldownChangeAttackCircle: 4

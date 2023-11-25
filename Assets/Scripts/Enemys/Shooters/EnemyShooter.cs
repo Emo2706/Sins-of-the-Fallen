@@ -92,6 +92,7 @@ public class EnemyShooter : EnemyGlobalScript
         var lifePotion = UnityEngine.Random.Range(1, 3);
 
         OnDie();
+        AudioManager.instance.Play(AudioManager.Sounds.DieEnemies);
 
         yield return dieAnimation;
 
@@ -103,6 +104,12 @@ public class EnemyShooter : EnemyGlobalScript
         }
 
         EnemyShooterFactory.instance.ReturnToPool(this);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 10)
+            minDistAttack = 300;
     }
 }
 

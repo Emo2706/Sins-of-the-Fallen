@@ -87,6 +87,7 @@ public class EnemyFlyers : EnemyGlobalScript
         var lifePotion = UnityEngine.Random.Range(1, 3);
 
         OnDie();
+        AudioManager.instance.Play(AudioManager.Sounds.DieEnemies);
 
         yield return dieAnimation;
 
@@ -105,6 +106,12 @@ public class EnemyFlyers : EnemyGlobalScript
         Gizmos.color = Color.black;
 
         Gizmos.DrawWireSphere(transform.position, minDistAttack);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 10)
+            minDistAttack = 300;
     }
 }
 

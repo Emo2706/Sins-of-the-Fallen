@@ -126,6 +126,7 @@ public class EnemyNormal : EnemyGlobalScript
         var lifePotion = UnityEngine.Random.Range(1, 3);
 
         OnDie();
+        AudioManager.instance.Play(AudioManager.Sounds.DieEnemies);
 
         yield return dieAnimation;
 

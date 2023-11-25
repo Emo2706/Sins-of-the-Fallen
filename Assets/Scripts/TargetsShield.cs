@@ -8,6 +8,7 @@ public class TargetsShield : MonoBehaviour
     {
         if (other.gameObject.layer == 10)
         {
+            AudioManager.instance.Play(AudioManager.Sounds.HitTarget);
             TargetsShieldFactory.instance.ReturnToPool(this);
             TargetsShieldFactory.instance.initialAmount--;
         }

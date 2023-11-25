@@ -7,7 +7,6 @@ public class AttackState : State
 {
     int _speedRotation;
     float _shootCooldown;
-    float _minDistAttack;
     Transform _transform;
     float _shootTimer;
     EnemyShooter _shooter;
@@ -21,7 +20,6 @@ public class AttackState : State
         _shooter = shooter;
         _speedRotation = shooter.speedRotation;
         _shootCooldown = shooter.shootCooldown;
-        _minDistAttack = shooter.minDistAttack;
         _transform = shooter.transform;
         _pivotShoot = shooter.pivotShoot;
     }
@@ -39,7 +37,7 @@ public class AttackState : State
         {
             _playerPos = _player.transform.position - _transform.position;
 
-            if (_playerPos.sqrMagnitude >= _minDistAttack * _minDistAttack)
+            if (_playerPos.sqrMagnitude >= _shooter.minDistAttack * _shooter.minDistAttack)
             {
                 _shooter.ChangeState(ShooterStates.Patrol);
                 _shooter.player = null;
@@ -85,5 +83,6 @@ public class AttackState : State
         bullet.transform.position = _pivotShoot.position;
         bullet.transform.rotation = _transform.rotation;
         bullet.dir = _transform.forward;
+        AudioManager.instance.Play(AudioManager.Sounds.EnemyShoot);
     }
 }

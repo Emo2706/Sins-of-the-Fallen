@@ -43,6 +43,7 @@ public class WinScreen : MonoBehaviour, IScreen
         Cursor.lockState = CursorLockMode.Confined;
         Debug.Log("Activate");
         ActivateButtons(true);
+        
     }
 
 
@@ -72,5 +73,9 @@ public class WinScreen : MonoBehaviour, IScreen
         LevelManager.instance.StartLevel(0);
     }
 
-   
+    private void OnDestroy()
+    {
+        EventManager.UnSubscribeToEvent(EventManager.EventsType.Event_WinGame, ActivateScreen);
+    }
+
 }

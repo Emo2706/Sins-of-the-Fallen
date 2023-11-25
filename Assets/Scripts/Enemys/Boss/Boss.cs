@@ -17,6 +17,7 @@ public class Boss : EnemyGlobalScript
     public int twisterCooldown;
     public int twistersAmount;
     public int twistersAmountPhase2;
+    public int twistersAmountPhase3;
     public int nextTwistersCooldown;
     public int startCircleAttack;
     public int cooldownChangeAttackCircle;
@@ -144,6 +145,8 @@ public class Boss : EnemyGlobalScript
     {
         if (life <= 0)
         {
+            _lifeHandler.Defeated();
+
             BossFactory.instance.ReturnToPool(this);
         }
 
@@ -162,8 +165,8 @@ public class Boss : EnemyGlobalScript
 
         if (life <= _lifePhase3Cooldown)
         {
-            twistersAmount = spawnPointsTwister.Length;
             coolDownCircle = _coolDownCirclePhase3;
+            twistersAmount = twistersAmountPhase3;
         }
     }
 

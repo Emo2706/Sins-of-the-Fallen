@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PatrolState : State
 {
-    float _minDistAttack;
     Transform _transform;
     LayerMask _playerMask;
     EnemyShooter _shooter;
@@ -12,7 +11,6 @@ public class PatrolState : State
     public PatrolState(EnemyShooter shooter)
     {
         _shooter = shooter;
-        _minDistAttack = shooter.minDistAttack;
         _transform = shooter.transform;
         _playerMask = shooter.playerMask;
     }
@@ -27,7 +25,7 @@ public class PatrolState : State
     {
         if (_shooter.player == null)
         {
-            var player = Physics.OverlapSphere(_transform.position, _minDistAttack,_playerMask);
+            var player = Physics.OverlapSphere(_transform.position, _shooter.minDistAttack,_playerMask);
 
             foreach (var item in player)
             {

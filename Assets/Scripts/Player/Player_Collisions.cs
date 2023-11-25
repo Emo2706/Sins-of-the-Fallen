@@ -58,13 +58,21 @@ public class Player_Collisions
         {
             _movement.JumpSlime();
             _player.TakeDmg(_slimeDmg);
+            
         }
 
         if (collision.gameObject.layer == 18)
+        {
             _player.TakeDmg(_punchDmg);
+            
+        }
 
         if (collision.gameObject.layer == 11)
+        {
             _player.TakeDmg(_punchDmg);
+           
+
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -84,11 +92,13 @@ public class Player_Collisions
         if(other.gameObject.layer == 17)
         {
             _player.TakeDmg(_circleDmg);
+            
         }
 
         if (other.gameObject.layer == 12)
         {
             _player.TakeDmg(_bulletsDmg);
+            
         }
 
 
