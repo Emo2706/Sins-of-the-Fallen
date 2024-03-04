@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: eed5f2a9b72ed5943854157b15e98f6a
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _efectox2: {fileID: 2800000, guid: d77e279a95248cd4f90527f3ca9f57e4, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

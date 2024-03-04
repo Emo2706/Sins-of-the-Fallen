@@ -14,6 +14,7 @@ public class AttackStateFlyers : State
     Player _player;
     Transform _pivotShoot;
     public event Action OnShoot;
+    Vector3 _shootDir;
 
     public AttackStateFlyers(EnemyFlyers flyer)
     {
@@ -35,6 +36,8 @@ public class AttackStateFlyers : State
         if (_flyer.life > 0)
         {
             _playerPos = _player.transform.position - _transform.position;
+
+            _shootDir = _player.transform.position - _pivotShoot.position;
 
             _transform.forward = _playerPos;
 
@@ -69,7 +72,7 @@ public class AttackStateFlyers : State
         var bullet = BulletEnemyFactory.instance.GetObjFromPool();
         bullet.transform.position = _pivotShoot.position;
         bullet.transform.rotation = _transform.rotation;
-        bullet.dir = _transform.forward;
+        bullet.dir = _shootDir.normalized;
         AudioManager.instance.Play(AudioManager.Sounds.EnemyShoot);
     }
 

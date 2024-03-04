@@ -80,6 +80,12 @@ public class AudioManager : MonoBehaviour
         return s.source.isPlaying;
     }
 
+    public void PlayRandom(int[] IdSounds)
+    {
+        int randomChance = Random.Range(0, IdSounds.Length);
+        Play(IdSounds[randomChance]);
+    }
+
     public static class Sounds
     {
         public const int Werewolf = 0;
@@ -93,15 +99,32 @@ public class AudioManager : MonoBehaviour
         public const int Zones = 8;
         public const int LifePotion = 9;
         public const int DieEnemies = 10;
-        public const int DmgSound = 11;
-        public const int Lotion = 12;
-        public const int TheOpenDoor = 13;
-        public const int InstancePowerUp = 14;
-        public const int Burn = 15;
-        public const int DmgEnemies = 16;
-        public const int EnemyShoot = 17;
-        public const int BossScream = 18;
-        public const int HitShield = 19;
-        public const int HitTarget = 20;
+        public const int Lotion = 11;
+        public const int TheOpenDoor = 12;
+        public const int InstancePowerUp = 13;
+        public const int Burn = 14;
+        public const int DmgEnemies = 15;
+        public const int EnemyShoot = 16;
+        public const int BossScream = 17;
+        public const int HitShield = 18;
+        public const int HitTarget = 19;
+        public const int Hurt1 = 20;
+        public const int Hurt2 = 21;
+        public const int Jump1 = 22;
+        public const int Jump2 = 23;
+        public const int Jump3 = 24;
+        public const int Jump4 = 25;
+        public const int Jump5 = 26;
+        public const int ShieldBreak = 27;
+        public const int TouchLava = 28;
+        public const int BossShoot1 = 29;
+        public const int BossShoot2 = 30;
+        public const int BossShoot3 = 31;
+        public const int Ambience = 32;
+        public const int PowerUpBullets = 33;
+        public const int SpawnEnemies = 34;
+        public const int Charge1 = 35;
+        public const int Charge2 = 36;
+        public const int Charge3 = 37;
     }
 }

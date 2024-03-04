@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 63b0d342e6c98db46a17e6f421c0d8fa
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _fuego1: {fileID: 2800000, guid: 2bad3284e0427434d85ed22fdf3b6d89, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -18,6 +18,7 @@ public class EnemyFlyers : EnemyGlobalScript
     public LayerMask playerMask = 1 << 9;
     public Transform pivotShootFlyer;
     public event Action OnDie;
+    public bool isInRightZone = false;
     // Start is called before the first frame update
    protected override void Start()
     {
@@ -77,7 +78,12 @@ public class EnemyFlyers : EnemyGlobalScript
     void CheckLife()
     {
         if (life <= 0)
+        {
+            if (ManagerSecondZone.instance != null && isInRightZone == true)
+                ManagerSecondZone.instance.Kill();
+
             StartCoroutine(DieCoroutine());
+        }
     }
 
     public IEnumerator DieCoroutine()
@@ -111,7 +117,7 @@ public class EnemyFlyers : EnemyGlobalScript
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 10)
-            minDistAttack = 300;
+            minDistAttack = 50;
     }
 }
 

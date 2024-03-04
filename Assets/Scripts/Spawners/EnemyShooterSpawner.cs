@@ -10,17 +10,19 @@ public class EnemyShooterSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        for (int i = 0; i < EnemyShooterFactory.instance.initialAmount; i++)
-        {
-            SpawnEnemys(spawnPoints[i].position);
-        }
+        SecondZone.SecondZoneEvent += SpawnEnemys;
     }
 
-    void SpawnEnemys(Vector3 pos)
+    void SpawnEnemys()
     {
-        EnemyGlobalScript enemy = EnemyShooterFactory.instance.GetObjFromPool();
-        enemy.transform.position = pos;
-        enemy.transform.parent = _root;
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            EnemyGlobalScript enemy = EnemyShooterFactory.instance.GetObjFromPool();
+            enemy.transform.position = spawnPoints[i].position;
+            enemy.transform.parent = _root;
+            
+        }
+
+        AudioManager.instance.Play(AudioManager.Sounds.SpawnEnemies);
     }
 }

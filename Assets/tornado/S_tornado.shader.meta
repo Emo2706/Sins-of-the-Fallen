@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 88c7ff57d16863e49bc9f5ec9eacf770
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _efectotornado: {fileID: 2800000, guid: e919dd5dc0c5bd04288d3145761e26df, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Door
+  m_Shader: {fileID: 4800000, guid: 489c15218cd47b440af649fe7b09f106, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: b78c770742f761b4e8f1548cb2ee08a9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: b78c770742f761b4e8f1548cb2ee08a9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaCutoff: 0.5
+    - _NoiseScale: 10
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _RS1NoiseScale: 5
+    - _RS2NoiseScale: 8
+    - _Stepcolordiff: 0.45
+    - _Stepcolordiff1: 0.39
+    - _Stepcolordiff2: 0.3
+    - _TessEdgeLength: 16
+    - _TessMax: 25
+    - _TessMaxDisp: 25
+    - _TessMin: 10
+    - _TessPhongStrength: 0.5
+    - _TessValue: 16
+    - _TwirlIntensity: 1.44
+    m_Colors:
+    - _Color0: {r: 2.9960785, g: 2.2431374, b: 0, a: 0}
+    - _Color1: {r: 0.5647059, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OffsetSpeed: {r: 0.8, g: 0, b: 0, a: 0}
+    - _RS1NoiseCenter: {r: 2.93, g: -1.19, b: 0, a: 0}
+    - _RS1NoiseSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _RS1NoiseStrength: {r: 0.1, g: 0.06, b: 0, a: 0}
+    - _RS2NoiseCenter: {r: 3.07, g: -1.09, b: 0, a: 0}
+    - _RS2NoiseSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _RS2NoiseStrength: {r: 0.1, g: 0.06, b: 0, a: 0}
+    - _Speed: {r: 0, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _TwirlCenter: {r: -0.16, g: 0.81, b: 0, a: 0}
+  m_BuildTextureStacks: []

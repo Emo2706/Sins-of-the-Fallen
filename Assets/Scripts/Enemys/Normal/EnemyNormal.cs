@@ -93,6 +93,9 @@ public class EnemyNormal : EnemyGlobalScript
         {
             if (ManagerFirstZone.instance != null)
                 ManagerFirstZone.instance.Kill();
+
+            else if (ManagerFirstZone.instance == null && ManagerSecondZone.instance != null)
+                ManagerSecondZone.instance.Kill();
             
             StartCoroutine(DieCoroutine());
 
@@ -115,7 +118,7 @@ public class EnemyNormal : EnemyGlobalScript
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 10)
-            minDist = 300;
+            minDist = 50;
     }
 
 

@@ -82,7 +82,7 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FresnelColor: {r: 2.9960785, g: 1.5372549, b: 0.28235295, a: 0}
     - _LavaColor: {r: 3.9245284, g: 1.0706064, b: 0.49982202, a: 0}
-    - _MinMaxMaskRemap: {r: 0, g: 0.7, b: 0, a: 0}
+    - _MinMaxMaskRemap: {r: -0.002, g: 0.7, b: 0, a: 0}
     - _MinMaxRemap: {r: 0, g: 1, b: 0, a: 0}
     - _MinMaxTextureRemap: {r: 1, g: 12, b: 0, a: 0}
     - _NoiseSpeed: {r: 0, g: 0.075, b: 0, a: 0}

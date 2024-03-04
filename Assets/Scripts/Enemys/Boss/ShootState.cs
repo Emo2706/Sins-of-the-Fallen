@@ -17,6 +17,7 @@ public class ShootState : State
     Transform _spawnPointCircleAttack;
     public Player player;
     Vector3 _playerPos;
+    Vector3 _shootPivot;
     public ShootState(Boss boss)
     {
         _boss = boss;
@@ -62,7 +63,19 @@ public class ShootState : State
 
         _playerPos = player.transform.position - _transform.position;
 
-        _transform.forward = _playerPos;
+        _playerPos.y = 0;
+
+         _shootPivot = player.transform.position - _pivotShoot.position;
+
+        Quaternion targetRotation = Quaternion.LookRotation(_playerPos, Vector3.up);
+
+        
+
+        _transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
+
+        
+
+        
         if (_playerPos.sqrMagnitude <= _viewRadius * _viewRadius)
         {
             if (_shootTimer >= _shootCoolDown)
@@ -81,7 +94,8 @@ public class ShootState : State
     {
         var bullet = BulletBossFactory.instance.GetObjFromPool();
         bullet.transform.position = _pivotShoot.position;
-        bullet.dir = _transform.forward;
+        bullet.dir = _shootPivot.normalized;
+        AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.BossShoot1, AudioManager.Sounds.BossShoot2, AudioManager.Sounds.BossShoot3 });
     }
 
     IEnumerator TwisterAttack()

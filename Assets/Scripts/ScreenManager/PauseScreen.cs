@@ -28,10 +28,6 @@ public class PauseScreen : MonoBehaviour,IScreen
 
     }
 
-    public void BTN_Options()
-    {
-        ScreenManager.instance.Push("PauseScreen");
-    }
 
     public void BTN_Back()
     {
@@ -59,6 +55,7 @@ public class PauseScreen : MonoBehaviour,IScreen
     public void Restart()
     {
         LevelManager.instance.RestartLevel();
+        
     }
 
     public void ExitToMenu()

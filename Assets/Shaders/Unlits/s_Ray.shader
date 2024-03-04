@@ -8,6 +8,8 @@ Shader "s_Unlit6"
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
 		[ASEBegin]_rayotextura("rayo textura", 2D) = "white" {}
 		_movimiento("movimiento", Vector) = (0,0,0,0)
+		[HDR]_Color0("Color 0", Color) = (2.240558,0.09982684,0,0)
+		[HDR]_Color1("Color 1", Color) = (1.844303,0.5314204,0,0)
 		_dir("dir", Vector) = (0,0,0,0)
 		[ASEEnd]_dir2("dir2", Vector) = (0,0,0,0)
 
@@ -226,6 +228,8 @@ Shader "s_Unlit6"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Color0;
+			float4 _Color1;
 			float3 _dir;
 			float3 _dir2;
 			float2 _movimiento;
@@ -396,11 +400,9 @@ Shader "s_Unlit6"
 					#endif
 				#endif
 
-				float4 color16 = IsGammaSpace() ? float4(2.240558,0.09982684,0,0) : float4(5.899071,0.009995974,0,0);
-				float4 color15 = IsGammaSpace() ? float4(1.844303,0.5314204,0,0) : float4(3.844422,0.2442845,0,0);
 				float2 texCoord11 = IN.ase_texcoord3.xy * float2( 1,1 ) + ( _TimeParameters.x * _movimiento );
 				float4 tex2DNode19 = tex2D( _rayotextura, texCoord11 );
-				float4 lerpResult10 = lerp( color16 , color15 , tex2DNode19);
+				float4 lerpResult10 = lerp( _Color0 , _Color1 , tex2DNode19);
 				
 				float3 BakedAlbedo = 0;
 				float3 BakedEmission = 0;
@@ -490,6 +492,8 @@ Shader "s_Unlit6"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Color0;
+			float4 _Color1;
 			float3 _dir;
 			float3 _dir2;
 			float2 _movimiento;
@@ -743,6 +747,8 @@ Shader "s_Unlit6"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Color0;
+			float4 _Color1;
 			float3 _dir;
 			float3 _dir2;
 			float2 _movimiento;
@@ -970,6 +976,8 @@ Shader "s_Unlit6"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Color0;
+			float4 _Color1;
 			float3 _dir;
 			float3 _dir2;
 			float2 _movimiento;
@@ -1182,6 +1190,8 @@ Shader "s_Unlit6"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Color0;
+			float4 _Color1;
 			float3 _dir;
 			float3 _dir2;
 			float2 _movimiento;
@@ -1399,6 +1409,8 @@ Shader "s_Unlit6"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Color0;
+			float4 _Color1;
 			float3 _dir;
 			float3 _dir2;
 			float2 _movimiento;
@@ -1621,6 +1633,8 @@ Shader "s_Unlit6"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Color0;
+			float4 _Color1;
 			float3 _dir;
 			float3 _dir2;
 			float2 _movimiento;
@@ -1809,14 +1823,14 @@ Node;AmplifyShaderEditor.TextureCoordinatesNode;11;-1648.094,15.12021;Inherit;Fa
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;12;-1814.902,61.65503;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.SimpleTimeNode;13;-2033.457,0.1512122;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.Vector2Node;14;-2049.165,110.6336;Inherit;False;Property;_movimiento;movimiento;1;0;Create;True;0;0;0;False;0;False;0,0;0,-4;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
-Node;AmplifyShaderEditor.ColorNode;15;-1296.775,-253.7278;Inherit;False;Constant;_Color1;Color 1;1;1;[HDR];Create;True;0;0;0;False;0;False;1.844303,0.5314204,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.ColorNode;16;-1270.586,-471.8731;Inherit;False;Constant;_Color0;Color 0;1;1;[HDR];Create;True;0;0;0;False;0;False;2.240558,0.09982684,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;15;-1296.775,-253.7278;Inherit;False;Property;_Color1;Color 1;3;1;[HDR];Create;True;0;0;0;False;0;False;1.844303,0.5314204,0,0;1.844303,0.5314204,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;17;-846.2104,30.86823;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;18;-964.6093,125.9267;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.SamplerNode;19;-1343.465,-35.32122;Inherit;True;Property;_rayotextura;rayo textura;0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;19;-1343.465,-35.32122;Inherit;True;Property;_rayotextura;rayo textura;0;0;Create;True;0;0;0;False;0;False;-1;None;893d5be6296787241be75462fb35d8a1;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.PosVertexDataNode;20;-1544.662,196.0171;Inherit;False;0;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.Vector3Node;21;-1208.203,360.7661;Inherit;False;Property;_dir2;dir2;3;0;Create;True;0;0;0;False;0;False;0,0,0;0,0,4;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
-Node;AmplifyShaderEditor.Vector3Node;22;-1214.363,205.1263;Inherit;False;Property;_dir;dir;2;0;Create;True;0;0;0;False;0;False;0,0,0;4,0,0;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+Node;AmplifyShaderEditor.Vector3Node;21;-1208.203,360.7661;Inherit;False;Property;_dir2;dir2;5;0;Create;True;0;0;0;False;0;False;0,0,0;1,0,1;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+Node;AmplifyShaderEditor.Vector3Node;22;-1214.363,205.1263;Inherit;False;Property;_dir;dir;4;0;Create;True;0;0;0;False;0;False;0,0,0;1,0,1;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+Node;AmplifyShaderEditor.ColorNode;16;-1270.586,-471.8731;Inherit;False;Property;_Color0;Color 0;2;1;[HDR];Create;True;0;0;0;False;0;False;2.240558,0.09982684,0,0;2.240558,0.09982684,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 WireConnection;1;2;10;0
 WireConnection;1;5;17;0
 WireConnection;10;0;16;0
@@ -1832,4 +1846,4 @@ WireConnection;18;0;22;0
 WireConnection;18;1;21;0
 WireConnection;19;1;11;0
 ASEEND*/
-//CHKSM=8F702AFE3804ABB18CE1CB216CEEF0AE0967B1F6
+//CHKSM=E62910A7DB32B0AB52F5C2FA6D7EAE2C80A7866A

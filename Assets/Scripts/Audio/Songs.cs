@@ -42,6 +42,8 @@ public class Songs : MonoBehaviour
 
         AudioManager.instance.Play(AudioManager.Sounds.Werewolf);
 
+        AudioManager.instance.Stop(AudioManager.Sounds.Ambience);
+
         yield return werewolf ;
 
         AudioManager.instance.Stop(AudioManager.Sounds.Werewolf);

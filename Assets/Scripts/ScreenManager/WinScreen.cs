@@ -66,6 +66,7 @@ public class WinScreen : MonoBehaviour, IScreen
     public void Restart()
     {
         LevelManager.instance.RestartLevel();
+        AudioManager.instance.StopAllsounds();
     }
 
     public void ExitToMenu()

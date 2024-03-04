@@ -4,25 +4,41 @@ using UnityEngine;
 
 public class EnemyNormalSpawner : MonoBehaviour
 {
-    public Transform[] spawnPoints;
+    public Transform[] spawnPointsFirstZone;
+    public Transform[] spawnPointsSecondZone;
     [SerializeField] Transform _root;
 
 
     // Start is called before the first frame update
     void Start()
     {
-       
-
-        for (int i = 0; i < EnemyFactory.instance.initialAmount; i++)
-        {
-            SpawnEnemys(spawnPoints[i].position);
-        }
+        ColliderFirstZone.FirstZone += SpawnEnemysFirstZone;
+        SecondZone.SecondZoneEvent += SpawnEnemysSecondZone;
+      
     }
 
-     void SpawnEnemys(Vector3 pos)
+    void SpawnEnemysFirstZone()
     {
-        EnemyGlobalScript enemy = EnemyFactory.instance.GetObjFromPool();
-        enemy.transform.position = pos;
-        enemy.transform.parent = _root;
+        for (int i = 0; i < spawnPointsFirstZone.Length; i++)
+        {
+            EnemyGlobalScript enemy = EnemyFactory.instance.GetObjFromPool();
+            enemy.transform.position = spawnPointsFirstZone[i].position;
+            enemy.transform.parent = _root;
+        }
+
+        AudioManager.instance.Play(AudioManager.Sounds.SpawnEnemies);
+    }
+
+
+    void SpawnEnemysSecondZone()
+    {
+        for (int i = 0; i < spawnPointsSecondZone.Length; i++)
+        {
+            EnemyGlobalScript enemy = EnemyFactory.instance.GetObjFromPool();
+            enemy.transform.position = spawnPointsSecondZone[i].position;
+            enemy.transform.parent = _root;
+        }
+
+        AudioManager.instance.Play(AudioManager.Sounds.SpawnEnemies);
     }
 }

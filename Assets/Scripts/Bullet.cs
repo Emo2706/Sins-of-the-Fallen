@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 6 || other.gameObject.layer == 11 || other.gameObject.layer==15 || other.gameObject.layer==21 || other.gameObject.layer == 20)
+        if (other.gameObject.layer == 6 || other.gameObject.layer == 11 || other.gameObject.layer==15 || other.gameObject.layer==21 || other.gameObject.layer == 20 || other.gameObject.layer == 22)
         {
             var particles =   ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ShootHit);
             particles.transform.position = transform.position;

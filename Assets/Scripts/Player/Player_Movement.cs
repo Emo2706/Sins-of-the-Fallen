@@ -99,6 +99,7 @@ public class Player_Movement
         {
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             jump = false;
+            AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Jump1, AudioManager.Sounds.Jump2, AudioManager.Sounds.Jump3, AudioManager.Sounds.Jump4, AudioManager.Sounds.Jump5 });
         }
     }
 
@@ -121,8 +122,11 @@ public class Player_Movement
             _dashing = true;
             _rb.AddForce(_dir* _dashForce, ForceMode.Impulse);
             _dashTimer2 = 0;
-
+            _player.dashParticles.SetActive(true);
+            _player.dashWind.SetActive(true);
+            _player.StartCoroutine(DashEffects());
         }
+
     }
     public void Glide()
     {
@@ -165,6 +169,18 @@ public class Player_Movement
         _transform.rotation = Quaternion.Euler(0f, _mouseX, 0f);
 
         _cam?.Rotation(_mouseX, y);
+    }
+
+    IEnumerator DashEffects()
+    {
+        float timer = 0;
+        while(timer < 0.6)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        _player.dashParticles.SetActive(false);
+        _player.dashWind.SetActive(false);
     }
 
 }

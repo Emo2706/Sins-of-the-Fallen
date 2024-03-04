@@ -10,6 +10,7 @@ public class BulletsPowerUp : PowerUp
     public override void Active()
     {
         _player.PowerUpBullet();
+        AudioManager.instance.Play(AudioManager.Sounds.PowerUpBullets);
     }
 
     private void OnTriggerEnter(Collider other)

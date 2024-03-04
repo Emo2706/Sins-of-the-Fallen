@@ -75,7 +75,12 @@ public class EnemyShooter : EnemyGlobalScript
      void CheckLife()
      {
         if (life <= 0)
+        {
+            if (ManagerSecondZone.instance != null)
+                ManagerSecondZone.instance.Kill();
+
             StartCoroutine(DieCoroutine());
+        }
         
      }
 
@@ -109,7 +114,7 @@ public class EnemyShooter : EnemyGlobalScript
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 10)
-            minDistAttack = 300;
+            minDistAttack = 30;
     }
 }
 

@@ -46,7 +46,7 @@ public class LifePotion : PowerUp
 
     public override void Active()
     {
-        if (_player != null)
+        if (_player != null && _player.life<50)
         {
             _player.life += _lifePotion;
             AudioManager.instance.Play(AudioManager.Sounds.LifePotion);

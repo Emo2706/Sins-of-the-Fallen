@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.Rendering.Universal;
 
 public class Player : Entity
 {
@@ -10,10 +12,12 @@ public class Player : Entity
     Player_Collisions _collisions;
     Player_Attacks _attacks;
     Player_UI _ui;
+    SliderUI _sliderUI;
+    public ScriptableRendererFeature dashWind;
     [SerializeField] Rigidbody _rb;
     LifeHandler _lifeHandler;
     [SerializeField] Transform checkpoint;
- 
+    public GameObject dashParticles;
 
     [Header("Cooldowns")]
     [SerializeField] float _dashDuration;
@@ -42,8 +46,19 @@ public class Player : Entity
     public int phase1Dmg;
     public int phase2Dmg;
 
+    public Animator anim;
 
-    [SerializeField] Slider _healthSlider;
+    public Image imgFire;
+
+    public Material matFire;
+
+    public GameObject[] markers;
+    
+    [SerializeField] Image _hpBar;
+
+    public Slider sliderFireBall;
+
+    public TMP_Text txt;
 
     [SerializeField] FirstPersonCamera _cam;
     [SerializeField] Transform _headTransform;
@@ -71,9 +86,10 @@ public class Player : Entity
         _lifeHandler = new LifeHandler();
         _inputs = new Player_Inputs(transform , _lifeHandler , this);
         _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler , _slimeForce , this , _cam);
-        _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform);
-        _attacks = new Player_Attacks(shootCooldown , _amountPowerUpBullets , _multiplierDmg , _pivotShoot , this);
-        _ui = new Player_UI(_healthSlider, this);
+        _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform , _lifeHandler);
+        _sliderUI = new SliderUI(this);
+        _attacks = new Player_Attacks(shootCooldown , _amountPowerUpBullets , _multiplierDmg , _pivotShoot , this , _sliderUI);
+        _ui = new Player_UI(_hpBar, this);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -98,6 +114,14 @@ public class Player : Entity
         //transform.position = _initialPosition;
         _inputs.ArtificialStart();
         _inputs.CompleteData(_movement);
+
+        AudioManager.instance.Play(AudioManager.Sounds.Ambience);
+
+        CheckPointManager.instance.SetPlayer(this);
+        transform.position = CheckPointManager.instance.CheckPoint();
+
+        _sliderUI.Start();
+       
     }
 
     // Update is called once per frame
@@ -107,6 +131,7 @@ public class Player : Entity
         _inputs.ArtificialUpdate();
         _ui.Update();
         _movement.Update();
+        _sliderUI.Update();
 
         CommandInputs keypressed = _inputs.Inputs();
         if (keypressed != null)
@@ -117,7 +142,7 @@ public class Player : Entity
         if (Input.GetKeyDown(KeyCode.B))
         {
             transform.position = testBossPoint.position;
-            //TakeDmg(10);
+            
         }
     }
 
@@ -153,7 +178,7 @@ public class Player : Entity
     {
         base.TakeDmg(dmg);
 
-        AudioManager.instance.Play(AudioManager.Sounds.DmgSound);
+        AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Hurt1, AudioManager.Sounds.Hurt2 });
 
         CheckLife();
 

@@ -66,6 +66,7 @@ public class LostScreen :MonoBehaviour ,IScreen
     public void Restart()
     {
         LevelManager.instance.RestartLevel();
+        
     }
 
     public void ExitToMenu()

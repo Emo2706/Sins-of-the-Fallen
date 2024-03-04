@@ -16,7 +16,8 @@ MonoBehaviour:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
   - {fileID: 6180532111972474504}
-  m_RendererFeatureMap: 889e03c135a9c555
+  - {fileID: 2487456536720674467}
+  m_RendererFeatureMap: 889e03c135a9c555a38e75818a388522
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -54,6 +55,24 @@ MonoBehaviour:
   m_ClusteredRendering: 0
   m_TileSize: 32
   m_IntermediateTextureMode: 1
+--- !u!114 &2487456536720674467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2474fe6491b65c84480e7fde5b631eb3, type: 3}
+  m_Name: WindEffect
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  renderPassEvent: 500
+  settings:
+    IsEnabled: 1
+    WhenToInsert: 1000
+    MaterialToBlit: {fileID: 2100000, guid: 668550e84ac389d419e1fb869979996c, type: 2}
 --- !u!114 &6180532111972474504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,10 +83,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2474fe6491b65c84480e7fde5b631eb3, type: 3}
-  m_Name: URPCustomFeature
+  m_Name: Ambience
   m_EditorClassIdentifier: 
   m_Active: 1
-  renderPassEvent: 400
+  renderPassEvent: 500
   settings:
     IsEnabled: 1
     WhenToInsert: 1000

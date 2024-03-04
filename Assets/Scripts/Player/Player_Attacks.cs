@@ -17,7 +17,8 @@ public class Player_Attacks
     int _phase1Dmg;
     int _phase2Dmg;
     Player _player;
-    public Player_Attacks(float shootCooldown , int amountPowerUpBullets , int multiplierDmg , Transform pivotShoot , Player player)
+    SliderUI _sliderUI;
+    public Player_Attacks(float shootCooldown , int amountPowerUpBullets , int multiplierDmg , Transform pivotShoot , Player player , SliderUI SliderUI)
     {
         _player = player;
         _shootCooldown = shootCooldown;
@@ -27,11 +28,14 @@ public class Player_Attacks
         _phase1Dmg = player.phase1Dmg;
         _phase2Dmg = player.phase2Dmg;
         _phasesCooldowns = player.phasesCooldowns;
+        _sliderUI = SliderUI;
     }
 
     public void Update()
     {
         //_shootTimer += Time.deltaTime;
+
+       
     }
 
 
@@ -46,7 +50,7 @@ public class Player_Attacks
                 _bullet.dir = Camera.main.transform.forward;
                 _bullet.dmg = 3;
                 Debug.Log("1");
-                AudioManager.instance.Play(AudioManager.Sounds.Fire1);
+                
 
                 if (_chargeTimer >= _phasesCooldowns[1])
                 {
@@ -54,12 +58,12 @@ public class Player_Attacks
 
                     _bullet.dmg = _phase1Dmg;
 
-                    AudioManager.instance.Play(AudioManager.Sounds.Fire2);
+                    
                     if (_chargeTimer >= _phasesCooldowns[2])
                     {
                         _bullet.dmg = _phase2Dmg;
                         Debug.Log("3");
-                        AudioManager.instance.Play(AudioManager.Sounds.Fire3);
+                        
                     }
                 }
 
@@ -104,6 +108,10 @@ public class Player_Attacks
     {
         _chargeTimer += Time.deltaTime;
 
+        _sliderUI.FillCharge();
+
+
+
         Debug.Log("Charge");
     }
 
@@ -113,7 +121,11 @@ public class Player_Attacks
 
         _chargeTimer = 0;
 
+        _sliderUI.ResetSlidedrState();
+
         Debug.Log("Shoot");
+
+        AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Fire1, AudioManager.Sounds.Fire2, AudioManager.Sounds.Fire3, AudioManager.Sounds.Fire4 });
     }
 
 }

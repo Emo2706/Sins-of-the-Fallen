@@ -15,12 +15,15 @@ public class NormalView
 
     public void SetX(float x)
     {
-        _anim.SetFloat("xAxis", x);
+        if (_enemy.life > 0)
+            _anim.SetFloat("xAxis", x);
+            
     }
 
     public void SetZ(float z)
     {
-        _anim.SetFloat("zAxis", z);
+        if (_enemy.life > 0)
+            _anim.SetFloat("zAxis", z);
     }
 
     public void Punch()

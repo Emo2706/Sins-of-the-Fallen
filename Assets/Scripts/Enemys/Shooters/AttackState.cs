@@ -14,6 +14,7 @@ public class AttackState : State
     Player _player;
     Transform _pivotShoot;
     public event Action OnShoot;
+    Vector3 _shootDir;
 
     public AttackState(EnemyShooter shooter)
     {
@@ -36,6 +37,8 @@ public class AttackState : State
         if (_shooter.life>0)
         {
             _playerPos = _player.transform.position - _transform.position;
+
+            _shootDir = _player.transform.position - _pivotShoot.position;
 
             if (_playerPos.sqrMagnitude >= _shooter.minDistAttack * _shooter.minDistAttack)
             {
@@ -82,7 +85,7 @@ public class AttackState : State
         var bullet = BulletEnemyFactory.instance.GetObjFromPool();
         bullet.transform.position = _pivotShoot.position;
         bullet.transform.rotation = _transform.rotation;
-        bullet.dir = _transform.forward;
+        bullet.dir = _shootDir.normalized;
         AudioManager.instance.Play(AudioManager.Sounds.EnemyShoot);
     }
 }

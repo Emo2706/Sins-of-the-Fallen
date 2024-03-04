@@ -16,10 +16,10 @@ public class Player_Collisions
     int _circleDmg;
     int _bulletsDmg;
     int _punchDmg;
+    LifeHandler _lifeHandler;
 
 
-
-    public Player_Collisions(Player_Movement movement, Rigidbody rb, Transform spawnpoint, Player Player, Transform transform)
+    public Player_Collisions(Player_Movement movement, Rigidbody rb, Transform spawnpoint, Player Player, Transform transform , LifeHandler lifeHandler)
     {
         _movement = movement;
         _rb = rb;
@@ -32,6 +32,7 @@ public class Player_Collisions
         _circleDmg = Player.circleDmg;
         _bulletsDmg = Player.bulletsDmg;
         _punchDmg = Player.enemyDmg;
+        _lifeHandler = lifeHandler;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -44,7 +45,7 @@ public class Player_Collisions
         }
         if (collision.gameObject.layer == 7)
         {
-            _player.gameObject.transform.position = _checkpoint.position;
+            _lifeHandler.OnDead();
         }
 
         if (collision.gameObject.layer == 8)
@@ -101,10 +102,15 @@ public class Player_Collisions
             
         }
 
+        if (other.gameObject.layer == 23)
+        {
+            CheckPointManager.instance.SetSpawnPosition(other.transform.position);
+        }
+
 
         var powerUp = other.GetComponent<PowerUp>();
 
-        if (powerUp != null)
+        if (powerUp != null && _player.life<50)
             powerUp.Active();
     }
 

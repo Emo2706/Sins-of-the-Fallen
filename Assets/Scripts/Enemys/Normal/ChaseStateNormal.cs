@@ -78,12 +78,12 @@ public class ChaseStateNormal : State
 
         _transform.forward = dir;
 
-        if (dir.x != 0)
+        if (dir.x != 0 && _enemy.life> 0)
         {
             OnMovement(dir.x);
         }
 
-        if (dir.z != 0)
+        if (dir.z != 0 && _enemy.life > 0)
         {
             OnMovement(dir.z);
         }

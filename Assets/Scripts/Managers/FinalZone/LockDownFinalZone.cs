@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LockDownFinalZone : MonoBehaviour
 {
-   [SerializeField] MeshRenderer _mr;
    [SerializeField] Collider _collider;
 
     private void Start()
@@ -16,7 +15,6 @@ public class LockDownFinalZone : MonoBehaviour
 
     public void OnZone()
     {
-        _mr.enabled = true;
         _collider.enabled = true;
     }
 

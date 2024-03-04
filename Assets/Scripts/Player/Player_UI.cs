@@ -6,17 +6,20 @@ using UnityEngine.UI;
 public class Player_UI
 {
     Player _player;
-    Slider _healthSlider;
+    Image _hpBar;
+    float _fillAmountImage;
 
-    public Player_UI(Slider healthSlider , Player player)
+    public Player_UI(Image hpBar , Player player)
     {
-        _healthSlider = healthSlider;
+        _hpBar = hpBar;
         _player = player;
     }
 
     public void Update()
     {
-        _healthSlider.value = _player.life;
+        _fillAmountImage = _player.life / 50f;
+        _hpBar.fillAmount = _fillAmountImage;
+        
     }
 
     

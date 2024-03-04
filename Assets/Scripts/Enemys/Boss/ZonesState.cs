@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ZonesState : State
 {
     int _zoneAttackCooldown;
-    ZoneAttackWarning warning;
+    ZoneAttackWarning _warning;
     int _changeStateCooldown;
     Boss _boss;
+    public event Action Zone = delegate { };
+
     public ZonesState(Boss boss)
     {
         _boss = boss;
@@ -19,8 +22,8 @@ public class ZonesState : State
     {
         Debug.Log("Enter zones");
 
-        warning = ZoneAttackWarningFactory.instance.GetObjFromPool();
-        warning.transform.position = _boss.spawnPointsZone[Random.Range(0, _boss.spawnPointsZone.Length)].position;
+        _warning = ZoneAttackWarningFactory.instance.GetObjFromPool();
+        _warning.transform.position = _boss.spawnPointsZone[UnityEngine.Random.Range(0, _boss.spawnPointsZone.Length)].position;
         _boss.StartCoroutine(ZoneAttackCouroutine());
     }
 
@@ -37,7 +40,13 @@ public class ZonesState : State
 
     public override void OnUpdate()
     {
-        
+        Vector3 warningpos = _warning.transform.position - _boss.transform.position;
+
+        warningpos.y = 0;
+
+        Quaternion warningRotation = Quaternion.LookRotation(warningpos, Vector3.up);
+
+        _boss.transform.rotation = Quaternion.Euler(0, warningRotation.eulerAngles.y, 0);
     }
 
     IEnumerator ZoneAttackCouroutine()
@@ -54,7 +63,8 @@ public class ZonesState : State
 
 
         ZoneAttack zoneAttack = ZoneAttackFactory.instance.GetObjFromPool();
-        zoneAttack.transform.position = warning.transform.position;
+        zoneAttack.transform.position = _warning.transform.position;
+        Zone();
         AudioManager.instance.Play(AudioManager.Sounds.Zones);
 
         yield return _waitForChangeState;

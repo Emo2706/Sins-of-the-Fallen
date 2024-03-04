@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Boss : EnemyGlobalScript
 {
     FSM<BossStates> _stateMachine;
     ShootState _shoot;
     ZonesState _zones;
     LifeHandlerBoss _lifeHandler;
+    BossView _view;
+  
 
     public float viewRadius;
     public LayerMask playerMask = 1<<9;
@@ -35,12 +38,16 @@ public class Boss : EnemyGlobalScript
     public Transform spawnPointCircle;
     public Transform[] spawnPointsPotions;
     public Transform[] spawnPointsTargetsShield;
+    [SerializeField] Transform _spawnPointShield;
 
     float _changeAttackTimer;
     float _lifePotionTimer;
     bool _canActivateShield = true;
 
     [SerializeField] int _lifePhase3Cooldown;
+
+
+    
 
     Shield _shield;
     BossStates[] _bossStates = new BossStates[] { BossStates.Shoot, BossStates.Zones };
@@ -60,12 +67,16 @@ public class Boss : EnemyGlobalScript
         _shoot = new ShootState(this);
         _zones = new ZonesState(this);
         _lifeHandler = new LifeHandlerBoss();
+        _view = new BossView(this);
+        
 
         _stateMachine.AddState(BossStates.Shoot ,_shoot);
         _stateMachine.AddState(BossStates.Zones ,_zones);
 
 
         ChangeState(BossStates.Shoot);
+
+        _zones.Zone += _view.Zone;
 
     }
 
@@ -122,6 +133,8 @@ public class Boss : EnemyGlobalScript
             if (TargetsShieldFactory.instance.initialAmount <= 0)
             {
                 ShieldFactory.instance.ReturnToPool(_shield);
+               
+                
             }
         }
 
@@ -174,7 +187,7 @@ public class Boss : EnemyGlobalScript
     void Shield(params object[] p)
     {
         _shield = ShieldFactory.instance.GetObjFromPool();
-        _shield.transform.position = transform.position;
+        _shield.transform.position = _spawnPointShield.position;
 
         foreach (var item in spawnPointsTargetsShield)
         {

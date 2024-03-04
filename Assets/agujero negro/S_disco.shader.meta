@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: b4f3a01f4479fa1499821ef1da5344dd
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _shockwavefarotextura2: {fileID: 2800000, guid: 684e7608697732f44987b60a6e7f5b46, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
