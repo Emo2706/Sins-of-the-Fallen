@@ -462,18 +462,18 @@ Shader "S_WindGlide"
 				float2 CenteredUV15_g5 = ( IN.ase_texcoord3.xy - float2( 0.5,0.5 ) );
 				float2 break17_g5 = CenteredUV15_g5;
 				float2 appendResult23_g5 = (float2(( length( CenteredUV15_g5 ) * 1.0 * 2.0 ) , ( atan2( break17_g5.x , break17_g5.y ) * ( 1.0 / TWO_PI ) * 1.0 )));
-				float2 texCoord47_g4 = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 center45_g4 = float2( 0.5,0.5 );
-				float2 delta6_g4 = ( texCoord47_g4 - center45_g4 );
-				float angle10_g4 = ( length( delta6_g4 ) * _TwirlIntensity );
-				float x23_g4 = ( ( cos( angle10_g4 ) * delta6_g4.x ) - ( sin( angle10_g4 ) * delta6_g4.y ) );
-				float2 break40_g4 = center45_g4;
-				float2 break41_g4 = float2( 0,0 );
-				float y35_g4 = ( ( sin( angle10_g4 ) * delta6_g4.x ) + ( cos( angle10_g4 ) * delta6_g4.y ) );
-				float2 appendResult44_g4 = (float2(( x23_g4 + break40_g4.x + break41_g4.x ) , ( break40_g4.y + break41_g4.y + y35_g4 )));
+				float2 texCoord47_g6 = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 center45_g6 = float2( 0.5,0.5 );
+				float2 delta6_g6 = ( texCoord47_g6 - center45_g6 );
+				float angle10_g6 = ( length( delta6_g6 ) * _TwirlIntensity );
+				float x23_g6 = ( ( cos( angle10_g6 ) * delta6_g6.x ) - ( sin( angle10_g6 ) * delta6_g6.y ) );
+				float2 break40_g6 = center45_g6;
+				float2 break41_g6 = float2( 0,0 );
+				float y35_g6 = ( ( sin( angle10_g6 ) * delta6_g6.x ) + ( cos( angle10_g6 ) * delta6_g6.y ) );
+				float2 appendResult44_g6 = (float2(( x23_g6 + break40_g6.x + break41_g6.x ) , ( break40_g6.y + break41_g6.y + y35_g6 )));
 				float cos37 = cos( ( _TimeParameters.x * _GradientTimeScale ) );
 				float sin37 = sin( ( _TimeParameters.x * _GradientTimeScale ) );
-				float2 rotator37 = mul( appendResult44_g4 - float2( 0.5,0.5 ) , float2x2( cos37 , -sin37 , sin37 , cos37 )) + float2( 0.5,0.5 );
+				float2 rotator37 = mul( appendResult44_g6 - float2( 0.5,0.5 ) , float2x2( cos37 , -sin37 , sin37 , cos37 )) + float2( 0.5,0.5 );
 				float simpleNoise40 = SimpleNoise( rotator37*50.0 );
 				float Twirl45 = simpleNoise40;
 				Gradient gradient136 = NewGradient( 0, 2, 2, float4( 0.1531239, 0.8695475, 0.8773585, 0 ), float4( 1, 1, 1, 1 ), 0, 0, 0, 0, 0, 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
@@ -1886,13 +1886,11 @@ Node;AmplifyShaderEditor.RangedFloatNode;17;-1342.508,117.4273;Inherit;False;Pro
 Node;AmplifyShaderEditor.FunctionNode;11;-1689.569,-119.8381;Inherit;False;Polar Coordinates;-1;;5;7dab8e02884cf104ebefaa2e788e4162;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0.5,0.5;False;3;FLOAT;1;False;4;FLOAT;1;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.GetLocalVarNode;65;-1095.791,219.581;Inherit;False;45;Twirl;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SaturateNode;71;-27.14352,44.57199;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;138;-632.3817,80.53114;Inherit;True;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.GradientNode;136;-1185.439,322.7231;Inherit;False;0;2;2;0.1531239,0.8695475,0.8773585,0;1,1,1,1;1,0;1,1;0;1;OBJECT;0
 Node;AmplifyShaderEditor.GradientSampleNode;137;-964.8361,296.4778;Inherit;True;2;0;OBJECT;;False;1;FLOAT;0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;162.5191,-67.80906;Float;False;True;-1;2;UnityEditor.ShaderGraphUnlitGUI;0;13;S_WindGlide;2992e84f91cbeb14eab234972e07ea9d;True;Forward;0;1;Forward;8;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;3;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForwardOnly;False;False;0;;0;0;Standard;23;Surface;1;638450142227893462;  Blend;0;0;Two Sided;1;0;Forward Only;0;0;Cast Shadows;1;0;  Use Shadow Threshold;0;0;Receive Shadows;1;0;GPU Instancing;1;0;LOD CrossFade;0;0;Built-in Fog;0;0;DOTS Instancing;0;0;Meta Pass;0;0;Extra Pre Pass;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Vertex Position,InvertActionOnDeselection;1;0;0;10;False;True;True;True;False;False;True;True;True;True;False;;False;0
-Node;AmplifyShaderEditor.SamplerNode;10;-698.0218,-138.0662;Inherit;True;Property;_MainTex;MainTex;0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleAddOpNode;139;-329.8543,-13.07391;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.FunctionNode;35;-1484.655,-595.0086;Inherit;True;Twirl;-1;;4;90936742ac32db8449cd21ab6dd337c8;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT;0;False;4;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.FunctionNode;35;-1484.655,-595.0086;Inherit;True;Twirl;-1;;6;90936742ac32db8449cd21ab6dd337c8;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT;0;False;4;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.RotatorNode;37;-1188.051,-660.2896;Inherit;True;3;0;FLOAT2;-0.5,-0.5;False;1;FLOAT2;0.5,0.5;False;2;FLOAT;1;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;38;-1383.536,-763.3025;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleTimeNode;39;-1700.471,-833.5887;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
@@ -1900,6 +1898,8 @@ Node;AmplifyShaderEditor.NoiseGeneratorNode;40;-877.7971,-642.106;Inherit;True;S
 Node;AmplifyShaderEditor.RangedFloatNode;44;-1748.391,-728.0212;Inherit;False;Property;_GradientTimeScale;GradientTimeScale;1;0;Create;True;0;0;0;False;0;False;0.75;4.334472;0;5;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;36;-1702.016,-481.5019;Inherit;False;Property;_TwirlIntensity;TwirlIntensity;4;0;Create;True;0;0;0;False;0;False;2.5;5;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode;45;-604.0346,-642.45;Inherit;False;Twirl;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;138;-632.3817,80.53114;Inherit;True;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SamplerNode;10;-698.0217,-132.8662;Inherit;True;Property;_MainTex;MainTex;0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 WireConnection;75;1;76;0
 WireConnection;75;2;77;0
 WireConnection;76;0;79;0
@@ -1917,8 +1917,6 @@ WireConnection;16;1;17;0
 WireConnection;64;0;16;0
 WireConnection;64;1;65;0
 WireConnection;71;0;139;0
-WireConnection;138;0;64;0
-WireConnection;138;1;137;0
 WireConnection;137;0;136;0
 WireConnection;1;2;71;0
 WireConnection;139;0;10;0
@@ -1930,5 +1928,7 @@ WireConnection;38;0;39;0
 WireConnection;38;1;44;0
 WireConnection;40;0;37;0
 WireConnection;45;0;40;0
+WireConnection;138;0;64;0
+WireConnection;138;1;137;0
 ASEEND*/
-//CHKSM=57E63B21B84A58D21B79F882E0C56A4A28D095F7
+//CHKSM=AB440BAE539A5B7D2695AD9409ACE31579097BF5
