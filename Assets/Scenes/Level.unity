@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.18801177, g: 0.4381874, b: 0.6132076, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 3075052f05dde5148a512b9e236b4b33, type: 2}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.025942285, g: 0.0032205724, b: 0.00496151, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -189,6 +189,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
       propertyPath: m_Name
       value: Monolito
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
@@ -373,6 +377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tierra (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
 --- !u!1 &52963147
@@ -515,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &60099537
 Transform:
   m_ObjectHideFlags: 0
@@ -10226,6 +10234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monolito (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
 --- !u!1 &72162329
@@ -10623,11 +10635,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 130
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &103590471 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2483873892812914751, guid: efff8968716625141894681995fccb16, type: 3}
-  m_PrefabInstance: {fileID: 1568805411}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &107178475
 GameObject:
   m_ObjectHideFlags: 0
@@ -10646,7 +10653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &107178476
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10743,7 +10750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &109538021
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10883,7 +10890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &128641715
 Transform:
   m_ObjectHideFlags: 0
@@ -11085,6 +11092,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &190358070
@@ -11105,7 +11116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &190358071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11303,6 +11314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monolito (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
 --- !u!1 &213891162
@@ -11475,7 +11490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &236428687
 Transform:
   m_ObjectHideFlags: 0
@@ -11691,7 +11706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &252277589
 Transform:
   m_ObjectHideFlags: 0
@@ -11883,6 +11898,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &264799703
@@ -12000,7 +12019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &284256077
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12180,7 +12199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &297973781
 Transform:
   m_ObjectHideFlags: 0
@@ -12314,6 +12333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerupEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 7030493016633688684, guid: e05c24d9234c3224bb5d169ac0f26c0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7030493016633688686, guid: e05c24d9234c3224bb5d169ac0f26c0c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -12344,7 +12367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &306107855
 Transform:
   m_ObjectHideFlags: 0
@@ -12521,6 +12544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &316454123
@@ -12541,7 +12568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &316454124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12722,6 +12749,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monolito (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
 --- !u!1 &327457746
@@ -12837,6 +12868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tierra (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
 --- !u!1 &344379199
@@ -12856,7 +12891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &344379200
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -12978,7 +13013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &372610446
 Transform:
   m_ObjectHideFlags: 0
@@ -13015,7 +13050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &378343809
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13143,7 +13178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &381499668
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13292,6 +13327,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
       propertyPath: m_Name
       value: Monolito (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
@@ -13455,7 +13494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &394975819
 Transform:
   m_ObjectHideFlags: 0
@@ -13552,7 +13591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &397178995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13698,6 +13737,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: antorcha (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
 --- !u!4 &399378670 stripped
@@ -13837,6 +13880,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tierra (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
 --- !u!1 &401731691
@@ -13890,7 +13937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &409655969
 Transform:
   m_ObjectHideFlags: 0
@@ -14016,6 +14063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monolito (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
 --- !u!1001 &436239741
@@ -14089,6 +14140,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monolito (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
 --- !u!1 &449049954
@@ -14110,7 +14165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &449049955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14258,6 +14313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest Prefab 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3620366338062898873, guid: 36c0af8c75f9f7b4fb1316dd5539a47a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4140480055500672003, guid: 36c0af8c75f9f7b4fb1316dd5539a47a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -14390,6 +14449,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
       propertyPath: m_Name
       value: tierra (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
@@ -19272,6 +19335,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tierra (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
 --- !u!1 &471148948
@@ -19371,6 +19438,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
       propertyPath: m_Name
       value: arbol1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
@@ -19517,7 +19588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &480997455
 Transform:
   m_ObjectHideFlags: 0
@@ -19557,7 +19628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &484318660
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19899,6 +19970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: antorcha (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
 --- !u!4 &506110954 stripped
@@ -20147,6 +20222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &534825931
@@ -20165,7 +20244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &534825932
 Transform:
   m_ObjectHideFlags: 0
@@ -20245,7 +20324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &563434945
 Transform:
   m_ObjectHideFlags: 0
@@ -20277,7 +20356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &571927124
 Transform:
   m_ObjectHideFlags: 0
@@ -25430,7 +25509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &616750074
 Transform:
   m_ObjectHideFlags: 0
@@ -25818,7 +25897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &643157192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26103,6 +26182,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Helldoor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5597343341930405080, guid: 165bb14dffac5a64184ba7d3cced2a0b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5597343341930405087, guid: 165bb14dffac5a64184ba7d3cced2a0b, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -26289,7 +26372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &664683932
 Transform:
   m_ObjectHideFlags: 0
@@ -26803,6 +26886,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1001 &696907757
@@ -26872,6 +26959,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: antorcha (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
 --- !u!4 &696907758 stripped
@@ -26895,7 +26986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &700113464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26994,6 +27085,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
       propertyPath: m_Name
       value: Monolito (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
@@ -27183,6 +27278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monolito (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
 --- !u!1 &721558928
@@ -27329,7 +27428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &730916637
 Transform:
   m_ObjectHideFlags: 0
@@ -27378,7 +27477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &734923527
 Transform:
   m_ObjectHideFlags: 0
@@ -27447,7 +27546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &759053950
 Transform:
   m_ObjectHideFlags: 0
@@ -27562,7 +27661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &766074416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27946,7 +28045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &771661727
 Transform:
   m_ObjectHideFlags: 0
@@ -28266,6 +28365,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: antorcha (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
 --- !u!4 &793099573 stripped
@@ -28289,7 +28392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &793642452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28369,6 +28472,10 @@ PrefabInstance:
     - target: {fileID: 5597343341930405080, guid: 165bb14dffac5a64184ba7d3cced2a0b, type: 3}
       propertyPath: m_Name
       value: Helldoor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5597343341930405080, guid: 165bb14dffac5a64184ba7d3cced2a0b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5597343341930405087, guid: 165bb14dffac5a64184ba7d3cced2a0b, type: 3}
       propertyPath: m_RootOrder
@@ -28788,7 +28895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &822406304
 Transform:
   m_ObjectHideFlags: 0
@@ -28837,7 +28944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &826695524
 Transform:
   m_ObjectHideFlags: 0
@@ -28967,7 +29074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &834756697
 Transform:
   m_ObjectHideFlags: 0
@@ -29003,7 +29110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &841060437
 Transform:
   m_ObjectHideFlags: 0
@@ -29298,7 +29405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &850394286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29456,6 +29563,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &856423061
@@ -29571,6 +29682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monolito (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
 --- !u!1 &885708220
@@ -29588,7 +29703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &885708221
 Transform:
   m_ObjectHideFlags: 0
@@ -34856,7 +34971,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 25b093dead767954eb1a762843a83634, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -39645,7 +39760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &916696229
 Transform:
   m_ObjectHideFlags: 0
@@ -39897,6 +40012,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Helldoor
       objectReference: {fileID: 0}
+    - target: {fileID: 5597343341930405080, guid: 165bb14dffac5a64184ba7d3cced2a0b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5597343341930405087, guid: 165bb14dffac5a64184ba7d3cced2a0b, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -40140,7 +40259,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -40339,6 +40458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fuente
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 00136732755994343a0e41a713b1528a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6492848607349522261, guid: 00136732755994343a0e41a713b1528a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0536
@@ -40380,7 +40503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &975687601
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40475,7 +40598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &986832680
 Transform:
   m_ObjectHideFlags: 0
@@ -40635,7 +40758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &990618231
 Transform:
   m_ObjectHideFlags: 0
@@ -40992,6 +41115,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &1059691545
@@ -41123,6 +41250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1001 &1065373834
@@ -41195,6 +41326,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
       propertyPath: m_Name
       value: Monolito (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
@@ -41362,6 +41497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &1092295517
@@ -41379,7 +41518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1092295518
 Transform:
   m_ObjectHideFlags: 0
@@ -41416,7 +41555,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1092528809
 Transform:
   m_ObjectHideFlags: 0
@@ -41614,6 +41753,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: antorcha
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
 --- !u!4 &1097604114 stripped
@@ -41764,7 +41907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1107612557
 Transform:
   m_ObjectHideFlags: 0
@@ -41796,11 +41939,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1121152034 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2483873893604190684, guid: efff8968716625141894681995fccb16, type: 3}
-  m_PrefabInstance: {fileID: 1568805411}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1131360979
 GameObject:
   m_ObjectHideFlags: 0
@@ -41819,7 +41957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1131360980
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42007,6 +42145,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tierra (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
 --- !u!1 &1139308000
@@ -42145,6 +42287,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7d9ae7db3883e374590bbc1b3f76d590, type: 3}
       propertyPath: m_Name
       value: domo (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7d9ae7db3883e374590bbc1b3f76d590, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d9ae7db3883e374590bbc1b3f76d590, type: 3}
@@ -47395,6 +47541,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cementerio
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bb98aca9483d3454a9ad6f726069c663, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2487516438431482648, guid: bb98aca9483d3454a9ad6f726069c663, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.753
@@ -47704,6 +47854,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: antorcha (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
 --- !u!4 &1210798418 stripped
@@ -47922,6 +48076,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: antorcha (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
 --- !u!4 &1224243201 stripped
@@ -47999,6 +48157,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
       propertyPath: m_Name
       value: Monolito (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
@@ -48514,6 +48676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: antorcha (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
 --- !u!4 &1264932038 stripped
@@ -48592,6 +48758,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
       propertyPath: m_Name
       value: tierra
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
@@ -48753,6 +48923,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
       propertyPath: m_Name
       value: arbol1 (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
@@ -53586,7 +53760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1289849748
 Transform:
   m_ObjectHideFlags: 0
@@ -58759,17 +58933,14 @@ MonoBehaviour:
   _dashForce: 15
   phase1Dmg: 6
   phase2Dmg: 9
-  anim: {fileID: 1738485588}
-  imgFire: {fileID: 2047024831}
-  matFire: {fileID: 2100000, guid: ee4357e6b3593ab4282c10b7b10e1cd2, type: 2}
-  markers:
-  - {fileID: 1121152034}
-  - {fileID: 103590471}
-  - {fileID: 1795165441}
+  anim: {fileID: 0}
+  imgFire: {fileID: 0}
+  matFire: {fileID: 0}
+  markers: []
   _hpBar: {fileID: 1513942837}
   sliderFireBall: {fileID: 903492970}
   txt: {fileID: 1738485585}
-  _cam: {fileID: 0}
+  _cam: {fileID: 963194231}
   _headTransform: {fileID: 1409036136}
   _pivotShoot: {fileID: 1321224760}
   sensitivity: 150
@@ -58843,7 +59014,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1326531511
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58988,6 +59159,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
       propertyPath: m_Name
       value: arbol1 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
@@ -59136,7 +59311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1337806188
 Transform:
   m_ObjectHideFlags: 0
@@ -59219,7 +59394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1348167917
 Transform:
   m_ObjectHideFlags: 0
@@ -59501,7 +59676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1377850409
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59641,7 +59816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1385303379
 Transform:
   m_ObjectHideFlags: 0
@@ -64572,6 +64747,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monolito (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
 --- !u!1 &1414307566
@@ -64725,6 +64904,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &1428197189
@@ -64776,7 +64959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1429770927
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65032,7 +65215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1475831356
 Transform:
   m_ObjectHideFlags: 0
@@ -65126,7 +65309,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1485221418
 Transform:
   m_ObjectHideFlags: 0
@@ -70401,6 +70584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tienda
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2bb547b942743564f862529de3915f59, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1170970068873931921, guid: 2bb547b942743564f862529de3915f59, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -70884,7 +71071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1556565642
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71165,11 +71352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2483873892613602838, guid: efff8968716625141894681995fccb16, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2483873892613602838, guid: efff8968716625141894681995fccb16, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2483873892812914750, guid: efff8968716625141894681995fccb16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71524,7 +71711,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1578061398
 Transform:
   m_ObjectHideFlags: 0
@@ -71836,7 +72023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1601664155
 Transform:
   m_ObjectHideFlags: 0
@@ -71895,7 +72082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1608458567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71990,6 +72177,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
       propertyPath: m_Name
       value: arbol1 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
@@ -72191,7 +72382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1627510137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72280,6 +72471,10 @@ PrefabInstance:
     - target: {fileID: 3620366338062898873, guid: 36c0af8c75f9f7b4fb1316dd5539a47a, type: 3}
       propertyPath: m_Name
       value: Chest Prefab 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3620366338062898873, guid: 36c0af8c75f9f7b4fb1316dd5539a47a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4140480055500672003, guid: 36c0af8c75f9f7b4fb1316dd5539a47a, type: 3}
       propertyPath: m_RootOrder
@@ -72437,6 +72632,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tierra (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
 --- !u!1001 &1651502762
@@ -72506,6 +72705,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1001 &1656108896
@@ -72574,6 +72777,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
       propertyPath: m_Name
       value: arbol1 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
@@ -72789,6 +72996,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
       propertyPath: m_Name
       value: Monolito (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
@@ -73307,6 +73518,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monolito (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
 --- !u!1 &1705154187
@@ -73355,7 +73570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1708670614
 Transform:
   m_ObjectHideFlags: 0
@@ -73537,6 +73752,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &1722909216
@@ -73682,7 +73901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1732552183
 Transform:
   m_ObjectHideFlags: 0
@@ -73757,11 +73976,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &1738485588 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2483873893075344701, guid: efff8968716625141894681995fccb16, type: 3}
-  m_PrefabInstance: {fileID: 1568805411}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1739006493 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1323724010255365280, guid: 0453cc54a45c262469ebf2f563238698, type: 3}
@@ -73870,6 +74084,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
       propertyPath: m_Name
       value: antorcha (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
@@ -74046,6 +74264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: jaula
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4a07f3c5333b43942ba3709d022783cc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a07f3c5333b43942ba3709d022783cc, type: 3}
 --- !u!1 &1764762795
@@ -74204,7 +74426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1782933513
 Transform:
   m_ObjectHideFlags: 0
@@ -74305,6 +74527,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: antorcha (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
 --- !u!4 &1791582294 stripped
@@ -74343,11 +74569,6 @@ Transform:
   m_Father: {fileID: 916696229}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1795165441 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2483873893303033419, guid: efff8968716625141894681995fccb16, type: 3}
-  m_PrefabInstance: {fileID: 1568805411}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1800493133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74415,6 +74636,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tierra (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
 --- !u!1 &1805999915
@@ -74472,7 +74697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1806026047
 Transform:
   m_ObjectHideFlags: 0
@@ -74680,7 +74905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1813021881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74787,7 +75012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1814954365
 Transform:
   m_ObjectHideFlags: 0
@@ -75075,6 +75300,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &1829026634
@@ -75092,7 +75321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1829026635
 Transform:
   m_ObjectHideFlags: 0
@@ -75126,7 +75355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1834957243
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75248,6 +75477,10 @@ PrefabInstance:
     - target: {fileID: 8396677833865019154, guid: 55f79c67dc150b44e8c13b63bfe910f2, type: 3}
       propertyPath: m_Name
       value: Sparks
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396677833865019154, guid: 55f79c67dc150b44e8c13b63bfe910f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8396677833865019180, guid: 55f79c67dc150b44e8c13b63bfe910f2, type: 3}
       propertyPath: ShapeModule.angle
@@ -75494,6 +75727,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1001 &1867771955
@@ -75563,6 +75800,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tierra (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
 --- !u!1 &1878513004
@@ -75580,7 +75821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1878513005
 Transform:
   m_ObjectHideFlags: 0
@@ -75647,7 +75888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1903161538
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75742,7 +75983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1903229655
 Transform:
   m_ObjectHideFlags: 0
@@ -75874,6 +76115,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &1925943199
@@ -75973,6 +76218,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
       propertyPath: m_Name
       value: tierra (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
@@ -76309,6 +76558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1058b32f923f0eb498d3a2cdfa5b82c7, type: 3}
 --- !u!1 &1959875753
@@ -76472,6 +76725,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
       propertyPath: m_Name
       value: Monolito (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3c66b2aa800884f90675f18afde4e8, type: 3}
@@ -76761,6 +77018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ashes
       objectReference: {fileID: 0}
+    - target: {fileID: 639427770756546314, guid: 49296148e0c12d0409a038ba8d0415cc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49296148e0c12d0409a038ba8d0415cc, type: 3}
 --- !u!1001 &1991142291
@@ -76829,6 +77090,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
       propertyPath: m_Name
       value: tierra (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 450559547142a914f8aad7474c092c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450559547142a914f8aad7474c092c4e, type: 3}
@@ -77020,7 +77285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2024656322
 Transform:
   m_ObjectHideFlags: 0
@@ -77134,6 +77399,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: antorcha (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95d15aee21bb8b4e92139034ec5a282, type: 3}
 --- !u!4 &2029655429 stripped
@@ -77215,6 +77484,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7d9ae7db3883e374590bbc1b3f76d590, type: 3}
       propertyPath: m_Name
       value: domo (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7d9ae7db3883e374590bbc1b3f76d590, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d9ae7db3883e374590bbc1b3f76d590, type: 3}
@@ -77325,17 +77598,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043549857}
   m_Mesh: {fileID: 4019096084496501910, guid: 67c105c643d7d9d48b138b886b861498, type: 3}
---- !u!114 &2047024831 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2483873892609000039, guid: efff8968716625141894681995fccb16, type: 3}
-  m_PrefabInstance: {fileID: 1568805411}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2048599780
 GameObject:
   m_ObjectHideFlags: 0
@@ -77354,7 +77616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2048599781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77451,7 +77713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2049623399
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77826,6 +78088,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7d9ae7db3883e374590bbc1b3f76d590, type: 3}
       propertyPath: m_Name
       value: domo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7d9ae7db3883e374590bbc1b3f76d590, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d9ae7db3883e374590bbc1b3f76d590, type: 3}
@@ -82774,7 +83040,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2084567054
 Transform:
   m_ObjectHideFlags: 0
@@ -83099,7 +83365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2117049794
 Transform:
   m_ObjectHideFlags: 0
@@ -83162,7 +83428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2134892429
 Transform:
   m_ObjectHideFlags: 0
@@ -83613,7 +83879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1040689930055958278
 MeshRenderer:
   m_ObjectHideFlags: 0

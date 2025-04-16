@@ -98,12 +98,12 @@ public class Player : Entity
         #region Inputs
 
         _inputs.BlindKeys(KeyCode.Space, new JumpInputs(_movement));
-        _inputs.BlindKeys(KeyCode.LeftShift, new DashInput(_movement));
+        /*_inputs.BlindKeys(KeyCode.LeftShift, new DashInput(_movement));
         _inputs.BlindKeys(KeyCode.E, new GlideInput(_movement));
-        _inputs.BlindKeysUp(KeyCode.E, new NotGlideInput(_movement));
-        _inputs.BlindKeysUp(KeyCode.Mouse0, new ChargeUpInput(_attacks));
+        _inputs.BlindKeysUp(KeyCode.E, new NotGlideInput(_movement));*/
+        /*_inputs.BlindKeysUp(KeyCode.Mouse0, new ChargeUpInput(_attacks));*/
        // _inputs.BlindKeys(KeyCode.Escape, new PauseInput(new PauseScreen()));
-        _inputs.BlindKeysHold(KeyCode.Mouse0, new ChargeInput(_attacks));
+        /*_inputs.BlindKeysHold(KeyCode.Mouse0, new ChargeInput(_attacks));*/
        
         #endregion
     }
@@ -115,9 +115,9 @@ public class Player : Entity
         _inputs.ArtificialStart();
         _inputs.CompleteData(_movement);
 
-        AudioManager.instance.Play(AudioManager.Sounds.Ambience);
+        /*AudioManager.instance.Play(AudioManager.Sounds.Ambience);*/
 
-        CheckPointManager.instance.SetPlayer(this);
+        /*CheckPointManager.instance.SetPlayer(this);*/
         transform.position = CheckPointManager.instance.CheckPoint();
 
         _sliderUI.Start();
@@ -131,7 +131,7 @@ public class Player : Entity
         _inputs.ArtificialUpdate();
         _ui.Update();
         _movement.Update();
-        _sliderUI.Update();
+        /*_sliderUI.Update();*/
 
         CommandInputs keypressed = _inputs.Inputs();
         if (keypressed != null)
@@ -139,11 +139,11 @@ public class Player : Entity
             keypressed.Execute();
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
+        /*if (Input.GetKeyDown(KeyCode.B))
         {
             transform.position = testBossPoint.position;
             
-        }
+        }*/
     }
 
     public void PowerUpBullet()
@@ -178,7 +178,7 @@ public class Player : Entity
     {
         base.TakeDmg(dmg);
 
-        AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Hurt1, AudioManager.Sounds.Hurt2 });
+        //AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Hurt1, AudioManager.Sounds.Hurt2 });
 
         CheckLife();
 
