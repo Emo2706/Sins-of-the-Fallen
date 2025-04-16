@@ -118,9 +118,9 @@ public class Player : Entity
         /*AudioManager.instance.Play(AudioManager.Sounds.Ambience);*/
 
         /*CheckPointManager.instance.SetPlayer(this);*/
-        transform.position = CheckPointManager.instance.CheckPoint();
+        //transform.position = CheckPointManager.instance.CheckPoint();
 
-        _sliderUI.Start();
+        //_sliderUI.Start();
        
     }
 
