@@ -105,11 +105,11 @@ public class SliderUI
 
         _anim.SetTrigger("CambioDeNum");
 
-        if (_actualPhase == 1)
+        /*if (_actualPhase == 1)
             AudioManager.instance.Play(AudioManager.Sounds.Charge1);
 
         if (_actualPhase == 2)
-            AudioManager.instance.Play(AudioManager.Sounds.Charge2);
+            AudioManager.instance.Play(AudioManager.Sounds.Charge2);*/
 
         
 

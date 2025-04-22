@@ -98,12 +98,12 @@ public class Player : Entity
         #region Inputs
 
         _inputs.BlindKeys(KeyCode.Space, new JumpInputs(_movement));
-        /*_inputs.BlindKeys(KeyCode.LeftShift, new DashInput(_movement));
+        _inputs.BlindKeys(KeyCode.LeftShift, new DashInput(_movement));
         _inputs.BlindKeys(KeyCode.E, new GlideInput(_movement));
-        _inputs.BlindKeysUp(KeyCode.E, new NotGlideInput(_movement));*/
-        /*_inputs.BlindKeysUp(KeyCode.Mouse0, new ChargeUpInput(_attacks));*/
+        _inputs.BlindKeysUp(KeyCode.E, new NotGlideInput(_movement));
+        _inputs.BlindKeysUp(KeyCode.Mouse0, new ChargeUpInput(_attacks));
        // _inputs.BlindKeys(KeyCode.Escape, new PauseInput(new PauseScreen()));
-        /*_inputs.BlindKeysHold(KeyCode.Mouse0, new ChargeInput(_attacks));*/
+        _inputs.BlindKeysHold(KeyCode.Mouse0, new ChargeInput(_attacks));
        
         #endregion
     }
@@ -120,7 +120,7 @@ public class Player : Entity
         /*CheckPointManager.instance.SetPlayer(this);*/
         //transform.position = CheckPointManager.instance.CheckPoint();
 
-        //_sliderUI.Start();
+        _sliderUI.Start();
        
     }
 
@@ -131,7 +131,7 @@ public class Player : Entity
         _inputs.ArtificialUpdate();
         _ui.Update();
         _movement.Update();
-        /*_sliderUI.Update();*/
+        _sliderUI.Update();
 
         CommandInputs keypressed = _inputs.Inputs();
         if (keypressed != null)
