@@ -1,19 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using DG.Tweening;
 
 public class FirstPersonCamera : MonoBehaviour
 {
+    //public static FirstPersonCamera instance;
     [SerializeField] float _minRotation = -45f;
     [SerializeField] float _maxRotation = 45f;
     [SerializeField] float _duration = 1.5f;
     [SerializeField] float _magnitude = 2.5f;
+    //[SerializeField] Transform _initialView;
+    //public CameraExtraFunctions cameraFunctions;
+    //[SerializeField] float _fovInDashGoesTo;
+    //[SerializeField] float _camRotationMultiplier;
 
     float _mouseY;
 
     Transform _head;
 
     public Transform head { get { return _head; } set { _head = value; } }
+
+    /*private void Awake()
+    {
+        if (instance == null) instance = this;
+
+        transform.LookAt(_initialView);
+        cameraFunctions = new CameraExtraFunctions(FlyweightImportants.instance.MainCam, _fovInDashGoesTo, _camRotationMultiplier);
+    }*/
 
     private void LateUpdate()
     {

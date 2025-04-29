@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class Player_Movement 
@@ -117,7 +118,7 @@ public class Player_Movement
 
     public void Dash()
     {
-        if (_dashTimer2>=_dashCooldown)
+        if (_dashTimer2>=_dashCooldown && _dir != Vector3.zero)
         {
             _dashing = true;
             _rb.AddForce(_dir* _dashForce, ForceMode.Impulse);
@@ -128,10 +129,19 @@ public class Player_Movement
         }
 
     }
+
+    /*public void Dash()
+    {
+        if (_stunt) return;
+
+        _player.StartCoroutine(DashCoroutine(_playerDir));
+    }*/
+
     public void Glide()
     {
         if (jump==false)
         {
+            //_dir += new Vector3(0, 1, 0);
             _rb.drag = _glideDrag;
         }
 
@@ -174,7 +184,7 @@ public class Player_Movement
     IEnumerator DashEffects()
     {
         float timer = 0;
-        while(timer < 0.6)
+        while(timer < _dashDuration)
         {
             timer += Time.deltaTime;
             yield return null;
@@ -182,5 +192,51 @@ public class Player_Movement
         _player.dashParticles.SetActive(false);
         _player.dashWind.SetActive(false);
     }
+
+    /*IEnumerator DashCoroutine(Vector3 dir)
+    {
+        if (canDashFromTutorial)
+        {
+            
+            FirstPersonCamera.instance.cameraFunctions.FovDash(_dashDuration);
+            HUDManager.instance.hUDHabilities.habilities[0].Used(_legData.dashCooldown);
+            FullScreenShaderManager.instance.Dash();
+            _player.ApplyHeat(_legData.dashHeatExposure);
+            AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Dash1, AudioManager.Sounds.Dash2, AudioManager.Sounds.Dash3 });
+            MissionManager.instance.AddProgressToThisMission(MissionManager.MisionType.DashInAroom, 1);
+            bool wasInTheAirBeforeDashing = !jump;
+
+            isDashing = true;
+            ResetJetpack();
+            JetpackMethod = delegate { };
+            if (!jump)
+            {
+                _cf.enabled = false;
+
+            }
+            else _cf.enabled = true;
+            _rb.useGravity = !_rb.useGravity;
+            _rb.velocity = FlyweightImportants.instance.MainCam.transform.forward * _dashForce;
+            //if (dir == Vector3.zero) _rb.velocity = Camera.main.transform.forward * _dashForce;
+
+            //else _rb.velocity = (_transform.right * dir.x + _transform.forward * dir.z).normalized * _dashForce;
+
+            yield return new WaitForSeconds(_dashDuration);
+            if (wasInTheAirBeforeDashing || jump)
+                _rb.velocity = Vector3.zero;
+            else _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, _dashForce / 2);
+
+
+            yield return new WaitForSeconds(0.3f);
+            _rb.useGravity = !_rb.useGravity;
+            JetpackMethod = JetpackFlying;
+
+
+            yield return new WaitForSeconds(_legData.dashCooldown);
+            _cf.enabled = true;
+
+            isDashing = false;
+        }
+    }*/
 
 }

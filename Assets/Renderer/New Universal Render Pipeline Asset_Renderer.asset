@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2474fe6491b65c84480e7fde5b631eb3, type: 3}
   m_Name: Ambience
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   renderPassEvent: 500
   settings:
     IsEnabled: 1
