@@ -11,6 +11,9 @@ public class Bullet : MonoBehaviour
     Rigidbody _rb;
     [SerializeField] ParticleSystem _explosion;
     public int dmg ;
+    public int burnDamage = 10;
+    public float burnDuration = 5f;
+    public float burnInterval = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +58,13 @@ public class Bullet : MonoBehaviour
         {
             enemy.TakeDmg(dmg);
             AudioManager.instance.Play(AudioManager.Sounds.DmgEnemies);
+            enemy.ApplyBurn(burnDamage, burnDuration, burnInterval);
+            Debug.Log("El enemigo se quemo");
+            foreach (GameObject particle in enemy._buffParticles)
+            {
+                particle.SetActive(true);
+            }
+
         }
     }
 
