@@ -57,7 +57,7 @@ Material:
     m_Floats:
     - _AlphaCutoff: 0.5
     - _ColorMask: 15
-    - _Porcentaje: 1
+    - _Porcentaje: 0.2429728
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0

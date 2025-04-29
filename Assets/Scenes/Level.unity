@@ -19937,6 +19937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 6326401950916573500, guid: 613bdf2135aa98f4c930f86aad080b93, type: 3}
   _initialAmount: 5
+  _IcebulletPrefab: {fileID: 7365104424646911492, guid: eade5a718f421a84fa61780784894d8e, type: 3}
 --- !u!4 &509005288
 Transform:
   m_ObjectHideFlags: 0

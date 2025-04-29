@@ -8,6 +8,7 @@ public class BulletFactory : MonoBehaviour
     Pool<Bullet> _bulletPool;
     [SerializeField] Bullet _bulletPrefab;
     [SerializeField] int _initialAmount;
+    [SerializeField] Bullet _IcebulletPrefab;
 
     private void Awake()
     {
