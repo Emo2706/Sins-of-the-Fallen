@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class ChangeBullet : MonoBehaviour
@@ -27,10 +28,12 @@ public class ChangeBullet : MonoBehaviour
         if (ruedaMouse > 0f)
         {
             SeleccionarArmaAnterior();
+            //Debug.Log("Bola de Fuego");
         }
         else if (ruedaMouse < 0f)
         {
             SeleccionarArmaSiguiente();
+            //Debug.Log("Bola de Hielo");
         }
     }
 
