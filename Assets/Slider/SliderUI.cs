@@ -19,7 +19,8 @@ public class SliderUI
      Material _materialBG;
     [SerializeField] Image _bg;
     Player _player;
-    
+    float _chargeTimer;
+
     public SliderUI(Player player)
     {
         _player = player;
@@ -30,6 +31,7 @@ public class SliderUI
         _bg = player.imgFire;
         _materialBG = player.matFire;
         _markers = player.markers;
+
     }
 
     // Start is called before the first frame update
@@ -52,6 +54,7 @@ public class SliderUI
             CheckReachedCharge();
             
         }
+
     
     }
 
@@ -97,6 +100,8 @@ public class SliderUI
     void CheckReachedCharge()
     {
         _actualPhase = Mathf.Clamp(_actualPhase + 1, 0, _phasesInSeconds.Length - 1);
+
+
         if (chargeCounter >= _phasesInSeconds[_phasesInSeconds.Length - 1])
         {
             _SliderText.text = _phasesInSeconds.Length.ToString();
@@ -111,9 +116,9 @@ public class SliderUI
         if (_actualPhase == 2)
             AudioManager.instance.Play(AudioManager.Sounds.Charge2);*/
 
+
+
         
-
-
     }
 
     IEnumerator FillAnimtext()
