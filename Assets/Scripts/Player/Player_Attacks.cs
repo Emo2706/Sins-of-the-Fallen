@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_Attacks
 {
     float _shootTimer;
-    float _shootCooldown;
+    float _shootCooldown = 5;
     int _amountPowerUpBullets;
     int _powerUpBulletsCount =0;
     Bullet _bullet;
@@ -18,10 +18,13 @@ public class Player_Attacks
     int _phase2Dmg;
     Player _player;
     SliderUI _sliderUI;
-    public Player_Attacks(float shootCooldown , int amountPowerUpBullets , int multiplierDmg , Transform pivotShoot , Player player , SliderUI SliderUI)
+    Player_UI _playerUI;
+    bulletType currentType = bulletType.Fireball;
+
+    public Player_Attacks(int amountPowerUpBullets , int multiplierDmg , Transform pivotShoot , Player player , SliderUI SliderUI, Player_UI playerUI)
     {
         _player = player;
-        _shootCooldown = shootCooldown;
+        
         _amountPowerUpBullets = amountPowerUpBullets;
         _multiplierDmg = multiplierDmg;
         _pivotShoot = pivotShoot;
@@ -29,6 +32,7 @@ public class Player_Attacks
         _phase2Dmg = player.phase2Dmg;
         _phasesCooldowns = player.phasesCooldowns;
         _sliderUI = SliderUI;
+        _playerUI = playerUI;
     }
 
     public void Update()
@@ -38,46 +42,67 @@ public class Player_Attacks
        
     }
 
+    public void ChangeBullet()
+    {
+        if(currentType == bulletType.Fireball)
+        {
+            _playerUI.DeactivateUI(currentType);
+            currentType = bulletType.Iceball;
+            _playerUI.ActivateUI(currentType);
+            return;
+        }
+
+        else
+        {
+            _playerUI.DeactivateUI(currentType);
+            currentType = bulletType.Fireball;
+            _playerUI.ActivateUI(currentType);
+            return;
+        }
+
+    }
+
 
     public void Shoot()
     {
-       // if (_shootTimer >= _shootCooldown)
+       
+
+        if (_chargeTimer >= _phasesCooldowns[0])
         {
-            if(_chargeTimer >= _phasesCooldowns[0])
-            {
-                _bullet = BulletFactory.instance.GetObjFromPool();
-                _bullet.transform.position = _pivotShoot.transform.position;
-                _bullet.dir = Camera.main.transform.forward;
-                _bullet.dmg = 3;
-                Debug.Log("1");
-                
+            _bullet = BulletFactory.instance.GetObjFromPool(currentType);
+            _bullet.transform.position = _pivotShoot.transform.position;
+            _bullet.dir = Camera.main.transform.forward;
+            _bullet.dmg = 3;
 
-                if (_chargeTimer >= _phasesCooldowns[1])
+            if (_chargeTimer >= _phasesCooldowns[1])
+            {
+
+                _bullet.dmg = _phase1Dmg;
+
+
+                if (_chargeTimer >= _phasesCooldowns[2])
                 {
-                    Debug.Log("2");
-
-                    _bullet.dmg = _phase1Dmg;
-
-                    
-                    if (_chargeTimer >= _phasesCooldowns[2])
+                    _bullet.dmg = _phase2Dmg;
+                    /*_shootTimer += Time.deltaTime;
+                    if(_shootTimer >= _shootCooldown)
                     {
-                        _bullet.dmg = _phase2Dmg;
-                        Debug.Log("3");
-                        
-                    }
+                        Debug.Log("Cancelate LRPM");
+                        ChargeUp();
+                    }*/
                 }
-
-
             }
 
-            if (_powerUpActive == true)
-            {
-                _bullet.dmg *= _multiplierDmg;
-                _powerUpBulletsCount++;
 
-                if (_powerUpBulletsCount > _amountPowerUpBullets)
-                    _powerUpActive = false;
-            }
+        }
+
+        if (_powerUpActive == true)
+        {
+             _bullet.dmg *= _multiplierDmg;
+             _powerUpBulletsCount++;
+
+             if (_powerUpBulletsCount > _amountPowerUpBullets)
+                 _powerUpActive = false;
+        }
 
 
            
@@ -96,7 +121,7 @@ public class Player_Attacks
                 _powerUpBulletsCount = 0;
             }*/
                 
-        }
+        
     }
 
     public void PowerUpBullet()
@@ -110,9 +135,13 @@ public class Player_Attacks
 
         _sliderUI.FillCharge();
 
+        if (_chargeTimer >= _shootCooldown)
+        {
+            Debug.Log("Cancelate LRPM");
+            ChargeUp();
+        }
 
 
-        Debug.Log("Charge");
     }
 
     public void ChargeUp()
@@ -123,7 +152,6 @@ public class Player_Attacks
 
         _sliderUI.ResetSlidedrState();
 
-        Debug.Log("Shoot");
 
         //AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Fire1, AudioManager.Sounds.Fire2, AudioManager.Sounds.Fire3, AudioManager.Sounds.Fire4 });
     }

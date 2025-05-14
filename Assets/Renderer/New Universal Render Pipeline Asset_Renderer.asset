@@ -85,9 +85,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2474fe6491b65c84480e7fde5b631eb3, type: 3}
   m_Name: Ambience
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   renderPassEvent: 500
   settings:
     IsEnabled: 1
-    WhenToInsert: 1000
+    WhenToInsert: 600
     MaterialToBlit: {fileID: 2100000, guid: e448168f3244203498d9de5975adccef, type: 2}

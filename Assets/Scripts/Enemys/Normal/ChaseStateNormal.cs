@@ -12,6 +12,7 @@ public class ChaseStateNormal : State
     Vector3 dir;
     public event Action<float> OnMovement = delegate { };
     public Action Attack;
+    float _chaseMinDist = 0.8f;
     int _maxForce;
     float _separationRadius;
     float _cohesionWeight;
@@ -64,8 +65,12 @@ public class ChaseStateNormal : State
 
     public override void OnFixedUpdate()
     {
-        if(_enemy.life>0)
-            Move();
+        if (_enemy.life > 0)
+        {
+             
+            Move(); 
+        }
+            
 
     }
 
@@ -74,9 +79,24 @@ public class ChaseStateNormal : State
 
         dir = _enemy.player.transform.position - _transform.position;
 
+        if (dir.sqrMagnitude <= _chaseMinDist * _chaseMinDist)
+        {
+            dir = Vector3.zero;
+        }
+
         _rb.MovePosition(_transform.position + dir * _speed * Time.fixedDeltaTime);
 
-        _transform.forward = dir;
+        if(dir != Vector3.zero)
+        {
+            dir.y = 0f;
+
+            var rotation = Quaternion.LookRotation(dir);
+
+            var currentRotation = _enemy.transform.rotation;
+
+            _enemy.transform.rotation = Quaternion.Lerp(currentRotation, rotation, 0.1f);
+        }
+        
 
         if (dir.x != 0 && _enemy.life> 0)
         {
@@ -110,7 +130,7 @@ public class ChaseStateNormal : State
     {
         float dist = (targetPos - _transform.position).sqrMagnitude;
 
-        if (dist > _enemy.minDist * _enemy.minDist) return Seek(targetPos);
+        if (dist > _chaseMinDist * _chaseMinDist) return Seek(targetPos);
 
         return Seek(targetPos, (_speed * (dist / _enemy.minDist)));
     }

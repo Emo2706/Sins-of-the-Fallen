@@ -13,7 +13,16 @@ public class JumpInputs : CommandInputs
 
     public override void Execute()
     {
-        _movement.Jump();
+        if (_movement.jump)
+        {
+            _movement.Jump();
+            return;
+        }
+        else
+        {
+            //_movement.Glide();
+        }
+        
     }
     
 

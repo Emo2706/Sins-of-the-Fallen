@@ -10,6 +10,7 @@ public class Player_Collisions
     Transform _checkpoint;
     Player _player;
     Transform _transform;
+    int _haiserForce;
     int _slimeDmg;
     int _zonesDmg;
     int _twisterDmg;
@@ -33,6 +34,7 @@ public class Player_Collisions
         _bulletsDmg = Player.bulletsDmg;
         _punchDmg = Player.enemyDmg;
         _lifeHandler = lifeHandler;
+        _haiserForce = Player.haiserForce;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -73,6 +75,15 @@ public class Player_Collisions
             _player.TakeDmg(_punchDmg);
            
 
+        }
+        var haiser = collision.gameObject.GetComponent<GlideHaiser>();
+
+        if(haiser != null)
+        {
+            if (haiser.activate)
+            {
+                _rb.AddForce(Vector3.up * _haiserForce, ForceMode.Impulse);
+            }
         }
     }
 

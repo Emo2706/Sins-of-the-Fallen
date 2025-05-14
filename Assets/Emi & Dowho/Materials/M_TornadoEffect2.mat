@@ -56,7 +56,7 @@ Material:
     - _TessValue: 16
     - _TwirlAmount: 8
     m_Colors:
-    - _Color0: {r: 0.09362745, g: 0.014215686, b: 0, a: 0}
+    - _Color0: {r: 4.8796897, g: 2.4562068, b: 1.77234, a: 0}
     - _Color1: {r: 0.04505086, g: 0.0025155304, b: 0, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _NoiseShearSpeed: {r: 0, g: 0.5, b: 0, a: 0}

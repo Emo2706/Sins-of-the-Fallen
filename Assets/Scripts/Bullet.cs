@@ -11,9 +11,8 @@ public class Bullet : MonoBehaviour
     Rigidbody _rb;
     [SerializeField] ParticleSystem _explosion;
     public int dmg ;
-    public int burnDamage = 10;
-    public float burnDuration = 5f;
-    public float burnInterval = 1f;
+    public bulletType elementBullet;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +26,7 @@ public class Bullet : MonoBehaviour
 
         if (_lifeTime>=_lifeCooldown)
         {
-            BulletFactory.instance.ReturnToPool(this);
+            BulletFactory.instance.ReturnToPool(elementBullet, this);
         }
     }
 
@@ -42,29 +41,25 @@ public class Bullet : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 6 || other.gameObject.layer == 11 || other.gameObject.layer==15 || other.gameObject.layer==21 || other.gameObject.layer == 20 || other.gameObject.layer == 22)
         {
             var particles =   ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ShootHit);
             particles.transform.position = transform.position;
-            BulletFactory.instance.ReturnToPool(this);
+            BulletFactory.instance.ReturnToPool(elementBullet,this);
             
         }
+
+
 
         var enemy = other.GetComponent<EnemyGlobalScript>();
 
         if (enemy != null)
         {
             enemy.TakeDmg(dmg);
-            AudioManager.instance.Play(AudioManager.Sounds.DmgEnemies);
-            enemy.ApplyBurn(burnDamage, burnDuration, burnInterval);
-            Debug.Log("El enemigo se quemo");
-            foreach (GameObject particle in enemy._buffParticles)
-            {
-                particle.SetActive(true);
-            }
-
+            //AudioManager.instance.Play(AudioManager.Sounds.DmgEnemies);// cambiar segun bala
+            
         }
     }
 
@@ -82,4 +77,10 @@ public class Bullet : MonoBehaviour
     {
         bullet.gameObject.SetActive(false);
     }
+}
+
+public enum bulletType
+{
+    Fireball,
+    Iceball
 }

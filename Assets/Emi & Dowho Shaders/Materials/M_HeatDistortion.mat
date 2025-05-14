@@ -35,7 +35,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
-    - _HeatDistortion: 0.845
+    - _HeatDistortion: 0.403
     - _NoiseScale: 6
     - _QueueControl: 0
     - _QueueOffset: 0

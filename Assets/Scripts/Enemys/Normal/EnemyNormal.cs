@@ -16,6 +16,7 @@ public class EnemyNormal : EnemyGlobalScript
     public float minDistAttack;
     public event Action<float> OnLifeChange = delegate { };
     public LayerMask playerMask = 1 << 9;
+    [SerializeField] Collider _collider;
     [SerializeField] Collider _colliderPunch;
     [SerializeField] float _punchDuration;
     public event Action OnDie;
@@ -127,9 +128,9 @@ public class EnemyNormal : EnemyGlobalScript
         WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
 
         var lifePotion = UnityEngine.Random.Range(1, 3);
-
+        _collider.enabled = false;
         OnDie();
-        AudioManager.instance.Play(AudioManager.Sounds.DieEnemies);
+        //AudioManager.instance.Play(AudioManager.Sounds.DieEnemies);
 
         yield return dieAnimation;
 
@@ -137,7 +138,7 @@ public class EnemyNormal : EnemyGlobalScript
         {
             var potion = LifePotionFactory.instance.GetObjFromPool();
             potion.transform.position = transform.position;
-            AudioManager.instance.Play(AudioManager.Sounds.InstancePowerUp);
+            //AudioManager.instance.Play(AudioManager.Sounds.InstancePowerUp);
         }
 
         EnemyFactory.instance.ReturnToPool(this);

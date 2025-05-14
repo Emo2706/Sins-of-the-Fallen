@@ -48,6 +48,8 @@ Material:
     - _TessPhongStrength: 0.5
     - _TessValue: 16
     m_Colors:
+    - _Color0: {r: 1.6266088, g: 0.6502752, b: 2.5065153, a: 0}
+    - _Color1: {r: 0.94938487, g: 0, b: 1.844303, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _dir: {r: 1, g: 0, b: 1, a: 0}
     - _dir2: {r: 1, g: 0, b: 1, a: 0}

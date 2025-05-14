@@ -12,6 +12,7 @@ public class GlideInput : CommandInputs
     }
     public override void Execute()
     {
+        if(!_movement.jump)
         _movement.Glide();
     }
 }

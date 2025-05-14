@@ -68,7 +68,7 @@ Material:
     - _TessMin: 10
     - _TessPhongStrength: 0.5
     - _TessValue: 16
-    - _TwirlIntensity: 5
+    - _TwirlIntensity: 3
     - _TwirlIntensity1: 2.5
     - _VignetteAmount: 0.24986649
     - _VignetteAmount1: 1

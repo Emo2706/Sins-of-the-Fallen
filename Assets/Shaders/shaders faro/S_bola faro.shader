@@ -565,7 +565,7 @@ Shader "S_bola faro"
 
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float4 color29 = IsGammaSpace() ? float4(2.996078,2.025489,0,0) : float4(11.17936,4.724608,0,0);
+				float4 color29 = IsGammaSpace() ? float4(1.294025,0,2.996078,0) : float4(1.763087,0,11.17936,0);
 				float fresnelNdotV23 = dot( WorldNormal, WorldViewDirection );
 				float fresnelNode23 = ( 0.0 + _scaleF * pow( 1.0 - fresnelNdotV23, _power ) );
 				float4 lerpResult26 = lerp( float4( 0,0,0,0 ) , color29 , fresnelNode23);
@@ -1116,7 +1116,7 @@ Shader "S_bola faro"
 					#endif
 				#endif
 
-				float4 color29 = IsGammaSpace() ? float4(2.996078,2.025489,0,0) : float4(11.17936,4.724608,0,0);
+				float4 color29 = IsGammaSpace() ? float4(1.294025,0,2.996078,0) : float4(1.763087,0,11.17936,0);
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - WorldPosition );
 				ase_worldViewDir = normalize(ase_worldViewDir);
 				float3 ase_worldNormal = IN.ase_texcoord2.xyz;
@@ -1474,7 +1474,7 @@ Shader "S_bola faro"
 					#endif
 				#endif
 
-				float4 color29 = IsGammaSpace() ? float4(2.996078,2.025489,0,0) : float4(11.17936,4.724608,0,0);
+				float4 color29 = IsGammaSpace() ? float4(1.294025,0,2.996078,0) : float4(1.763087,0,11.17936,0);
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - WorldPosition );
 				ase_worldViewDir = normalize(ase_worldViewDir);
 				float3 ase_worldNormal = IN.ase_texcoord2.xyz;
@@ -1839,7 +1839,7 @@ Shader "S_bola faro"
 					#endif
 				#endif
 
-				float4 color29 = IsGammaSpace() ? float4(2.996078,2.025489,0,0) : float4(11.17936,4.724608,0,0);
+				float4 color29 = IsGammaSpace() ? float4(1.294025,0,2.996078,0) : float4(1.763087,0,11.17936,0);
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - WorldPosition );
 				ase_worldViewDir = normalize(ase_worldViewDir);
 				float3 ase_worldNormal = IN.ase_texcoord4.xyz;
@@ -2183,7 +2183,7 @@ Shader "S_bola faro"
 					#endif
 				#endif
 
-				float4 color29 = IsGammaSpace() ? float4(2.996078,2.025489,0,0) : float4(11.17936,4.724608,0,0);
+				float4 color29 = IsGammaSpace() ? float4(1.294025,0,2.996078,0) : float4(1.763087,0,11.17936,0);
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - WorldPosition );
 				ase_worldViewDir = normalize(ase_worldViewDir);
 				float3 ase_worldNormal = IN.ase_texcoord2.xyz;
@@ -2536,7 +2536,7 @@ Shader "S_bola faro"
 					#endif
 				#endif
 
-				float4 color29 = IsGammaSpace() ? float4(2.996078,2.025489,0,0) : float4(11.17936,4.724608,0,0);
+				float4 color29 = IsGammaSpace() ? float4(1.294025,0,2.996078,0) : float4(1.763087,0,11.17936,0);
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - WorldPosition );
 				ase_worldViewDir = normalize(ase_worldViewDir);
 				float fresnelNdotV23 = dot( WorldNormal, ase_worldViewDir );
@@ -3001,7 +3001,7 @@ Shader "S_bola faro"
 
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float4 color29 = IsGammaSpace() ? float4(2.996078,2.025489,0,0) : float4(11.17936,4.724608,0,0);
+				float4 color29 = IsGammaSpace() ? float4(1.294025,0,2.996078,0) : float4(1.763087,0,11.17936,0);
 				float fresnelNdotV23 = dot( WorldNormal, WorldViewDirection );
 				float fresnelNode23 = ( 0.0 + _scaleF * pow( 1.0 - fresnelNdotV23, _power ) );
 				float4 lerpResult26 = lerp( float4( 0,0,0,0 ) , color29 , fresnelNode23);
@@ -3408,7 +3408,7 @@ Shader "S_bola faro"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
-				float4 color29 = IsGammaSpace() ? float4(2.996078,2.025489,0,0) : float4(11.17936,4.724608,0,0);
+				float4 color29 = IsGammaSpace() ? float4(1.294025,0,2.996078,0) : float4(1.763087,0,11.17936,0);
 				float3 ase_worldPos = IN.ase_texcoord.xyz;
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - ase_worldPos );
 				ase_worldViewDir = normalize(ase_worldViewDir);
@@ -3730,7 +3730,7 @@ Shader "S_bola faro"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
-				float4 color29 = IsGammaSpace() ? float4(2.996078,2.025489,0,0) : float4(11.17936,4.724608,0,0);
+				float4 color29 = IsGammaSpace() ? float4(1.294025,0,2.996078,0) : float4(1.763087,0,11.17936,0);
 				float3 ase_worldPos = IN.ase_texcoord.xyz;
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - ase_worldPos );
 				ase_worldViewDir = normalize(ase_worldViewDir);
@@ -3820,7 +3820,7 @@ Node;AmplifyShaderEditor.FresnelNode;23;-1518.938,-855.8369;Inherit;True;Standar
 Node;AmplifyShaderEditor.RangedFloatNode;24;-1740.708,-731.2715;Inherit;False;Property;_power;power;0;0;Create;True;0;0;0;False;0;False;2.02;2.2;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;25;-1768.31,-848.6409;Inherit;False;Property;_scaleF;scaleF;1;0;Create;True;0;0;0;False;0;False;0;2.32;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;26;-1152.022,-842.6658;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.ColorNode;29;-1427.398,-1092.285;Inherit;False;Constant;_Color1;Color 0;6;1;[HDR];Create;True;0;0;0;False;0;False;2.996078,2.025489,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;29;-1427.398,-1092.285;Inherit;False;Constant;_Color1;Color 0;6;1;[HDR];Create;True;0;0;0;False;0;False;1.294025,0,2.996078,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.FunctionNode;10;-1664.958,-480.0075;Inherit;True;Twirl;-1;;1;90936742ac32db8449cd21ab6dd337c8;0;4;1;FLOAT2;0,0;False;2;FLOAT2;0,0;False;3;FLOAT;0;False;4;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.NoiseGeneratorNode;11;-1300.609,-526.2309;Inherit;True;Simplex2D;True;False;2;0;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;12;-1832.635,-344.5154;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
@@ -3867,4 +3867,4 @@ WireConnection;41;1;45;0
 WireConnection;47;0;11;0
 WireConnection;47;1;40;0
 ASEEND*/
-//CHKSM=4A5B040A972AB08508E6565460319A7390A95D14
+//CHKSM=F50798EAF3EB3D4EC2F48E92F229EB3CA879EA8F

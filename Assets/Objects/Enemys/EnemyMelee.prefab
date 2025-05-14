@@ -308,6 +308,7 @@ MonoBehaviour:
   _rb: {fileID: 6797898066165889937}
   bulletsDmg: 5
   dieAnimationDuration: 4.333
+  _buffParticles: []
   speed: 1
   minDist: 16
   player: {fileID: 0}
@@ -315,6 +316,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 512
+  _collider: {fileID: 7504704069255018109}
   _colliderPunch: {fileID: 1222575460104208180}
   _punchDuration: 1.5
   dir: {x: 0, y: 0, z: 0}
@@ -337,7 +339,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &7504704069255018109
 CapsuleCollider:
@@ -352,7 +354,7 @@ CapsuleCollider:
   m_Radius: 0.32
   m_Height: 2.15
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1222575460104208170
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,7 +2799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2600969864856072877, guid: afd5f9b389c850c46b275a561557961c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.03
+      value: -0.915
       objectReference: {fileID: 0}
     - target: {fileID: 2600969864856072877, guid: afd5f9b389c850c46b275a561557961c, type: 3}
       propertyPath: m_LocalPosition.z

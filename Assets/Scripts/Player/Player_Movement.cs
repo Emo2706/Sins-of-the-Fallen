@@ -85,6 +85,8 @@ public class Player_Movement
             {
                 _dashing = false;
                 _dashTimer = 0;
+                _rb.velocity = Vector3.zero;
+                _rb.angularVelocity = Vector3.zero;
             }
         }
         else
@@ -120,12 +122,16 @@ public class Player_Movement
     {
         if (_dashTimer2>=_dashCooldown && _dir != Vector3.zero)
         {
-            _dashing = true;
-            _rb.AddForce(_dir* _dashForce, ForceMode.Impulse);
-            _dashTimer2 = 0;
-            _player.dashParticles.SetActive(true);
-            _player.dashWind.SetActive(true);
-            _player.StartCoroutine(DashEffects());
+            if(_rb.drag == _initialDrag)
+            {
+                _dashing = true;
+                _rb.AddForce(_dir * _dashForce, ForceMode.Impulse);
+                _dashTimer2 = 0;
+                _player.dashParticles.SetActive(true);
+                _player.dashWind.SetActive(true);
+                _player.StartCoroutine(DashEffects());
+            }
+
         }
 
     }

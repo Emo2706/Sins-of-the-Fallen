@@ -66,7 +66,7 @@ Material:
     - _TransmissionShadow: 0.5
     - _TwirlAmount: 8
     m_Colors:
-    - _Color0: {r: 47.937256, g: 10.290196, b: 3.5137255, a: 1}
+    - _Color0: {r: 27.53272, g: 16.845411, b: 2.018104, a: 1}
     - _Color1: {r: 0.7490196, g: 0.45490196, b: 0.09803922, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _NoiseShearSpeed: {r: 0, g: 0.5, b: 0, a: 0}

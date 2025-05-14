@@ -45,20 +45,24 @@ public class Player : Entity
     [SerializeField] float _dashForce;
     public int phase1Dmg;
     public int phase2Dmg;
-
+    public List<GameObject> FireUI;
+    public List<GameObject> IceUI;
     public Animator anim;
 
     public Image imgFire;
 
     public Material matFire;
 
-    public GameObject[] markers;
-    
+    public GameObject[] fireMarkers;
+    public GameObject[] iceMarkers;
+
     [SerializeField] Image _hpBar;
-
+    public int haiserForce;
     public Slider sliderFireBall;
+    public Slider sliderIceBall;
 
-    public TMP_Text txt;
+    public TMP_Text fireTxt;
+    public TMP_Text iceTxt;
 
     [SerializeField] FirstPersonCamera _cam;
     [SerializeField] Transform _headTransform;
@@ -88,8 +92,8 @@ public class Player : Entity
         _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler , _slimeForce , this , _cam);
         _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform , _lifeHandler);
         _sliderUI = new SliderUI(this);
-        _attacks = new Player_Attacks(shootCooldown , _amountPowerUpBullets , _multiplierDmg , _pivotShoot , this , _sliderUI);
-        _ui = new Player_UI(_hpBar, this);
+        _ui = new Player_UI(_hpBar, this, _sliderUI);
+        _attacks = new Player_Attacks(_amountPowerUpBullets, _multiplierDmg, _pivotShoot, this, _sliderUI, _ui);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -99,8 +103,9 @@ public class Player : Entity
 
         _inputs.BlindKeys(KeyCode.Space, new JumpInputs(_movement));
         _inputs.BlindKeys(KeyCode.LeftShift, new DashInput(_movement));
-        _inputs.BlindKeys(KeyCode.E, new GlideInput(_movement));
-        _inputs.BlindKeysUp(KeyCode.E, new NotGlideInput(_movement));
+        _inputs.BlindKeysHold(KeyCode.Space, new GlideInput(_movement)); 
+        _inputs.BlindKeys(KeyCode.Q, new ChangeBulletInput(_attacks));
+        _inputs.BlindKeysUp(KeyCode.Space, new NotGlideInput(_movement));
         _inputs.BlindKeysUp(KeyCode.Mouse0, new ChargeUpInput(_attacks));
        // _inputs.BlindKeys(KeyCode.Escape, new PauseInput(new PauseScreen()));
         _inputs.BlindKeysHold(KeyCode.Mouse0, new ChargeInput(_attacks));

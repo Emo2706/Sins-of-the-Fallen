@@ -12,6 +12,7 @@ public class NotGlideInput : CommandInputs
 
     public override void Execute()
     {
+        if(!_movement.jump)
         _movement.NotGlide();
     }
 }

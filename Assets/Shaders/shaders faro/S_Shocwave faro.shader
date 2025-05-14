@@ -536,7 +536,7 @@ Shader "S_Shocwave faro"
 
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float4 color36 = IsGammaSpace() ? float4(3.968628,0.06233447,0,0) : float4(20.74956,0.005138254,0,0);
+				float4 color36 = IsGammaSpace() ? float4(2.005607,0,3.968628,0) : float4(4.623181,0,20.74956,0);
 				float2 texCoord27 = IN.ase_texcoord8.xy * float2( 1,1 ) + ( _TimeParameters.x * _speed1 );
 				float4 tex2DNode39 = tex2D( _shockwavefarotextura2, texCoord27 );
 				float4 lerpResult37 = lerp( float4( 0,0,0,0 ) , color36 , tex2DNode39);
@@ -1622,7 +1622,7 @@ Shader "S_Shocwave faro"
 					#endif
 				#endif
 
-				float4 color36 = IsGammaSpace() ? float4(3.968628,0.06233447,0,0) : float4(20.74956,0.005138254,0,0);
+				float4 color36 = IsGammaSpace() ? float4(2.005607,0,3.968628,0) : float4(4.623181,0,20.74956,0);
 				float2 texCoord27 = IN.ase_texcoord4.xy * float2( 1,1 ) + ( _TimeParameters.x * _speed1 );
 				float4 tex2DNode39 = tex2D( _shockwavefarotextura2, texCoord27 );
 				float4 lerpResult37 = lerp( float4( 0,0,0,0 ) , color36 , tex2DNode39);
@@ -1903,7 +1903,7 @@ Shader "S_Shocwave faro"
 					#endif
 				#endif
 
-				float4 color36 = IsGammaSpace() ? float4(3.968628,0.06233447,0,0) : float4(20.74956,0.005138254,0,0);
+				float4 color36 = IsGammaSpace() ? float4(2.005607,0,3.968628,0) : float4(4.623181,0,20.74956,0);
 				float2 texCoord27 = IN.ase_texcoord2.xy * float2( 1,1 ) + ( _TimeParameters.x * _speed1 );
 				float4 tex2DNode39 = tex2D( _shockwavefarotextura2, texCoord27 );
 				float4 lerpResult37 = lerp( float4( 0,0,0,0 ) , color36 , tex2DNode39);
@@ -2605,7 +2605,7 @@ Shader "S_Shocwave faro"
 
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float4 color36 = IsGammaSpace() ? float4(3.968628,0.06233447,0,0) : float4(20.74956,0.005138254,0,0);
+				float4 color36 = IsGammaSpace() ? float4(2.005607,0,3.968628,0) : float4(4.623181,0,20.74956,0);
 				float2 texCoord27 = IN.ase_texcoord8.xy * float2( 1,1 ) + ( _TimeParameters.x * _speed1 );
 				float4 tex2DNode39 = tex2D( _shockwavefarotextura2, texCoord27 );
 				float4 lerpResult37 = lerp( float4( 0,0,0,0 ) , color36 , tex2DNode39);
@@ -3256,7 +3256,7 @@ Node;AmplifyShaderEditor.SimpleMultiplyOpNode;28;-1474.292,260.3465;Inherit;Fals
 Node;AmplifyShaderEditor.SimpleTimeNode;29;-1698.289,212.3466;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.StepOpNode;31;-647.4686,318.5931;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.Vector2Node;34;-1714.289,308.346;Inherit;False;Property;_speed1;speed;0;0;Create;True;0;0;0;False;0;False;0,0;0,1;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
-Node;AmplifyShaderEditor.ColorNode;36;-860.3623,-47.40297;Inherit;False;Constant;_Color3;Color 1;2;1;[HDR];Create;True;0;0;0;False;0;False;3.968628,0.06233447,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;36;-860.3623,-47.40297;Inherit;False;Constant;_Color3;Color 1;2;1;[HDR];Create;True;0;0;0;False;0;False;2.005607,0,3.968628,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.OneMinusNode;32;-387.0171,332.1283;Inherit;True;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;37;-408.5614,-29.72248;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SamplerNode;39;-1002.018,202.3386;Inherit;True;Property;_shockwavefarotextura2;shockwave faro textura2;3;0;Create;True;0;0;0;False;0;False;-1;684e7608697732f44987b60a6e7f5b46;684e7608697732f44987b60a6e7f5b46;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
@@ -3275,4 +3275,4 @@ WireConnection;37;1;36;0
 WireConnection;37;2;39;0
 WireConnection;39;1;27;0
 ASEEND*/
-//CHKSM=8C0D0F21AFAE2406BEBF38CA36DBBDB0B41C0422
+//CHKSM=94FD2AB474761B27B1D7B18180D66AE81F8F3812

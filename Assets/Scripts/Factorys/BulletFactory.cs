@@ -5,9 +5,12 @@ using UnityEngine;
 public class BulletFactory : MonoBehaviour
 {
     public static BulletFactory instance { get; private set; }
-    Pool<Bullet> _bulletPool;
-    [SerializeField] Bullet _bulletPrefab;
+    Pool<Bullet> _fireBulletPool;
+    Pool<Bullet> _iceBulletPool;
+    [SerializeField] Bullet[] _bulletPrefabs;
     [SerializeField] int _initialAmount;
+
+    public Dictionary<bulletType, Pool<Bullet>> _bulletPools = new Dictionary<bulletType, Pool<Bullet>>();
 
     private void Awake()
     {
@@ -22,21 +25,30 @@ public class BulletFactory : MonoBehaviour
             instance = this;
         }
 
-        _bulletPool = new Pool<Bullet>(CreatorMethod, Bullet.TurnOnCallBack, Bullet.TurnOffCallBack, _initialAmount);
+        _fireBulletPool = new Pool<Bullet>(FireCreatorMethod, Bullet.TurnOnCallBack, Bullet.TurnOffCallBack, _initialAmount);
+        _iceBulletPool = new Pool<Bullet>(IceCreatorMethod, Bullet.TurnOnCallBack, Bullet.TurnOffCallBack, _initialAmount);
+
+        _bulletPools.Add(bulletType.Fireball, _fireBulletPool);
+        _bulletPools.Add(bulletType.Iceball, _iceBulletPool);
     }
 
-    Bullet CreatorMethod()
+    Bullet FireCreatorMethod()
     {
-        return Instantiate(_bulletPrefab);
+        return Instantiate(_bulletPrefabs[0]);
     }
 
-    public Bullet GetObjFromPool()
+    Bullet IceCreatorMethod()
     {
-        return _bulletPool.GetObj();
+        return Instantiate(_bulletPrefabs[1]);
     }
-     
-    public void ReturnToPool(Bullet obj)
+
+    public Bullet GetObjFromPool(bulletType type)
     {
-        _bulletPool.Return(obj);
+        return _bulletPools[type].GetObj();
+    }
+
+    public void ReturnToPool(bulletType type, Bullet obj)
+    {
+        _bulletPools[type].Return(obj);
     }
 }

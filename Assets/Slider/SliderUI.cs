@@ -13,25 +13,31 @@ public class SliderUI
     [SerializeField] float chargeCounter;
     [SerializeField] Slider slider;
     [SerializeField] Animator _anim;
-    bool canChangeAnim;
+   
     int _actualPhase;
     [SerializeField] TMP_Text _SliderText;
      Material _materialBG;
     [SerializeField] Image _bg;
     Player _player;
-    float _chargeTimer;
+   
+
+    public Dictionary<bulletType, Slider> ElementalSliders = new Dictionary<bulletType, Slider>();
+    public Dictionary<bulletType, TMP_Text> ElementalTexts = new Dictionary<bulletType, TMP_Text>();
 
     public SliderUI(Player player)
     {
         _player = player;
         _phasesInSeconds = player.phasesCooldowns;
         slider = player.sliderFireBall;
-        _SliderText = player.txt;
+        _SliderText = player.fireTxt;
         _anim = player.anim;
         _bg = player.imgFire;
         _materialBG = player.matFire;
-        _markers = player.markers;
-
+        _markers = player.fireMarkers;
+        ElementalSliders.Add(bulletType.Fireball, player.sliderFireBall);
+        ElementalSliders.Add(bulletType.Iceball, player.sliderIceBall);
+        ElementalTexts.Add(bulletType.Fireball, player.fireTxt);
+        ElementalTexts.Add(bulletType.Iceball, player.iceTxt);
     }
 
     // Start is called before the first frame update
@@ -58,15 +64,39 @@ public class SliderUI
     
     }
 
+    void AltStart()
+    {
+        slider.maxValue = _phasesInSeconds[_phasesInSeconds.Length - 1];
+        maximumCharge = _phasesInSeconds[_phasesInSeconds.Length - 1];
+        _materialBG = _bg.material;
+        CalculateMarkersPos();
+    }
+
+    public void ChangeSlider(bulletType type)
+    {
+        slider = ElementalSliders[type];
+        _SliderText = ElementalTexts[type];
+        if(type == bulletType.Fireball)
+        {
+            _markers = _player.fireMarkers;
+        }
+        else
+        {
+            _markers = _player.iceMarkers;
+        }
+        AltStart();
+    }
+
 
     void CalculateMarkersPos()
     {
         for (int i = 0; i < _markers.Length; i++)
         {
+            //_markers[i].transform.Rotate(Vector3.zero);
             float rotation = _phasesInSeconds[i] * 360 / maximumCharge * -1;
             _SliderText.text = _actualPhase.ToString();
 
-            _markers[i].transform.Rotate(Vector3.forward * rotation);
+            _markers[i].transform.localRotation = Quaternion.Euler(0, 0, rotation);
         }
         
     }
