@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 1222575459710819410}
   - component: {fileID: 1222575459710819409}
   - component: {fileID: 6797898066165889937}
-  - component: {fileID: 7504704069255018109}
+  - component: {fileID: 3015387380507953303}
   m_Layer: 11
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -316,7 +316,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 512
-  _collider: {fileID: 7504704069255018109}
+  _collider: {fileID: 0}
   _colliderPunch: {fileID: 1222575460104208180}
   _punchDuration: 1.5
   dir: {x: 0, y: 0, z: 0}
@@ -341,8 +341,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &7504704069255018109
-CapsuleCollider:
+--- !u!64 &3015387380507953303
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -351,10 +351,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.32
-  m_Height: 2.15
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7453890715989360321, guid: 7ac4569fa3285cc419ec6e4bc7a88043, type: 3}
 --- !u!1 &1222575460104208170
 GameObject:
   m_ObjectHideFlags: 0

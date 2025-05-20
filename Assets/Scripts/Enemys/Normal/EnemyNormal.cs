@@ -128,13 +128,15 @@ public class EnemyNormal : EnemyGlobalScript
         WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
 
         var lifePotion = UnityEngine.Random.Range(1, 3);
-        _collider.enabled = false;
+        
         OnDie();
         //AudioManager.instance.Play(AudioManager.Sounds.DieEnemies);
 
         yield return dieAnimation;
 
-        if(lifePotion == 2)
+        _collider.enabled = false;
+
+        if (lifePotion == 2)
         {
             var potion = LifePotionFactory.instance.GetObjFromPool();
             potion.transform.position = transform.position;

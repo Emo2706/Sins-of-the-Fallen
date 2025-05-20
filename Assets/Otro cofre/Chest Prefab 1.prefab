@@ -51,6 +51,7 @@ MonoBehaviour:
   _animator: {fileID: 4539428113421980990}
   _soulparticle: {fileID: 9194752941076585997}
   chestMesh: {fileID: 8063363667622616012}
+  player: {fileID: 0}
 --- !u!1 &3774487688981861583
 GameObject:
   m_ObjectHideFlags: 0
