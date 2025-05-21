@@ -10363,6 +10363,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1222575459710819409, guid: 3d43461826617de4aaa62b887549cd3a, type: 3}
+      propertyPath: _collider
+      value: 
+      objectReference: {fileID: 1765591302}
     - target: {fileID: 1222575459710819410, guid: 3d43461826617de4aaa62b887549cd3a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -20530,7 +20534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefabs:
   - {fileID: -269207895107863549, guid: 613bdf2135aa98f4c930f86aad080b93, type: 3}
-  - {fileID: -5830928142721509043, guid: 9f90a91f6148e954cb6272e5d5a953cd, type: 3}
+  - {fileID: 1803505227225203677, guid: 78842d0348deba840a9818430b119b62, type: 3}
   _initialAmount: 5
 --- !u!4 &509005288
 Transform:
@@ -29524,7 +29528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particlesPrefabs:
-  - {fileID: 1291497489843207138, guid: 3164d796bbf82ce4e88a559cf321c744, type: 3}
+  - {fileID: 7002510025824588435, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   - {fileID: 8866937984996210533, guid: 82dbd450e40fa2f4aba631814c5382e0, type: 3}
   - {fileID: 2427521303182586876, guid: 96474451b5728954eb6021d51fb1f220, type: 3}
 --- !u!4 &815244152
@@ -60136,18 +60140,19 @@ MonoBehaviour:
   checkpoint: {fileID: 538773150}
   dashParticles: {fileID: 1136683357}
   _dashDuration: 0.5
-  _dashCooldown: 1.2
+  _dashCooldown: 3
   shootCooldown: 0.5
   phasesCooldowns:
   - 0
-  - 1
-  - 2.5
+  - 0.5
+  - 2
   _glideDrag: 8
   _slimeForce: 25
   _amountPowerUpBullets: 4
   _multiplierDmg: 2
   _shakeDuration: 0.5
   _shakeMagnitude: 0.5
+  phaseDamages: 030000000600000009000000
   slimeDmg: 10
   zonesDmg: 15
   twisterDmg: 10
@@ -60156,7 +60161,7 @@ MonoBehaviour:
   bulletsDmg: 3
   enemyDmg: 4
   _speed: 8
-  _jumpForce: 18
+  _jumpForce: 12
   _dashForce: 40
   phase1Dmg: 6
   phase2Dmg: 9
@@ -76235,6 +76240,11 @@ Transform:
   m_Father: {fileID: 616750074}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1765591302 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 3015387380507953303, guid: 3d43461826617de4aaa62b887549cd3a, type: 3}
+  m_PrefabInstance: {fileID: 72225563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1766505987
 GameObject:
   m_ObjectHideFlags: 0

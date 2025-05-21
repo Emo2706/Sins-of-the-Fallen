@@ -9,6 +9,7 @@ public class EnemyNormal : EnemyGlobalScript
     PatrolStateNormal _patrol;
     ChaseStateNormal _chase;
     FSM<NormalStates> _stateMachine;
+
     NormalView _view;
     public int speed;
     public float minDist;
@@ -19,6 +20,7 @@ public class EnemyNormal : EnemyGlobalScript
     [SerializeField] Collider _collider;
     [SerializeField] Collider _colliderPunch;
     [SerializeField] float _punchDuration;
+    public bool dead = false;
     public event Action OnDie;
     public Vector3 dir;
     public float separationRadius;
@@ -125,16 +127,24 @@ public class EnemyNormal : EnemyGlobalScript
 
     public IEnumerator DieCoroutine()
     {
+        dead = true;
         WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
 
         var lifePotion = UnityEngine.Random.Range(1, 3);
         
         OnDie();
+        _rb.useGravity = false;
+        _rb.isKinematic = true;
+        _collider.enabled = false;
+
         //AudioManager.instance.Play(AudioManager.Sounds.DieEnemies);
 
         yield return dieAnimation;
 
-        _collider.enabled = false;
+        
+
+        Destroy(gameObject);
+
 
         if (lifePotion == 2)
         {

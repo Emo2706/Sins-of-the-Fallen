@@ -14,8 +14,8 @@ public class Player_Attacks
     Transform _pivotShoot;
     float _chargeTimer;
     float[] _phasesCooldowns;
-    int _phase1Dmg;
-    int _phase2Dmg;
+    int _actualPhase;
+    int[] _damages;
     Player _player;
     SliderUI _sliderUI;
     Player_UI _playerUI;
@@ -28,8 +28,7 @@ public class Player_Attacks
         _amountPowerUpBullets = amountPowerUpBullets;
         _multiplierDmg = multiplierDmg;
         _pivotShoot = pivotShoot;
-        _phase1Dmg = player.phase1Dmg;
-        _phase2Dmg = player.phase2Dmg;
+        _damages = player.phaseDamages;
         _phasesCooldowns = player.phasesCooldowns;
         _sliderUI = SliderUI;
         _playerUI = playerUI;
@@ -69,20 +68,20 @@ public class Player_Attacks
 
         if (_chargeTimer >= _phasesCooldowns[0])
         {
-            _bullet = BulletFactory.instance.GetObjFromPool(currentType);
-            _bullet.transform.position = _pivotShoot.transform.position;
-            _bullet.dir = Camera.main.transform.forward;
-            _bullet.dmg = 3;
+
+            _actualPhase = 0;
+            
 
             if (_chargeTimer >= _phasesCooldowns[1])
             {
 
-                _bullet.dmg = _phase1Dmg;
+                _actualPhase = 1;
 
 
                 if (_chargeTimer >= _phasesCooldowns[2])
                 {
-                    _bullet.dmg = _phase2Dmg;
+                    _actualPhase = 2;
+
                     /*_shootTimer += Time.deltaTime;
                     if(_shootTimer >= _shootCooldown)
                     {
@@ -94,6 +93,11 @@ public class Player_Attacks
 
 
         }
+
+        _bullet = BulletFactory.instance.GetObjFromPool(currentType);
+        _bullet.SetChargeValues(_damages[_actualPhase], _actualPhase);
+        _bullet.transform.position = _pivotShoot.transform.position;
+        _bullet.dir = Camera.main.transform.forward;
 
         if (_powerUpActive == true)
         {

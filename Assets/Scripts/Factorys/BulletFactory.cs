@@ -34,12 +34,15 @@ public class BulletFactory : MonoBehaviour
 
     Bullet FireCreatorMethod()
     {
-        return Instantiate(_bulletPrefabs[0]);
+ 
+         return Instantiate(_bulletPrefabs[0]);
+    
     }
 
     Bullet IceCreatorMethod()
     {
-        return Instantiate(_bulletPrefabs[1]);
+         return Instantiate(_bulletPrefabs[1]);
+      
     }
 
     public Bullet GetObjFromPool(bulletType type)

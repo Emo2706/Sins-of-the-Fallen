@@ -6,11 +6,12 @@ public class Bullet : MonoBehaviour
 {
     float _lifeTime;
     [SerializeField] int _lifeCooldown;
-    [SerializeField] int _bulletSpeed;
+    public int _bulletSpeed;
     public Vector3 dir;
     Rigidbody _rb;
     [SerializeField] ParticleSystem _explosion;
-    public int dmg ;
+    public int dmg;
+    public bool chargePhase1, chargePhase2, chargePhase3;
     public bulletType elementBullet;
 
     // Start is called before the first frame update
@@ -62,6 +63,26 @@ public class Bullet : MonoBehaviour
             
         }
     }
+
+    public virtual void SetChargeValues(int damage, int phase)
+    {
+        dmg = damage;
+        Debug.Log(dmg);
+        if(phase == 0)
+        {
+            chargePhase1 = true;
+        }
+        else if (phase == 1)
+        {
+            chargePhase2 = true;
+        }
+        else if (phase == 2)
+        {
+            chargePhase3 = true;
+        }
+
+    }
+
 
     public void Reset()
     {

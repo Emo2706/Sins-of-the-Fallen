@@ -9671,7 +9671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6834143242681913688}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -17.578787, y: 2.94, z: 12.29}
+  m_LocalPosition: {x: -17.578787, y: 2.252, z: 12.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14486,6 +14486,9 @@ MonoBehaviour:
   dir: {x: 0, y: 0, z: 0}
   _explosion: {fileID: 0}
   dmg: 10
+  chargePhase1: 0
+  chargePhase2: 0
+  chargePhase3: 0
   elementBullet: 0
   burnDamage: 10
   burnDuration: 5

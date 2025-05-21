@@ -10,6 +10,7 @@ public class Player_Collisions
     Transform _checkpoint;
     Player _player;
     Transform _transform;
+    EnemyNormal _enemy;
     int _haiserForce;
     int _slimeDmg;
     int _zonesDmg;
@@ -42,6 +43,7 @@ public class Player_Collisions
         if (collision.gameObject.layer == 6)
         {
             _movement.jump = true;
+            _movement._canGlide = false;
             _rb.drag = _initialDrag;
 
         }
@@ -53,6 +55,7 @@ public class Player_Collisions
         if (collision.gameObject.layer == 8)
         {
             _movement.jump = true;
+            _movement._canGlide = false;
             _transform.parent = collision.transform;
         }
 
@@ -72,7 +75,16 @@ public class Player_Collisions
 
         if (collision.gameObject.layer == 11)
         {
-            _player.TakeDmg(_punchDmg);
+            _enemy = collision.gameObject.GetComponent<EnemyNormal>();
+            if(_enemy != null)
+            {
+                if (!_enemy.dead)
+                {
+                    _player.TakeDmg(_punchDmg);
+                }
+            }
+                
+                
            
 
         }

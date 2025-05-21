@@ -17,7 +17,7 @@ public class Player_Movement
     float _dashTimer2;
     float _dashCooldown;
     bool _dashing;
-    
+    public bool _canGlide;
     float _glideDrag;
     float _initialDrag = 0.05f;
     Transform _transform;
@@ -100,8 +100,10 @@ public class Player_Movement
     {
         if (jump)
         {
+            
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             jump = false;
+            _player.StartCoroutine(GlideEnable());
             //AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Jump1, AudioManager.Sounds.Jump2, AudioManager.Sounds.Jump3, AudioManager.Sounds.Jump4, AudioManager.Sounds.Jump5 });
         }
     }
@@ -145,9 +147,8 @@ public class Player_Movement
 
     public void Glide()
     {
-        if (jump==false)
+        if (jump==false && _canGlide == true)
         {
-            //_dir += new Vector3(0, 1, 0);
             _rb.drag = _glideDrag;
         }
 
@@ -163,6 +164,11 @@ public class Player_Movement
         _player.enabled = false;
     }
 
+    IEnumerator GlideEnable()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _canGlide = true;
+    }
 
     bool IsBlocked(Vector3 dir)
     {

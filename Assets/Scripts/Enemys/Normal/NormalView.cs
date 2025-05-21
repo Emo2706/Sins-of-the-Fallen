@@ -28,7 +28,7 @@ public class NormalView
 
     public void Punch()
     {
-        if(_enemy.life>0)
+        if(_enemy.life>0 && _enemy.minDistAttack > _enemy.dir.sqrMagnitude)
         _anim.SetTrigger("Punch");
     }
 

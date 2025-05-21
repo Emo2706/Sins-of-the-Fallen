@@ -33,6 +33,7 @@ public class Player : Entity
     [SerializeField] int _multiplierDmg;
     [SerializeField] float _shakeDuration;
     [SerializeField] float _shakeMagnitude;
+    public int[] phaseDamages;
     public int slimeDmg;
     public int zonesDmg;
     public int twisterDmg;
