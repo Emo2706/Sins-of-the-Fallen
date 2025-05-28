@@ -24572,6 +24572,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5202762950320195128, guid: 8c59bb8d136db074f83c46bd460f20d5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578009853467466299, guid: 8c59bb8d136db074f83c46bd460f20d5, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.4245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578009853467466299, guid: 8c59bb8d136db074f83c46bd460f20d5, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.2963567
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578009853467466299, guid: 8c59bb8d136db074f83c46bd460f20d5, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.06608224
+      objectReference: {fileID: 0}
     - target: {fileID: 6834143242681913688, guid: 8c59bb8d136db074f83c46bd460f20d5, type: 3}
       propertyPath: m_Name
       value: Iceball 2

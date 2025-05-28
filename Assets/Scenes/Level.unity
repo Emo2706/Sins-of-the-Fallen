@@ -30603,7 +30603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1222575459710819414, guid: 3d43461826617de4aaa62b887549cd3a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7504704069255018109, guid: 3d43461826617de4aaa62b887549cd3a, type: 3}
       propertyPath: m_Center.y
@@ -41652,7 +41652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1222575459710819414, guid: 3d43461826617de4aaa62b887549cd3a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7504704069255018109, guid: 3d43461826617de4aaa62b887549cd3a, type: 3}
       propertyPath: m_Center.y
@@ -60152,7 +60152,7 @@ MonoBehaviour:
   _multiplierDmg: 2
   _shakeDuration: 0.5
   _shakeMagnitude: 0.5
-  phaseDamages: 030000000600000009000000
+  phaseDamages: 01000000050000000a000000
   slimeDmg: 10
   zonesDmg: 15
   twisterDmg: 10

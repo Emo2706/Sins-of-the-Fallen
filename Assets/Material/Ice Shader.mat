@@ -39,16 +39,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _FresnelPower: 2.69
-    - _Metallic: 0.365
+    - _Metallic: 0.186
     - _Normals: 3
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RefractionAmount: 1
-    - _Smothnes: 0.802
+    - _RefractionAmount: -1
+    - _Smothnes: 0.469
     m_Colors:
-    - _FresnelColor: {r: 2.9803975, g: 5.217676, b: 6.13441, a: 0}
+    - _FresnelColor: {r: 0.6986504, g: 4.117972, b: 5.485699, a: 0}
     - _IceTiling: {r: 1.29, g: 0.58, b: 0, a: 0}
-    - _Ice_Color: {r: 2.5126474, g: 3.1584659, b: 5.2164745, a: 0}
+    - _Ice_Color: {r: 0.86442417, g: 2.133947, b: 5.9115467, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5927389993341517480
 MonoBehaviour:
