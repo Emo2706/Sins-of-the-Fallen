@@ -130,14 +130,14 @@ public class EnemyNormal : EnemyGlobalScript
         dead = true;
         WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
 
-        var lifePotion = UnityEngine.Random.Range(1, 3);
+        var lifePotion = UnityEngine.Random.Range(1, 2);
         
         OnDie();
         _rb.useGravity = false;
         _rb.isKinematic = true;
         _collider.enabled = false;
 
-        //AudioManager.instance.Play(AudioManager.Sounds.DieEnemies);
+        AudioManager.instance.Play(AudioManager.Sounds.DieEnemies);
 
         yield return dieAnimation;
 
@@ -150,7 +150,7 @@ public class EnemyNormal : EnemyGlobalScript
         {
             var potion = LifePotionFactory.instance.GetObjFromPool();
             potion.transform.position = transform.position;
-            //AudioManager.instance.Play(AudioManager.Sounds.InstancePowerUp);
+            AudioManager.instance.Play(AudioManager.Sounds.InstancePowerUp);
         }
 
         EnemyFactory.instance.ReturnToPool(this);

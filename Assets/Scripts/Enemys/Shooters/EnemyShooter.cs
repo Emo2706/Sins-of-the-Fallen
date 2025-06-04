@@ -94,7 +94,7 @@ public class EnemyShooter : EnemyGlobalScript
     {
         WaitForSeconds dieAnimation = new WaitForSeconds(dieAnimationDuration);
 
-        var lifePotion = UnityEngine.Random.Range(1, 3);
+        var lifePotion = UnityEngine.Random.Range(1, 2);
 
         OnDie();
         AudioManager.instance.Play(AudioManager.Sounds.DieEnemies);

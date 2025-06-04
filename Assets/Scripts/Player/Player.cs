@@ -184,7 +184,7 @@ public class Player : Entity
     {
         base.TakeDmg(dmg);
 
-        //AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Hurt1, AudioManager.Sounds.Hurt2 });
+        AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Hurt1, AudioManager.Sounds.Hurt2 });
 
         CheckLife();
 

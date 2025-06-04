@@ -319,6 +319,7 @@ MonoBehaviour:
   _collider: {fileID: 0}
   _colliderPunch: {fileID: 1222575460104208180}
   _punchDuration: 1.5
+  dead: 0
   dir: {x: 0, y: 0, z: 0}
   separationRadius: 14
   maxForce: 5
@@ -2776,6 +2777,10 @@ PrefabInstance:
     - target: {fileID: 2600969864856072865, guid: afd5f9b389c850c46b275a561557961c, type: 3}
       propertyPath: m_Name
       value: Spawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600969864856072865, guid: afd5f9b389c850c46b275a561557961c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2600969864856072877, guid: afd5f9b389c850c46b275a561557961c, type: 3}
       propertyPath: m_RootOrder

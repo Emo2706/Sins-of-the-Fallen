@@ -83,15 +83,17 @@ MonoBehaviour:
   _rb: {fileID: 6603378321100257758}
   bulletsDmg: 5
   dieAnimationDuration: 4.333
+  _buffParticles: []
   speed: 5
   minDistAttack: 20
   player: {fileID: 0}
   speedRotation: 5
-  shootCooldown: 1.8
+  shootCooldown: 2.5
   playerMask:
     serializedVersion: 2
     m_Bits: 512
   pivotShootFlyer: {fileID: 613858361912938174}
+  isInRightZone: 0
 --- !u!54 &6603378321100257758
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,6 +134,10 @@ PrefabInstance:
     - target: {fileID: 2600969864856072865, guid: afd5f9b389c850c46b275a561557961c, type: 3}
       propertyPath: m_Name
       value: Spawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600969864856072865, guid: afd5f9b389c850c46b275a561557961c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2600969864856072877, guid: afd5f9b389c850c46b275a561557961c, type: 3}
       propertyPath: m_RootOrder

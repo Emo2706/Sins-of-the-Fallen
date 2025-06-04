@@ -104,7 +104,7 @@ public class Player_Movement
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             jump = false;
             _player.StartCoroutine(GlideEnable());
-            //AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Jump1, AudioManager.Sounds.Jump2, AudioManager.Sounds.Jump3, AudioManager.Sounds.Jump4, AudioManager.Sounds.Jump5 });
+            AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Jump1, AudioManager.Sounds.Jump2, AudioManager.Sounds.Jump3, AudioManager.Sounds.Jump4, AudioManager.Sounds.Jump5 });
         }
     }
 

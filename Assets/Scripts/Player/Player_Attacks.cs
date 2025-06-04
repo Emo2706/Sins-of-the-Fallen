@@ -157,7 +157,7 @@ public class Player_Attacks
         _sliderUI.ResetSlidedrState();
 
 
-        //AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Fire1, AudioManager.Sounds.Fire2, AudioManager.Sounds.Fire3, AudioManager.Sounds.Fire4 });
+        AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.Fire1, AudioManager.Sounds.Fire2, AudioManager.Sounds.Fire3, AudioManager.Sounds.Fire4 });
     }
 
 }
