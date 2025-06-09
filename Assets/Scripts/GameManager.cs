@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour
 
     public List<EnemyNormal> enemyNormals;
 
-    [SerializeField] Canvas _canvasSliderFire;
-
     private void Awake()
     {
         if (instance == null)
@@ -22,14 +20,5 @@ public class GameManager : MonoBehaviour
 
         else
             Destroy(gameObject);
-    }
-
-    private void Update()
-    {
-        if (pause == true)
-            _canvasSliderFire.gameObject.SetActive(false);
-
-        else
-            _canvasSliderFire.gameObject.SetActive(true);
     }
 }

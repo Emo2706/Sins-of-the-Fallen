@@ -5,46 +5,25 @@ using UnityEngine.UI;
 
 public class PauseScreen : MonoBehaviour,IScreen
 {
-    Button[] _buttons;
-
-    private void Awake()
-    {
-        _buttons = GetComponentsInChildren<Button>();
-
-        ActivateButtons(false);
-    }
-
-    void ActivateButtons(bool enable)
-    {
-        foreach (var button in _buttons)
-        {
-            button.interactable = enable;
-        }
-
-        Cursor.visible = enable;
-
-        if (enable == true) Cursor.lockState = CursorLockMode.Confined;
-
-
-    }
-
-
     public void BTN_Back()
     {
-        ScreenManager.instance.Pop();
+        GameManager.instance.pause = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        GameManager.instance.pause = false;
+        ScreenManager.instance.Pop();
     }
 
     public void Activate()
     {
-        ActivateButtons(true);
+        GameManager.instance.pause = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void Deactivate()
     {
-        ActivateButtons(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Free()
@@ -54,6 +33,7 @@ public class PauseScreen : MonoBehaviour,IScreen
 
     public void Restart()
     {
+        ScreenManager.instance.Pop();
         LevelManager.instance.RestartLevel();
         
     }
@@ -61,6 +41,7 @@ public class PauseScreen : MonoBehaviour,IScreen
     public void ExitToMenu()
     {
         LevelManager.instance.StartLevel(0);
+        ScreenManager.instance.Pop();
     }
 }
 

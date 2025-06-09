@@ -16,6 +16,7 @@ public class LifeHandler
     public void OnDead()
     {
         onDeath();
+        ScreenManager.instance.Push("LostScreen");
         EventManager.TriggerEvent(EventManager.EventsType.Event_PlayerDead);
         Debug.Log("OnDead");
     }
