@@ -120,7 +120,7 @@ public class Player : Entity
         _inputs.ArtificialStart();
         _inputs.CompleteData(_movement);
 
-        /*AudioManager.instance.Play(AudioManager.Sounds.Ambience);*/
+        AudioManager.instance.Play(AudioManager.Sounds.Ambience);
 
         /*CheckPointManager.instance.SetPlayer(this);*/
         //transform.position = CheckPointManager.instance.CheckPoint();
@@ -134,6 +134,7 @@ public class Player : Entity
     {
         _attacks.Update();
         _inputs.ArtificialUpdate();
+        _inputs.UpdateInputs();
         _ui.Update();
         _movement.Update();
         _sliderUI.Update();
@@ -142,6 +143,11 @@ public class Player : Entity
         if (keypressed != null)
         {
             keypressed.Execute();
+        }
+
+        foreach (CommandInputs input in _inputs.HoldInputs)
+        {
+            input.Execute();
         }
 
         /*if (Input.GetKeyDown(KeyCode.B))

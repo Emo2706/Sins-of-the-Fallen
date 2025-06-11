@@ -158,7 +158,11 @@ public class ChaseStateNormal : State
         foreach (var item in agents)
         {
             if (item == _enemy) continue;
-            if ((item.transform.position - _transform.position).sqrMagnitude > _enemy.minDist * _enemy.minDist) continue;
+            if(item != null)
+            {
+                if ((item.transform.position - _transform.position).sqrMagnitude > _enemy.minDist * _enemy.minDist) continue;
+            }
+            
 
             desired += item.transform.position;
             count++;

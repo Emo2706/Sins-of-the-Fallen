@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_Attacks
 {
     float _shootTimer;
-    float _shootCooldown = 5;
+    float _shootCooldown = 3;
     int _amountPowerUpBullets;
     int _powerUpBulletsCount =0;
     Bullet _bullet;

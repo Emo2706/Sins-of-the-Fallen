@@ -39,7 +39,5 @@ public class EnemyGlobalScript : Entity
         enabled = false;
     }
 
-   
 
-    
 }

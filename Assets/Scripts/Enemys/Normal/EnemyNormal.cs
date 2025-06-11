@@ -156,9 +156,12 @@ public class EnemyNormal : EnemyGlobalScript
         EnemyFactory.instance.ReturnToPool(this);
     }
 
+    private void OnDestroy()
+    {
+        GameManager.instance.enemyNormals.Remove(this);
+    }
 
 
-   
 
 }
 

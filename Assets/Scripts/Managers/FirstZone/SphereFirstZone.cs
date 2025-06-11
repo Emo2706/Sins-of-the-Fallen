@@ -22,6 +22,10 @@ public class SphereFirstZone : MonoBehaviour
 
     public void Desactivate()
     {
-        gameObject.SetActive(false);
+        if(gameObject != null)
+        {
+            gameObject.SetActive(false);
+        }
+        
     }
 }

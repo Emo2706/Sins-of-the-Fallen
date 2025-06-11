@@ -20,6 +20,10 @@ public class Player_Inputs
     
     Dictionary<KeyCode, CommandInputs> _commandHoldDictionary;
 
+    public List<CommandInputs> DownInputs = new List<CommandInputs>();
+    public List<CommandInputs> UpInputs = new List<CommandInputs>();
+    public List<CommandInputs> HoldInputs = new List<CommandInputs>();
+
     public Player_Inputs(Transform transform , LifeHandler lifeHandler , Player player)
     {
         _transform = transform;
@@ -80,6 +84,37 @@ public class Player_Inputs
         }
 
         return null;
+    }
+
+    public void UpdateInputs()
+    {
+        DownInputs.Clear();
+        UpInputs.Clear();
+        HoldInputs.Clear();
+
+        foreach (var pair in _commandDictionary)
+        {
+            if (Input.GetKeyDown(pair.Key))
+            {
+                DownInputs.Add(pair.Value);
+            }
+        }
+
+        foreach (var pair in _commandUpDictionary)
+        {
+            if (Input.GetKeyUp(pair.Key))
+            {
+                UpInputs.Add(pair.Value);
+            }
+        }
+
+        foreach (var pair in _commandHoldDictionary)
+        {
+            if (Input.GetKey(pair.Key))
+            {
+                HoldInputs.Add(pair.Value);
+            }
+        }
     }
 
     public void ArtificialUpdate()

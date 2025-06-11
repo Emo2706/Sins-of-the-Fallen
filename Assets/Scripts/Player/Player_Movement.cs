@@ -91,7 +91,8 @@ public class Player_Movement
         }
         else
         {
-            _transform.position += _dir* _speed * Time.fixedDeltaTime;
+            _rb.MovePosition(_rb.position + _dir * _speed * Time.fixedDeltaTime);
+            //_transform.position += _dir* _speed * Time.fixedDeltaTime;
         }
         
     }
