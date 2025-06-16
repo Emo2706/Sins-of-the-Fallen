@@ -28,4 +28,10 @@ public class SphereFirstZone : MonoBehaviour
         }
         
     }
+
+    private void OnDestroy()
+    {
+        ManagerFirstZone.OpenFirstZone -= Desactivate;
+        ColliderFirstZone.FirstZone -= Activate;
+    }
 }

@@ -316,7 +316,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 512
-  _collider: {fileID: 0}
+  _collider: {fileID: 3015387380507953303}
   _colliderPunch: {fileID: 1222575460104208180}
   _punchDuration: 1.5
   dead: 0
@@ -2780,7 +2780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2600969864856072865, guid: afd5f9b389c850c46b275a561557961c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2600969864856072877, guid: afd5f9b389c850c46b275a561557961c, type: 3}
       propertyPath: m_RootOrder

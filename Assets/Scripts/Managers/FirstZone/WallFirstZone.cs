@@ -9,7 +9,6 @@ public class WallFirstZone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         ManagerFirstZone.OpenFirstZone += Desactivate;
         ColliderFirstZone.FirstZone += ActivateCollider;
     }
@@ -22,5 +21,11 @@ public class WallFirstZone : MonoBehaviour
     public void ActivateCollider()
     {
         _collider.enabled = true;
+    }
+
+    private void OnDestroy()
+    {
+        ManagerFirstZone.OpenFirstZone -= Desactivate;
+        ColliderFirstZone.FirstZone -= ActivateCollider;
     }
 }

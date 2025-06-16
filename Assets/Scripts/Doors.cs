@@ -19,4 +19,9 @@ public class Doors : MonoBehaviour
         _anim.SetTrigger("TheOpenDoor");
         AudioManager.instance.Play(AudioManager.Sounds.TheOpenDoor);
     }
+
+    private void OnDestroy()
+    {
+        ManagerFirstZone.OpenFirstZone -= TheOpenDoor;
+    }
 }

@@ -13,8 +13,6 @@ public class EnemyNormalSpawner : MonoBehaviour
     void Start()
     {
         ColliderFirstZone.FirstZone += SpawnEnemysFirstZone;
-        SecondZone.SecondZoneEvent += SpawnEnemysSecondZone;
-      
     }
 
     void SpawnEnemysFirstZone()
@@ -29,16 +27,8 @@ public class EnemyNormalSpawner : MonoBehaviour
         AudioManager.instance.Play(AudioManager.Sounds.SpawnEnemies);
     }
 
-
-    void SpawnEnemysSecondZone()
+    private void OnDestroy()
     {
-        for (int i = 0; i < spawnPointsSecondZone.Length; i++)
-        {
-            EnemyGlobalScript enemy = EnemyFactory.instance.GetObjFromPool();
-            enemy.transform.position = spawnPointsSecondZone[i].position;
-            enemy.transform.parent = _root;
-        }
-
-        AudioManager.instance.Play(AudioManager.Sounds.SpawnEnemies);
+        ColliderFirstZone.FirstZone -= SpawnEnemysFirstZone;
     }
 }

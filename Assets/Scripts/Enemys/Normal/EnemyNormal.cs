@@ -96,10 +96,6 @@ public class EnemyNormal : EnemyGlobalScript
         {
             if (ManagerFirstZone.instance != null)
                 ManagerFirstZone.instance.Kill();
-
-            else if (ManagerFirstZone.instance == null && ManagerSecondZone.instance != null)
-                ManagerSecondZone.instance.Kill();
-            
             StartCoroutine(DieCoroutine());
 
         }
