@@ -20,9 +20,15 @@ public class EnemyFlyerSpawner : MonoBehaviour
             EnemyFlyers enemy = EnemyFlyersFactory.instance.GetObjFromPool();
             enemy.transform.position = spawnPointsLeftZone[i].position;
             enemy.transform.parent = _root;
+            enemy.isInLeftZone = true;
         }
 
         AudioManager.instance.Play(AudioManager.Sounds.SpawnEnemies);
 
+    }
+
+    private void OnDestroy()
+    {
+        LeftZone.LeftZoneEvent -= SpawnEnemysLeftZone;
     }
 }

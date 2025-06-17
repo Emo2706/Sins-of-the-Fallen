@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Debugger : MonoBehaviour
+public class DebuggerScreens : MonoBehaviour
 {
     [SerializeField] Transform _mainGame;
     // Start is called before the first frame update

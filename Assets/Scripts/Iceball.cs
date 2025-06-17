@@ -49,6 +49,16 @@ public class Iceball : Bullet
 
         }
 
+        var twister = other.GetComponent<TwisterAttack>();
+
+        if (twister != null)
+        {
+            twister.Freeze();
+            var particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ShootHit);
+            particles.transform.position = transform.position;
+            BulletFactory.instance.ReturnToPool(elementBullet, this);
+        }
+
     }
 
     public override void SetChargeValues(int damage, int phase)

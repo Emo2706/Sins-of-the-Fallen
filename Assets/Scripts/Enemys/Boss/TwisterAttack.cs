@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class TwisterAttack : MonoBehaviour
 {
     float _lifeTimer;
     [SerializeField] int _lifeTime;
- 
+    [SerializeField] float _transitionDuration;
+    Sequence _matSeq;
+    Material _mat;
+
+    private void Start()
+    {
+        _mat = GetComponent<Renderer>().material;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -34,5 +43,12 @@ public class TwisterAttack : MonoBehaviour
     public static void TurnOffCallBack(TwisterAttack attack)
     {
         attack.gameObject.SetActive(false);
+    }
+
+    public void Freeze()
+    {
+        _matSeq.Kill();
+
+        //_matSeq.Append(_mat.DOFloat(1, "ingresar nombre de la propiedad", _transitionDuration));
     }
 }

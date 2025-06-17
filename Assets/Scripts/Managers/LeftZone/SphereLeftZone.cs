@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SphereSecondZone : MonoBehaviour
+public class SphereLeftZone : MonoBehaviour
 {
     [SerializeField] MeshRenderer _meshRenderer;
 
@@ -10,8 +10,8 @@ public class SphereSecondZone : MonoBehaviour
     void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
-        SecondZone.SecondZoneEvent += Activate;
-        ManagerSecondZone.OpenSecondZone += Deactivate;
+        LeftZone.LeftZoneEvent += Activate;
+        ManagerSecondZone.OpenLeftZone += Deactivate;
     }
 
     public void Activate()
@@ -26,7 +26,7 @@ public class SphereSecondZone : MonoBehaviour
 
     private void OnDestroy()
     {
-        SecondZone.SecondZoneEvent -= Activate;
-        ManagerSecondZone.OpenSecondZone -= Deactivate;
+        LeftZone.LeftZoneEvent -= Activate;
+        ManagerSecondZone.OpenLeftZone -= Deactivate;
     }
 }

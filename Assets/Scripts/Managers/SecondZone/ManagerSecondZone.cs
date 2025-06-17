@@ -7,7 +7,9 @@ public class ManagerSecondZone : MonoBehaviour
 {
     public static ManagerSecondZone instance;
     [SerializeField] int _amountSecondZone;
+    [SerializeField] int _amountLeftZone;
     public static event Action OpenSecondZone = delegate { };
+    public static event Action OpenLeftZone = delegate{};
 
     private void Awake()
     {
@@ -37,6 +39,18 @@ public class ManagerSecondZone : MonoBehaviour
             Debug.Log("Segunda zona terminada");
         }
 
+    }
+
+    public void KillLeft()
+    {
+        _amountLeftZone--;
+
+        if (_amountLeftZone <= 0)
+        {
+            OpenLeftZone();
+            Destroy(gameObject);
+            Debug.Log("Segunda zona terminada");
+        }
     }
     
 }

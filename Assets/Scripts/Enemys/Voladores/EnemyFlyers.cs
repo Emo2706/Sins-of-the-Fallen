@@ -19,6 +19,7 @@ public class EnemyFlyers : EnemyGlobalScript
     public Transform pivotShootFlyer;
     public event Action OnDie;
     public bool isInRightZone = false;
+    public bool isInLeftZone = false;
     // Start is called before the first frame update
    protected override void Start()
     {
@@ -81,6 +82,9 @@ public class EnemyFlyers : EnemyGlobalScript
         {
             if (ManagerSecondZone.instance != null && isInRightZone == true)
                 ManagerSecondZone.instance.Kill();
+
+            else if (ManagerSecondZone.instance != null && isInLeftZone == true)
+                ManagerSecondZone.instance.KillLeft();
 
             StartCoroutine(DieCoroutine());
         }
