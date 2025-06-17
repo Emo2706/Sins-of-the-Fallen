@@ -43,7 +43,7 @@ public class Iceball : Bullet
 
         if (haiser != null)
         {
-            var particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ShootHit);
+            var particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.IceShootHit);
             particles.transform.position = transform.position;
             BulletFactory.instance.ReturnToPool(elementBullet, this);
 
@@ -53,8 +53,8 @@ public class Iceball : Bullet
 
         if (twister != null)
         {
-            twister.Freeze();
-            var particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ShootHit);
+            twister.TornadoFreeze();
+            var particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.IceShootHit);
             particles.transform.position = transform.position;
             BulletFactory.instance.ReturnToPool(elementBullet, this);
         }

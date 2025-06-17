@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SliderUI
+public class SliderUI : MonoBehaviour
 {
 
     [SerializeField] GameObject[] _markers;

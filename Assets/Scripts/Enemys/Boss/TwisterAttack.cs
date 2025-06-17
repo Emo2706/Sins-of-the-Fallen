@@ -10,6 +10,7 @@ public class TwisterAttack : MonoBehaviour
     [SerializeField] float _transitionDuration;
     Sequence _matSeq;
     Material _mat;
+    int _frozenLevel = Shader.PropertyToID("_FrozenLevel");
 
     private void Start()
     {
@@ -45,10 +46,10 @@ public class TwisterAttack : MonoBehaviour
         attack.gameObject.SetActive(false);
     }
 
-    public void Freeze()
+    public void TornadoFreeze()
     {
         _matSeq.Kill();
 
-        //_matSeq.Append(_mat.DOFloat(1, "ingresar nombre de la propiedad", _transitionDuration));
+        _matSeq.Append(_mat.DOFloat(2, _frozenLevel, _transitionDuration));
     }
 }

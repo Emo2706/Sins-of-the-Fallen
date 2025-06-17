@@ -8,8 +8,8 @@ public class FirstPersonCamera : MonoBehaviour
     //public static FirstPersonCamera instance;
     [SerializeField] float _minRotation = -45f;
     [SerializeField] float _maxRotation = 45f;
-    [SerializeField] float _duration = 1.5f;
-    [SerializeField] float _magnitude = 2.5f;
+    //[SerializeField] float _duration = 1.5f;
+    //[SerializeField] float _magnitude = 2.5f;
     //[SerializeField] Transform _initialView;
     //public CameraExtraFunctions cameraFunctions;
     //[SerializeField] float _fovInDashGoesTo;

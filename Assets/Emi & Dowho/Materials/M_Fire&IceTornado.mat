@@ -22,11 +22,11 @@ Material:
     m_TexEnvs:
     - _TextureSample0:
         m_Texture: {fileID: 2800000, guid: fdb3bde7509c8d246a86012ee46faf87, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _TextureSample1:
         m_Texture: {fileID: 2800000, guid: fdb3bde7509c8d246a86012ee46faf87, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _TextureSample2:
         m_Texture: {fileID: 2800000, guid: 42277d64018f50542873da0302996371, type: 3}
@@ -65,11 +65,11 @@ Material:
     - _AlphaCutoff: 0.5
     - _ContrastColorStep: 0.2
     - _Cutoff: 0.5
-    - _Dissolve: 0.62120825
+    - _Dissolve: 0.793
     - _EnvironmentReflections: 1
     - _FrozenLevel: 0
     - _Height: 15
-    - _MainColorStep: 0.4
+    - _MainColorStep: 0
     - _Metallic: 0
     - _OpacityMultipller: 1
     - _QueueControl: 0
@@ -92,8 +92,8 @@ Material:
     - _TransmissionShadow: 0.5
     - __dirty: 0
     m_Colors:
-    - _Color0: {r: 1.4980392, g: 1.137255, b: 0.14117648, a: 0}
-    - _Color1: {r: 5.992157, g: 0.28235295, b: 0, a: 0}
+    - _Color0: {r: 0.22641504, g: 0.020940121, b: 0, a: 0}
+    - _Color1: {r: 0.23840913, g: 0.06519981, b: 0.014619434, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FireEmmisiveSpeed: {r: -0.6, g: 0.6, b: 0, a: 0}
     - _FreezeBorderColor: {r: 1.0196079, g: 1.8745098, b: 1.7333333, a: 0}

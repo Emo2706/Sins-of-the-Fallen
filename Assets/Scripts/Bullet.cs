@@ -46,8 +46,17 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.layer == 6 || other.gameObject.layer == 11 || other.gameObject.layer==15 || other.gameObject.layer==21 || other.gameObject.layer == 20 || other.gameObject.layer == 22)
         {
-            var particles =   ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ShootHit);
-            particles.transform.position = transform.position;
+            if(elementBullet == bulletType.Fireball)
+            {
+                var fireParticles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ShootHit);
+                fireParticles.transform.position = transform.position;
+            }
+            else
+            {
+                var iceParticles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.IceShootHit);
+                iceParticles.transform.position = transform.position;
+            }
+            
             BulletFactory.instance.ReturnToPool(elementBullet,this);
             
         }

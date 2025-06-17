@@ -34,7 +34,7 @@ public class Songs : MonoBehaviour
 
     IEnumerator SongsCoroutine()
     {
-        /*WaitForSeconds werewolf = new WaitForSeconds(_werewolfDuration);
+        WaitForSeconds werewolf = new WaitForSeconds(_werewolfDuration);
         
         WaitForSeconds elite = new WaitForSeconds(_eliteDuration);
 
@@ -54,7 +54,7 @@ public class Songs : MonoBehaviour
 
         AudioManager.instance.Stop(AudioManager.Sounds.Elite);
 
-        AudioManager.instance.Play(AudioManager.Sounds.Lotion);*/
+        AudioManager.instance.Play(AudioManager.Sounds.Lotion);
 
         yield return null;
     }

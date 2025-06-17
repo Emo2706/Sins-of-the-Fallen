@@ -6,7 +6,7 @@ public abstract class Entity : MonoBehaviour
 {
     [SerializeField] protected int _maxLife;
     public int life;
-    private bool _isFrozen = false; 
+    //private bool _isFrozen = false; 
     //public int life { get { return _life; } set { _life = value; }}
 
     public virtual void TakeDmg(int dmg)

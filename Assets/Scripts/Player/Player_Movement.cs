@@ -119,6 +119,7 @@ public class Player_Movement
     public void Twister()
     {
         _rb.AddForce(Vector3.up * _twisterForce, ForceMode.Impulse);
+        _rb.AddForce(Vector3.back * (_twisterForce/3), ForceMode.Impulse);
         jump = false;
     }
 
