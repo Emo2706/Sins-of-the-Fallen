@@ -28,6 +28,7 @@ public class Player : Entity
 
     [Header("Vars")]
     [SerializeField] float _glideDrag;
+    [SerializeField] float _glideForce;
     [SerializeField] int _slimeForce;
     [SerializeField] int _amountPowerUpBullets;
     [SerializeField] int _multiplierDmg;
@@ -90,7 +91,7 @@ public class Player : Entity
         
         _lifeHandler = new LifeHandler();
         _inputs = new Player_Inputs(transform , _lifeHandler , this);
-        _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _lifeHandler , _slimeForce , this , _cam);
+        _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _glideForce, _lifeHandler , _slimeForce , this , _cam);
         _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform , _lifeHandler);
         _sliderUI = new SliderUI(this);
         _ui = new Player_UI(_hpBar, this, _sliderUI);

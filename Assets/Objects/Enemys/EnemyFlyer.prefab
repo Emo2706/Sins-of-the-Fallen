@@ -88,12 +88,13 @@ MonoBehaviour:
   minDistAttack: 20
   player: {fileID: 0}
   speedRotation: 5
-  shootCooldown: 2.5
+  shootCooldown: 2
   playerMask:
     serializedVersion: 2
     m_Bits: 512
   pivotShootFlyer: {fileID: 613858361912938174}
   isInRightZone: 0
+  isInLeftZone: 0
 --- !u!54 &6603378321100257758
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class Player_Movement
     bool _dashing;
     public bool _canGlide;
     float _glideDrag;
+    float _glideForce;
     float _initialDrag = 0.05f;
     Transform _transform;
     int _slimeForce;
@@ -32,7 +33,7 @@ public class Player_Movement
     float _mouseX;
     FirstPersonCamera _cam;
     
-    public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag , LifeHandler lifeHandler , int slimeForce , Player player , FirstPersonCamera cam)
+    public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag , float glideForce, LifeHandler lifeHandler , int slimeForce , Player player , FirstPersonCamera cam)
     {
         _rb = rb;
         _inputs = inputs;
@@ -43,6 +44,7 @@ public class Player_Movement
         _dashCooldown = dashCooldown;
         _transform = transform;
         _glideDrag = glideDrag;
+        _glideForce = glideForce;
         _lifeHandler = lifeHandler;
         _slimeForce = slimeForce;
         _player = player;
@@ -154,6 +156,8 @@ public class Player_Movement
     {
         if (jump==false && _canGlide == true)
         {
+            //Vector3 glideForce = _dir.normalized * _glideForce; // glide force magnitude
+            //_rb.AddForce(glideForce, ForceMode.Acceleration);
             _rb.drag = _glideDrag;
         }
 
@@ -169,7 +173,7 @@ public class Player_Movement
         _player.enabled = false;
     }
 
-    IEnumerator GlideEnable()
+    public IEnumerator GlideEnable()
     {
         yield return new WaitForSeconds(0.5f);
         _canGlide = true;

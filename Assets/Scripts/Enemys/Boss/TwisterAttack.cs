@@ -10,8 +10,9 @@ public class TwisterAttack : MonoBehaviour
     [SerializeField] float _transitionDuration;
     [SerializeField] GameObject circleUp;
     [SerializeField] GameObject circleDown;
+    [SerializeField] GameObject circleEdge;
     Sequence _matSeq;
-    Material _mat , _matUp , _matDown;
+    Material _mat , _matUp , _matDown, _matEdge;
     [SerializeField] Collider _collider;
     [SerializeField] Collider _freezeCollider;
     int _frozenLevel = Shader.PropertyToID("_FrozenLevel");
@@ -21,6 +22,7 @@ public class TwisterAttack : MonoBehaviour
         _mat = GetComponent<Renderer>().material;
         _matUp = circleUp.GetComponent<Renderer>().material;
         _matDown = circleDown.GetComponent<Renderer>().material;
+        _matEdge = circleEdge.GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame
@@ -59,6 +61,7 @@ public class TwisterAttack : MonoBehaviour
         _matSeq.Append(_matUp.DOFloat(2, _frozenLevel, _transitionDuration));
         _matSeq.Append(_mat.DOFloat(2, _frozenLevel, _transitionDuration));
         _matSeq.Append(_matDown.DOFloat(2, _frozenLevel, _transitionDuration));
+        _matSeq.Append(_matEdge.DOFloat(2, _frozenLevel, _transitionDuration));
 
         _collider.enabled = false;
         _freezeCollider.enabled = true;

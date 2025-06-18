@@ -95,6 +95,8 @@ public class Player_Collisions
             if (haiser.activate)
             {
                 _rb.AddForce(Vector3.up * _haiserForce, ForceMode.Impulse);
+                _movement.jump = false;
+                _player.StartCoroutine(_movement.GlideEnable());
             }
         }
     }
