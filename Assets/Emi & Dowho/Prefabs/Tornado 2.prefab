@@ -520,6 +520,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeTime: 5
+  _transitionDuration: 0
+  circleUp: {fileID: 5376496032081018683}
+  circleDown: {fileID: 8798993745975094721}
+  _collider: {fileID: 5392325636934134883}
 --- !u!136 &5392325636934134883
 CapsuleCollider:
   m_ObjectHideFlags: 0

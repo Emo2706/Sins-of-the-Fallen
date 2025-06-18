@@ -17,6 +17,11 @@ public class BossSpawner : MonoBehaviour
 
     private void Start()
     {
+        Songs.OnEnterBossZone += SpawnBoss;
+    }
+
+    void SpawnBoss()
+    {
         var boss= BossFactory.instance.GetObjFromPool();
         boss.transform.position = _spawnPointBoss.position;
         boss.spawnPointsPotions = _spawnPointsLifePotions;
@@ -26,5 +31,10 @@ public class BossSpawner : MonoBehaviour
         boss.spawnPointCircle = _spawnPointCircleAttack;
         boss.transform.parent = _root;
         
+    }
+
+    private void OnDestroy()
+    {
+        Songs.OnEnterBossZone += SpawnBoss;
     }
 }

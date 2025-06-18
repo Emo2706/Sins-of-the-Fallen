@@ -91,8 +91,10 @@ public class Player_Movement
         }
         else
         {
-            _rb.MovePosition(_rb.position + _dir * _speed * Time.fixedDeltaTime);
-            //_rb.velocity = _rb.position + _dir * _speed * Time.fixedDeltaTime;
+            //_rb.MovePosition(_rb.position + _dir * _speed * Time.fixedDeltaTime);
+            Vector3 velocity = _dir * _speed;
+            velocity.y = _rb.velocity.y;
+            _rb.velocity = velocity;
             //_transform.position += _dir* _speed * Time.fixedDeltaTime;
         }
         
