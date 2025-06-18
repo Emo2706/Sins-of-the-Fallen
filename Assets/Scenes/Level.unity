@@ -21414,13 +21414,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3634491997635177249, guid: 57484f691e70f884abbc9946482609b2, type: 3}
+      propertyPath: _lifeTime
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340496260727430108, guid: 57484f691e70f884abbc9946482609b2, type: 3}
+      propertyPath: m_Size.x
+      value: 0.14269517
+      objectReference: {fileID: 0}
     - target: {fileID: 7340496260727430108, guid: 57484f691e70f884abbc9946482609b2, type: 3}
       propertyPath: m_Size.y
       value: 0.22949895
       objectReference: {fileID: 0}
     - target: {fileID: 7340496260727430108, guid: 57484f691e70f884abbc9946482609b2, type: 3}
       propertyPath: m_Center.x
-      value: -0.010878472
+      value: -0.023872573
       objectReference: {fileID: 0}
     - target: {fileID: 7340496260727430108, guid: 57484f691e70f884abbc9946482609b2, type: 3}
       propertyPath: m_Center.y
@@ -21428,7 +21436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7340496260727430108, guid: 57484f691e70f884abbc9946482609b2, type: 3}
       propertyPath: m_Center.z
-      value: 0.000000039199858
+      value: 0.00000027832397
       objectReference: {fileID: 0}
     - target: {fileID: 8276122739625220668, guid: 57484f691e70f884abbc9946482609b2, type: 3}
       propertyPath: m_RootOrder
@@ -49612,6 +49620,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 459e0a01922570e499d7f87aa9779312, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 459e0a01922570e499d7f87aa9779312, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b42fcf83fc9a57249a06d578d6d3c72e, type: 2}
@@ -60202,7 +60214,7 @@ MonoBehaviour:
   - 0
   - 1
   - 2.5
-  _glideDrag: 8
+  _glideDrag: 6
   _glideForce: 2
   _slimeForce: 25
   _amountPowerUpBullets: 4
@@ -61105,7 +61117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialAmount: 25
-  _twisterAttack: {fileID: 5108864115717636809, guid: 5bb7d93e9f022434382d1795672fb61b, type: 3}
+  _twisterAttack: {fileID: 3634491997635177249, guid: 57484f691e70f884abbc9946482609b2, type: 3}
 --- !u!1 &1385303378
 GameObject:
   m_ObjectHideFlags: 0

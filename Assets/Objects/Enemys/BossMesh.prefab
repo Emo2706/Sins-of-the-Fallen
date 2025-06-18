@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7335018344059051356}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 41.39, z: 2.33}
+  m_LocalPosition: {x: 0, y: 40.5, z: 2.94}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -124,18 +124,18 @@ MonoBehaviour:
     m_Bits: 512
   zoneAttackCooldown: 3
   twisterCooldown: 8
-  twistersAmount: 10
-  twistersAmountPhase2: 18
-  twistersAmountPhase3: 22
-  nextTwistersCooldown: 7
+  twistersAmount: 4
+  twistersAmountPhase2: 8
+  twistersAmountPhase3: 12
+  nextTwistersCooldown: 10
   startCircleAttack: 3
   cooldownChangeAttackCircle: 4
   coolDownChangeAttacks: 30
-  coolDownCircle: 4
-  _coolDownCirclePhase2: 3
+  coolDownCircle: 8
+  _coolDownCirclePhase2: 5
   _coolDownCirclePhase3: 2
-  coolDownShoot: 1
-  _coolDownPotion: 30
+  coolDownShoot: 2
+  _coolDownPotion: 20
   pivotShoot: {fileID: 7335018344059051357}
   spawnPointsZone:
   - {fileID: 0}
