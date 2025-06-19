@@ -23,5 +23,11 @@ public class LockDownFinalZone : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    
+
+    private void OnDestroy()
+    {
+        Songs.OnEnterBossZone -= OnZone;
+        EventManager.UnSubscribeToEvent(EventManager.EventsType.Event_BossDefeated, OnBossDeath);
+    }
+
 }

@@ -211,7 +211,10 @@ public class Boss : EnemyGlobalScript
         boss.gameObject.SetActive(false);
     }
 
-
+    private void OnDestroy()
+    {
+        EventManager.UnSubscribeToEvent(EventManager.EventsType.Event_BossHalfLife, Shield);
+    }
 
     private void OnDrawGizmos()
     {

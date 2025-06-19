@@ -16,4 +16,9 @@ public class FinalDoor : MonoBehaviour
         _anim.SetTrigger("TheOpenDoor");
         AudioManager.instance.Play(AudioManager.Sounds.TheOpenDoor);
     }
+
+    private void OnDestroy()
+    {
+        EventManager.UnSubscribeToEvent(EventManager.EventsType.Event_BossDefeated, TheOpenDoor);
+    }
 }

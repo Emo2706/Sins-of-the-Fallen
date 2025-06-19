@@ -42,4 +42,10 @@ public class BossBar : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    private void OnDestroy()
+    {
+        EventManager.UnSubscribeToEvent(EventManager.EventsType.Event_BossDefeated, DeactivateUI);
+        Songs.OnEnterBossZone -= ActivateUI;
+    }
 }

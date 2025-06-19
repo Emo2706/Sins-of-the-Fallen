@@ -58,4 +58,9 @@ public class Songs : MonoBehaviour
 
         yield return null;
     }
+
+    private void OnDestroy()
+    {
+        OnEnterBossZone -= OnEnterFinalZone;
+    }
 }

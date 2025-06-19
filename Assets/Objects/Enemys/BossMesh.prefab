@@ -116,9 +116,9 @@ MonoBehaviour:
   life: 0
   _rb: {fileID: 7335018344857157167}
   bulletsDmg: 5
-  dieAnimationDuration: 0
+  dieAnimationDuration: 3
   _buffParticles: []
-  viewRadius: 65.6
+  viewRadius: 82
   playerMask:
     serializedVersion: 2
     m_Bits: 512

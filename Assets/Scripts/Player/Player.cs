@@ -151,11 +151,11 @@ public class Player : Entity
             input.Execute();
         }
 
-        /*if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             transform.position = testBossPoint.position;
             
-        }*/
+        }
     }
 
     public void PowerUpBullet()

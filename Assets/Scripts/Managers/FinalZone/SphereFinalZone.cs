@@ -11,7 +11,6 @@ public class SphereFinalZone : MonoBehaviour
     {
         _meshRenderer = GetComponent<MeshRenderer>();
 
-
         Songs.OnEnterBossZone += Activate;
 
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_BossDefeated, Deactivate);
@@ -25,5 +24,12 @@ public class SphereFinalZone : MonoBehaviour
     public void Deactivate(params object[] parameters)
     {
         gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        Songs.OnEnterBossZone -= Activate;
+
+        EventManager.UnSubscribeToEvent(EventManager.EventsType.Event_BossDefeated, Deactivate);
     }
 }
