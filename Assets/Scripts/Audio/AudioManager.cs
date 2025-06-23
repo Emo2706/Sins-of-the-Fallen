@@ -126,5 +126,6 @@ public class AudioManager : MonoBehaviour
         public const int Charge1 = 35;
         public const int Charge2 = 36;
         public const int Charge3 = 37;
+        public const int Korn = 38;
     }
 }

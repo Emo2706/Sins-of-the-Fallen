@@ -111,7 +111,8 @@ public class Boss : EnemyGlobalScript
 
         else
         {
-            
+            Debug.Log("Veo al player");
+
             _stateMachine.Update();
 
             _lifePotionTimer += Time.deltaTime;

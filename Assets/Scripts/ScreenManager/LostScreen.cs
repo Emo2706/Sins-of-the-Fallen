@@ -10,6 +10,7 @@ public class LostScreen :MonoBehaviour ,IScreen
         GameManager.instance.pause = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        AudioManager.instance.StopAllsounds();
     }
 
     public void Deactivate()

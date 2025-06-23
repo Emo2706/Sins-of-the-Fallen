@@ -18,12 +18,14 @@ public class PauseScreen : MonoBehaviour,IScreen
         GameManager.instance.pause = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        AudioManager.instance.SetVolume(AudioManager.Sounds.Korn, 0);
     }
 
     public void Deactivate()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        AudioManager.instance.SetVolume(AudioManager.Sounds.Korn, 1);
     }
 
     public void Free()

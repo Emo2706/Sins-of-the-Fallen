@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.instance.pause = false;
     }
 }
 

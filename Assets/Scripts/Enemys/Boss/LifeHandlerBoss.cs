@@ -5,8 +5,6 @@ using System;
 
 public class LifeHandlerBoss
 {
-    public event Action OnBossDefeated= delegate {};
-
     public LifeHandlerBoss()
     {
 

@@ -40,23 +40,16 @@ public class Songs : MonoBehaviour
 
         AudioManager.instance.Play(AudioManager.Sounds.BossScream);
 
-        AudioManager.instance.Play(AudioManager.Sounds.Werewolf);
+        AudioManager.instance.Play(AudioManager.Sounds.Korn);
 
         AudioManager.instance.Stop(AudioManager.Sounds.Ambience);
 
         yield return werewolf ;
 
-        AudioManager.instance.Stop(AudioManager.Sounds.Werewolf);
-
-        AudioManager.instance.Play(AudioManager.Sounds.Elite);
-
-        yield return elite;
-
         AudioManager.instance.Stop(AudioManager.Sounds.Elite);
 
         AudioManager.instance.Play(AudioManager.Sounds.Lotion);
-
-        yield return null;
+        
     }
 
     private void OnDestroy()
