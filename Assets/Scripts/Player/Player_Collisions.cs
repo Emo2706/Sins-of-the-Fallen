@@ -83,10 +83,6 @@ public class Player_Collisions
                     _player.TakeDmg(_punchDmg);
                 }
             }
-                
-                
-           
-
         }
         var haiser = collision.gameObject.GetComponent<GlideHaiser>();
 
@@ -113,12 +109,15 @@ public class Player_Collisions
         {
             _movement.Twister();
             _player.TakeDmg(_twisterDmg);
+
+            var twister = other.gameObject.GetComponent<TwisterAttack>();
+
+            if (twister != null) twister.Deactivate();
         }
 
         if(other.gameObject.layer == 17)
         {
             _player.TakeDmg(_circleDmg);
-            
         }
 
         if (other.gameObject.layer == 12)

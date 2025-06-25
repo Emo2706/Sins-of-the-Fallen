@@ -67,4 +67,18 @@ public class TwisterAttack : MonoBehaviour
         _freezeCollider.enabled = true;
         Debug.Log("Freeze");
     }
+
+    public void Deactivate()
+    {
+        StartCoroutine(DeactivateCollider());
+    }
+
+    IEnumerator DeactivateCollider()
+    {
+        _collider.enabled = false;
+
+        yield return new WaitForSeconds(1f);
+
+        _collider.enabled = true;
+    }
 }

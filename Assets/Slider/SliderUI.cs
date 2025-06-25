@@ -92,7 +92,7 @@ public class SliderUI : MonoBehaviour
     {
         for (int i = 0; i < _markers.Length; i++)
         {
-            //_markers[i].transform.Rotate(Vector3.zero);
+            //_markers[i].transform.Rotate(Vector3.zero);e
             float rotation = _phasesInSeconds[i] * 360 / maximumCharge * -1;
             _SliderText.text = _actualPhase.ToString();
 

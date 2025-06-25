@@ -33,6 +33,7 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        AudioManager.instance.StopAllsounds();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameManager.instance.pause = false;
     }

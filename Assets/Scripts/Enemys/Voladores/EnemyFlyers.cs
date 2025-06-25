@@ -25,6 +25,8 @@ public class EnemyFlyers : EnemyGlobalScript
     {
         base.Start();
 
+        
+
         _stateMachine = new FSM<FlyersStates>();
         _patrol = new PatrolStateFlyers(this);
         _attack = new AttackStateFlyers(this);

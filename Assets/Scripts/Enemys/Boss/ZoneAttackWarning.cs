@@ -7,6 +7,11 @@ public class ZoneAttackWarning : MonoBehaviour
     [SerializeField] int _lifeTime;
     float _lifeTimer;
 
+    private void Start()
+    {
+        StartCoroutine(Effect());
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -31,5 +36,19 @@ public class ZoneAttackWarning : MonoBehaviour
     public static void TurnOffCallBack(ZoneAttackWarning zoneWarning)
     {
         zoneWarning.gameObject.SetActive(false);
+    }
+
+    IEnumerator Effect()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.4f);
+
+        while (true)
+        {
+            gameObject.SetActive(false);
+
+            yield return wait;
+
+            gameObject.SetActive(true);
+        }
     }
 }

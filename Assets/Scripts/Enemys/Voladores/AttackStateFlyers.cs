@@ -16,11 +16,13 @@ public class AttackStateFlyers : State
     public event Action OnShoot;
     Vector3 _shootDir;
 
+   
+
     public AttackStateFlyers(EnemyFlyers flyer)
     {
         _flyer = flyer;
         _transform = flyer.transform;
-        _shootCooldown = flyer.shootCooldown;
+        _shootCooldown = UnityEngine.Random.Range(flyer.shootCooldown, 6);
         _speedRotation = flyer.speedRotation;
         _pivotShoot = flyer.pivotShootFlyer;
     }
