@@ -11,6 +11,10 @@ public class CircleAttack : MonoBehaviour
     float _lifeTimer;
     Vector3 _initialScale;
 
+    void Start()
+    {
+        AudioManager.instance.Play(AudioManager.Sounds.BossShoot2);
+    }
     // Update is called once per frame
     void Update()
     {

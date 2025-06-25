@@ -310,7 +310,7 @@ MonoBehaviour:
   dieAnimationDuration: 4.333
   _buffParticles: []
   speed: 1
-  minDist: 16
+  minDist: 30
   player: {fileID: 0}
   minDistAttack: 3
   playerMask:

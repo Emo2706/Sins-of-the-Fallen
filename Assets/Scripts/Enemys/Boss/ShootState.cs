@@ -95,7 +95,7 @@ public class ShootState : State
         var bullet = BulletBossFactory.instance.GetObjFromPool();
         bullet.transform.position = _pivotShoot.position;
         bullet.dir = _shootPivot.normalized;
-        AudioManager.instance.PlayRandom(new int[] { AudioManager.Sounds.BossShoot1, AudioManager.Sounds.BossShoot2, AudioManager.Sounds.BossShoot3 });
+        AudioManager.instance.Play(AudioManager.Sounds.BossShoot3);
     }
 
     IEnumerator TwisterAttack()

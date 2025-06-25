@@ -8,6 +8,10 @@ public class ZoneAttack : MonoBehaviour
     float _lifeTimer;
     public Collider zoneCollider;
 
+    private void Start()
+    {
+        AudioManager.instance.Play(AudioManager.Sounds.Zones);
+    }
     // Update is called once per frame
     void Update()
     {
