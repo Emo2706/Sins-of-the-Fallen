@@ -8,8 +8,8 @@ public class Portal : MonoBehaviour
     {
         if (collision.gameObject.layer == 9)
         {
-            EventManager.TriggerEvent(EventManager.EventsType.Event_WinGame);
-            ScreenManager.instance.Push("WinScreen");
+            AudioManager.instance.StopAllsounds();
+            LevelManager.instance.StartLevel(2);
         }
     }
 }
