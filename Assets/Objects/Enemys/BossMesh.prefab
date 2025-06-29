@@ -133,9 +133,9 @@ MonoBehaviour:
   coolDownChangeAttacks: 30
   coolDownCircle: 8
   _coolDownCirclePhase2: 5
-  _coolDownCirclePhase3: 2
+  _coolDownCirclePhase3: 3
   coolDownShoot: 2
-  _coolDownPotion: 20
+  _coolDownPotion: 15
   pivotShoot: {fileID: 7335018344059051357}
   spawnPointsZone:
   - {fileID: 0}
