@@ -19574,7 +19574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - soundName: Werewolf
-    volume: 0.5
+    volume: 0.4
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: 9c3b7c319deaca74192a6d99d3792caf, type: 3}
@@ -19766,7 +19766,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c07186ff294c4674ca76c8dee3401563, type: 3}
     source: {fileID: 0}
   - soundName: Ambience
-    volume: 0.8
+    volume: 0.6
     pitch: 1
     loop: 1
     clip: {fileID: 8300000, guid: 9c0d6d6512ba17a4083c5507551e0eb5, type: 3}
@@ -19802,7 +19802,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8728c325d76041a4db81cc5ed6833466, type: 3}
     source: {fileID: 0}
   - soundName: Korn
-    volume: 0.7
+    volume: 0.4
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: 53db5df561ee9034190147b308785181, type: 3}
