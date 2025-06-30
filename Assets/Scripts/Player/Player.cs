@@ -13,6 +13,7 @@ public class Player : Entity
     Player_Attacks _attacks;
     Player_UI _ui;
     SliderUI _sliderUI;
+    PlayerView _view;
     public ScriptableRendererFeature dashWind;
     [SerializeField] Rigidbody _rb;
     LifeHandler _lifeHandler;
@@ -34,6 +35,7 @@ public class Player : Entity
     [SerializeField] int _multiplierDmg;
     [SerializeField] float _shakeDuration;
     [SerializeField] float _shakeMagnitude;
+    public float smoothValue;
     public int[] phaseDamages;
     public int slimeDmg;
     public int zonesDmg;
@@ -42,6 +44,8 @@ public class Player : Entity
     public int circleDmg;
     public int bulletsDmg;
     public int enemyDmg;
+    public int lavaDmg;
+    public int lavaCooldown;
     [SerializeField] int _speed;
     [SerializeField] float _jumpForce;
     [SerializeField] float _dashForce;
@@ -49,7 +53,7 @@ public class Player : Entity
     public int phase2Dmg;
     public List<GameObject> FireUI;
     public List<GameObject> IceUI;
-    public Animator anim;
+    public Animator anim, armAnim;
 
     public Image imgFire;
 
@@ -88,14 +92,15 @@ public class Player : Entity
         _cam.head = _headTransform;
 
         life = _maxLife;
-        
+
         _lifeHandler = new LifeHandler();
-        _inputs = new Player_Inputs(transform , _lifeHandler , this);
-        _movement = new Player_Movement(_rb , _inputs , _speed, _jumpForce , _dashForce, _dashDuration,_dashCooldown , transform ,_glideDrag , _glideForce, _lifeHandler , _slimeForce , this , _cam);
-        _collisions = new Player_Collisions(_movement , _rb, checkpoint, this , transform , _lifeHandler);
+        _inputs = new Player_Inputs(transform, _lifeHandler, this);
+        _movement = new Player_Movement(_rb, _inputs, _speed, _jumpForce, _dashForce, _dashDuration, _dashCooldown, transform, _glideDrag, _glideForce, _lifeHandler, _slimeForce, this, _cam);
+        _collisions = new Player_Collisions(_movement, _rb, checkpoint, this, transform, _lifeHandler);
         _sliderUI = new SliderUI(this);
         _ui = new Player_UI(_hpBar, this, _sliderUI);
-        _attacks = new Player_Attacks(_amountPowerUpBullets, _multiplierDmg, _pivotShoot, this, _sliderUI, _ui);
+        _view = new PlayerView(this);
+        _attacks = new Player_Attacks(_amountPowerUpBullets, _multiplierDmg, _pivotShoot, this, _sliderUI, _ui, _view);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

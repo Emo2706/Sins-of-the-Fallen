@@ -18,10 +18,12 @@ public class Player_Collisions
     int _circleDmg;
     int _bulletsDmg;
     int _punchDmg;
+    int _lavaDmg;
+    int _lavaCooldown;
     LifeHandler _lifeHandler;
 
 
-    public Player_Collisions(Player_Movement movement, Rigidbody rb, Transform spawnpoint, Player Player, Transform transform , LifeHandler lifeHandler)
+    public Player_Collisions(Player_Movement movement, Rigidbody rb, Transform spawnpoint, Player Player, Transform transform, LifeHandler lifeHandler)
     {
         _movement = movement;
         _rb = rb;
@@ -36,6 +38,8 @@ public class Player_Collisions
         _punchDmg = Player.enemyDmg;
         _lifeHandler = lifeHandler;
         _haiserForce = Player.haiserForce;
+        _lavaDmg = Player.lavaDmg;
+        _lavaCooldown = Player.lavaCooldown;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -49,7 +53,8 @@ public class Player_Collisions
         }
         if (collision.gameObject.layer == 7)
         {
-            _lifeHandler.OnDead();
+            _player.StartCoroutine(DmgLava(_lavaCooldown, _lavaDmg));
+            _movement.jump = true;
         }
 
         if (collision.gameObject.layer == 8)
@@ -64,19 +69,19 @@ public class Player_Collisions
         {
             _movement.JumpSlime();
             _player.TakeDmg(_slimeDmg);
-            
+
         }
 
         if (collision.gameObject.layer == 18)
         {
             _player.TakeDmg(_punchDmg);
-            
+
         }
 
         if (collision.gameObject.layer == 11)
         {
             _enemy = collision.gameObject.GetComponent<EnemyNormal>();
-            if(_enemy != null)
+            if (_enemy != null)
             {
                 if (!_enemy.dead)
                 {
@@ -86,7 +91,7 @@ public class Player_Collisions
         }
         var haiser = collision.gameObject.GetComponent<GlideHaiser>();
 
-        if(haiser != null)
+        if (haiser != null)
         {
             if (haiser.activate)
             {
@@ -115,7 +120,7 @@ public class Player_Collisions
             if (twister != null) twister.Deactivate();
         }
 
-        if(other.gameObject.layer == 17)
+        if (other.gameObject.layer == 17)
         {
             _player.TakeDmg(_circleDmg);
         }
@@ -123,7 +128,7 @@ public class Player_Collisions
         if (other.gameObject.layer == 12)
         {
             _player.TakeDmg(_bulletsDmg);
-            
+
         }
 
         if (other.gameObject.layer == 23)
@@ -134,7 +139,7 @@ public class Player_Collisions
 
         var powerUp = other.GetComponent<PowerUp>();
 
-        if (powerUp != null && _player.life<50)
+        if (powerUp != null && _player.life < 50)
             powerUp.Active();
     }
 
@@ -147,6 +152,23 @@ public class Player_Collisions
         if (collision.gameObject.layer == 8)
             _transform.parent = null;
 
+        if (collision.gameObject.layer == 7)
+            _player.StartCoroutine(DmgLava(_lavaCooldown , _lavaDmg));
+    }
 
+    IEnumerator DmgLava(int lavaCooldown, int lavaDmg)
+    {
+        WaitUntil pause = new WaitUntil(() => !GameManager.instance.pause);
+
+        WaitForSeconds wait = new WaitForSeconds(_lavaCooldown);
+
+        while (true)
+        {
+            yield return pause;
+
+            _player.TakeDmg(_lavaDmg);
+
+            yield return wait;
+        }
     }
 }

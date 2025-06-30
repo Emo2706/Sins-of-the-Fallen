@@ -77,6 +77,9 @@ public class Boss : EnemyGlobalScript
         ChangeState(BossStates.Shoot);
 
         _zones.Zone += _view.Zone;
+        _shoot.OnShoot += _view.Projectile;
+        _shoot.OnCircle += _view.Circle;
+        _shoot.OnTwister += _view.Tornado;
 
     }
 

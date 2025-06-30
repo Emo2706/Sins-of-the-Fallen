@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ShootState : State
 {
@@ -18,6 +19,10 @@ public class ShootState : State
     public Player player;
     Vector3 _playerPos;
     Vector3 _shootPivot;
+    public event Action OnShoot = delegate { };
+    public event Action OnCircle = delegate { };
+    public event Action OnTwister = delegate { };
+    
     public ShootState(Boss boss)
     {
         _boss = boss;
@@ -96,6 +101,7 @@ public class ShootState : State
         bullet.transform.position = _pivotShoot.position;
         bullet.dir = _shootPivot.normalized;
         AudioManager.instance.Play(AudioManager.Sounds.BossShoot3);
+        OnShoot();
     }
 
     IEnumerator TwisterAttack()
@@ -116,7 +122,7 @@ public class ShootState : State
             for (int i = 0; i < _boss.twistersAmount; i++)
             {
                 yield return new WaitUntil(() => _boss.enabled);
-                var spawnPointTwister = _boss.spawnPointsTwister[Random.Range(0, _boss.spawnPointsTwister.Length)];
+                var spawnPointTwister = _boss.spawnPointsTwister[UnityEngine.Random.Range(0, _boss.spawnPointsTwister.Length)];
 
                 TwisterWarning warning = TwisterWarningFactory.instance.GetObjFromPool();
                 warning.transform.position = spawnPointTwister.position;
@@ -126,6 +132,8 @@ public class ShootState : State
             }
 
             yield return waitForSeconds;
+
+            OnTwister();
 
             foreach (var item in _warnings)
             {
@@ -178,6 +186,7 @@ public class ShootState : State
 
             yield return waitForSeconds;
 
+            OnCircle();
 
         }
     }
