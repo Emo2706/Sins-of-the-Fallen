@@ -8,9 +8,12 @@ public class BulletEnemy : MonoBehaviour
     [SerializeField] int _lifeCooldown;
     [SerializeField] int _bulletSpeed;
     public Vector3 dir;
-    
 
-   
+
+    private void Start()
+    {
+        AudioManager.instance.Play(AudioManager.Sounds.BossProjectile);
+    }
 
     // Update is called once per frame
     void Update()

@@ -134,6 +134,7 @@ public class Player_Movement
         {
             if(_rb.drag == _initialDrag)
             {
+                AudioManager.instance.Play(AudioManager.Sounds.Dash);
                 _dashing = true;
                 _rb.AddForce(_dir * _dashForce, ForceMode.Impulse);
                 _dashTimer2 = 0;
@@ -160,6 +161,7 @@ public class Player_Movement
             //Vector3 glideForce = _dir.normalized * _glideForce; // glide force magnitude
             //_rb.AddForce(glideForce, ForceMode.Acceleration);
             _rb.drag = _glideDrag;
+            //StartCoroutine(GlideSounds());
         }
 
     }
@@ -167,6 +169,16 @@ public class Player_Movement
     public void NotGlide()
     {
         if (jump==false) _rb.drag = _initialDrag;
+        //AudioManager.instance.Stop(AudioManager.Sounds.Glide);
+    }
+
+    IEnumerator GlideSounds()
+    {
+        AudioManager.instance.Play(AudioManager.Sounds.GlideStart); ;
+
+        yield return new WaitForSeconds(0.5f);
+
+        AudioManager.instance.Play(AudioManager.Sounds.Glide);
     }
 
     void DisableOnDead()

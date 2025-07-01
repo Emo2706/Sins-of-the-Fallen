@@ -13,7 +13,7 @@ public class CircleAttack : MonoBehaviour
 
     void Start()
     {
-        AudioManager.instance.Play(AudioManager.Sounds.BossShoot2);
+        AudioManager.instance.Play(AudioManager.Sounds.CircleAttack);
     }
     // Update is called once per frame
     void Update()

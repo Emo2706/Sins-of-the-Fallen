@@ -85,7 +85,7 @@ MonoBehaviour:
   dieAnimationDuration: 4.333
   _buffParticles: []
   speed: 5
-  minDistAttack: 38
+  minDistAttack: 50
   player: {fileID: 0}
   speedRotation: 5
   shootCooldown: 2

@@ -73,6 +73,7 @@ public class Player : Entity
     [SerializeField] FirstPersonCamera _cam;
     [SerializeField] Transform _headTransform;
     [SerializeField] Transform _pivotShoot;
+    public Transform pivotParticles;
 
 
     [Range(1f, 200f)] public float sensitivity = 200f;

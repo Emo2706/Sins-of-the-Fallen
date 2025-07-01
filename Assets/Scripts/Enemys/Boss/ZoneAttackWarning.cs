@@ -10,6 +10,7 @@ public class ZoneAttackWarning : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Effect());
+        AudioManager.instance.Play(AudioManager.Sounds.PreAreaAttack);
     }
 
     // Update is called once per frame

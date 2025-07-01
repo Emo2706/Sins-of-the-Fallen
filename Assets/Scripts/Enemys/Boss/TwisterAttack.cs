@@ -57,12 +57,12 @@ public class TwisterAttack : MonoBehaviour
     public void TornadoFreeze()
     {
         _matSeq.Kill();
-
+        
         _matSeq.Append(_matUp.DOFloat(2, _frozenLevel, _transitionDuration));
         _matSeq.Append(_mat.DOFloat(2, _frozenLevel, _transitionDuration));
         _matSeq.Append(_matDown.DOFloat(2, _frozenLevel, _transitionDuration));
         _matSeq.Append(_matEdge.DOFloat(2, _frozenLevel, _transitionDuration));
-
+        AudioManager.instance.Play(AudioManager.Sounds.Freeze);
         _collider.enabled = false;
         _freezeCollider.enabled = true;
         Debug.Log("Freeze");
