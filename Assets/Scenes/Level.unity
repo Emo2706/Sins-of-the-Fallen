@@ -19802,6 +19802,60 @@ MonoBehaviour:
     loop: 0
     clip: {fileID: 8300000, guid: 53db5df561ee9034190147b308785181, type: 3}
     source: {fileID: 0}
+  - soundName: GlideStart
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 66c05588dbdcd3348836c81bc219c9bb, type: 3}
+    source: {fileID: 0}
+  - soundName: Glide
+    volume: 0.7
+    pitch: 1
+    loop: 1
+    clip: {fileID: 8300000, guid: b5353d9c8ee1155428bda77a520bd154, type: 3}
+    source: {fileID: 0}
+  - soundName: HaiserStart
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 515249a73debe5b4eab2b9cd354b8fca, type: 3}
+    source: {fileID: 0}
+  - soundName: Haiser
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: ca1c5d2fc80622840837a6c3d58a99ac, type: 3}
+    source: {fileID: 0}
+  - soundName: Tornado
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    clip: {fileID: 8300000, guid: 6c8a43166d93f5745a4ed6d32d4e5ffd, type: 3}
+    source: {fileID: 0}
+  - soundName: PreAreaAttack
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 7ae181c8ddb1219428d4dad83213a334, type: 3}
+    source: {fileID: 0}
+  - soundName: CircleAttack
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    clip: {fileID: 8300000, guid: dc31c1ac812914d4ca6af0e79eaa9442, type: 3}
+    source: {fileID: 0}
+  - soundName: BossProjectile
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    clip: {fileID: 8300000, guid: 5bef0e4c114682648969164781c141fb, type: 3}
+    source: {fileID: 0}
+  - soundName: Dash
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: b4a82531703fb374db996d6c3ca7df7c, type: 3}
+    source: {fileID: 0}
 --- !u!4 &766074417
 Transform:
   m_ObjectHideFlags: 0
@@ -20577,6 +20631,12 @@ MonoBehaviour:
   - {fileID: 8866937984996210533, guid: 82dbd450e40fa2f4aba631814c5382e0, type: 3}
   - {fileID: 2427521303182586876, guid: 96474451b5728954eb6021d51fb1f220, type: 3}
   - {fileID: 4503706678312829922, guid: 16377ce37ef2b444ca4ec0d48bc2a71e, type: 3}
+  - {fileID: -6346832231522665385, guid: 6430d80afe8dc9e488b7d16341df8f9f, type: 3}
+  - {fileID: 984094751259752126, guid: 10fccbacd2569ae4fb60c479c8badc8f, type: 3}
+  - {fileID: 1658672857911524850, guid: a14654676d7e2f14a8c5f73263b2e706, type: 3}
+  - {fileID: -7322464497102703688, guid: bf67ba38fdbece74d9d45499b270c440, type: 3}
+  - {fileID: -573521066935272264, guid: a579c60605f47524fb866814cdf73034, type: 3}
+  - {fileID: 4982928262988772552, guid: 5eb67702060796b4b9ea9165170e12d9, type: 3}
 --- !u!4 &815244152
 Transform:
   m_ObjectHideFlags: 0

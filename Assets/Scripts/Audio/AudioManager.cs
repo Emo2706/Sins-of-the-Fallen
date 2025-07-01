@@ -127,5 +127,14 @@ public class AudioManager : MonoBehaviour
         public const int Charge2 = 36;
         public const int Charge3 = 37;
         public const int Korn = 38;
+        public const int GlideStart = 39;
+        public const int Glide = 40;
+        public const int HaiserStart = 41;
+        public const int Haiser = 42;
+        public const int Tornado = 43;
+        public const int PreAreaAttack = 44;
+        public const int CircleAttack = 45;
+        public const int BossProjectile = 46;
+        public const int Dash = 47;
     }
 }
