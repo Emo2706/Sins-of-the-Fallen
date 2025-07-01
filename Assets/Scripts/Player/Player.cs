@@ -138,7 +138,6 @@ public class Player : Entity
     // Update is called once per frame
     void Update()
     {
-        _attacks.Update();
         _inputs.ArtificialUpdate();
         _inputs.UpdateInputs();
         _ui.Update();
@@ -161,6 +160,8 @@ public class Player : Entity
             transform.position = testBossPoint.position;
             
         }
+
+        if (Input.GetKeyDown(KeyCode.T)) LevelManager.instance.StartLevel(2);
     }
 
     public void PowerUpBullet()

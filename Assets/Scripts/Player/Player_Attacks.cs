@@ -39,13 +39,6 @@ public class Player_Attacks
         _view = view;
     }
 
-    public void Update()
-    {
-        //_shootTimer += Time.deltaTime;
-
-       
-    }
-
     public void ChangeBullet()
     {
         if(currentType == bulletType.Fireball)
@@ -117,9 +110,16 @@ public class Player_Attacks
             _view.BlendAnimations(0.33f);
 
             if(currentType== bulletType.Fireball)
+            {
                 //_particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ChargeFire1);
+                //_particles.transform.position = _pivotShoot.position;
+            }
 
-            // else _particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ChargeIce1);
+            else
+            {
+                // _particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ChargeIce1);
+                //_particles.transform.position = _pivotShoot.position;
+            }
 
             _blended1 = true;
         } 
@@ -131,9 +131,16 @@ public class Player_Attacks
             //ParticleFactory.instance.ReturnParticleToPool(_particles.TypeOfParticle, _particles)
 
             if (currentType == bulletType.Fireball)
+            {
                 //_particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ChargeFire2);
+                //_particles.transform.position = _pivotShoot.position;
+            }
+            else
+            {
+                //_particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ChargeIce2);
+                //_particles.transform.position = _pivotShoot.position;
+            }
 
-            // else _particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ChargeIce2);
             _blended2 = true;
         } 
         
@@ -143,10 +150,16 @@ public class Player_Attacks
             _view.BlendAnimations(1f);
 
             if(currentType == bulletType.Fireball)
+            {
                 //_particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ChargeFire3);
+                //_particles.transform.position = _pivotShoot.position;
+            }
+            else
+            {
+                //ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ChargeIce3);
+                //_particles.transform.position = _pivotShoot.position;
+            }
 
-            //else ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.ChargeIce3);
-                
             _blended3 = true;
         }
 

@@ -59,6 +59,16 @@ public class Iceball : Bullet
             BulletFactory.instance.ReturnToPool(elementBullet, this);
         }
 
+        var bossBall = other.GetComponent<BossBall>();
+
+        if(bossBall != null)
+        {
+            bossBall.TakeDmg(dmg);
+            var particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.IceShootHit);
+            particles.transform.position = transform.position;
+            BulletFactory.instance.ReturnToPool(elementBullet, this);
+        }
+
     }
 
     public override void SetChargeValues(int damage, int phase)
