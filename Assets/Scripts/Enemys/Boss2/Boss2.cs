@@ -7,6 +7,7 @@ public class Boss2 : EnemyGlobalScript
 {
     Boss2View _view;
     public Slider timeSlider;
+    public Slider hpBar;
     [SerializeField] Transform _spawnPositionBall;
     bool _fightStarted;
     public Player player;
@@ -40,7 +41,7 @@ public class Boss2 : EnemyGlobalScript
         var ball = Boss2BallFactory.instance.GetObjFromPool();
         ball.transform.position = _spawnPositionBall.position;
         ball.timeSlider = timeSlider;
-
+        ball.hpBar = hpBar;
         //Agregar efecto y sonido
     }
 

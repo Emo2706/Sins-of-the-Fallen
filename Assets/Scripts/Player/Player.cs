@@ -162,7 +162,10 @@ public class Player : Entity
             
         }
 
-        if (Input.GetKeyDown(KeyCode.T)) LevelManager.instance.StartLevel(2);
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            LevelManager.instance.StartLevel(2);
+        }
     }
 
     public void PowerUpBullet()

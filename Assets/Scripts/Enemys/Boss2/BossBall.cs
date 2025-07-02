@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class BossBall : MonoBehaviour
 {
     public Slider timeSlider;
-    [SerializeField] int _scaleMultiplier;
+    [SerializeField] float _scaleMultiplier;
     Vector3 addScale;
     [SerializeField] int _cooldown;
     [SerializeField] int _cooldownLost;
-    [SerializeField] Slider _hpBar;
+    public Slider hpBar;
     [SerializeField] int _hp;
 
     private void Start()
@@ -18,6 +18,7 @@ public class BossBall : MonoBehaviour
         addScale = Vector3.zero;
         timeSlider.value = 0f;
         timeSlider.gameObject.SetActive(true);
+        hpBar.gameObject.SetActive(true);
     }
 
     void Update()
@@ -56,7 +57,7 @@ public class BossBall : MonoBehaviour
     {
         _hp -= dmg;
 
-        _hpBar.value = _hp;
+        hpBar.value = _hp;
 
         if (_hp <= 0)
         {
