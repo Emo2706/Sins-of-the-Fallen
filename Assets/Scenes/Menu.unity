@@ -208,9 +208,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 262613731}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 796087573}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 99753749}
   - component: {fileID: 99753748}
   - component: {fileID: 99753747}
+  - component: {fileID: 99753750}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -387,6 +388,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &99753750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99753746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &151252739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,3 +3464,348 @@ PrefabInstance:
       objectReference: {fileID: 796087568}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5e74b84711137b4998a70160440908d, type: 3}
+--- !u!1 &5299467285544032269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5299467285544032275}
+  - component: {fileID: 5299467285544032274}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &5299467285544032274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299467285544032269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd65091ba6f94324aaf867b438a733b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - soundName: Werewolf
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 9c3b7c319deaca74192a6d99d3792caf, type: 3}
+    source: {fileID: 0}
+  - soundName: Elite
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: c42247e5c1632294f94b6bac75587695, type: 3}
+    source: {fileID: 0}
+  - soundName: Fire1
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 266543edd5e635943bb29538e58a45f1, type: 3}
+    source: {fileID: 0}
+  - soundName: Fire2
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: d3ea952ebdad62b43a643f6906dfe265, type: 3}
+    source: {fileID: 0}
+  - soundName: Fire3
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: b2243955cf40f654eacd09e4b59801aa, type: 3}
+    source: {fileID: 0}
+  - soundName: Fire4
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: b3b54c990733aa746b1d0867498ad7de, type: 3}
+    source: {fileID: 0}
+  - soundName: Shield
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 99186bb8abb18c64089d11c0681d8166, type: 3}
+    source: {fileID: 0}
+  - soundName: Twisters
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 6c8a43166d93f5745a4ed6d32d4e5ffd, type: 3}
+    source: {fileID: 0}
+  - soundName: Zones
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 98959d203a4f3bb4090170a674c027a2, type: 3}
+    source: {fileID: 0}
+  - soundName: LifePotion
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 3b29db04e5b1c4446927ea07766f6f72, type: 3}
+    source: {fileID: 0}
+  - soundName: DieEnemies
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: ac93346b86908414eac9d2e60e7a72dd, type: 3}
+    source: {fileID: 0}
+  - soundName: Lotion
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: d4a38104f5468f240b367bb9a81a4b55, type: 3}
+    source: {fileID: 0}
+  - soundName: TheOpenDoor
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 4d8fa83b51fc37c4ba4529d57fd6bc5b, type: 3}
+    source: {fileID: 0}
+  - soundName: InstancePowerUp
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: a8d9eedbb470e884d93e0d13cccdc502, type: 3}
+    source: {fileID: 0}
+  - soundName: Burn
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 7cdcce6bc86ec4d4fa5d298c6fc7f88a, type: 3}
+    source: {fileID: 0}
+  - soundName: DmgEnemies
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: d8a2df31b823e904085f26b51200e2b8, type: 3}
+    source: {fileID: 0}
+  - soundName: EnemyShoot
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 4866dac07b42e714fad2b7a8aecdbc31, type: 3}
+    source: {fileID: 0}
+  - soundName: BossScream
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 84e129137d030f54ebe0371d1d5287ef, type: 3}
+    source: {fileID: 0}
+  - soundName: HitShield
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 7ca97f9f4355f52439e82658d5c7133e, type: 3}
+    source: {fileID: 0}
+  - soundName: HitTarget
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 5517aa37219e9704c85263798e112f92, type: 3}
+    source: {fileID: 0}
+  - soundName: Hurt1
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 4ccb6187083097e4e956a0260fd245c2, type: 3}
+    source: {fileID: 0}
+  - soundName: Hurt2
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: dca493fadfee72549b04f8bc8e8a6d7c, type: 3}
+    source: {fileID: 0}
+  - soundName: Jump1
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: d781c2f9365242648bb2a05d1511b297, type: 3}
+    source: {fileID: 0}
+  - soundName: Jump2
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: be2eb64ea71064943a98ad0f9992709b, type: 3}
+    source: {fileID: 0}
+  - soundName: Jump3
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: f3407a85e40429441b566ca0854405d2, type: 3}
+    source: {fileID: 0}
+  - soundName: Jump4
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 9e33f974501fc3a4ab11b620a7434ef5, type: 3}
+    source: {fileID: 0}
+  - soundName: Jump5
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 75b7bbe5ef8e864409065b9d04f945d7, type: 3}
+    source: {fileID: 0}
+  - soundName: ShieldBreak
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: ad53a6927520b9247b66c6e1dd247edb, type: 3}
+    source: {fileID: 0}
+  - soundName: TouchLava
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 4ee574cbbbd41654b884132b7925690e, type: 3}
+    source: {fileID: 0}
+  - soundName: BossShoot1
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 72a05f4b2405e224396ab9338fa88484, type: 3}
+    source: {fileID: 0}
+  - soundName: BossShoot2
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 94b6e98f3b76bc24ea61fa3ec0a96e6f, type: 3}
+    source: {fileID: 0}
+  - soundName: BossShoot3
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: c07186ff294c4674ca76c8dee3401563, type: 3}
+    source: {fileID: 0}
+  - soundName: Ambience
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    clip: {fileID: 8300000, guid: 9c0d6d6512ba17a4083c5507551e0eb5, type: 3}
+    source: {fileID: 0}
+  - soundName: PowerUpBullet
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 2308ee17e75211148969005b0a92758b, type: 3}
+    source: {fileID: 0}
+  - soundName: SpawnEnemies
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: da7542a77b2e51e41aa6d0f9d7080b02, type: 3}
+    source: {fileID: 0}
+  - soundName: Charge1
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 3caf39d06e94c764ca1f76f8d55785e9, type: 3}
+    source: {fileID: 0}
+  - soundName: Charge2
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: ca7954976d3e78e42a6b728020ffe7fa, type: 3}
+    source: {fileID: 0}
+  - soundName: Charge3
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 8728c325d76041a4db81cc5ed6833466, type: 3}
+    source: {fileID: 0}
+  - soundName: Korn
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 53db5df561ee9034190147b308785181, type: 3}
+    source: {fileID: 0}
+  - soundName: GlideStart
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 66c05588dbdcd3348836c81bc219c9bb, type: 3}
+    source: {fileID: 0}
+  - soundName: Glide
+    volume: 1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: b5353d9c8ee1155428bda77a520bd154, type: 3}
+    source: {fileID: 0}
+  - soundName: HaiserStart
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 515249a73debe5b4eab2b9cd354b8fca, type: 3}
+    source: {fileID: 0}
+  - soundName: Haiser
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: ca1c5d2fc80622840837a6c3d58a99ac, type: 3}
+    source: {fileID: 0}
+  - soundName: Tornado
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    clip: {fileID: 8300000, guid: 6c8a43166d93f5745a4ed6d32d4e5ffd, type: 3}
+    source: {fileID: 0}
+  - soundName: PreAreaAttack
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 7ae181c8ddb1219428d4dad83213a334, type: 3}
+    source: {fileID: 0}
+  - soundName: CircleAttack
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    clip: {fileID: 8300000, guid: dc31c1ac812914d4ca6af0e79eaa9442, type: 3}
+    source: {fileID: 0}
+  - soundName: BossProjectile
+    volume: 0.269
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: 5bef0e4c114682648969164781c141fb, type: 3}
+    source: {fileID: 0}
+  - soundName: Dash
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: b4a82531703fb374db996d6c3ca7df7c, type: 3}
+    source: {fileID: 0}
+  - soundName: Freeze
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    clip: {fileID: 8300000, guid: afaf1b84d66b72b4da19c6ac71ae3a02, type: 3}
+    source: {fileID: 0}
+  - soundName: MusicMenu
+    volume: 0.823
+    pitch: 1
+    loop: 1
+    clip: {fileID: 8300000, guid: 281e01b3c894a4540a32c87a379dbfd9, type: 3}
+    source: {fileID: 0}
+--- !u!4 &5299467285544032275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299467285544032269}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.978584, y: -62.010185, z: 251.59741}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

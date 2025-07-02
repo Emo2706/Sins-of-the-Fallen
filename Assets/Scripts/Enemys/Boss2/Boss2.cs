@@ -22,16 +22,6 @@ public class Boss2 : EnemyGlobalScript
         ColliderSecondLevel.StartBoss += StartFight;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (_fightStarted)
-        {
-
-            //Implementar segundo ataque (disparo, circulo, etc.)
-        }
-    }
-
     public static void TurnOnCallBack(Boss2 boss)
     {
         boss.gameObject.SetActive(true);
@@ -52,5 +42,10 @@ public class Boss2 : EnemyGlobalScript
         ball.timeSlider = timeSlider;
 
         //Agregar efecto y sonido
+    }
+
+    private void OnDestroy()
+    {
+        ColliderSecondLevel.StartBoss -= StartFight;
     }
 }

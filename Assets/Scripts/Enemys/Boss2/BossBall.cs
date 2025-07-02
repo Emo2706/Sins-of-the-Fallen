@@ -30,7 +30,7 @@ public class BossBall : MonoBehaviour
 
         timeSlider.value += Time.deltaTime;
 
-        if (timeSlider.value >= _cooldown) StartCoroutine(LostEvent(_cooldownLost));
+        if (timeSlider.value >= _cooldown) ScreenManager.instance.Push("LostScreen");
     }
 
     IEnumerator LostEvent(int cooldownLost)
@@ -39,7 +39,7 @@ public class BossBall : MonoBehaviour
 
         yield return new WaitForSeconds(cooldownLost);
 
-        EventManager.TriggerEvent(EventManager.EventsType.Event_PlayerDead);
+        ScreenManager.instance.Push("LostScreen");
     }
 
     public static void TurnOnCallBack(BossBall ball)
@@ -60,7 +60,7 @@ public class BossBall : MonoBehaviour
 
         if (_hp <= 0)
         {
-            //Efectos ganar etc.
+            ScreenManager.instance.Push("WinScreen");
         }
     }
 }

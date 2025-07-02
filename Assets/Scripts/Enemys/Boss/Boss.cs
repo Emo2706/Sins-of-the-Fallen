@@ -56,7 +56,7 @@ public class Boss : EnemyGlobalScript
 
     private void Awake()
     {
-        EventManager.SubscribeToEvent(EventManager.EventsType.Event_BossHalfLife , Shield); 
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_BossHalfLife , Shield);
     }
 
     protected override void Start()

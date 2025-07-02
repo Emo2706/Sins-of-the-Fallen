@@ -15,6 +15,7 @@ public class BossSpawner : MonoBehaviour
 
     [SerializeField] Transform _spawnPointBoss;
     [SerializeField] List<GameObject> _beams;
+    [SerializeField] BossBar _bossBar;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class BossSpawner : MonoBehaviour
     void SpawnBoss()
     {
         var boss = BossFactory.instance.GetObjFromPool();
+        _bossBar.boss = boss;
         boss.transform.position = _spawnPointBoss.position;
         boss.spawnPointsPotions = _spawnPointsLifePotions;
         boss.spawnPointsTwister = _spawnPointsTwister;
@@ -32,7 +34,6 @@ public class BossSpawner : MonoBehaviour
         boss.spawnPointCircle = _spawnPointCircleAttack;
         boss.transform.parent = _root;
         boss.shieldBeams = _beams;
-        
     }
 
     private void OnDestroy()

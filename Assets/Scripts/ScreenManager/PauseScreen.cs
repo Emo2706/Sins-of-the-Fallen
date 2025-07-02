@@ -35,6 +35,7 @@ public class PauseScreen : MonoBehaviour,IScreen
 
     public void Restart()
     {
+        AudioManager.instance.StopAllsounds();
         ScreenManager.instance.Pop();
         LevelManager.instance.RestartLevel();
         
@@ -42,6 +43,7 @@ public class PauseScreen : MonoBehaviour,IScreen
 
     public void ExitToMenu()
     {
+        AudioManager.instance.StopAllsounds();
         LevelManager.instance.StartLevel(0);
         ScreenManager.instance.Pop();
     }

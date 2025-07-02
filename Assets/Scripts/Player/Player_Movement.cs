@@ -32,6 +32,7 @@ public class Player_Movement
     float _sensitivity;
     float _mouseX;
     FirstPersonCamera _cam;
+    public bool firstGlideEntrance;
     
     public Player_Movement(Rigidbody rb , Player_Inputs inputs , int speed , float jumpForce , float dashForce , float dashDuration , float dashCooldown , Transform transform ,float glideDrag , float glideForce, LifeHandler lifeHandler , int slimeForce , Player player , FirstPersonCamera cam)
     {
@@ -106,7 +107,6 @@ public class Player_Movement
     {
         if (jump)
         {
-            
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             jump = false;
             _player.StartCoroutine(GlideEnable());
@@ -161,7 +161,12 @@ public class Player_Movement
             //Vector3 glideForce = _dir.normalized * _glideForce; // glide force magnitude
             //_rb.AddForce(glideForce, ForceMode.Acceleration);
             _rb.drag = _glideDrag;
-            //StartCoroutine(GlideSounds());
+
+            if (firstGlideEntrance)
+            {
+                _player.StartCoroutine(GlideSounds());
+                firstGlideEntrance = false;
+            }
         }
 
     }
@@ -169,7 +174,8 @@ public class Player_Movement
     public void NotGlide()
     {
         if (jump==false) _rb.drag = _initialDrag;
-        //AudioManager.instance.Stop(AudioManager.Sounds.Glide);
+        firstGlideEntrance = true;
+        AudioManager.instance.Stop(AudioManager.Sounds.Glide);
     }
 
     IEnumerator GlideSounds()

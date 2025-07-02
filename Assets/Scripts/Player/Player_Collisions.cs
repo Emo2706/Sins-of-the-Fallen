@@ -48,20 +48,26 @@ public class Player_Collisions
         {
             _movement.jump = true;
             _movement._canGlide = false;
+            _movement.firstGlideEntrance = true;
             _rb.drag = _initialDrag;
-
+            AudioManager.instance.Stop(AudioManager.Sounds.Glide);
         }
         if (collision.gameObject.layer == 7)
         {
             _player.StartCoroutine(DmgLava(_lavaCooldown, _lavaDmg));
             _movement.jump = true;
+            _movement._canGlide = false;
+            _movement.firstGlideEntrance = true;
+            AudioManager.instance.Stop(AudioManager.Sounds.Glide);
         }
 
         if (collision.gameObject.layer == 8)
         {
             _movement.jump = true;
             _movement._canGlide = false;
+            _movement.firstGlideEntrance = true;
             _transform.parent = collision.transform;
+            AudioManager.instance.Stop(AudioManager.Sounds.Glide);
         }
 
 

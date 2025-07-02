@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114840706045210034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 434.3011, y: 1.1023573, z: 497.12482}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 434.3, y: -1.8598, z: 497.12482}
+  m_LocalScale: {x: 4.6891985, y: 4.6891985, z: 4.6891985}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1933122964030577851}
@@ -172,6 +172,25 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 041f9c08da2d94d4b8de8404d51f1f10, type: 3}
       propertyPath: m_Name
       value: Nightshade J Friedrich
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 041f9c08da2d94d4b8de8404d51f1f10, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c7a011bf9e0983f4a84f40e92016ccc0, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 041f9c08da2d94d4b8de8404d51f1f10, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Charge Explosion
+        Animation'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 041f9c08da2d94d4b8de8404d51f1f10, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 041f9c08da2d94d4b8de8404d51f1f10, type: 3}
