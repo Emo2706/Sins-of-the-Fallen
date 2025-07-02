@@ -55,6 +55,7 @@ MonoBehaviour:
   dieAnimationDuration: 0
   _buffParticles: []
   timeSlider: {fileID: 0}
+  hpBar: {fileID: 0}
   _spawnPositionBall: {fileID: 8859725699110519332}
   player: {fileID: 0}
 --- !u!54 &2114840706045209933
@@ -111,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7283788862859636663}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.036499023, y: 4.558, z: -0.07977295}
+  m_LocalPosition: {x: 0, y: 25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
