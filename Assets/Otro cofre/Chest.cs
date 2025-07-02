@@ -25,7 +25,7 @@ public class Chest : MonoBehaviour
     void Update()
     {
         //Poner en el if, un && Vector3.distance(transform.position, player.transform.positon) <= interactionRangeDetect
-        if (Input.GetKeyDown(KeyCode.Q) && Vector3.Distance(transform.position, player.gameObject.transform.position) <= interactionRangeDetect)
+        if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(transform.position, player.gameObject.transform.position) <= interactionRangeDetect)
         {
             OpenChest();
         }

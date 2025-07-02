@@ -12,6 +12,8 @@ public class ColliderSecondLevel : MonoBehaviour
         if(other.gameObject.layer == 9)
         {
             StartBoss();
+            AudioManager.instance.Stop(AudioManager.Sounds.Ambience);
+            AudioManager.instance.Play(AudioManager.Sounds.MusicMiniboss);
         }
     }
 }
