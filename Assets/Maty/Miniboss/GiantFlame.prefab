@@ -4825,6 +4825,7 @@ GameObject:
   - component: {fileID: 8555319230306619250}
   - component: {fileID: 8555319230306619251}
   - component: {fileID: 8422201123459590853}
+  - component: {fileID: 7280059086645117327}
   m_Layer: 0
   m_Name: GiantFlame
   m_TagString: Untagged
@@ -9706,6 +9707,19 @@ MonoBehaviour:
   hpBar: {fileID: 0}
   _hp: 30
   _maxScale: 150
+--- !u!135 &7280059086645117327
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8555319230306619248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8555319231086118976
 GameObject:
   m_ObjectHideFlags: 0
