@@ -159,7 +159,7 @@ public class Player_Collisions
             _transform.parent = null;
 
         if (collision.gameObject.layer == 7)
-            _player.StartCoroutine(DmgLava(_lavaCooldown , _lavaDmg));
+            _player.StopCoroutine(DmgLava(_lavaCooldown , _lavaDmg));
     }
 
     IEnumerator DmgLava(int lavaCooldown, int lavaDmg)

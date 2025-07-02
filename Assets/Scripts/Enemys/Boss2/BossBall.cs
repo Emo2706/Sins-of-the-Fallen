@@ -12,6 +12,7 @@ public class BossBall : MonoBehaviour
     [SerializeField] int _cooldownLost;
     public Slider hpBar;
     [SerializeField] int _hp;
+    [SerializeField] float _maxScale;
 
     private void Start()
     {
@@ -28,6 +29,14 @@ public class BossBall : MonoBehaviour
         addScale.z += Time.deltaTime * _scaleMultiplier;
 
         transform.localScale += addScale;
+
+        Vector3 clampedScale = transform.localScale;
+
+        clampedScale.x = Mathf.Min(clampedScale.x, _maxScale);
+        clampedScale.y = Mathf.Min(clampedScale.y, _maxScale);
+        clampedScale.z = Mathf.Min(clampedScale.z, _maxScale);
+
+        transform.localScale = clampedScale;
 
         timeSlider.value += Time.deltaTime;
 

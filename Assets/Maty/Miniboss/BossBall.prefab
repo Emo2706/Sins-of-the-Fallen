@@ -117,6 +117,7 @@ MonoBehaviour:
   _cooldownLost: 30
   hpBar: {fileID: 0}
   _hp: 40
+  _maxScale: 10
 --- !u!1 &2140242348476352091
 GameObject:
   m_ObjectHideFlags: 0
