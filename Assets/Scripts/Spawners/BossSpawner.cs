@@ -14,6 +14,7 @@ public class BossSpawner : MonoBehaviour
     [SerializeField] Transform _spawnPointCircleAttack;
 
     [SerializeField] Transform _spawnPointBoss;
+    [SerializeField] List<GameObject> _beams;
 
     private void Start()
     {
@@ -30,6 +31,7 @@ public class BossSpawner : MonoBehaviour
         boss.spawnPointsTargetsShield = _spawnPointsTargetsShield;
         boss.spawnPointCircle = _spawnPointCircleAttack;
         boss.transform.parent = _root;
+        boss.shieldBeams = _beams;
         
     }
 

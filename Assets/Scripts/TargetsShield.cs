@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TargetsShield : MonoBehaviour
 {
+    public Boss boss;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 10)
@@ -11,6 +13,7 @@ public class TargetsShield : MonoBehaviour
             var particles = ParticleFactory.instance.GetParticleFromPool(ParticleFactory.Particle_ID.TargetHit);
             particles.transform.position = transform.position;
             AudioManager.instance.Play(AudioManager.Sounds.HitTarget);
+            boss.DestroyBeam(this);
             TargetsShieldFactory.instance.ReturnToPool(this);
             TargetsShieldFactory.instance.initialAmount--;
 

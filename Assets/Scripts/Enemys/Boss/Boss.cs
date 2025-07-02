@@ -47,7 +47,8 @@ public class Boss : EnemyGlobalScript
     [SerializeField] int _lifePhase3Cooldown;
 
 
-    
+    public List<GameObject> shieldBeams;
+    Dictionary<TargetsShield, GameObject> _targetsBeams = new Dictionary<TargetsShield, GameObject>();
 
     Shield _shield;
     BossStates[] _bossStates = new BossStates[] { BossStates.Shoot, BossStates.Zones };
@@ -145,10 +146,6 @@ public class Boss : EnemyGlobalScript
         _changeAttackTimer += Time.deltaTime;
 
         if (_changeAttackTimer >= coolDownChangeAttacks) RandomChangeState();
-
-
-
-
     }
 
     public override void TakeDmg(int dmg)
@@ -190,6 +187,8 @@ public class Boss : EnemyGlobalScript
 
     void Shield(params object[] p)
     {
+        var account = 0;
+
         _shield = ShieldFactory.instance.GetObjFromPool();
         _shield.transform.position = _spawnPointShield.position;
 
@@ -197,13 +196,30 @@ public class Boss : EnemyGlobalScript
         {
             var targetShield = TargetsShieldFactory.instance.GetObjFromPool();
             targetShield.transform.position = item.position;
+            targetShield.boss = this;
+            ConnectBeams(account, targetShield, ref _targetsBeams , shieldBeams);
+            account++;
         }
 
+        
         AudioManager.instance.Play(AudioManager.Sounds.Shield);
 
         EventManager.UnSubscribeToEvent(EventManager.EventsType.Event_BossHalfLife , Shield);
     }
 
+    void ConnectBeams(int count , TargetsShield target, ref Dictionary<TargetsShield , GameObject> dictionary, List<GameObject> beams)
+    {
+        dictionary.Add(target, beams[count]);
+        beams[count].gameObject.SetActive(true);
+    }
+
+    public void DestroyBeam(TargetsShield target)
+    {
+        foreach (var item in _targetsBeams)
+        {
+            if (item.Key == target) Destroy(item.Value);
+        }
+    }
 
     public static void TurnOnCallBack(Boss boss)
     {

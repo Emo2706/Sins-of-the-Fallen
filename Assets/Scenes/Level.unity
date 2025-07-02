@@ -2179,6 +2179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShieldBeam (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5220186202280375030, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7594938277213367623, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
       propertyPath: simulationSpeed
       value: 3
@@ -2220,6 +2224,11 @@ PrefabInstance:
 --- !u!4 &216693531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4465827780944987676, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
+  m_PrefabInstance: {fileID: 216693530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &216693532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5220186202280375030, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
   m_PrefabInstance: {fileID: 216693530}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &236428686
@@ -2365,7 +2374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &240663328
 Transform:
   m_ObjectHideFlags: 0
@@ -14396,6 +14405,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShieldBeam (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5220186202280375030, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7594938277213367623, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
       propertyPath: simulationSpeed
       value: 3
@@ -14437,6 +14450,11 @@ PrefabInstance:
 --- !u!4 &717883949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4465827780944987676, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
+  m_PrefabInstance: {fileID: 717883948}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &717883950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5220186202280375030, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
   m_PrefabInstance: {fileID: 717883948}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &721558928
@@ -14622,6 +14640,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShieldBeam (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5220186202280375030, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7594938277213367623, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
       propertyPath: simulationSpeed
       value: 3
@@ -14663,6 +14685,11 @@ PrefabInstance:
 --- !u!4 &726949045 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4465827780944987676, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
+  m_PrefabInstance: {fileID: 726949044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &726949046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5220186202280375030, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
   m_PrefabInstance: {fileID: 726949044}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &730916636
@@ -21751,6 +21778,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShieldBeam (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5220186202280375030, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7594938277213367623, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
       propertyPath: simulationSpeed
       value: 3
@@ -21792,6 +21823,11 @@ PrefabInstance:
 --- !u!4 &874034274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4465827780944987676, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
+  m_PrefabInstance: {fileID: 874034273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &874034275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5220186202280375030, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
   m_PrefabInstance: {fileID: 874034273}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &885708220
@@ -50202,6 +50238,12 @@ MonoBehaviour:
   _root: {fileID: 287902063}
   _spawnPointCircleAttack: {fileID: 759053950}
   _spawnPointBoss: {fileID: 885708221}
+  _beams:
+  - {fileID: 1804557016322842662}
+  - {fileID: 726949046}
+  - {fileID: 874034275}
+  - {fileID: 216693532}
+  - {fileID: 717883950}
 --- !u!1 &1957500108
 GameObject:
   m_ObjectHideFlags: 0
@@ -54131,6 +54173,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShieldBeam
       objectReference: {fileID: 0}
+    - target: {fileID: 5220186202280375030, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7594938277213367623, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
       propertyPath: simulationSpeed
       value: 3
@@ -54172,6 +54218,11 @@ PrefabInstance:
 --- !u!4 &1804557016322842661 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4465827780944987676, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
+  m_PrefabInstance: {fileID: 1804557016322842660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1804557016322842662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5220186202280375030, guid: 608b358ac95b84c4ab0ed2b317555f49, type: 3}
   m_PrefabInstance: {fileID: 1804557016322842660}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1858971095416232842
