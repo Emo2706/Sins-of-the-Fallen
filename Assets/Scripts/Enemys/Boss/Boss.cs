@@ -162,6 +162,7 @@ public class Boss : EnemyGlobalScript
             _lifeHandler.Defeated();
 
             BossFactory.instance.ReturnToPool(this);
+            AudioManager.instance.Stop(AudioManager.Sounds.Korn);
         }
 
         if (life <= _maxLife / 2)

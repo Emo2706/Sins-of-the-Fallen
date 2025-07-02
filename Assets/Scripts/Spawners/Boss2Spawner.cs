@@ -19,6 +19,8 @@ public class Boss2Spawner : MonoBehaviour
         boss.player = _player;
         boss.timeSlider = _timeSlider;
         boss.hpBar = _hpBar;
+        AudioManager.instance.Stop(AudioManager.Sounds.Ambience);
+        AudioManager.instance.Play(AudioManager.Sounds.MusicMiniboss);
     }
 
     

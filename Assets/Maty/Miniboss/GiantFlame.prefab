@@ -9701,10 +9701,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSlider: {fileID: 0}
   _scaleMultiplier: 0.001
-  _cooldown: 50
+  _cooldown: 180
   _cooldownLost: 30
   hpBar: {fileID: 0}
-  _hp: 40
+  _hp: 30
+  _maxScale: 150
 --- !u!1 &8555319231086118976
 GameObject:
   m_ObjectHideFlags: 0

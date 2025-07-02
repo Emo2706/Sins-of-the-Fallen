@@ -20,6 +20,7 @@ public class Player_Collisions
     int _punchDmg;
     int _lavaDmg;
     int _lavaCooldown;
+    bool _isOnLava;
     LifeHandler _lifeHandler;
 
 
@@ -54,6 +55,7 @@ public class Player_Collisions
         }
         if (collision.gameObject.layer == 7)
         {
+            _isOnLava = true;
             _player.StartCoroutine(DmgLava(_lavaCooldown, _lavaDmg));
             _movement.jump = true;
             _movement._canGlide = false;
@@ -159,7 +161,11 @@ public class Player_Collisions
             _transform.parent = null;
 
         if (collision.gameObject.layer == 7)
-            _player.StopCoroutine(DmgLava(_lavaCooldown , _lavaDmg));
+        {
+            _isOnLava = false;
+            _player.StopCoroutine(DmgLava(_lavaCooldown, _lavaDmg));
+        }
+            
     }
 
     IEnumerator DmgLava(int lavaCooldown, int lavaDmg)
@@ -168,7 +174,7 @@ public class Player_Collisions
 
         WaitForSeconds wait = new WaitForSeconds(_lavaCooldown);
 
-        while (true)
+        while (_isOnLava)
         {
             yield return pause;
 

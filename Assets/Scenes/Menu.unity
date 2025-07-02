@@ -3585,19 +3585,19 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7cdcce6bc86ec4d4fa5d298c6fc7f88a, type: 3}
     source: {fileID: 0}
   - soundName: DmgEnemies
-    volume: 0.8
+    volume: 0.6
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: d8a2df31b823e904085f26b51200e2b8, type: 3}
     source: {fileID: 0}
   - soundName: EnemyShoot
-    volume: 1
+    volume: 0.4
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: 4866dac07b42e714fad2b7a8aecdbc31, type: 3}
     source: {fileID: 0}
   - soundName: BossScream
-    volume: 1
+    volume: 0.7
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: 84e129137d030f54ebe0371d1d5287ef, type: 3}
@@ -3669,25 +3669,25 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4ee574cbbbd41654b884132b7925690e, type: 3}
     source: {fileID: 0}
   - soundName: BossShoot1
-    volume: 1
+    volume: 0.7
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: 72a05f4b2405e224396ab9338fa88484, type: 3}
     source: {fileID: 0}
   - soundName: BossShoot2
-    volume: 1
+    volume: 0.7
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: 94b6e98f3b76bc24ea61fa3ec0a96e6f, type: 3}
     source: {fileID: 0}
   - soundName: BossShoot3
-    volume: 0.8
+    volume: 0.7
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: c07186ff294c4674ca76c8dee3401563, type: 3}
     source: {fileID: 0}
   - soundName: Ambience
-    volume: 0.6
+    volume: 0.4
     pitch: 1
     loop: 1
     clip: {fileID: 8300000, guid: 9c0d6d6512ba17a4083c5507551e0eb5, type: 3}
@@ -3699,7 +3699,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2308ee17e75211148969005b0a92758b, type: 3}
     source: {fileID: 0}
   - soundName: SpawnEnemies
-    volume: 0.8
+    volume: 0.6
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: da7542a77b2e51e41aa6d0f9d7080b02, type: 3}
@@ -3741,13 +3741,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b5353d9c8ee1155428bda77a520bd154, type: 3}
     source: {fileID: 0}
   - soundName: HaiserStart
-    volume: 0.7
+    volume: 0.5
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: 515249a73debe5b4eab2b9cd354b8fca, type: 3}
     source: {fileID: 0}
   - soundName: Haiser
-    volume: 0.1
+    volume: 0.2
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: ca1c5d2fc80622840837a6c3d58a99ac, type: 3}
@@ -3771,7 +3771,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: dc31c1ac812914d4ca6af0e79eaa9442, type: 3}
     source: {fileID: 0}
   - soundName: BossProjectile
-    volume: 0.269
+    volume: 0.3
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: 5bef0e4c114682648969164781c141fb, type: 3}
@@ -3783,16 +3783,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b4a82531703fb374db996d6c3ca7df7c, type: 3}
     source: {fileID: 0}
   - soundName: Freeze
-    volume: 0.6
+    volume: 0.4
     pitch: 1
     loop: 0
     clip: {fileID: 8300000, guid: afaf1b84d66b72b4da19c6ac71ae3a02, type: 3}
     source: {fileID: 0}
   - soundName: MusicMenu
-    volume: 0.823
+    volume: 0.7
     pitch: 1
     loop: 1
     clip: {fileID: 8300000, guid: 281e01b3c894a4540a32c87a379dbfd9, type: 3}
+    source: {fileID: 0}
+  - soundName: MusicMiniboss
+    volume: 0.7
+    pitch: 1
+    loop: 1
+    clip: {fileID: 8300000, guid: a3fbdacd3ccb7914b92c617e47f7554c, type: 3}
     source: {fileID: 0}
 --- !u!4 &5299467285544032275
 Transform:

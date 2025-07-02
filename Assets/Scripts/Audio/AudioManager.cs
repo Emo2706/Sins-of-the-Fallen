@@ -138,5 +138,6 @@ public class AudioManager : MonoBehaviour
         public const int Dash = 47;
         public const int Freeze = 48;
         public const int MusicMenu = 49;
+        public const int MusicMiniboss = 50;
     }
 }
