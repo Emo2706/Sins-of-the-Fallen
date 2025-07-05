@@ -9,11 +9,7 @@ public class Iceball : Bullet
     [SerializeField] GameObject iceball1;
     [SerializeField] GameObject iceballEffects;
     [SerializeField] GameObject iceball2;
-    [SerializeField] Bullet _IcebulletPrefab;
-
-    // Start is called before the first frame update
-
-
+    
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
@@ -24,19 +20,6 @@ public class Iceball : Bullet
             //Instantiate(Icewall, transform.position, Quaternion.identity);
 
             //aca meter los efectos de cada una
-            if (chargePhase1)
-            {
-                return;
-            }
-            if (chargePhase2)
-            {
-                return;
-            }
-            if (chargePhase3)
-            {
-                return;
-            }
-
         }
 
         var haiser = other.GetComponent<GlideHaiser>();

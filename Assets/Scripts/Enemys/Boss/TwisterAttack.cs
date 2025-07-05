@@ -11,11 +11,18 @@ public class TwisterAttack : MonoBehaviour
     [SerializeField] GameObject circleUp;
     [SerializeField] GameObject circleDown;
     [SerializeField] GameObject circleEdge;
+    [SerializeField] int _speed;
+    [SerializeField] List<Transform> _wayPoints;
     Sequence _matSeq;
     Material _mat , _matUp , _matDown, _matEdge;
     [SerializeField] Collider _collider;
     [SerializeField] Collider _freezeCollider;
+    [SerializeField] bool _move;
+    [SerializeField] float _distance;
+    [SerializeField] float _freezeDuration;
+    int _indexWayPoint;
     int _frozenLevel = Shader.PropertyToID("_FrozenLevel");
+    Vector3 _dir;
 
     private void Start()
     {
@@ -34,8 +41,28 @@ public class TwisterAttack : MonoBehaviour
 
         if (_lifeTimer >= _lifeTime)
             TwisterAttackFactory.instance.ReturnToPool(this);
+
+        if (_move) Move();
     }
 
+    private void FixedUpdate()
+    {
+        if (_move) transform.position = Vector3.MoveTowards(transform.position, _dir, _speed * Time.fixedDeltaTime);
+    }
+
+    void Move()
+    {
+        _dir = _wayPoints[_indexWayPoint].position;
+
+        var distance = _dir - transform.position;
+
+        if(distance.sqrMagnitude<= _distance * _distance)
+        {
+            _indexWayPoint++;
+
+            if (_indexWayPoint >= _wayPoints.Count) _indexWayPoint = 0;
+        }
+    }
 
     private void Reset()
     {
@@ -65,7 +92,7 @@ public class TwisterAttack : MonoBehaviour
         AudioManager.instance.Play(AudioManager.Sounds.Freeze);
         _collider.enabled = false;
         _freezeCollider.enabled = true;
-        Debug.Log("Freeze");
+        StartCoroutine(LowSpeed(_freezeDuration));
     }
 
     public void Deactivate()
@@ -80,5 +107,16 @@ public class TwisterAttack : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         _collider.enabled = true;
+    }
+
+    IEnumerator LowSpeed(float duration)
+    {
+        var initialSpeed = _speed;
+
+        _speed = 0;
+
+        yield return new WaitForSeconds(duration);
+
+        _speed = initialSpeed;
     }
 }

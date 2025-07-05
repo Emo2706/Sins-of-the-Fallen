@@ -20,17 +20,20 @@ public class LostScreen :MonoBehaviour ,IScreen
 
     public void Free()
     {
+        GameManager.instance.pause = false;
         Destroy(gameObject);
     }
 
     public void Restart()
     {
+        GameManager.instance.pause = false;
         LevelManager.instance.RestartLevel();
         ScreenManager.instance.Pop();
     }
 
     public void ExitToMenu()
     {
+        GameManager.instance.pause = false;
         LevelManager.instance.StartLevel(0);
         ScreenManager.instance.Pop();
     }

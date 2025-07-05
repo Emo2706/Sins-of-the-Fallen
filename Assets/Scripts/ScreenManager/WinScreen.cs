@@ -19,11 +19,13 @@ public class WinScreen : MonoBehaviour, IScreen
 
     public void Free()
     {
+        GameManager.instance.pause = false;
         Destroy(gameObject);
     }
 
     public void Restart()
     {
+        GameManager.instance.pause = false;
         ScreenManager.instance.Pop();
         LevelManager.instance.RestartLevel();
         AudioManager.instance.StopAllsounds();
@@ -31,6 +33,7 @@ public class WinScreen : MonoBehaviour, IScreen
 
     public void ExitToMenu()
     {
+        GameManager.instance.pause = false;
         LevelManager.instance.StartLevel(0);
         ScreenManager.instance.Pop();
     }

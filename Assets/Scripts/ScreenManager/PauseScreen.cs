@@ -30,11 +30,13 @@ public class PauseScreen : MonoBehaviour,IScreen
 
     public void Free()
     {
+        GameManager.instance.pause = false;
         Destroy(gameObject);
     }
 
     public void Restart()
     {
+        GameManager.instance.pause = false;
         AudioManager.instance.StopAllsounds();
         ScreenManager.instance.Pop();
         LevelManager.instance.RestartLevel();
@@ -43,6 +45,7 @@ public class PauseScreen : MonoBehaviour,IScreen
 
     public void ExitToMenu()
     {
+        GameManager.instance.pause = false;
         AudioManager.instance.StopAllsounds();
         LevelManager.instance.StartLevel(0);
         ScreenManager.instance.Pop();

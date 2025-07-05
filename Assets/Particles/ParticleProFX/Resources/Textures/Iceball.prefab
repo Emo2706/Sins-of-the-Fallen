@@ -9861,7 +9861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f48660449dd474eb6e985afd6cbd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifeCooldown: 3
+  _lifeCooldown: 25
   _bulletSpeed: 1000
   dir: {x: 0, y: 0, z: 0}
   _explosion: {fileID: 0}
@@ -9874,7 +9874,6 @@ MonoBehaviour:
   iceball1: {fileID: 6308781975300151748}
   iceballEffects: {fileID: 3414531649878659834}
   iceball2: {fileID: 4543348271868578783}
-  _IcebulletPrefab: {fileID: 0}
 --- !u!1 &3414531649878659834
 GameObject:
   m_ObjectHideFlags: 0
