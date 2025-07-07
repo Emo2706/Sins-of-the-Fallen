@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Audio;
+
+public class MixerManager : MonoBehaviour
+{
+    public void SetMasterVolume(float volume)
+    {
+        AudioManager.instance.mixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        AudioManager.instance.mixer.SetFloat("MusicVolume",Mathf.Log10(volume) * 20);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        AudioManager.instance.mixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+    }
+}

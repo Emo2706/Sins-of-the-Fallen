@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-
     public Sound[] sounds;
+
+    public AudioMixer mixer;
+
+    [SerializeField] AudioMixerGroup _music;
+    [SerializeField] AudioMixerGroup _sfx;
 
 
     private void Awake()
@@ -31,6 +36,9 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            if (s.isMusic) s.source.outputAudioMixerGroup = _music;
+
+            else s.source.outputAudioMixerGroup = _sfx;
         }
     }
 

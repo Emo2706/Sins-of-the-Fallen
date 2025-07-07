@@ -133,7 +133,6 @@ public class Player : Entity
         //transform.position = CheckPointManager.instance.CheckPoint();
 
         _sliderUI.Start();
-       
     }
 
     // Update is called once per frame

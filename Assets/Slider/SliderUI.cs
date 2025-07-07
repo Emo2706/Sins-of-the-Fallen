@@ -32,7 +32,6 @@ public class SliderUI : MonoBehaviour
         _SliderText = player.fireTxt;
         _anim = player.anim;
         _bg = player.imgFire;
-        _materialBG = player.matFire;
         _markers = player.fireMarkers;
         ElementalSliders.Add(bulletType.Fireball, player.sliderFireBall);
         ElementalSliders.Add(bulletType.Iceball, player.sliderIceBall);

@@ -8,6 +8,8 @@ public class Sound
 {
     public string soundName;
 
+    public bool isMusic;
+
     [Range(0f, 1f)]
     public float volume;
 
