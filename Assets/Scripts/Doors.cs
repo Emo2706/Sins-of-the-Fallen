@@ -5,6 +5,7 @@ using UnityEngine;
 public class Doors : MonoBehaviour
 {
     [SerializeField] Animator _anim;
+    [SerializeField] AudioSource _opening;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,8 @@ public class Doors : MonoBehaviour
     public void TheOpenDoor()
     {
         _anim.SetTrigger("TheOpenDoor");
-        AudioManager.instance.Play(AudioManager.Sounds.TheOpenDoor);
+        _opening.Play();
+        //AudioManager.instance.Play(AudioManager.Sounds.TheOpenDoor);
     }
 
     private void OnDestroy()

@@ -8,11 +8,12 @@ public class BossBall : MonoBehaviour
     public Slider timeSlider;
     [SerializeField] float _scaleMultiplier;
     Vector3 addScale;
-    [SerializeField] int _cooldown;
+    [SerializeField] int _explodeTimer;
     [SerializeField] int _cooldownLost;
     public Slider hpBar;
     [SerializeField] int _hp;
     [SerializeField] float _maxScale;
+    //[SerializeField] ParticleSystem _lightning;
 
     private void Start()
     {
@@ -40,7 +41,9 @@ public class BossBall : MonoBehaviour
 
         timeSlider.value += Time.deltaTime;
 
-        if (timeSlider.value >= _cooldown) ScreenManager.instance.Push("LostScreen");
+        //if(timeSlider.value >= _explodeTimer/2) _lightning.emission.bu
+
+        if (timeSlider.value >= _explodeTimer) ScreenManager.instance.Push("LostScreen");
     }
 
     IEnumerator LostEvent(int cooldownLost)

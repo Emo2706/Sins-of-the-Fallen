@@ -6,6 +6,8 @@ public class GlideHaiser : MonoBehaviour
 {
     public bool activate;
     public ParticleSystem preHaiser;
+    [SerializeField] AudioSource _start;
+    [SerializeField] AudioSource _loop;
 
     public void GetHaiser()
     {
@@ -18,10 +20,10 @@ public class GlideHaiser : MonoBehaviour
 
     IEnumerator HaiserSounds()
     {
-        AudioManager.instance.Play(AudioManager.Sounds.HaiserStart);
+        _start.Play();
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
 
-        AudioManager.instance.Play(AudioManager.Sounds.Haiser);
+        _loop.Play();
     }
 }

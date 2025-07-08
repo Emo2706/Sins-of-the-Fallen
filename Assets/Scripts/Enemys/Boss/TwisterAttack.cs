@@ -32,6 +32,8 @@ public class TwisterAttack : MonoBehaviour
         _matUp = circleUp.GetComponent<Renderer>().material;
         _matDown = circleDown.GetComponent<Renderer>().material;
         _matEdge = circleEdge.GetComponent<Renderer>().material;
+        //AudioManager.instance.Play(AudioManager.Sounds.Tornado);
+        _tornado.Play();
     }
 
     // Update is called once per frame
@@ -91,6 +93,8 @@ public class TwisterAttack : MonoBehaviour
         _matSeq.Append(_mat.DOFloat(2, _frozenLevel, _transitionDuration));
         _matSeq.Append(_matDown.DOFloat(2, _frozenLevel, _transitionDuration));
         _matSeq.Append(_matEdge.DOFloat(2, _frozenLevel, _transitionDuration));
+        //AudioManager.instance.Play(AudioManager.Sounds.Freeze);
+        //AudioManager.instance.Stop(AudioManager.Sounds.Tornado);
         _freeze.Play();
         _tornado.Stop();
         _collider.enabled = false;
