@@ -18,7 +18,7 @@ public class Chest : MonoBehaviour
     float _chargeCounter;
     Action CurBehaviour;
     [SerializeField] ParticleSystem _sys1, _sys2;
-
+    bool _wasOpened = false;
     [SerializeField] TMP_Text _text;
 
     void Start()
@@ -32,7 +32,7 @@ public class Chest : MonoBehaviour
     {
         var distance = Vector3.Distance(transform.position, player.gameObject.transform.position);
 
-        if(distance <= interactionRangeDetect)
+        if(distance <= interactionRangeDetect && _wasOpened == false)
         {
             _text.gameObject.SetActive(true);
 
@@ -51,6 +51,7 @@ public class Chest : MonoBehaviour
     {
         _animator.SetBool("Open", true);
         _soulparticle.Play();
+        _wasOpened = true;
         CurBehaviour = ShaderTransition;
         _sys1.Stop();
         _sys2.Stop();
