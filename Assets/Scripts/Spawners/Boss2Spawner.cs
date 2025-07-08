@@ -9,6 +9,7 @@ public class Boss2Spawner : MonoBehaviour
     [SerializeField] Slider _hpBar;
     [SerializeField] Player _player;
     [SerializeField] Transform _spawnPosBoss;
+    [SerializeField] Transform _root;
 
 
     // Start is called before the first frame update
@@ -19,7 +20,7 @@ public class Boss2Spawner : MonoBehaviour
         boss.player = _player;
         boss.timeSlider = _timeSlider;
         boss.hpBar = _hpBar;
-        
+        boss.transform.parent = _root;
     }
 
     

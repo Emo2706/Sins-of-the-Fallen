@@ -42,6 +42,7 @@ public class Boss2 : EnemyGlobalScript
         ball.transform.position = _spawnPositionBall.position;
         ball.timeSlider = timeSlider;
         ball.hpBar = hpBar;
+        ball.transform.parent = transform.parent;
         //Agregar efecto y sonido
     }
 
