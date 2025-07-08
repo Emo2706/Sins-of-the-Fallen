@@ -54,6 +54,8 @@ MonoBehaviour:
   _soulparticle: {fileID: 9194752941076585997}
   chestMesh: {fileID: 8063363667622616012}
   player: {fileID: 0}
+  _sys1: {fileID: 238807133853332062}
+  _sys2: {fileID: 1160877975907198845}
 --- !u!64 &1247092778670777400
 MeshCollider:
   m_ObjectHideFlags: 0

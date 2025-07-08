@@ -23,6 +23,8 @@ public class TwisterAttack : MonoBehaviour
     int _indexWayPoint;
     int _frozenLevel = Shader.PropertyToID("_FrozenLevel");
     Vector3 _dir;
+    [SerializeField] AudioSource _tornado;
+    [SerializeField] AudioSource _freeze;
 
     private void Start()
     {
@@ -89,8 +91,8 @@ public class TwisterAttack : MonoBehaviour
         _matSeq.Append(_mat.DOFloat(2, _frozenLevel, _transitionDuration));
         _matSeq.Append(_matDown.DOFloat(2, _frozenLevel, _transitionDuration));
         _matSeq.Append(_matEdge.DOFloat(2, _frozenLevel, _transitionDuration));
-        AudioManager.instance.Play(AudioManager.Sounds.Freeze);
-        AudioManager.instance.Stop(AudioManager.Sounds.Tornado);
+        _freeze.Play();
+        _tornado.Stop();
         _collider.enabled = false;
         _freezeCollider.enabled = true;
         StartCoroutine(LowSpeed(_freezeDuration));

@@ -28,12 +28,15 @@ public class NormalView
 
     public void Punch()
     {
-        if(_enemy.life>0 && _enemy.minDistAttack > _enemy.dir.sqrMagnitude)
+        if(_enemy.life>0 && _enemy.minDistAttack * _enemy.minDistAttack > _enemy.dir.sqrMagnitude)
         _anim.SetTrigger("Punch");
     }
 
     public void Die()
     {
+        _anim.SetFloat("xAxis", 0);
+        _anim.SetFloat("zAxis", 0);
         _anim.SetTrigger("Die");
+        _anim.Play("Dying");
     }
 }

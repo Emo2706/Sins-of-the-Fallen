@@ -155,8 +155,15 @@ MonoBehaviour:
   circleUp: {fileID: 1147395135806856115}
   circleDown: {fileID: 6249348117798740601}
   circleEdge: {fileID: 3246345887667293519}
+  _speed: 0
+  _wayPoints: []
   _collider: {fileID: 7340496260727430108}
   _freezeCollider: {fileID: 3573791359393118800}
+  _move: 0
+  _distance: 0
+  _freezeDuration: 0
+  _tornado: {fileID: 1869635929517611355}
+  _freeze: {fileID: 7927770903693567904}
 --- !u!65 &7340496260727430108
 BoxCollider:
   m_ObjectHideFlags: 0

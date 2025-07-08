@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+using TMPro;
 
 public class Chest : MonoBehaviour
 {
@@ -15,6 +17,10 @@ public class Chest : MonoBehaviour
     Material mat_Chest;
     float _chargeCounter;
     Action CurBehaviour;
+    [SerializeField] ParticleSystem _sys1, _sys2;
+
+    [SerializeField] TMP_Text _text;
+
     void Start()
     {
         CurBehaviour = delegate { };
@@ -24,11 +30,19 @@ public class Chest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Poner en el if, un && Vector3.distance(transform.position, player.transform.positon) <= interactionRangeDetect
-        if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(transform.position, player.gameObject.transform.position) <= interactionRangeDetect)
+        var distance = Vector3.Distance(transform.position, player.gameObject.transform.position);
+
+        if(distance <= interactionRangeDetect)
         {
-            OpenChest();
+            _text.gameObject.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.E))
+                OpenChest();
         }
+
+        else _text.gameObject.SetActive(false);
+
+
         CurBehaviour();
     }
     
@@ -38,6 +52,8 @@ public class Chest : MonoBehaviour
         _animator.SetBool("Open", true);
         _soulparticle.Play();
         CurBehaviour = ShaderTransition;
+        _sys1.Stop();
+        _sys2.Stop();
     }
 
     void ShaderTransition()

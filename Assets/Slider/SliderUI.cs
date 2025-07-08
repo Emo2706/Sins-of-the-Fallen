@@ -51,16 +51,11 @@ public class SliderUI : MonoBehaviour
     // Update is called once per frame
    public void Update()
     {
-
-        
-
         if (chargeCounter >= _phasesInSeconds[_actualPhase])
         {
             CheckReachedCharge();
             
         }
-
-    
     }
 
     void AltStart()
@@ -82,6 +77,7 @@ public class SliderUI : MonoBehaviour
         else
         {
             _markers = _player.iceMarkers;
+            slider.maxValue = 0;
         }
         AltStart();
     }
@@ -91,7 +87,7 @@ public class SliderUI : MonoBehaviour
     {
         for (int i = 0; i < _markers.Length; i++)
         {
-            //_markers[i].transform.Rotate(Vector3.zero);e
+            _markers[i].transform.localRotation = Quaternion.Euler(0, 0, 0);
             float rotation = _phasesInSeconds[i] * 360 / maximumCharge * -1;
             _SliderText.text = _actualPhase.ToString();
 
@@ -111,7 +107,8 @@ public class SliderUI : MonoBehaviour
         chargeCounter = 0;
         _actualPhase = 0;
         _SliderText.text = "0";
-        _player.StartCoroutine(ResetFill());
+        slider.value = 0;
+        //_player.StartCoroutine(ResetFill());
         
     }
 

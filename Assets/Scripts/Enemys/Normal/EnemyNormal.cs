@@ -139,7 +139,6 @@ public class EnemyNormal : EnemyGlobalScript
 
         
 
-        Destroy(gameObject);
 
 
         if (lifePotion == 2)
@@ -150,6 +149,7 @@ public class EnemyNormal : EnemyGlobalScript
         }
 
         EnemyFactory.instance.ReturnToPool(this);
+        Destroy(gameObject);
     }
 
     private void OnDestroy()

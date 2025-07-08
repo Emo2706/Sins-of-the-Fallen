@@ -155,13 +155,13 @@ public class Player : Entity
             input.Execute();
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.F9))
         {
             transform.position = testBossPoint.position;
             
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.F10))
         {
             LevelManager.instance.StartLevel(2);
         }

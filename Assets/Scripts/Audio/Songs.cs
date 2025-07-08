@@ -23,7 +23,6 @@ public class Songs : MonoBehaviour
             OnEnterBossZone();
             _songsCollider.enabled = false;
         }
-        Debug.Log("Entro , suena uzi");
     }
 
     public void OnEnterFinalZone()

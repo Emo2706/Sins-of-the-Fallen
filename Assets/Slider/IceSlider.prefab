@@ -1160,9 +1160,9 @@ MonoBehaviour:
   - {fileID: 2483873892812914751}
   - {fileID: 2483873893303033419}
   _phasesInSeconds:
+  - 0
   - 1
   - 2.5
-  - 5
   chargeCounter: 0
   slider: {fileID: 2483873893570970467}
   _anim: {fileID: 2483873893075344701}
