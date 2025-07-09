@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Boss2Spawner : MonoBehaviour
 {
     [SerializeField] Slider _timeSlider;
+    [SerializeField] Image _hpWholeBar;
     [SerializeField] Image _hpBar;
     [SerializeField] Player _player;
     [SerializeField] Transform _spawnPosBoss;
@@ -19,6 +20,7 @@ public class Boss2Spawner : MonoBehaviour
         boss.transform.position = _spawnPosBoss.position;
         boss.player = _player;
         boss.timeSlider = _timeSlider;
+        boss.hpWholeBar = _hpWholeBar;
         boss.hpBar = _hpBar;
         boss.transform.parent = _root;
     }

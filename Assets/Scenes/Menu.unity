@@ -6526,7 +6526,7 @@ MonoBehaviour:
     isMusic: 0
     volume: 0.4
     pitch: 1
-    loop: 1
+    loop: 0
     clip: {fileID: 8300000, guid: dc31c1ac812914d4ca6af0e79eaa9442, type: 3}
     source: {fileID: 0}
   - soundName: BossProjectile

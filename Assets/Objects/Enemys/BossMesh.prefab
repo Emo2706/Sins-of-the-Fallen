@@ -124,16 +124,16 @@ MonoBehaviour:
     m_Bits: 512
   zoneAttackCooldown: 3
   twisterCooldown: 8
-  twistersAmount: 4
-  twistersAmountPhase2: 8
-  twistersAmountPhase3: 12
-  nextTwistersCooldown: 10
+  twistersAmount: 3
+  twistersAmountPhase2: 5
+  twistersAmountPhase3: 7
+  nextTwistersCooldown: 25
   startCircleAttack: 3
-  cooldownChangeAttackCircle: 4
-  coolDownChangeAttacks: 30
+  cooldownChangeAttackCircle: 6
+  coolDownChangeAttacks: 20
   coolDownCircle: 10
   _coolDownCirclePhase2: 8
-  _coolDownCirclePhase3: 4
+  _coolDownCirclePhase3: 6
   coolDownShoot: 3
   _coolDownPotion: 15
   pivotShoot: {fileID: 7335018344059051357}

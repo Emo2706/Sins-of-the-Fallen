@@ -16,7 +16,7 @@ Shader "S_Fire&IceTornado"
 		_TextureSample1("Texture Sample 1", 2D) = "white" {}
 		[HDR]_IceColor("Ice Color", Color) = (0,0,0,0)
 		_TextureSample2("Texture Sample 2", 2D) = "white" {}
-		_FrozenLevel("Frozen Level", Range( 0 , 2)) = 0
+		_FrozenLevel("Frozen Level", Range( 0 , 4)) = 0
 		_Height("Height", Range( 0 , 40)) = 0
 		[HDR]_FreezeBorderColor("Freeze Border Color", Color) = (0,0,0,0)
 		_Metallic("Metallic", Float) = 0
@@ -3611,7 +3611,7 @@ Node;AmplifyShaderEditor.StepOpNode;44;-1039.471,-1387.877;Inherit;False;2;0;FLO
 Node;AmplifyShaderEditor.RegisterLocalVarNode;48;-406.1713,-1412.577;Inherit;False;FreezeBorder;-1;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;45;-819.3712,-1406.877;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;90;-1878.601,-1468.665;Inherit;False;Constant;_Float2;Float 2;18;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;37;-2042.282,-1628.536;Inherit;False;Property;_FrozenLevel;Frozen Level;10;0;Create;True;0;0;0;False;0;False;0;0;0;2;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;37;-2042.282,-1628.536;Inherit;False;Property;_FrozenLevel;Frozen Level;10;0;Create;True;0;0;0;False;0;False;0;0;0;4;0;1;FLOAT;0
 WireConnection;46;0;45;0
 WireConnection;46;1;47;0
 WireConnection;50;0;49;0
@@ -3711,4 +3711,4 @@ WireConnection;48;0;46;0
 WireConnection;45;0;44;0
 WireConnection;45;1;43;0
 ASEEND*/
-//CHKSM=4E4FE5CE38F171B7BB7AD673B0BF3A55E41E1B76
+//CHKSM=BD802869599D1931BB64A922829FF35D42FE8C47

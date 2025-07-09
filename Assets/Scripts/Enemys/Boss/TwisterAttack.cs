@@ -7,7 +7,8 @@ public class TwisterAttack : MonoBehaviour
 {
     float _lifeTimer;
     [SerializeField] int _lifeTime;
-    [SerializeField] float _transitionDuration;
+    [SerializeField] float _transitionDurationIceToFire;
+    [SerializeField] float _transitionDurationFireToIce;
     [SerializeField] GameObject circleUp;
     [SerializeField] GameObject circleDown;
     [SerializeField] GameObject circleEdge;
@@ -28,10 +29,21 @@ public class TwisterAttack : MonoBehaviour
 
     private void Start()
     {
-        _mat = GetComponent<Renderer>().material;
+        _mat = new Material(GetComponent<Renderer>().sharedMaterial);
+        GetComponent<Renderer>().material = _mat;
+
+        /*_mat = GetComponent<Renderer>().material;
         _matUp = circleUp.GetComponent<Renderer>().material;
         _matDown = circleDown.GetComponent<Renderer>().material;
-        _matEdge = circleEdge.GetComponent<Renderer>().material;
+        _matEdge = circleEdge.GetComponent<Renderer>().material;*/
+
+        _matUp = _mat;
+        _matDown = _mat;
+        _matEdge = _mat;
+
+        circleUp.GetComponent<Renderer>().material = _mat;
+        circleDown.GetComponent<Renderer>().material = _mat;
+        circleEdge.GetComponent<Renderer>().material = _mat;
         //AudioManager.instance.Play(AudioManager.Sounds.Tornado);
         _tornado.Play();
     }
@@ -90,11 +102,11 @@ public class TwisterAttack : MonoBehaviour
         _matSeq.Kill();
 
         _matSeq = DOTween.Sequence();
-        
-        _matSeq.Append(_mat.DOFloat(2, _frozenLevel, _transitionDuration));
-        _matSeq.Append(_matDown.DOFloat(2, _frozenLevel, _transitionDuration));
-        _matSeq.Append(_matUp.DOFloat(2, _frozenLevel, _transitionDuration));
-        _matSeq.Append(_matEdge.DOFloat(2, _frozenLevel, _transitionDuration));
+
+      //_matSeq.Append(_matDown.DOFloat(4, _frozenLevel, _transitionDurationFireToIce));
+        _matSeq.Append(_mat.DOFloat(4, _frozenLevel, _transitionDurationFireToIce));
+      //_matSeq.Append(_matUp.DOFloat(4, _frozenLevel, _transitionDurationFireToIce));
+      //_matSeq.Append(_matEdge.DOFloat(4, _frozenLevel, _transitionDurationFireToIce));
        
         //AudioManager.instance.Play(AudioManager.Sounds.Freeze);
         //AudioManager.instance.Stop(AudioManager.Sounds.Tornado);
@@ -131,10 +143,11 @@ public class TwisterAttack : MonoBehaviour
 
         _matSeq = DOTween.Sequence();
 
-        _matSeq.Append(_matUp.DOFloat(0, _frozenLevel, _transitionDuration));
-        _matSeq.Append(_mat.DOFloat(0, _frozenLevel, _transitionDuration));
-        _matSeq.Append(_matDown.DOFloat(0, _frozenLevel, _transitionDuration));
-        _matSeq.Append(_matEdge.DOFloat(0, _frozenLevel, _transitionDuration));
+      //_matSeq.Append(_matEdge.DOFloat(0, _frozenLevel, _transitionDurationIceToFire));
+      //_matSeq.Append(_matUp.DOFloat(0, _frozenLevel, _transitionDurationIceToFire));
+        _matSeq.Append(_mat.DOFloat(0, _frozenLevel, _transitionDurationIceToFire));
+      //_matSeq.Append(_matDown.DOFloat(0, _frozenLevel, _transitionDurationIceToFire));
+        
 
         _speed = initialSpeed;
 

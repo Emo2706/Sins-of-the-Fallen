@@ -10,6 +10,7 @@ public class BossBall : MonoBehaviour
     Vector3 addScale;
     [SerializeField] int _explodeTimer;
     [SerializeField] int _cooldownLost;
+    public Image hpWholeBar;
     public Image hpBar;
     float _fillAmountImage;
     [SerializeField] int _hp;
@@ -21,7 +22,7 @@ public class BossBall : MonoBehaviour
         addScale = Vector3.zero;
         timeSlider.value = 0f;
         timeSlider.gameObject.SetActive(true);
-        hpBar.gameObject.SetActive(true);
+        hpWholeBar.gameObject.SetActive(true);
     }
 
     void Update()
@@ -76,6 +77,7 @@ public class BossBall : MonoBehaviour
         if (_hp <= 0)
         {
             ScreenManager.instance.Push("WinScreen");
+            AudioManager.instance.Stop(AudioManager.Sounds.MusicMiniboss);
         }
     }
 }

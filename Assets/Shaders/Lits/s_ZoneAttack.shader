@@ -537,7 +537,7 @@ Shader "s_Lit4"
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
 				float4 color14 = IsGammaSpace() ? float4(0.08627451,0.03921569,0.6666667,0) : float4(0.008023192,0.00303527,0.4019779,0);
-				float4 color13 = IsGammaSpace() ? float4(1.605559,0,0.0756546,0) : float4(2.833855,0,0.006651098,0);
+				float4 color13 = IsGammaSpace() ? float4(0.579394,0,1.605559,0) : float4(0.2950231,0,2.833856,0);
 				float2 uv_ataquebosstextura = IN.ase_texcoord8.xy * _ataquebosstextura_ST.xy + _ataquebosstextura_ST.zw;
 				float4 tex2DNode11 = tex2D( _ataquebosstextura, uv_ataquebosstextura );
 				float4 lerpResult10 = lerp( color14 , color13 , tex2DNode11);
@@ -1615,7 +1615,7 @@ Shader "s_Lit4"
 				#endif
 
 				float4 color14 = IsGammaSpace() ? float4(0.08627451,0.03921569,0.6666667,0) : float4(0.008023192,0.00303527,0.4019779,0);
-				float4 color13 = IsGammaSpace() ? float4(1.605559,0,0.0756546,0) : float4(2.833855,0,0.006651098,0);
+				float4 color13 = IsGammaSpace() ? float4(0.579394,0,1.605559,0) : float4(0.2950231,0,2.833856,0);
 				float2 uv_ataquebosstextura = IN.ase_texcoord4.xy * _ataquebosstextura_ST.xy + _ataquebosstextura_ST.zw;
 				float4 tex2DNode11 = tex2D( _ataquebosstextura, uv_ataquebosstextura );
 				float4 lerpResult10 = lerp( color14 , color13 , tex2DNode11);
@@ -1898,7 +1898,7 @@ Shader "s_Lit4"
 				#endif
 
 				float4 color14 = IsGammaSpace() ? float4(0.08627451,0.03921569,0.6666667,0) : float4(0.008023192,0.00303527,0.4019779,0);
-				float4 color13 = IsGammaSpace() ? float4(1.605559,0,0.0756546,0) : float4(2.833855,0,0.006651098,0);
+				float4 color13 = IsGammaSpace() ? float4(0.579394,0,1.605559,0) : float4(0.2950231,0,2.833856,0);
 				float2 uv_ataquebosstextura = IN.ase_texcoord2.xy * _ataquebosstextura_ST.xy + _ataquebosstextura_ST.zw;
 				float4 tex2DNode11 = tex2D( _ataquebosstextura, uv_ataquebosstextura );
 				float4 lerpResult10 = lerp( color14 , color13 , tex2DNode11);
@@ -2597,7 +2597,7 @@ Shader "s_Lit4"
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
 				float4 color14 = IsGammaSpace() ? float4(0.08627451,0.03921569,0.6666667,0) : float4(0.008023192,0.00303527,0.4019779,0);
-				float4 color13 = IsGammaSpace() ? float4(1.605559,0,0.0756546,0) : float4(2.833855,0,0.006651098,0);
+				float4 color13 = IsGammaSpace() ? float4(0.579394,0,1.605559,0) : float4(0.2950231,0,2.833856,0);
 				float2 uv_ataquebosstextura = IN.ase_texcoord8.xy * _ataquebosstextura_ST.xy + _ataquebosstextura_ST.zw;
 				float4 tex2DNode11 = tex2D( _ataquebosstextura, uv_ataquebosstextura );
 				float4 lerpResult10 = lerp( color14 , color13 , tex2DNode11);
@@ -3251,7 +3251,7 @@ Node;AmplifyShaderEditor.SimpleTimeNode;27;-1355.378,342.921;Inherit;False;1;0;F
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;28;-1156.657,446.8669;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.Vector2Node;29;-1428.184,498.8399;Inherit;False;Property;_speed;speed;2;0;Create;True;0;0;0;False;0;False;0,-1;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;12;-394.2108,-6.008599;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.ColorNode;13;-902.8204,-312.1407;Inherit;False;Constant;_Color1;Color 1;1;1;[HDR];Create;True;0;0;0;False;0;False;1.605559,0,0.0756546,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;13;-902.8204,-312.1407;Inherit;False;Constant;_Color1;Color 1;1;1;[HDR];Create;True;0;0;0;False;0;False;0.579394,0,1.605559,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.ColorNode;14;-890.6988,-510.8466;Inherit;False;Constant;_Color0;Color 0;1;1;[HDR];Create;True;0;0;0;False;0;False;0.08627451,0.03921569,0.6666667,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 WireConnection;1;0;10;0
 WireConnection;1;8;12;0
@@ -3273,4 +3273,4 @@ WireConnection;28;1;29;0
 WireConnection;12;0;11;1
 WireConnection;12;1;23;0
 ASEEND*/
-//CHKSM=61C5CA723334922FCCE805359C2A6B90E5C21DD6
+//CHKSM=423A13BDE9D9D97639E84A8B14DCD05ED2F58BCD
