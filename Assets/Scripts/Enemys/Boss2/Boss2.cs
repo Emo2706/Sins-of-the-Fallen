@@ -7,7 +7,7 @@ public class Boss2 : EnemyGlobalScript
 {
     Boss2View _view;
     public Slider timeSlider;
-    public Slider hpBar;
+    public Image hpBar;
     [SerializeField] Transform _spawnPositionBall;
     bool _fightStarted;
     public Player player;

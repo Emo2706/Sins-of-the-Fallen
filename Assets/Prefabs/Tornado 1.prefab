@@ -161,7 +161,7 @@ MonoBehaviour:
   _freezeCollider: {fileID: 3573791359393118800}
   _move: 0
   _distance: 0
-  _freezeDuration: 0
+  _freezeDuration: 10
   _tornado: {fileID: 1869635929517611355}
   _freeze: {fileID: 7927770903693567904}
 --- !u!65 &7340496260727430108

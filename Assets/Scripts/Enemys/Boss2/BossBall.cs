@@ -10,7 +10,8 @@ public class BossBall : MonoBehaviour
     Vector3 addScale;
     [SerializeField] int _explodeTimer;
     [SerializeField] int _cooldownLost;
-    public Slider hpBar;
+    public Image hpBar;
+    float _fillAmountImage;
     [SerializeField] int _hp;
     [SerializeField] float _maxScale;
     //[SerializeField] ParticleSystem _lightning;
@@ -69,7 +70,8 @@ public class BossBall : MonoBehaviour
     {
         _hp -= dmg;
 
-        hpBar.value = _hp;
+        _fillAmountImage = _hp / 40f;
+        hpBar.fillAmount = _fillAmountImage;
 
         if (_hp <= 0)
         {

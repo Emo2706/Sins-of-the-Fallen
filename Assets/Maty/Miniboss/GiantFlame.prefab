@@ -24198,7 +24198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSlider: {fileID: 0}
   _scaleMultiplier: 0.001
-  _cooldown: 180
+  _explodeTimer: 120
   _cooldownLost: 30
   hpBar: {fileID: 0}
   _hp: 30

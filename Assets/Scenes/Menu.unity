@@ -3680,6 +3680,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6119623e039187e4f9b9672035855aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _masterSlider: {fileID: 941202199}
+  _musicSlider: {fileID: 1437850854}
+  _sfxSlider: {fileID: 35361060}
 --- !u!1 &1426308308
 GameObject:
   m_ObjectHideFlags: 0

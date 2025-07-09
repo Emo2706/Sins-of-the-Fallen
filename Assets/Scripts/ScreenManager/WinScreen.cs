@@ -27,13 +27,14 @@ public class WinScreen : MonoBehaviour, IScreen
     {
         GameManager.instance.pause = false;
         ScreenManager.instance.Pop();
-        LevelManager.instance.RestartLevel();
         AudioManager.instance.StopAllsounds();
+        LevelManager.instance.RestartLevel();
     }
 
     public void ExitToMenu()
     {
         GameManager.instance.pause = false;
+        AudioManager.instance.Stop(AudioManager.Sounds.MusicMiniboss);
         LevelManager.instance.StartLevel(0);
         ScreenManager.instance.Pop();
     }

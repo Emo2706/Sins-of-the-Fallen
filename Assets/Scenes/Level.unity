@@ -26933,6 +26933,14 @@ PrefabInstance:
       propertyPath: _lifeTime
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 3634491997635177249, guid: 57484f691e70f884abbc9946482609b2, type: 3}
+      propertyPath: _freezeDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3634491997635177249, guid: 57484f691e70f884abbc9946482609b2, type: 3}
+      propertyPath: _transitionDuration
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7340496260727430108, guid: 57484f691e70f884abbc9946482609b2, type: 3}
       propertyPath: m_Size.x
       value: 0.14269517

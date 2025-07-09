@@ -161,7 +161,7 @@ public class Player : Entity
             
         }
 
-        if (Input.GetKeyDown(KeyCode.F10))
+        if (Input.GetKeyDown(KeyCode.F11))
         {
             LevelManager.instance.StartLevel(2);
         }
